@@ -30,13 +30,35 @@ public class Grupo extends Composite{
 	}
 	@Override
 	public float getCusteioReaisNaoGastoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		float custeioNaoGasto = 0;
+		for(Composite c:projetos){
+			custeioNaoGasto+=c.getCusteioReaisNaoGastoTotal();
+		}
+		return custeioNaoGasto;
 	}
 	@Override
 	public float getCapitalReaisNaoGastoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		float capitalNaoGasto = 0;
+		for(Composite c:projetos){
+			capitalNaoGasto+=c.getCapitalReaisNaoGastoTotal();
+		}
+		return capitalNaoGasto;
+	}
+	@Override
+	public void adicionar(Composite composite) {
+		projetos.add(composite);
+	}
+	@Override
+	public void remover(Composite composite) {
+		projetos.remove(composite);
+	}
+	@Override
+	public void adicionar(Membro membro) {
+		membros.add(membro);
+	}
+	@Override
+	public void remover(Membro membro) {
+		membros.add(membro);
 	}
 	public long getDataCriacao() {
 		return dataCriacao;

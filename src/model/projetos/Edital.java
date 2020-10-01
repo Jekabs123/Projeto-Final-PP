@@ -1,37 +1,53 @@
 package model.projetos;
 
+import java.util.ArrayList;
+
 public class Edital extends Composite{
 
+	private ArrayList<Composite> projetos = new ArrayList<>();
+	private ArrayList<Composite> grupos = new ArrayList<>();
+	
+	public void adicionar(Projeto composite) {
+		projetos.add(composite);
+	}
+	public void adicionar(Grupo composite){
+		grupos.add(composite);
+	}
 	@Override
 	public void ativar() {
-		// TODO Auto-generated method stub
+		setAtivo(true);
 		
 	}
 
 	@Override
 	public void desativar() {
-		// TODO Auto-generated method stub
-		
+		setAtivo(false);
 	}
 
 	@Override
 	public float getCustoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		float custoTotal = 0;
+		for(Composite p: projetos){
+			custoTotal+= p.getCustoTotal();
+		}
+		return custoTotal;
 	}
 
 	@Override
 	public float getCusteioReaisNaoGastoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		float custeio = 0;
+		for(Composite c: projetos){
+			custeio+= c.getCusteioReaisNaoGastoTotal();
+		}
+		return custeio;
 	}
 
 	@Override
 	public float getCapitalReaisNaoGastoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		float capital = 0;
+		for(Composite c: projetos){
+			capital+=c.getCapitalReaisNaoGastoTotal();
+		}
+		return capital;
 	}
-	
-
-
 }

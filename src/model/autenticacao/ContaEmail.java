@@ -9,10 +9,13 @@ public class ContaEmail {
 	}
 	
 	public Membro autenticar(char[] login, char[] senha) {  //FALTA IMPLEMENTAR
-		return null;
+		return getConta().autenticar(login, senha);
 	}
 	
 	public boolean validarlogin(char[] login) {  //FALTA IMPLEMENTAR
+		if(login.length<6){
+			return false;
+		}
 		return true;
 	}
 

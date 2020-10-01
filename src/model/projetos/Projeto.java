@@ -24,18 +24,15 @@ public class Projeto extends Composite{
 	}
 	@Override
 	public float getCustoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		return aporteCapitalReais+aporteCusteioReais;
 	}
 	@Override
 	public float getCusteioReaisNaoGastoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		return aporteCusteioReais-gastoExecutadoCusteioReais;
 	}
 	@Override
 	public float getCapitalReaisNaoGastoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		return aporteCapitalReais-gastoExecutadoCapitalReais;
 	}
 	@Override
 	public void adicionar(Membro membro) {
