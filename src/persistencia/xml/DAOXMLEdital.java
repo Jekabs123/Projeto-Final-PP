@@ -18,16 +18,31 @@ public class DAOXMLEdital {
 	private File arquivoColecao;
 	private XStream xstream = new XStream(new DomDriver("ISO-8859-1"));
 	
-	public boolean criar(Edital edital) {   //FALTA IMPLEMENTAR
-		return true;
+	public boolean criar(Edital edital) {   
+		for (int i = 0; i <= persistidos.size(); i++) {            //PERCORRO A LISTA
+			if(persistidos.size() == i) {                          //SE O TAMANHO DA LISTA FOR IGUAL AO I
+				persistidos.put(i+1l, edital);                     //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
+				salvarXML();                                       //SALVO O ARQUIVO   
+				return true;                                       //RETORNO TRUE SE DEU CERTO
+			}
+		}
+		return false;      
 	}
 	
-	public void remover(long id) {   //FALTA IMPLEMENTAR
-		
+	public void remover(long id) { 
+		persistidos.remove(id);                                   //REMOVE PELA CHAVE
+		salvarXML();                                              //SALVA
 	}
 	
-	public boolean atualizar(long id, Edital edital) {   //FALTA IMPLEMENTAR
-		return true;
+	public boolean atualizar(long id, Edital edital) {   
+		for (int i = 0; i < persistidos.size(); i++) {           //PERCORRO A LISTA
+			if(id <= persistidos.size()) {                       //SE O ID FOR MENOR QUE O TAMANHO DA LISTA, SIGNIFICA QUE O OBJETO ESTÁ NELA
+				persistidos.put(id, edital);                     //ATUALIZO O OBJETO PARA O ID DESEJADO
+				salvarXML();                                     //SALVO O ARQUIVO
+				return true;                                     //RETORNO TRUE SE DEU CERTO
+			}
+		}
+		return false;                                            //RETORNO FALSE SE DEU ERRADO
 	}
 	
 	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
