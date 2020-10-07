@@ -2,6 +2,7 @@ package model.projetos;
 
 import java.util.ArrayList;
 
+import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 
 public class Grupo extends Composite{
@@ -52,8 +53,14 @@ public class Grupo extends Composite{
 	public void remover(Composite composite) {
 		projetos.remove(composite);
 	}
+
 	@Override
-	public void adicionar(Membro membro) {
+	public void adicionar(Membro membro) throws ExceptionMembroDuplicado {
+		for(Membro m: membros){
+			if(m.getMatricula()==membro.getMatricula()){
+				 throw new ExceptionMembroDuplicado("Alguem membro possui essa matricula");
+			}
+		}
 		membros.add(membro);
 	}
 	@Override

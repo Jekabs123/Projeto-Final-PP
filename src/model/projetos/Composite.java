@@ -1,9 +1,9 @@
 package model.projetos;
 
+import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 
 public abstract class Composite {
-	//depois vou pensar em renomear
 	private char[] nome;
 	private boolean ativo;
 	private long dataInicio;
@@ -19,7 +19,7 @@ public abstract class Composite {
 	
 	public abstract float getCapitalReaisNaoGastoTotal();
 	
-	public void adicionar(Membro membro){
+	public void adicionar(Membro membro)throws ExceptionMembroDuplicado{
 		
 	}
 	public void remover(Membro membro){

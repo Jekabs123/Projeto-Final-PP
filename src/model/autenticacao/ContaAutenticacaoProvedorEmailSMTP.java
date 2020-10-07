@@ -7,6 +7,11 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 
 	@Override
 	public Membro autenticar(char[] login, char[] senha) {  //FALTA IMPLEMENTAR
+		
+//		email.setHostName( "smtp.gmail.com" );
+//		email.setSslSmtpPort( "465" );
+//		email.setAuthenticator( new DefaultAuthenticator( "" , "" ) );
+		
 		return null;
 	}
 

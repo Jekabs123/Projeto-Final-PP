@@ -2,6 +2,7 @@ package model.projetos;
 
 import java.util.ArrayList;
 
+import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 
 public class Projeto extends Composite{
@@ -35,7 +36,12 @@ public class Projeto extends Composite{
 		return aporteCapitalReais-gastoExecutadoCapitalReais;
 	}
 	@Override
-	public void adicionar(Membro membro) {
+	public void adicionar(Membro membro) throws ExceptionMembroDuplicado{
+		for(Membro m: membros){
+			if(m.getMatricula()==membro.getMatricula()){
+				 throw new ExceptionMembroDuplicado("Alguem membro possui essa matricula");
+			}
+		}
 		membros.add(membro);
 	}
 	@Override

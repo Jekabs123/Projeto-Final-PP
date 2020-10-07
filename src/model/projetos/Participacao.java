@@ -51,5 +51,4 @@ public class Participacao extends Composite{
 	public void setCoordenador(boolean coordenador) {
 		this.coordenador = coordenador;
 	}
-
 }

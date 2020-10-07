@@ -7,13 +7,23 @@ public class Membro {
 	private boolean ativo;
 	private char[] email;
 	private boolean administrador;
+	private ContaEmail contaEmail;
 	
+	
+	public ContaEmail getContaEmail() {
+		return contaEmail;
+	}
+
+	public void setContaEmail(ContaEmail contaEmail) {
+		this.contaEmail = contaEmail;
+	}
+
 	public void ativar() {    //FALTA IMPLEMENTAR
-		
+		ativo = true;
 	}
 	
 	public void desativar() {  //FALTA IMPLEMENTAR
-		
+		ativo = false;
 	}
 
 	public long getMatricula() {
@@ -48,12 +58,13 @@ public class Membro {
 		this.email = email;
 	}
 
-	public boolean isAdministrador() {
+	public boolean getAdministrador() {
 		return administrador;
 	}
 
 	public void setAdministrador(boolean administrador) {
 		this.administrador = administrador;
 	}
+
 
 }
