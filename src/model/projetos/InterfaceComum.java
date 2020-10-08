@@ -4,7 +4,7 @@ import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 
 public abstract class InterfaceComum {
-	private char[] nome;
+	private String nome;
 	private boolean ativo;
 	private long dataInicio;
 	private long dataTermino;
@@ -32,11 +32,11 @@ public abstract class InterfaceComum {
 		
 	}
 
-	public char[] getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(char[] nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 

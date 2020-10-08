@@ -1,13 +1,16 @@
 package model.autenticacao;
 
+import model.projetos.Participacao;
+
 public class Membro {
 	
 	private long matricula;
-	private char[] nome;
+	private String nome;
 	private boolean ativo;
 	private char[] email;
 	private boolean administrador;
 	private ContaEmail contaEmail;
+	private Participacao participacao;
 	
 	
 	public ContaEmail getContaEmail() {
@@ -34,11 +37,11 @@ public class Membro {
 		this.matricula = matricula;
 	}
 
-	public char[] getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(char[] nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
@@ -64,6 +67,14 @@ public class Membro {
 
 	public void setAdministrador(boolean administrador) {
 		this.administrador = administrador;
+	}
+
+	public Participacao getParticipacao() {
+		return participacao;
+	}
+
+	public void setParticipacao(Participacao participacao) {
+		this.participacao = participacao;
 	}
 
 
