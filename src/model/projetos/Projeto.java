@@ -51,6 +51,7 @@ public class Projeto extends InterfaceComum{
 	
 	public void mover(Grupo grupo) {
 		grupo.setMembros(membros);
+		
 	}
 	
 	

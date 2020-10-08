@@ -1,5 +1,13 @@
 package model.autenticacao;
 
+import java.nio.file.attribute.PosixFileAttributeView;
+
+import javax.swing.JOptionPane;
+
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
+
 public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 	
 	private char[] provedorHost;
@@ -8,10 +16,19 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 	@Override
 	public Membro autenticar(char[] login, char[] senha) {  //FALTA IMPLEMENTAR
 		
-//		email.setHostName( "smtp.gmail.com" );
-//		email.setSslSmtpPort( "465" );
-//		email.setAuthenticator( new DefaultAuthenticator( "" , "" ) );
-		
+		SimpleEmail email = new SimpleEmail();
+		String host = new String(provedorHost);
+		String porta = new String(provedorPorta);
+		email.setHostName(host);
+		email.setSslSmtpPort(porta);
+		String loginEmail = new String(login);
+		String senhaEmail = new String(senha);
+		email.setAuthenticator( new DefaultAuthenticator(loginEmail, senhaEmail) );
+		try {
+			email.setFrom(loginEmail);
+		} catch (EmailException e) {
+			
+		}
 		return null;
 	}
 

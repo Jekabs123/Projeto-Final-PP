@@ -14,7 +14,7 @@ import model.projetos.Edital;
 
 public class DAOXMLEdital {
 	
-	private HashMap<Long, Edital> persistidos = new HashMap<>();
+	private HashMap<Long, Edital> persistidos = carregarXML();
 	private File arquivoColecao;
 	private XStream xstream = new XStream(new DomDriver("ISO-8859-1"));
 	
@@ -44,7 +44,9 @@ public class DAOXMLEdital {
 		}
 		return false;                                            //RETORNO FALSE SE DEU ERRADO
 	}
-	
+	public Edital pesquisarEdital(long idEdital){
+		return persistidos.get(idEdital);
+	}
 	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
 		return 1;
 	}

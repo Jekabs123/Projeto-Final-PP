@@ -7,11 +7,11 @@ public class Fachada4Edital {
 	
 private DAOXMLEdital editalXML = new DAOXMLEdital();
 	
-	public void adicionarGrupo(Edital edital) {
+	public void adicionarEdital(Edital edital) {
 		editalXML.criar(edital);
 	}
 	
-	public boolean removerGrupo(Edital edital, long id) {
+	public boolean removerEdital(Edital edital, long id) {
 		if(edital.getProjetos().size() > 0) {
 			return false;
 		}
@@ -19,8 +19,11 @@ private DAOXMLEdital editalXML = new DAOXMLEdital();
 		return true;
 	}
 	
-	public void atualizarGrupo(Edital edital, long id) {
+	public void atualizarEdital(Edital edital, long id) {
 		editalXML.atualizar(id, edital);
+	}
+	public Edital pesquisarEdital(long idEdital){
+		return editalXML.pesquisarEdital(idEdital);
 	}
 
 }

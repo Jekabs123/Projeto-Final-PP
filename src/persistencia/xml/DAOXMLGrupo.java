@@ -9,12 +9,11 @@ import java.util.HashMap;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-
 import model.projetos.Grupo;
 
 public class DAOXMLGrupo {
 	
-	private HashMap<Long, Grupo> persistidos = new HashMap<>();
+	private HashMap<Long, Grupo> persistidos = carregarXML();
 	private File arquivoColecao;
 	private XStream xstream = new XStream(new DomDriver("ISO-8859-1"));
 	
@@ -40,11 +39,14 @@ public class DAOXMLGrupo {
 				persistidos.put(id, grupo);                      //ATUALIZO O OBJETO PARA O ID DESEJADO
 				salvarXML();                                     //SALVO O ARQUIVO
 				return true;                                     //RETORNO TRUE SE DEU CERTO
+				
 			}
 		}
 		return false;             
 	}
-	
+	public Grupo pesquisarGrupo(long id){
+			return persistidos.get(id);
+	}
 	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
 		return 1;
 	}

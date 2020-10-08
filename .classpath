@@ -6,8 +6,9 @@
 	<classpathentry kind="lib" path="Lib/xom-1.1.jar"/>
 	<classpathentry kind="lib" path="Lib/xstream-1.4.7.jar"/>
 	<classpathentry kind="lib" path="Lib/xstream-benchmark-1.4.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/maiar/eclipse-workspace/Maratona/lib/mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/maiar/eclipse-workspace/Maratona/lib/mailapi.jar"/>
-	<classpathentry kind="lib" path="C:/Users/maiar/eclipse-workspace/Maratona/lib/smtp.jar"/>
+	<classpathentry kind="lib" path="Lib/mail.jar"/>
+	<classpathentry kind="lib" path="Lib/mailapi.jar"/>
+	<classpathentry kind="lib" path="Lib/smtp.jar"/>
+	<classpathentry kind="lib" path="Lib/commons-email-1.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
