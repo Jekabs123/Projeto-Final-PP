@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 
-public class Grupo extends Composite{
+public class Grupo extends InterfaceComum{
 	
 	private long dataCriacao;
 	private char[] linkCNPq;
 	private ArrayList<Membro> membros = new ArrayList<>();
-	private ArrayList<Composite> projetos = new ArrayList<>();
+	private ArrayList<InterfaceComum> projetos = new ArrayList<>();
 	@Override
 	public void ativar() {
 		setAtivo(true);
@@ -24,7 +24,7 @@ public class Grupo extends Composite{
 	@Override
 	public float getCustoTotal() {
 		float custoTotal = 0;
-		for(Composite c:projetos){
+		for(InterfaceComum c:projetos){
 			custoTotal += c.getCustoTotal();
 		}
 		return custoTotal;
@@ -32,7 +32,7 @@ public class Grupo extends Composite{
 	@Override
 	public float getCusteioReaisNaoGastoTotal() {
 		float custeioNaoGasto = 0;
-		for(Composite c:projetos){
+		for(InterfaceComum c:projetos){
 			custeioNaoGasto+=c.getCusteioReaisNaoGastoTotal();
 		}
 		return custeioNaoGasto;
@@ -40,17 +40,17 @@ public class Grupo extends Composite{
 	@Override
 	public float getCapitalReaisNaoGastoTotal() {
 		float capitalNaoGasto = 0;
-		for(Composite c:projetos){
+		for(InterfaceComum c:projetos){
 			capitalNaoGasto+=c.getCapitalReaisNaoGastoTotal();
 		}
 		return capitalNaoGasto;
 	}
 	@Override
-	public void adicionar(Composite composite) {
+	public void adicionar(InterfaceComum composite) {
 		projetos.add(composite);
 	}
 	@Override
-	public void remover(Composite composite) {
+	public void remover(InterfaceComum composite) {
 		projetos.remove(composite);
 	}
 
@@ -85,5 +85,13 @@ public class Grupo extends Composite{
 	public void setMembros(ArrayList<Membro> membros) {
 		this.membros = membros;
 	}
+	public ArrayList<InterfaceComum> getProjetos() {
+		return projetos;
+	}
+	public void setProjetos(ArrayList<InterfaceComum> projetos) {
+		this.projetos = projetos;
+	}
+	
+	
 
 }

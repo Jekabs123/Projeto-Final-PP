@@ -1,5 +1,5 @@
 package model.projetos;
-public class Participacao extends Composite{
+public class Participacao extends InterfaceComum{
 	
 	private float aporteCusteioMensalReais;
 	private short qtdMesesCusteados;

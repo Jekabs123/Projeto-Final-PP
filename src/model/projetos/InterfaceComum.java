@@ -3,7 +3,7 @@ package model.projetos;
 import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 
-public abstract class Composite {
+public abstract class InterfaceComum {
 	private char[] nome;
 	private boolean ativo;
 	private long dataInicio;
@@ -25,10 +25,10 @@ public abstract class Composite {
 	public void remover(Membro membro){
 		
 	}
-	public void adicionar(Composite composite){
+	public void adicionar(InterfaceComum composite){
 		
 	}
-	public void remover(Composite composite){
+	public void remover(InterfaceComum composite){
 		
 	}
 

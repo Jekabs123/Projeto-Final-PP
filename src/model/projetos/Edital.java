@@ -2,10 +2,10 @@ package model.projetos;
 
 import java.util.ArrayList;
 
-public class Edital extends Composite{
+public class Edital extends InterfaceComum{
 
-	private ArrayList<Composite> projetos = new ArrayList<>();
-	private ArrayList<Composite> grupos = new ArrayList<>();
+	private ArrayList<InterfaceComum> projetos = new ArrayList<>();
+	private ArrayList<InterfaceComum> grupos = new ArrayList<>();
 	
 	public void adicionar(Projeto composite) {
 		projetos.add(composite);
@@ -27,7 +27,7 @@ public class Edital extends Composite{
 	@Override
 	public float getCustoTotal() {
 		float custoTotal = 0;
-		for(Composite p: projetos){
+		for(InterfaceComum p: projetos){
 			custoTotal+= p.getCustoTotal();
 		}
 		return custoTotal;
@@ -36,7 +36,7 @@ public class Edital extends Composite{
 	@Override
 	public float getCusteioReaisNaoGastoTotal() {
 		float custeio = 0;
-		for(Composite c: projetos){
+		for(InterfaceComum c: projetos){
 			custeio+= c.getCusteioReaisNaoGastoTotal();
 		}
 		return custeio;
@@ -45,9 +45,23 @@ public class Edital extends Composite{
 	@Override
 	public float getCapitalReaisNaoGastoTotal() {
 		float capital = 0;
-		for(Composite c: projetos){
+		for(InterfaceComum c: projetos){
 			capital+=c.getCapitalReaisNaoGastoTotal();
 		}
 		return capital;
 	}
+	public ArrayList<InterfaceComum> getProjetos() {
+		return projetos;
+	}
+	public void setProjetos(ArrayList<InterfaceComum> projetos) {
+		this.projetos = projetos;
+	}
+	public ArrayList<InterfaceComum> getGrupos() {
+		return grupos;
+	}
+	public void setGrupos(ArrayList<InterfaceComum> grupos) {
+		this.grupos = grupos;
+	}
+	
+	
 }

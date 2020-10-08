@@ -2,11 +2,11 @@ package model.fachada;
 
 import java.util.ArrayList;
 
-import model.projetos.Composite;
+import model.projetos.InterfaceComum;
 
 public class FachadaProjetos {
 
-	private ArrayList<Composite> composite = new ArrayList<>();
+	private ArrayList<InterfaceComum> composite = new ArrayList<>();
 	
 	public void cirarProjeto(){
 		

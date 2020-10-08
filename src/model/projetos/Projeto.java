@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 
-public class Projeto extends Composite{
+public class Projeto extends InterfaceComum{
 	
 	private float aporteCusteioReais;
 	private float aporteCapitalReais;
@@ -39,7 +39,7 @@ public class Projeto extends Composite{
 	public void adicionar(Membro membro) throws ExceptionMembroDuplicado{
 		for(Membro m: membros){
 			if(m.getMatricula()==membro.getMatricula()){
-				 throw new ExceptionMembroDuplicado("Alguem membro possui essa matricula");
+				 throw new ExceptionMembroDuplicado("Algum membro possui essa matricula");
 			}
 		}
 		membros.add(membro);
