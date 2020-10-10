@@ -1,5 +1,7 @@
 package fachadasCasoDeUso;
 
+import java.util.HashMap;
+
 import model.autenticacao.Membro;
 import model.projetos.Grupo;
 import persistencia.xml.DAOXMLGrupo;
@@ -83,5 +85,12 @@ public class Fachada3Grupo {
 	 */
 	public Grupo pesquisarGrupo(long id){
 		return grupoXML.pesquisarGrupo(id);
+	}
+	/**
+	 * Esse método retorna uma lista de grupo
+	 * @return: retorna uma lista de grupo de existir se não ele retorna uma lista vazia
+	 */
+	public HashMap<Long, Grupo> getGrupo(){
+		return grupoXML.getGrupo();
 	}
 }

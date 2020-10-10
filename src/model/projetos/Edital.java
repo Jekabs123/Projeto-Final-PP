@@ -33,6 +33,9 @@ public class Edital extends InterfaceComum{
 		for(InterfaceComum p: projetos){
 			custoTotal+= p.getCustoTotal();
 		}
+		for(InterfaceComum g: grupos){
+			custoTotal+= g.getCustoTotal();
+		}
 		return custoTotal;
 	}
 

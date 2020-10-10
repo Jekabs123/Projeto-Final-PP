@@ -1,5 +1,7 @@
 package fachadasCasoDeUso;
 
+import java.util.HashMap;
+
 import model.projetos.Edital;
 import persistencia.xml.DAOXMLEdital;
 /**
@@ -49,5 +51,11 @@ private DAOXMLEdital editalXML = new DAOXMLEdital();
 	public Edital pesquisarEdital(long idEdital){
 		return editalXML.pesquisarEdital(idEdital);
 	}
-
+	/**
+	 * Esse método retorna a lista de editais
+	 * @return: retorna uma lista de editais se existir ou uma lista vazia se não
+	 */
+	public HashMap<Long,Edital> getEdital(){
+		return editalXML.getEdital();
+	}
 }

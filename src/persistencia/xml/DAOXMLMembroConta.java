@@ -23,7 +23,7 @@ public class DAOXMLMembroConta {
 	public boolean criar(Membro membro) {   
 		for (int i = 0; i <= persistidos.size(); i++) {            //PERCORRO A LISTA
 			if(persistidos.size() == i) {                          //SE O TAMANHO DA LISTA FOR IGUAL AO I
-				persistidos.put(i+1l, membro);                     //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
+				persistidos.put((long) (i+1), membro);                     //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
 				salvarXML();                                       //SALVO O ARQUIVO   
 				return true;                                       //RETORNO TRUE SE DEU CERTO
 			}

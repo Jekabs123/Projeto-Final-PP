@@ -21,7 +21,7 @@ public class DAOXMLProjetoParticipacao {
 	public boolean criar(Projeto projeto) {                        //RECEBO UM PROJETO 
 		for (int i = 0; i <= persistidos.size(); i++) {            //PERCORRO A LISTA
 			if(persistidos.size() == i) {                          //SE O TAMANHO DA LISTA FOR IGUAL AO I
-				persistidos.put(i+1l, projeto);                    //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
+				persistidos.put((long) (i+1), projeto);                    //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
 				salvarXML();                                       //SALVO O ARQUIVO   
 				return true;                                       //RETORNO TRUE SE DEU CERTO
 			}

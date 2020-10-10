@@ -20,7 +20,7 @@ public class DAOXMLGrupo {
 	public boolean criar(Grupo grupo) { 
 		for (int i = 0; i <= persistidos.size(); i++) {            //PERCORRO A LISTA
 			if(persistidos.size() == i) {                          //SE O TAMANHO DA LISTA FOR IGUAL AO I
-				persistidos.put(i+1l, grupo);                      //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
+				persistidos.put((long) (i+1), grupo);                      //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
 				salvarXML();                                       //SALVO O ARQUIVO   
 				return true;                                       //RETORNO TRUE SE DEU CERTO
 			}
@@ -46,6 +46,9 @@ public class DAOXMLGrupo {
 	}
 	public Grupo pesquisarGrupo(long id){
 			return persistidos.get(id);
+	}
+	public HashMap<Long, Grupo> getGrupo(){
+		return carregarXML();
 	}
 	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
 		return 1;

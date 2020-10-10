@@ -21,7 +21,7 @@ public class DAOXMLEdital {
 	public boolean criar(Edital edital) {   
 		for (int i = 0; i <= persistidos.size(); i++) {            //PERCORRO A LISTA
 			if(persistidos.size() == i) {                          //SE O TAMANHO DA LISTA FOR IGUAL AO I
-				persistidos.put(i+1l, edital);                     //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
+				persistidos.put((long) (i+1), edital);                     //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
 				salvarXML();                                       //SALVO O ARQUIVO   
 				return true;                                       //RETORNO TRUE SE DEU CERTO
 			}
@@ -46,6 +46,9 @@ public class DAOXMLEdital {
 	}
 	public Edital pesquisarEdital(long idEdital){
 		return persistidos.get(idEdital);
+	}
+	public HashMap<Long,Edital> getEdital(){
+		return carregarXML();
 	}
 	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
 		return 1;
