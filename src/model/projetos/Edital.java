@@ -1,7 +1,10 @@
 package model.projetos;
 
 import java.util.ArrayList;
-
+/**
+ * @author PAULO E INATHAN
+ * Essa é a classe Edital do projeto
+ */
 public class Edital extends InterfaceComum{
 
 	private ArrayList<InterfaceComum> projetos = new ArrayList<>();

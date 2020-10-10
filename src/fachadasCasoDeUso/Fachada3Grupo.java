@@ -42,8 +42,12 @@ public class Fachada3Grupo {
 	public boolean atualizarGrupo(Grupo grupo, long id) {
 		return grupoXML.atualizar(id, grupo);
 	}
-	
-	
+	/**
+	 * Esse método adiciona um membro no grupo selecionado
+	 * @param membro: é o Membro que vai ser adicionado
+	 * @param idDoGrupo: é o id do grupo que vai ser adicionado
+	 * @return: retorna true se adicionar o membro no grupo e false se não
+	 */
 	public boolean adicionarMembroNoGrupo(Membro membro,long idDoGrupo){
 		try{
 			// adiciona o membro para o grupo
@@ -55,7 +59,13 @@ public class Fachada3Grupo {
 		}
 		return false;
 	}
-	public boolean removerMembro(Membro membro,long idDoGrupo){
+	/**
+	 * Esse método remove um Membro do Grupo selecionado
+	 * @param membro: é o membro que vai ser removido do grupo
+	 * @param idDoGrupo: é o id do Grupo que vai ser removido o membro
+	 * @return: retorna true se for removido e false se não
+	 */
+	public boolean removerMembroDoGrupo(Membro membro,long idDoGrupo){
 		try{
 			//remove o membro do grupo
 			Grupo grupo = pesquisarGrupo(idDoGrupo);
@@ -66,6 +76,11 @@ public class Fachada3Grupo {
 		}
 		return false;
 	}
+	/**
+	 * Esse método pesquisa um grupo na persistência grupoXML
+	 * @param id: é o id do grupo que você quer pesquisar na persistência grupoXML
+	 * @return: retorna o Grupo se achar e null se não achar o grupo
+	 */
 	public Grupo pesquisarGrupo(long id){
 		return grupoXML.pesquisarGrupo(id);
 	}

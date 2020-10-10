@@ -15,7 +15,7 @@ import model.projetos.Projeto;
 
 public class DAOXMLMembroConta {
 	
-	private HashMap<Long, Membro> persistidos = new HashMap<>();
+	private HashMap<Long, Membro> persistidos = carregarXML();
 	private File arquivoColecao;
 	private XStream xstream = new XStream(new DomDriver("ISO-8859-1"));
 	
@@ -46,7 +46,9 @@ public class DAOXMLMembroConta {
 		}
 		return false;                                            //RETORNO FALSE SE DEU ERRADO
 	}
-	
+	public Membro pesquisarMembro(long idMembro){
+		return persistidos.get(idMembro);
+	}
 	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
 		return 1;
 	}

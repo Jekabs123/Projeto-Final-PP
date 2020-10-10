@@ -12,11 +12,9 @@ import javax.mail.internet.MimeMessage;
 import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
-/** enter
- * 
+/**
  * @author INATHAN e PAULO
  * Fachada para a classe membro
- *
  */
 public class Fachada6MembroEmail {
 	
@@ -26,15 +24,15 @@ public class Fachada6MembroEmail {
 	private Membro membroCoordenador;
 	
 	/**
-	 * 
-	 * @param membroCoordenador: seto o atributo com o construtor
+	 * Esse e o construtor que seta o membro que vai ser administrador, atravez do construtor
+	 * @param membroCoordenador: é o Membro que vai ser o administrador
 	 */
 	public Fachada6MembroEmail(Membro membroCoordenador) {          
 		this.membroCoordenador = membroCoordenador;
 	}
 	
 	/**
-	 * 
+	 * Esse método adiciona o membro no projeto
 	 * @param membro: membro que vai ser adicionado ao projeto
 	 * @param projeto: projeto em que o membro vai ser adicionado
 	 * @param adicionado: dá a informação que o membro foi adicionado
@@ -58,11 +56,11 @@ public class Fachada6MembroEmail {
 	}
 	
 	/**
-	 * 
+	 * Esse método remove o membro do projeto
 	 * @param membro: membro que vai ser removido
 	 * @param projeto: projeto que o membro vai ser removido
 	 * @param removido: dá a informação que o membro foi removido
-	 * @return retorna true se foi removido com sucesso e false se não
+	 * @return: retorna true se foi removido com sucesso e false se não
 	 */
 	public boolean removerMembro(Membro membro, Projeto projeto, String removido) {
 		removido = "removido";
@@ -82,9 +80,16 @@ public class Fachada6MembroEmail {
 		
 	}
 	
-	private boolean enviarEmailInfo(String projetoNome, String info, String corrdenadorNome) {
+	/**
+	 * Esse método envia um e-mail
+	 * @param projetoNome: é o nome do projeto que o membro está
+	 * @param info: é a informação em que o membro se encontra
+	 * @param corrdenadorNome: é o nome do coordenador do projeto em que o membro se encontra
+	 * @return
+	 */
+	private boolean enviarEmailInfo(String projetoNome, String info, String coordenadorNome) {
 		String assunto = "Projeto: " + projetoNome;
-		String mensagem = "Você foi "+ info +" no projeto por "+ corrdenadorNome;
+		String mensagem = "Você foi "+ info +" no projeto por "+ coordenadorNome;
 
 		String email = "projetoads07@gmail.com";  //projetoads07@gmail.com
 		String senha = "ProjetoAd$";                  //ProjetoAd$

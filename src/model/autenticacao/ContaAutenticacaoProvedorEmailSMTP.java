@@ -1,12 +1,11 @@
 package model.autenticacao;
 
-import java.nio.file.attribute.PosixFileAttributeView;
-
-import javax.swing.JOptionPane;
-
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
+
+import fachadasCasoDeUso.Fachada6MembroEmail;
+import persistencia.xml.DAOXMLMembroConta;
 
 public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 	
