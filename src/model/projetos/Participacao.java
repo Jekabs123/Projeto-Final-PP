@@ -1,6 +1,15 @@
 package model.projetos;
+/**
+ * @author PAULO E INATHAN - TATAKAE!
+ * Essa classe é a participação do projeto
+ */
 public class Participacao extends InterfaceComum{
-	
+	/**
+	 * {@link #aporteCusteioMensalReais} Esse atributo informa o custeio mensal
+	 * {@link #qtdMesesCusteados} Esse atributo informa a quantidade de mêses custeados
+	 * {@link #qtdMesesPagos} Esse atributo informa os mêses pagos
+	 * {@link #coordenador} Esse atributo informa se tem ou não coordenador
+	 */
 	private float aporteCusteioMensalReais;
 	private short qtdMesesCusteados;
 	private short qtdMesesPagos;

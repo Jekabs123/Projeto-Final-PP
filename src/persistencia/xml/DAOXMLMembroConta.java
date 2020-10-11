@@ -35,7 +35,10 @@ public class DAOXMLMembroConta {
 		persistidos.remove(id);                                   //REMOVE PELA CHAVE
 		salvarXML();                                              //SALVA
 	}
-	
+	public void remover(Membro membro){
+		persistidos.remove(membro);
+		salvarXML();
+	}
 	public boolean atualizar(long id, Membro membro) { 
 		for (int i = 0; i < persistidos.size(); i++) {           //PERCORRO A LISTA
 			if(id <= persistidos.size()) {                       //SE O ID FOR MENOR QUE O TAMANHO DA LISTA, SIGNIFICA QUE O OBJETO ESTÁ NELA
@@ -48,6 +51,9 @@ public class DAOXMLMembroConta {
 	}
 	public Membro pesquisarMembro(long idMembro){
 		return persistidos.get(idMembro);
+	}
+	public HashMap<Long, Membro> getMembro(){
+		return carregarXML();
 	}
 	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
 		return 1;

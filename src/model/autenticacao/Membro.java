@@ -76,6 +76,11 @@ public class Membro {
 	public void setParticipacao(Participacao participacao) {
 		this.participacao = participacao;
 	}
-
+	public char[] getLogin(){
+		return contaEmail.getLogin();
+	}
+	public char[] getSenha(){
+		return contaEmail.getSenha();
+	}
 
 }

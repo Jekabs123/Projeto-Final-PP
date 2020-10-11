@@ -6,12 +6,12 @@ import model.projetos.Edital;
 import persistencia.xml.DAOXMLEdital;
 /**
  * 
- * @author PAULO E INATHAN
+ * @author PAULO E INATHAN - TATAKAE!
  *A classe é uma fachada de edital, para facilitar o uso dela
  */
 public class Fachada4Edital {
 /**
- * Atributo que vai persistir os editais	
+ * {@link #editalXML} Atributo que vai persistir os editais	
  */
 private DAOXMLEdital editalXML = new DAOXMLEdital();
 	

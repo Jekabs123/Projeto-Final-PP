@@ -4,9 +4,18 @@ import java.util.ArrayList;
 
 import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
-
+/**
+ * @author PAULO E INATHAN - TATAKAE!
+ * Esse Classe é o projeto do sistema
+ */
 public class Projeto extends InterfaceComum{
-	
+	/**
+	 * {@link #aporteCusteioReais} Esse atributo é o aporte destinado para o custeio
+	 * {@link #aporteCapitalReais} Esse atributo é o aporte destinado para o capital
+	 * {@link #gastoExecutadoCusteioReais} Esse atributo é o gasto do custeio
+	 * {@link #gastoExecutadoCapitalReais} Esse atributo é o gasto do capital
+	 * {@link #membros} Esse atributo armazena os embros do projeto
+	 */
 	private float aporteCusteioReais;
 	private float aporteCapitalReais;
 	private float gastoExecutadoCusteioReais;
@@ -48,7 +57,10 @@ public class Projeto extends InterfaceComum{
 	public void remover(Membro membro) {
 		membros.add(membro);
 	}
-	
+	/**
+	 * Esse método move os membros do projeto para outro grupo
+	 * @param grupo: é o grupo que vai ser movido os membros
+	 */
 	public void mover(Grupo grupo) {
 		grupo.setMembros(membros);
 		
@@ -86,5 +98,18 @@ public class Projeto extends InterfaceComum{
 	public void setMembros(ArrayList<Membro> membros) {
 		this.membros = membros;
 	}
-
+	/**
+	 * Esse método pesquisa um membro a partir do login e a senha da conta do membro
+	 * @param login: é o login da conta do membro
+	 * @param senha: é a senha da conta do membro
+	 * @return: retorna o membro se tiver o mesmo login e senha passado e null se não for igual
+	 */
+	public Membro pesquisarMembroPorLoginESenha(char[] login, char[] senha){
+		for(Membro membro: membros){
+			if(membro.getLogin().equals(login)&&membro.getSenha()==senha){
+				return membro;
+			}
+		}
+		return null;
+	}
 }

@@ -6,12 +6,12 @@ import model.autenticacao.Membro;
 import model.projetos.Grupo;
 import persistencia.xml.DAOXMLGrupo;
 /**
- * @author PAULO e INATHAN
+ * @author PAULO e INATHAN - TATAKAE!
  *Fachada para a classe Grupo
  */
 public class Fachada3Grupo {
 	/**
-	 * Atributo que faz a persistência.
+	 * {@link #grupoXML} Atributo que faz a persistência.
 	 */
 	private DAOXMLGrupo grupoXML = new DAOXMLGrupo();
 	

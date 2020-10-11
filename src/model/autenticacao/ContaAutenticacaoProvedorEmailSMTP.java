@@ -1,5 +1,7 @@
 package model.autenticacao;
 
+import java.util.HashMap;
+
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
@@ -13,7 +15,7 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 	private char[] provedorPorta;
 
 	@Override
-	public Membro autenticar(char[] login, char[] senha) {  //FALTA IMPLEMENTAR
+	public Membro autenticar(char[] login, char[] senha) { 
 		
 		SimpleEmail email = new SimpleEmail();
 		String host = new String(provedorHost);
@@ -25,6 +27,13 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 		email.setAuthenticator( new DefaultAuthenticator(loginEmail, senhaEmail) );
 		try {
 			email.setFrom(loginEmail);
+			HashMap<Long, Membro> membros = Fachada6MembroEmail.getMembro();
+			for(int i = 0;i<=membros.size();i++){
+				if(membros.get(i).getLogin().equals(login)&&
+				   membros.get(i).getSenha().equals(senha)){
+					return membros.get(i);
+				}
+			}
 		} catch (EmailException e) {
 			
 		}

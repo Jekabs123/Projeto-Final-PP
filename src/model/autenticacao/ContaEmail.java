@@ -26,5 +26,10 @@ public class ContaEmail {
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
-
+   public char[] getLogin(){
+	   return conta.getLogin();
+   }
+   public char[] getSenha(){
+	   return conta.getSenha();
+   }
 }

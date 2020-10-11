@@ -4,17 +4,30 @@ import java.util.HashMap;
 
 import model.projetos.Edital;
 import model.projetos.Grupo;
-
+/**
+ * @author PAULO E INATHAN - TATAKAE!
+ * Essa fachada é utilizada para gerar relatório
+ */
 public class Fachada8Relatorio {
-	
+	/**
+	 * {@link #editais} Esse atributo guarda a lista de editais
+	 * {@link #grupos} Esse atributo guarda a lista de grupos
+	 */
 	private HashMap<Long, Edital> editais;
 	private HashMap<Long, Grupo> grupos; 
+	
+	/**
+	 * Esse é construtor que inicializa os atributos
+	 */
 	public Fachada8Relatorio() {
 		Fachada4Edital fachada = new Fachada4Edital();
 		Fachada3Grupo fachadaGrupo = new Fachada3Grupo();
 		this.editais = fachada.getEdital();
 		this.grupos = fachadaGrupo.getGrupo();
 	}
+	/**
+	 * Esse método gera o relatório de todos os editais
+	 */
 	public void gerarRelatorioEdital(){
 		for(int i = 0;i<=editais.size();i++){
 			System.out.println("[NOME] - "+editais.get(i).getNome());
@@ -26,6 +39,9 @@ public class Fachada8Relatorio {
 			System.out.println("[EDITAL ATIVO] - "+editais.get(i).getAtivo());
 		}
 	}
+	/**
+	 * Esse método gera o relatório do todos os grupos
+	 */
 	public void gerarRelatorioGrupo(){
 		System.out.println("[GRUPO]");
 		for(int i = 0;i<=grupos.size();i++){

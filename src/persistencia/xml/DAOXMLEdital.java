@@ -50,7 +50,10 @@ public class DAOXMLEdital {
 	public HashMap<Long,Edital> getEdital(){
 		return carregarXML();
 	}
-	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
+	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {	 //FALTA IMPLEMENTAR
+		for(int i = 0;i<=persistidos.size();i++){
+			persistidos.get(i);
+		}
 		return 1;
 	}
 	

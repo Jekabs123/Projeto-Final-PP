@@ -5,13 +5,13 @@ import model.projetos.Projeto;
 import persistencia.xml.DAOXMLProjetoParticipacao;
 
 /**
- * @author PAULO e INATHAN
+ * @author PAULO e INATHAN - TATAKAE!
  *Fachada para a classe Projeto
  */
 public class Fachada5Projeto {
 	
 	/**
-	 * Atributo que faz a persistência
+	 * {@link #projetoParticipacao} Atributo que faz a persistência
 	 */
 	private DAOXMLProjetoParticipacao projetoParticipacao = new DAOXMLProjetoParticipacao();
 	

@@ -1,6 +1,6 @@
 package Exception;
 /**
- * @author PAULO E INATHAN
+ * @author PAULO E INATHAN - TATAKAE!
  * Essa classe é uma exceção de membros duplicados
  */
 public class ExceptionMembroDuplicado extends Exception{

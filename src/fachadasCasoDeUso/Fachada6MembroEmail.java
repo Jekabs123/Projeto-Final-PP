@@ -1,34 +1,36 @@
 package fachadasCasoDeUso;
 
+import java.util.HashMap;
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
+import persistencia.xml.DAOXMLMembroConta;
 /**
- * @author INATHAN e PAULO
+ * @author INATHAN e PAULO - TATAKAE!
  * Fachada para a classe membro
  */
 public class Fachada6MembroEmail {
 	
 	/**
-	 * Atributo que representar membro coordenador
+	 * {@link #membroCoordenador} Atributo que representar membro coordenador
+	 * {@link #membros} Atributo que é a persistência de mebros
 	 */
 	private Membro membroCoordenador;
-	
+	private static DAOXMLMembroConta membros = new DAOXMLMembroConta();
 	/**
 	 * Esse e o construtor que seta o membro que vai ser administrador, atravez do construtor
 	 * @param membroCoordenador: é o Membro que vai ser o administrador
 	 */
 	public Fachada6MembroEmail(Membro membroCoordenador) {          
 		this.membroCoordenador = membroCoordenador;
+		membros.criar(membroCoordenador);
 	}
 	
 	/**
@@ -43,6 +45,7 @@ public class Fachada6MembroEmail {
 			if (membro.getContaEmail() != null) {
 				try {
 					projeto.adicionar(membro);
+					membros.criar(membro);
 					enviarEmailInfo(projeto.getNome(), adicionado, membroCoordenador.getNome());
 				} catch (ExceptionMembroDuplicado e) {
 					System.out.println("Membro duplicado");
@@ -68,6 +71,7 @@ public class Fachada6MembroEmail {
 			for (int i = 0; i < projeto.getMembros().size(); i++) {
 				if(projeto.getMembros().get(i).equals(membro)) {
 					projeto.getMembros().remove(membro);
+					membros.remover(membro);
 					enviarEmailInfo(projeto.getNome(), removido, membroCoordenador.getNome());
 					return true;
 				}
@@ -125,5 +129,7 @@ public class Fachada6MembroEmail {
 			return false;
 		}
 	}
-
+	public static HashMap<Long, Membro> getMembro(){
+		return membros.getMembro();
+	}
 }

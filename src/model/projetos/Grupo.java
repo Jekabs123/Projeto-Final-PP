@@ -4,9 +4,18 @@ import java.util.ArrayList;
 
 import Exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
-
+/**
+ * 
+ * @author PAULO E INATHAN - TATAKAE!
+ * Essa classe Grupo do projeto
+ */
 public class Grupo extends InterfaceComum{
-	
+	/**
+	 * {@link #dataCriacao} Esse atributo armazena a data de criação do grupo
+	 * {@link #linkCNPq} Esse atributo armazena o link do CNPq do grupo
+	 * {@link #membros} Esse atributo armazena a lista de membros do grupo
+	 * {@link #projetos} Esse atributo armazena a lista de projetos do grupo
+	 */
 	private long dataCriacao;
 	private char[] linkCNPq;
 	private ArrayList<Membro> membros = new ArrayList<>();
