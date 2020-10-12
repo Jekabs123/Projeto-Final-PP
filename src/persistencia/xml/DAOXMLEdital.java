@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -57,8 +58,16 @@ public class DAOXMLEdital {
 		return 1;
 	}
 	
-	public int consultarOr(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
-		return 1;
+	public HashSet<Edital> consultarOr(char[] atributos, char[] respectivosValoresAtributos) {
+		for (int i = 0; i < persistidos.size(); i++) {
+			for (int j = 0; j < atributos.length; j++) {
+	//			if(persistidos.get(i).getNome()) {
+					
+	//			}
+			}
+		}
+		
+		return new HashSet<Edital>();
 	}
 	
 	private void salvarXML() {

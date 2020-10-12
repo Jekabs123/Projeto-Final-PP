@@ -8,11 +8,11 @@ public class ContaEmail {
 		this.setConta(conta);
 	}
 	
-	public Membro autenticar(char[] login, char[] senha) {  //FALTA IMPLEMENTAR
+	public Membro autenticar(char[] login, char[] senha) {  
 		return getConta().autenticar(login, senha);
 	}
 	
-	public boolean validarlogin(char[] login) {  //FALTA IMPLEMENTAR
+	public boolean validarlogin(char[] login) { 
 		if(login.length<6){
 			return false;
 		}
