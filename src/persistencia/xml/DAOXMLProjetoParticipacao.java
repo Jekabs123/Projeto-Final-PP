@@ -6,10 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import model.autenticacao.Membro;
+import model.projetos.Participacao;
 import model.projetos.Projeto;
 
 public class DAOXMLProjetoParticipacao {
@@ -48,12 +51,64 @@ public class DAOXMLProjetoParticipacao {
 	public Projeto pesquisarProjeto(long idDoProjeto){
 		return persistidos.get(idDoProjeto);
 	}
-	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
-		return 1;
+	public HashSet<Projeto> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
+		HashSet<Projeto> projetoAnd = new HashSet<Projeto>();
+
+		for (int i = 0; i < persistidos.size(); i++) {
+			for (int x = 0; x < atributos.length; x++) {
+				//consulta os atributos
+				if(atributos[x].equals(persistidos.get(i).getNome())&&
+				   atributos[x].equals(persistidos.get(i).getAporteCapitalReais())&&
+				   atributos[x].equals(persistidos.get(i).getAporteCusteioReais())&&
+				   atributos[x].equals(persistidos.get(i).getGastoExecutadoCapitalReais())&&
+				   atributos[x].equals(persistidos.get(i).getGastoExecutadoCusteioReais())&&
+				   atributos[x].equals(persistidos.get(i).getDataInicio())&&
+				   atributos[x].equals(persistidos.get(i).getDataTermino())) {
+					
+					//compara o valor dos atributos respectivamente
+					if(atributos[x].equals(persistidos.get(i).getNome())&&
+							   (float) atributos[x] == persistidos.get(i).getAporteCapitalReais()&&
+							   (float) atributos[x] == persistidos.get(i).getAporteCusteioReais()&&
+							   (float) atributos[x] == persistidos.get(i).getGastoExecutadoCapitalReais()&&
+							   (float) atributos[x] == persistidos.get(i).getGastoExecutadoCusteioReais()&&
+							   (long) atributos[x] == persistidos.get(i).getDataInicio()&&
+							   (long) atributos[x] == persistidos.get(i).getDataTermino()) {
+						projetoAnd.add(persistidos.get(i));
+					}
+				}
+			}
+		 }
+		return projetoAnd;
 	}
 	
-	public int consultarOr(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
-		return 1;
+	public HashSet<Projeto> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
+		HashSet<Projeto> projetoOr = new HashSet<Projeto>();
+
+		for (int i = 0; i < persistidos.size(); i++) {
+			for (int j = 0; j < atributos.length; j++) {
+				//consulta os atributos
+				if(atributos[j].equals(persistidos.get(i).getNome())||
+				   atributos[j].equals(persistidos.get(i).getAporteCapitalReais())||
+				   atributos[j].equals(persistidos.get(i).getAporteCusteioReais())||
+				   atributos[j].equals(persistidos.get(i).getGastoExecutadoCapitalReais())||
+				   atributos[j].equals(persistidos.get(i).getGastoExecutadoCusteioReais())||
+				   atributos[j].equals(persistidos.get(i).getDataInicio())||
+				   atributos[j].equals(persistidos.get(i).getDataTermino())) {
+					
+					//compara o valor dos atributos respectivamente
+					if(atributos[j].equals(persistidos.get(i).getNome())||
+							   (float) atributos[j] == persistidos.get(i).getAporteCapitalReais()||
+							   (float) atributos[j] == persistidos.get(i).getAporteCusteioReais()||
+							   (float) atributos[j] == persistidos.get(i).getGastoExecutadoCapitalReais()||
+							   (float) atributos[j] == persistidos.get(i).getGastoExecutadoCusteioReais()||
+							   (long) atributos[j] == persistidos.get(i).getDataInicio()||
+							   (long) atributos[j] == persistidos.get(i).getDataTermino()) {
+						projetoOr.add(persistidos.get(i));
+					}
+				}
+			}
+		 }
+		return projetoOr;
 	}
 	
 	private void salvarXML() {

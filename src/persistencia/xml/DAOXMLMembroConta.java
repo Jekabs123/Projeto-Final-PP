@@ -6,11 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import model.autenticacao.Membro;
+import model.projetos.Grupo;
 import model.projetos.Projeto;
 
 public class DAOXMLMembroConta {
@@ -55,12 +57,56 @@ public class DAOXMLMembroConta {
 	public HashMap<Long, Membro> getMembro(){
 		return carregarXML();
 	}
-	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
-		return 1;
+	public HashSet<Membro> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {
+		HashSet<Membro> membroAnd = new HashSet<Membro>();
+
+		for (int i = 0; i < persistidos.size(); i++) {
+			for (int x = 0; x < atributos.length; x++) {
+				//consulta os atributos
+				if(atributos[x].equals(persistidos.get(i).getMatricula()) &&
+						atributos[x].equals(persistidos.get(i).getNome()) &&
+						atributos[x].equals(persistidos.get(i).isAtivo()) &&
+						atributos[x].equals(persistidos.get(i).getEmail()) &&
+						atributos[x].equals(persistidos.get(i).getAdministrador())) {
+					
+					//compara o valor dos atributos respectivamente
+					if((long) atributos[x] == persistidos.get(i).getMatricula() &&
+							respectivosValoresAtributos[x].equals(persistidos.get(i).getNome()) &&
+							(boolean) atributos[x] == persistidos.get(i).isAtivo()&&
+							atributos[x].equals(persistidos.get(i).getEmail()) &&
+							(boolean) atributos[x] == persistidos.get(i).getAdministrador()) {
+						membroAnd.add(persistidos.get(i));
+					}
+				}
+			}
+		 }
+		return membroAnd;
 	}
 	
-	public int consultarOr(char[] atributos, char[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
-		return 1;
+	public HashSet<Membro> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
+		HashSet<Membro> membroOr = new HashSet<Membro>();
+
+		for (int i = 0; i < persistidos.size(); i++) {
+			for (int j = 0; j < atributos.length; j++) {
+				//consulta os atributos
+				if(atributos[j].equals(persistidos.get(i).getMatricula()) ||
+						atributos[j].equals(persistidos.get(i).getNome()) ||
+						atributos[j].equals(persistidos.get(i).isAtivo()) ||
+						atributos[j].equals(persistidos.get(i).getEmail()) ||
+						atributos[j].equals(persistidos.get(i).getAdministrador())) {
+					
+					//compara o valor dos atributos respectivamente
+					if((long) atributos[j] == persistidos.get(i).getMatricula() ||
+							respectivosValoresAtributos[j].equals(persistidos.get(i).getNome()) ||
+							(boolean) atributos[j] == persistidos.get(i).isAtivo()||
+							atributos[j].equals(persistidos.get(i).getEmail()) ||
+							(boolean) atributos[j] == persistidos.get(i).getAdministrador()) {
+						membroOr.add(persistidos.get(i));
+					}
+				}
+			}
+		 }
+		return membroOr;
 	}
 	
 	private void salvarXML() {

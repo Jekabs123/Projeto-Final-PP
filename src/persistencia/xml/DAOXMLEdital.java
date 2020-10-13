@@ -51,11 +51,32 @@ public class DAOXMLEdital {
 	public HashMap<Long,Edital> getEdital(){
 		return carregarXML();
 	}
-	public int consultarAnd(char[] atributos, char[] respectivosValoresAtributos) {	 //FALTA IMPLEMENTAR
-		for(int i = 0;i<=persistidos.size();i++){
-			persistidos.get(i);
-		}
-		return 1;
+	public HashSet<Edital> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {	 //FALTA IMPLEMENTAR
+		HashSet<Edital> editaisAnd = new HashSet<Edital>();
+
+		for (int i = 0; i < persistidos.size(); i++) {
+			for (int x = 0; x < atributos.length; x++) {
+				//consulta os atributos
+				if(atributos[x].equals(persistidos.get(i).getNome()) && 
+						atributos[x].equals(persistidos.get(i).getCapitalReaisNaoGastoTotal()) &&
+						atributos[x].equals(persistidos.get(i).getCusteioReaisNaoGastoTotal()) &&
+						atributos[x].equals(persistidos.get(i).getCustoTotal()) &&
+						atributos[x].equals(persistidos.get(i).getDataInicio()) &&
+						atributos[x].equals(persistidos.get(i).getDataTermino())) {
+					
+					//compara o valor dos atributos respectivamente
+					if(respectivosValoresAtributos[x].equals(persistidos.get(i).getNome()) &&
+							(float) respectivosValoresAtributos[x] == persistidos.get(i).getCapitalReaisNaoGastoTotal() &&
+							(float) respectivosValoresAtributos[x] == persistidos.get(i).getCusteioReaisNaoGastoTotal() &&
+							(float) respectivosValoresAtributos[x] == persistidos.get(i).getCustoTotal() &&
+							(long) respectivosValoresAtributos[x] == persistidos.get(i).getDataInicio() &&
+							(long) respectivosValoresAtributos[x] == persistidos.get(i).getDataTermino()) {
+						editaisAnd.add(persistidos.get(i));
+					}
+				}
+			}
+		 }
+		return editaisAnd;
 	}
 	
 	public HashSet<Edital> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {
@@ -63,18 +84,21 @@ public class DAOXMLEdital {
 
 		for (int i = 0; i < persistidos.size(); i++) {
 			for (int j = 0; j < atributos.length; j++) {
+				//consulta os atributos
 				if(atributos[j].equals(persistidos.get(i).getNome()) || 
 						atributos[j].equals(persistidos.get(i).getCapitalReaisNaoGastoTotal()) ||
 						atributos[j].equals(persistidos.get(i).getCusteioReaisNaoGastoTotal()) ||
 						atributos[j].equals(persistidos.get(i).getCustoTotal()) ||
 						atributos[j].equals(persistidos.get(i).getDataInicio()) ||
 						atributos[j].equals(persistidos.get(i).getDataTermino())) {
+					
+					//compara o valor dos atributos respectivamente
 					if(respectivosValoresAtributos[j].equals(persistidos.get(i).getNome()) ||
-							respectivosValoresAtributos[j].equals(persistidos.get(i).getCapitalReaisNaoGastoTotal()) ||
-							respectivosValoresAtributos[j].equals(persistidos.get(i).getCusteioReaisNaoGastoTotal()) ||
-							respectivosValoresAtributos[j].equals(persistidos.get(i).getCustoTotal()) ||
-							respectivosValoresAtributos[j].equals(persistidos.get(i).getDataInicio()) ||
-							respectivosValoresAtributos[j].equals(persistidos.get(i).getDataTermino())) {
+							(float) respectivosValoresAtributos[j] == persistidos.get(i).getCapitalReaisNaoGastoTotal() ||
+							(float) respectivosValoresAtributos[j] == persistidos.get(i).getCusteioReaisNaoGastoTotal() ||
+							(float) respectivosValoresAtributos[j] == persistidos.get(i).getCustoTotal() ||
+							(long) respectivosValoresAtributos[j] == persistidos.get(i).getDataInicio() ||
+							(long) respectivosValoresAtributos[j] == persistidos.get(i).getDataTermino()) {
 						editais.add(persistidos.get(i));
 					}
 				}
