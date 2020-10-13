@@ -58,16 +58,29 @@ public class DAOXMLEdital {
 		return 1;
 	}
 	
-	public HashSet<Edital> consultarOr(char[] atributos, char[] respectivosValoresAtributos) {
+	public HashSet<Edital> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {
+		HashSet<Edital> editais = new HashSet<Edital>();
+
 		for (int i = 0; i < persistidos.size(); i++) {
 			for (int j = 0; j < atributos.length; j++) {
-	//			if(persistidos.get(i).getNome()) {
-					
-	//			}
+				if(atributos[j].equals(persistidos.get(i).getNome()) || 
+						atributos[j].equals(persistidos.get(i).getCapitalReaisNaoGastoTotal()) ||
+						atributos[j].equals(persistidos.get(i).getCusteioReaisNaoGastoTotal()) ||
+						atributos[j].equals(persistidos.get(i).getCustoTotal()) ||
+						atributos[j].equals(persistidos.get(i).getDataInicio()) ||
+						atributos[j].equals(persistidos.get(i).getDataTermino())) {
+					if(respectivosValoresAtributos[j].equals(persistidos.get(i).getNome()) ||
+							respectivosValoresAtributos[j].equals(persistidos.get(i).getCapitalReaisNaoGastoTotal()) ||
+							respectivosValoresAtributos[j].equals(persistidos.get(i).getCusteioReaisNaoGastoTotal()) ||
+							respectivosValoresAtributos[j].equals(persistidos.get(i).getCustoTotal()) ||
+							respectivosValoresAtributos[j].equals(persistidos.get(i).getDataInicio()) ||
+							respectivosValoresAtributos[j].equals(persistidos.get(i).getDataTermino())) {
+						editais.add(persistidos.get(i));
+					}
+				}
 			}
 		}
-		
-		return new HashSet<Edital>();
+		return editais;
 	}
 	
 	private void salvarXML() {
