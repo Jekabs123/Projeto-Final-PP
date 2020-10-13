@@ -51,7 +51,7 @@ public class DAOXMLProjetoParticipacao {
 	public Projeto pesquisarProjeto(long idDoProjeto){
 		return persistidos.get(idDoProjeto);
 	}
-	public HashSet<Projeto> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
+	public HashSet<Projeto> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Projeto> projetoAnd = new HashSet<Projeto>();
 
 		for (int i = 0; i < persistidos.size(); i++) {
@@ -81,7 +81,7 @@ public class DAOXMLProjetoParticipacao {
 		return projetoAnd;
 	}
 	
-	public HashSet<Projeto> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
+	public HashSet<Projeto> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Projeto> projetoOr = new HashSet<Projeto>();
 
 		for (int i = 0; i < persistidos.size(); i++) {

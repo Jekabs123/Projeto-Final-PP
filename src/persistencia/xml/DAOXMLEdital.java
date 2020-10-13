@@ -51,7 +51,7 @@ public class DAOXMLEdital {
 	public HashMap<Long,Edital> getEdital(){
 		return carregarXML();
 	}
-	public HashSet<Edital> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {	 //FALTA IMPLEMENTAR
+	public HashSet<Edital> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Edital> editaisAnd = new HashSet<Edital>();
 
 		for (int i = 0; i < persistidos.size(); i++) {

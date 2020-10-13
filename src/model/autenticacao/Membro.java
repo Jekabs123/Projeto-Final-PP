@@ -21,12 +21,16 @@ public class Membro {
 		this.contaEmail = contaEmail;
 	}
 
-	public void ativar() {    //FALTA IMPLEMENTAR
-		ativo = true;
+	public void ativar() {
+		if(participacao.getAtivo()==true){
+			ativo = true;
+		}
 	}
 	
-	public void desativar() {  //FALTA IMPLEMENTAR
-		ativo = false;
+	public void desativar() {
+		if(participacao.getAtivo()==false){
+			ativo = false;
+		}
 	}
 
 	public long getMatricula() {

@@ -83,7 +83,7 @@ public class DAOXMLMembroConta {
 		return membroAnd;
 	}
 	
-	public HashSet<Membro> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
+	public HashSet<Membro> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Membro> membroOr = new HashSet<Membro>();
 
 		for (int i = 0; i < persistidos.size(); i++) {

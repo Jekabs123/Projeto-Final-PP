@@ -85,7 +85,7 @@ public class DAOXMLGrupo {
 		return grupoAnd;
 	}
 	
-	public HashSet<Grupo> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {   //FALTA IMPLEMENTAR
+	public HashSet<Grupo> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Grupo> grupoOr = new HashSet<Grupo>();
 
 		for (int i = 0; i < persistidos.size(); i++) {
