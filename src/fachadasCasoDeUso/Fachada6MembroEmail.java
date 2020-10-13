@@ -8,7 +8,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import Exception.ExceptionMembroDuplicado;
+
+import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
 import persistencia.xml.DAOXMLMembroConta;

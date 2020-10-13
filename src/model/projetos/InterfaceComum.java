@@ -1,6 +1,6 @@
 package model.projetos;
 
-import Exception.ExceptionMembroDuplicado;
+import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 /**
  * @author PAULO E INATHAN - TATAKAE!

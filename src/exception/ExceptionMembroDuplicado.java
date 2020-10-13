@@ -1,4 +1,4 @@
-package Exception;
+package exception;
 /**
  * @author PAULO E INATHAN - TATAKAE!
  * Essa classe é uma exceção de membros duplicados

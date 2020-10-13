@@ -2,7 +2,7 @@ package model.projetos;
 
 import java.util.ArrayList;
 
-import Exception.ExceptionMembroDuplicado;
+import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 /**
  * @author PAULO E INATHAN - TATAKAE!
