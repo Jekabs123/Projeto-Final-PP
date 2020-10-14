@@ -36,15 +36,9 @@ public class FachadaCompositeEditalGrupo {
 		edital.remover(grupo);
 	}
 	
-	public void getCustoTotalEdital() {
+	public void mostrarBalancamentoFinanceiroEdital() {
 		edital.getCustoTotal();
-	}
-	
-	public void getCusteioReaisNaoGastoTotalEdital() {
 		edital.getCusteioReaisNaoGastoTotal();
-	}
-	
-	public void getCapitalReaisNaoGastoTotalEdital() {
 		edital.getCapitalReaisNaoGastoTotal();
 	}
 	
@@ -77,17 +71,12 @@ public class FachadaCompositeEditalGrupo {
 		grupo.remover(membro);
 	}
 	
-	public void getCustoTotalGrupo() {
+	public void mostrarBalancamentoFinanceiroGrupo() {
 		grupo.getCustoTotal();
-	}
-	
-	public void getCusteioReaisNaoGastoTotalGrupo() {
 		grupo.getCusteioReaisNaoGastoTotal();
-	}
-	
-	public void getCapitalReaisNaoGastoTotalGrupo() {
 		grupo.getCapitalReaisNaoGastoTotal();
 	}
+
 	
 	//Métodos de grupo
 	public void ativarProjeto() {
@@ -126,6 +115,12 @@ public class FachadaCompositeEditalGrupo {
 		projeto.getCapitalReaisNaoGastoTotal();
 	}
 	
+	public void mostrarBalancamentoFinanceiroProjeto() {
+		projeto.getCustoTotal();
+		projeto.getCusteioReaisNaoGastoTotal();
+		projeto.getCapitalReaisNaoGastoTotal();
+	}
+	
 	//Métodos de Participação
 	public void ativarParticipacao() {
 		participacao.ativar();
@@ -135,12 +130,10 @@ public class FachadaCompositeEditalGrupo {
 		participacao.desativar();
 	}
 	
-	public void getCustoTotalParticipacao() {
+	public void mostrarBalancamentoFinanceiroParticipacao() {
 		participacao.getCustoTotal();
-	}
-	
-	public void getCusteioReaisNaoGastoTotalParticipacao() {
 		participacao.getCusteioReaisNaoGastoTotal();
+		participacao.getCapitalReaisNaoGastoTotal();
 	}
 	
 }

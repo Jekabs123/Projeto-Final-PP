@@ -14,7 +14,7 @@ public class Projeto extends InterfaceComum{
 	 * {@link #aporteCapitalReais} Esse atributo é o aporte destinado para o capital
 	 * {@link #gastoExecutadoCusteioReais} Esse atributo é o gasto do custeio
 	 * {@link #gastoExecutadoCapitalReais} Esse atributo é o gasto do capital
-	 * {@link #membros} Esse atributo armazena os embros do projeto
+	 * {@link #membros} Esse atributo armazena os membros do projeto
 	 */
 	private float aporteCusteioReais;
 	private float aporteCapitalReais;
