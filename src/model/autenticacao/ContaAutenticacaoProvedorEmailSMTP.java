@@ -6,6 +6,7 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
+import fachadasCasoDeUso.Fachada1Membro;
 import fachadasCasoDeUso.Fachada6MembroEmail;
 import persistencia.xml.DAOXMLMembroConta;
 
@@ -27,7 +28,7 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 		email.setAuthenticator( new DefaultAuthenticator(loginEmail, senhaEmail) );
 		try {
 			email.setFrom(loginEmail);
-			HashMap<Long, Membro> membros = Fachada6MembroEmail.getMembro();
+			HashMap<Long, Membro> membros = Fachada1Membro.getMembro();
 			for(int i = 0;i<=membros.size();i++){
 				if(membros.get(i).getLogin().equals(login)&&
 				   membros.get(i).getSenha().equals(senha)){

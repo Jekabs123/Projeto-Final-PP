@@ -6,26 +6,14 @@ import java.util.ArrayList;
  * Essa é a classe Edital do projeto
  */
 public class Edital extends InterfaceComum{
-	/**
-	 * {@link #projetos} Esse atributo é a lista de de interfaceComum que pode adicionar projetos ou qualquer tipo comum
-	 * {@link #grupos} Esse atributo é uma lista de interfaceComum que pode adicionar grupos ou qualquer tipo comum
-	 */
-	private ArrayList<InterfaceComum> projetos = new ArrayList<>();
-	private ArrayList<InterfaceComum> grupos = new ArrayList<>();
-	
-	/**
-	 * Esse método adiciona projetos na lista de interfaceComum
-	 * @param composite: é o projeto qe vai ser adicionado
-	 */
-	public void adicionar(Projeto composite) {
-		projetos.add(composite);
+
+
+	public void adicionar(InterfaceComum composite) {
+		getInterfaces().add(composite);
 	}
-	/**
-	 * Esse método adiciona grupos na lista de interfaceComum
-	 * @param composite: é o grupo que vai ser adicionado
-	 */
-	public void adicionar(Grupo composite){
-		grupos.add(composite);
+
+	public void remover(InterfaceComum composite) {
+		getInterfaces().remove(composite);
 	}
 	/**
 	 * Esse método seta o atributo ativo como true
@@ -46,11 +34,8 @@ public class Edital extends InterfaceComum{
 	 */
 	public float getCustoTotal() {
 		float custoTotal = 0;
-		for(InterfaceComum p: projetos){
+		for(InterfaceComum p: getInterfaces()){
 			custoTotal+= p.getCustoTotal();
-		}
-		for(InterfaceComum g: grupos){
-			custoTotal+= g.getCustoTotal();
 		}
 		return custoTotal;
 	}
@@ -61,7 +46,7 @@ public class Edital extends InterfaceComum{
 	 */
 	public float getCusteioReaisNaoGastoTotal() {
 		float custeio = 0;
-		for(InterfaceComum c: projetos){
+		for(InterfaceComum c: getInterfaces()){
 			custeio+= c.getCusteioReaisNaoGastoTotal();
 		}
 		return custeio;
@@ -73,37 +58,9 @@ public class Edital extends InterfaceComum{
 	 */
 	public float getCapitalReaisNaoGastoTotal() {
 		float capital = 0;
-		for(InterfaceComum c: projetos){
+		for(InterfaceComum c: getInterfaces()){
 			capital+=c.getCapitalReaisNaoGastoTotal();
 		}
 		return capital;
-	}
-	/**
-	 * Esse método pega a lista de projetos
-	 * @return: retorna a lista de interfaceComum
-	 */
-	public ArrayList<InterfaceComum> getProjetos() {
-		return projetos;
-	}
-	/**
-	 * Esse método seta uma lista de projetos
-	 * @param projetos: é a lista de projetos que vai ser configurada
-	 */
-	public void setProjetos(ArrayList<InterfaceComum> projetos) {
-		this.projetos = projetos;
-	}
-	/**
-	 * Esse método pega uma lista de grupos
-	 * @return: retorna uma lista de interfaceComum
-	 */
-	public ArrayList<InterfaceComum> getGrupos() {
-		return grupos;
-	}
-	/**
-	 * Esse método seta uma lista de grupos
-	 * @param grupos: é a lista de grupos que vai ser configurada
-	 */
-	public void setGrupos(ArrayList<InterfaceComum> grupos) {
-		this.grupos = grupos;
 	}
 }

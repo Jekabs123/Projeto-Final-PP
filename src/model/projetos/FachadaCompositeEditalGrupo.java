@@ -4,7 +4,6 @@ import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 
 public class FachadaCompositeEditalGrupo {
-	 // TODO - Fachada do composite
 	
 	private InterfaceComum edital = new Edital();
 	private InterfaceComum grupo = new Grupo();
@@ -78,7 +77,7 @@ public class FachadaCompositeEditalGrupo {
 	}
 
 	
-	//Métodos de grupo
+	//Métodos de projeto
 	public void ativarProjeto() {
 		projeto.ativar();
 	}

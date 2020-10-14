@@ -21,17 +21,14 @@ public class Fachada6MembroEmail {
 	
 	/**
 	 * {@link #membroCoordenador} Atributo que representar membro coordenador
-	 * {@link #membros} Atributo que é a persistência de mebros
 	 */
 	private Membro membroCoordenador;
-	private static DAOXMLMembroConta membros = new DAOXMLMembroConta();
 	/**
 	 * Esse e o construtor que seta o membro que vai ser administrador, atravez do construtor
 	 * @param membroCoordenador: é o Membro que vai ser o administrador
 	 */
 	public Fachada6MembroEmail(Membro membroCoordenador) {          
 		this.membroCoordenador = membroCoordenador;
-		membros.criar(membroCoordenador);
 	}
 	
 	/**
@@ -46,7 +43,6 @@ public class Fachada6MembroEmail {
 			if (membro.getContaEmail() != null) {
 				try {
 					projeto.adicionar(membro);
-					membros.criar(membro);
 					enviarEmailInfo(projeto.getNome(), adicionado, membroCoordenador.getNome());
 				} catch (ExceptionMembroDuplicado e) {
 					System.out.println("Membro duplicado");
@@ -72,7 +68,6 @@ public class Fachada6MembroEmail {
 			for (int i = 0; i < projeto.getMembros().size(); i++) {
 				if(projeto.getMembros().get(i).equals(membro)) {
 					projeto.getMembros().remove(membro);
-					membros.remover(membro);
 					enviarEmailInfo(projeto.getNome(), removido, membroCoordenador.getNome());
 					return true;
 				}
@@ -129,8 +124,5 @@ public class Fachada6MembroEmail {
 			System.out.println("Falhou");
 			return false;
 		}
-	}
-	public static HashMap<Long, Membro> getMembro(){
-		return membros.getMembro();
 	}
 }

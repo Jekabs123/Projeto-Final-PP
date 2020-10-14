@@ -9,7 +9,7 @@ public class ContaEmail {
 	}
 	
 	public Membro autenticar(char[] login, char[] senha) {  
-		return getConta().autenticar(login, senha);
+		return conta.autenticar(login, senha);
 	}
 	
 	public boolean validarlogin(char[] login) { 
@@ -31,5 +31,11 @@ public class ContaEmail {
    }
    public char[] getSenha(){
 	   return conta.getSenha();
+   }
+   public void setTipoAutenticacao(TipoProvedorAutenticacao tipo){
+	   conta.setTipo(tipo);
+   }
+   public TipoProvedorAutenticacao getTipoAutenticacao(){
+	   return conta.getTipo();
    }
 }

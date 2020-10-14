@@ -14,12 +14,11 @@ public class Grupo extends InterfaceComum{
 	 * {@link #dataCriacao} Esse atributo armazena a data de criação do grupo
 	 * {@link #linkCNPq} Esse atributo armazena o link do CNPq do grupo
 	 * {@link #membros} Esse atributo armazena a lista de membros do grupo
-	 * {@link #projetos} Esse atributo armazena a lista de projetos do grupo
 	 */
 	private long dataCriacao;
 	private char[] linkCNPq;
 	private ArrayList<Membro> membros = new ArrayList<>();
-	private ArrayList<InterfaceComum> projetos = new ArrayList<>();
+	
 	@Override
 	public void ativar() {
 		setAtivo(true);
@@ -33,7 +32,7 @@ public class Grupo extends InterfaceComum{
 	@Override
 	public float getCustoTotal() {
 		float custoTotal = 0;
-		for(InterfaceComum c:projetos){
+		for(InterfaceComum c:getInterfaces()){
 			custoTotal += c.getCustoTotal();
 		}
 		return custoTotal;
@@ -41,7 +40,7 @@ public class Grupo extends InterfaceComum{
 	@Override
 	public float getCusteioReaisNaoGastoTotal() {
 		float custeioNaoGasto = 0;
-		for(InterfaceComum c:projetos){
+		for(InterfaceComum c:getInterfaces()){
 			custeioNaoGasto+=c.getCusteioReaisNaoGastoTotal();
 		}
 		return custeioNaoGasto;
@@ -49,18 +48,18 @@ public class Grupo extends InterfaceComum{
 	@Override
 	public float getCapitalReaisNaoGastoTotal() {
 		float capitalNaoGasto = 0;
-		for(InterfaceComum c:projetos){
+		for(InterfaceComum c:getInterfaces()){
 			capitalNaoGasto+=c.getCapitalReaisNaoGastoTotal();
 		}
 		return capitalNaoGasto;
 	}
 	@Override
 	public void adicionar(InterfaceComum composite) {
-		projetos.add(composite);
+		getInterfaces().add(composite);
 	}
 	@Override
 	public void remover(InterfaceComum composite) {
-		projetos.remove(composite);
+		getInterfaces().remove(composite);
 	}
 
 	@Override
@@ -94,13 +93,4 @@ public class Grupo extends InterfaceComum{
 	public void setMembros(ArrayList<Membro> membros) {
 		this.membros = membros;
 	}
-	public ArrayList<InterfaceComum> getProjetos() {
-		return projetos;
-	}
-	public void setProjetos(ArrayList<InterfaceComum> projetos) {
-		this.projetos = projetos;
-	}
-	
-	
-
 }

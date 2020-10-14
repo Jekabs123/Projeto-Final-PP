@@ -65,8 +65,14 @@ public class Projeto extends InterfaceComum{
 		grupo.setMembros(membros);
 		
 	}
-	
-	
+	@Override
+	public void adicionar(InterfaceComum composite) {
+		getInterfaces().add(composite);
+	}
+	@Override
+	public void remover(InterfaceComum composite) {
+		getInterfaces().add(composite);
+	}
 	public float getAporteCusteioReais() {
 		return aporteCusteioReais;
 	}

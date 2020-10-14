@@ -9,17 +9,14 @@ import persistencia.xml.DAOXMLMembroConta;
 public class Fachada7MembroAdministrador {
 	/**
 	 * {@link #membroAdministrador}Esse atributo é o membro que vai ser administrador
-	 * {@link #membros}Esse atributo é a persistência de membro
 	 */
 	private Membro membroAdministrador;
-	private DAOXMLMembroConta membros = new DAOXMLMembroConta();
 	/**
 	 * Esse é o construtor que seta o membro que vai ser administrador
 	 * @param membroAdministrador: é o membro que vai ser o administrador
 	 */
 	public Fachada7MembroAdministrador(Membro membroAdministrador) {
 		this.membroAdministrador = membroAdministrador;
-		membros.criar(membroAdministrador);
 	}
 	/**
 	 * Esse método torna o membro como administrador
@@ -28,7 +25,6 @@ public class Fachada7MembroAdministrador {
 	public void tornarMembroAdministrador(Membro membro) {
 		if(membroAdministrador.getAdministrador() == true) {
 			membro.setAdministrador(true);
-			membros.criar(membro);
 		}
 	}
 

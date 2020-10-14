@@ -1,5 +1,7 @@
 package model.projetos;
 
+import java.util.ArrayList;
+
 import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 /**
@@ -12,11 +14,13 @@ public abstract class InterfaceComum {
 	 * {@link #ativo} Esse atributo informa de está ativo ou não
 	 * {@link #dataInicio} Esse atributo infroma a data que foi iniciada
 	 * {@link #dataTermino} Esse atributo informa a data que vai ser terminada
+	 * {@link #interfaces} É a lista que vai guardar os conteineres
 	 */
 	private String nome;
 	private boolean ativo;
 	private long dataInicio;
 	private long dataTermino;
+	private ArrayList<InterfaceComum> interfaces = new ArrayList<>();
 	
 	/**
 	 * Esse método seta o ativo como true
@@ -101,6 +105,12 @@ public abstract class InterfaceComum {
 
 	public void setDataTermino(long dataTermino) {
 		this.dataTermino = dataTermino;
+	}
+	public ArrayList<InterfaceComum> getInterfaces() {
+		return interfaces;
+	}
+	public void setInterfaces(ArrayList<InterfaceComum> interfaces) {
+		this.interfaces = interfaces;
 	}
 	
 }
