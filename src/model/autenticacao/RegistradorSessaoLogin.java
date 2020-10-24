@@ -10,12 +10,10 @@ public class RegistradorSessaoLogin {
 	}
 	
 	public void RegistradorOnline(Membro membro){
-		//FALTA IMPLEMENTAR
-		//AQUI VAI DISPARAR O OBSERVER
+		notifyObserveres(membro);
 	}
 	public void RegistradorOffline(char[] login){
-		//FALTA IMPLEMENTAR
-		//AQUI VAI DISPARAR O OBSERVER
+		notifyObserveres(login);
 	}
 	public boolean isOnline(char[] login){
 		//FALTA IMPLEMENTAR
@@ -33,9 +31,14 @@ public class RegistradorSessaoLogin {
 	public void removeObserver(Observer observer){
 		observeres.remove(observer);
 	}
-	public void notifyObserveres(){
+	public void notifyObserveres(Membro membro){
 		for(Observer obs: observeres){
-			obs.notifyObserver();
+			obs.notifyObserver(membro);
+		}
+	}
+	public void notifyObserveres(char[] login){
+		for(Observer obs: observeres){
+			obs.notifyObserver(login);
 		}
 	}
 }
