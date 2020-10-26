@@ -3,10 +3,20 @@ package model.autenticacao;
 import java.util.ArrayList;
 
 public class RegistradorSessaoLogin {
+	
 	private static RegistradorSessaoLogin registrador;
+	
 	private ArrayList<Observer> observeres = new ArrayList<>();
 	
 	private RegistradorSessaoLogin() {
+		
+	}
+	
+	public synchronized static RegistradorSessaoLogin getInstance(){
+		if(registrador==null){
+			registrador = new RegistradorSessaoLogin();
+		}
+		return registrador;
 	}
 	
 	public void RegistradorOnline(Membro membro){
@@ -19,12 +29,7 @@ public class RegistradorSessaoLogin {
 		//FALTA IMPLEMENTAR
 		return false;
 	}
-	public synchronized static RegistradorSessaoLogin getInstance(){
-		if(registrador==null){
-			registrador = new RegistradorSessaoLogin();
-		}
-		return registrador;
-	}
+	
 	public void addObserver(Observer observer){
 		observeres.add(observer);
 	}
