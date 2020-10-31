@@ -6,7 +6,6 @@ public class RegistradorSessaoLogin {
 	
 	private static RegistradorSessaoLogin registrador;
 	
-	private ArrayList<Observer> observeres = new ArrayList<>();
 	
 	private RegistradorSessaoLogin() {
 		
@@ -20,30 +19,13 @@ public class RegistradorSessaoLogin {
 	}
 	
 	public void RegistradorOnline(Membro membro){
-		notifyObserveres(membro);
+		//FALTA IMPLEMENTAR
 	}
 	public void RegistradorOffline(char[] login){
-		notifyObserveres(login);
+		//FALTA IMPLEMENTAR
 	}
 	public boolean isOnline(char[] login){
 		//FALTA IMPLEMENTAR
 		return false;
-	}
-	
-	public void addObserver(Observer observer){
-		observeres.add(observer);
-	}
-	public void removeObserver(Observer observer){
-		observeres.remove(observer);
-	}
-	public void notifyObserveres(Membro membro){
-		for(Observer obs: observeres){
-			obs.notifyObserver(membro);
-		}
-	}
-	public void notifyObserveres(char[] login){
-		for(Observer obs: observeres){
-			obs.notifyObserver(login);
-		}
 	}
 }
