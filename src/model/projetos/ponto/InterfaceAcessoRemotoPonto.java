@@ -1,12 +1,14 @@
 package model.projetos.ponto;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.Set;
 
 import model.projetos.Projeto;
 
-public interface InterfaceAcessoRemotoPonto {
+public interface InterfaceAcessoRemotoPonto extends Remote {
 	
-	public boolean registrarPonto(Projeto projeto, char[] login);
+	public boolean registrarPonto(Projeto projeto, char[] login) throws RemoteException;
 	
 	public Set<Projeto> getProjetosAtivos(char[] login);
 	

@@ -1,10 +1,18 @@
 package model.projetos.ponto;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Set;
 
 import model.projetos.Projeto;
 
-public class RegistradorPontoCentral implements InterfaceAcessoRemotoPonto {
+public class RegistradorPontoCentral extends UnicastRemoteObject implements InterfaceAcessoRemotoPonto {
+
+	protected RegistradorPontoCentral() throws RemoteException {
+		super();
+	}
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public boolean registrarPonto(Projeto projeto, char[] login) {
