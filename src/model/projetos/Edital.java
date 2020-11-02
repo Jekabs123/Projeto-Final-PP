@@ -1,6 +1,4 @@
 package model.projetos;
-
-import java.util.ArrayList;
 /**
  * @author PAULO E INATHAN - TATAKAE!
  * Essa é a classe Edital do projeto

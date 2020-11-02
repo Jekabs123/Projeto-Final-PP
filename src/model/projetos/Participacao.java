@@ -3,13 +3,19 @@ package model.projetos;
  * @author PAULO E INATHAN - TATAKAE!
  * Essa classe é a participação do projeto
  */
-public class Participacao extends InterfaceComum{
+
+import model.projetos.ponto.HorarioPrevisto;
+
+public class Participacao extends InterfaceComum {
 	/**
 	 * {@link #aporteCusteioMensalReais} Esse atributo informa o custeio mensal
 	 * {@link #qtdMesesCusteados} Esse atributo informa a quantidade de mêses custeados
 	 * {@link #qtdMesesPagos} Esse atributo informa os mêses pagos
 	 * {@link #coordenador} Esse atributo informa se tem ou não coordenador
 	 */
+	
+	private HorarioPrevisto horarioPrevisto;
+	
 	private float aporteCusteioMensalReais;
 	private short qtdMesesCusteados;
 	private short qtdMesesPagos;
@@ -59,5 +65,11 @@ public class Participacao extends InterfaceComum{
 	}
 	public void setCoordenador(boolean coordenador) {
 		this.coordenador = coordenador;
+	}
+	public HorarioPrevisto getHorarioPrevisto() {
+		return horarioPrevisto;
+	}
+	public void setHorarioPrevisto(HorarioPrevisto horarioPrevisto) {
+		this.horarioPrevisto = horarioPrevisto;
 	}
 }

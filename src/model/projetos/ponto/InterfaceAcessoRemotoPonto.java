@@ -8,13 +8,13 @@ import model.projetos.Projeto;
 
 public interface InterfaceAcessoRemotoPonto extends Remote {
 	
-	public boolean registrarPonto(Projeto projeto, char[] login) throws RemoteException;
+	public boolean registrarPonto(Projeto projeto, String login) throws RemoteException;
 	
-	public Set<Projeto> getProjetosAtivos(char[] login);
+	public Set<Projeto> getProjetosAtivos(String login);
 	
 	public float horasTrabalhadasValidas(long dataInicio, long dataTermino, char[] login);
 	
-	public float deficitHoras(long dataInicio, long dataTermino, long login);
+	public float deficitHoras(long dataInicio, long dataTermino, char[] login);
 	
 	public Set<PontoTrabalhado> getPontosInvalidos(char[] login);
 	

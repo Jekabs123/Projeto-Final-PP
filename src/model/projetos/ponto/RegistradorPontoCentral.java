@@ -2,12 +2,17 @@ package model.projetos.ponto;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashSet;
 import java.util.Set;
 
+import model.projetos.InterfaceComum;
 import model.projetos.Projeto;
 
 public class RegistradorPontoCentral extends UnicastRemoteObject implements InterfaceAcessoRemotoPonto {
-
+	
+	private InterfaceComum projeto;
+	private Set<Projeto> projetoAtivos = new HashSet<Projeto>();
+	
 	protected RegistradorPontoCentral() throws RemoteException {
 		super();
 	}
@@ -15,15 +20,20 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public boolean registrarPonto(Projeto projeto, char[] login) {
-		// TODO Auto-generated method stub
+	public boolean registrarPonto(Projeto projeto, String login) {
+		
 		return false;
 	}
 
 	@Override
-	public Set<Projeto> getProjetosAtivos(char[] login) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<Projeto> getProjetosAtivos(String login) {         //NÃO TÔ ENTENDENDO PARA QUE SERVE O LOGIN PASSADO COMO PARAMETRO
+		projeto = new Projeto();
+		for (int i = 0; i < projeto.getInterfaces().size(); i++) {
+			if(projeto.getInterfaces().get(i).getAtivo()) {
+				projetoAtivos.add((Projeto) projeto.getInterfaces().get(i));
+			}
+		}
+		return projetoAtivos;
 	}
 
 	@Override
@@ -33,7 +43,7 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	}
 
 	@Override
-	public float deficitHoras(long dataInicio, long dataTermino, long login) {
+	public float deficitHoras(long dataInicio, long dataTermino, char[] login) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
