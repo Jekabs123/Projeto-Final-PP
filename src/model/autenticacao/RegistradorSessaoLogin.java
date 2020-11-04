@@ -1,11 +1,14 @@
 package model.autenticacao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import fachadasCasoDeUso.Fachada1Membro;
 
 public class RegistradorSessaoLogin {
 	
 	private static RegistradorSessaoLogin registrador;
-	
+	private HashMap<Long, Membro> membros = Fachada1Membro.getMembro();
 	
 	private RegistradorSessaoLogin() {
 		
@@ -19,13 +22,24 @@ public class RegistradorSessaoLogin {
 	}
 	
 	public void RegistradorOnline(Membro membro){
-		//FALTA IMPLEMENTAR
+		membro.ativar();
+		System.out.println("Registrado Sessão online, o Membro fez login");
 	}
 	public void RegistradorOffline(char[] login){
-		//FALTA IMPLEMENTAR
+		for(int i = 0; i<= membros.size();i++){
+			if(membros.get(i).getLogin().equals(login)){
+				membros.get(i).desativar();
+				System.out.println("Registrado Sessão offline, o Membro fez logout");
+				break;
+			}
+		}
 	}
 	public boolean isOnline(char[] login){
-		//FALTA IMPLEMENTAR
+		for(int i = 0; i<= membros.size();i++){
+			if(membros.get(i).getLogin().equals(login)){
+				return membros.get(i).isAtivo();
+			}
+		}
 		return false;
 	}
 }

@@ -11,6 +11,7 @@ import javax.mail.internet.MimeMessage;
 
 import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
+import model.projetos.Participacao;
 import model.projetos.Projeto;
 import persistencia.xml.DAOXMLMembroConta;
 /**

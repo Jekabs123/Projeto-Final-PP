@@ -2,38 +2,44 @@ package model.projetos.ponto;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Set;
 
+import model.autenticacao.Membro;
 import model.projetos.InterfaceComum;
 import model.projetos.Projeto;
 
 public class RegistradorPontoCentral extends UnicastRemoteObject implements InterfaceAcessoRemotoPonto {
 	
 	private InterfaceComum projeto;
-	private Set<Projeto> projetoAtivos = new HashSet<Projeto>();
+	private HashMap<String,Projeto> projetoAtivos = new HashMap<String, Projeto>();
+	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
 	
-	protected RegistradorPontoCentral() throws RemoteException {
+	public RegistradorPontoCentral() throws RemoteException {
 		super();
 	}
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public boolean registrarPonto(Projeto projeto, String login) {
-		
+	public boolean registrarPonto(Projeto projeto, char[] login) {
+		for(Membro m: projeto.getMembros()){
+			if(m.getLogin().equals(login)){
+				return registrador.registrarPonto(this);
+			}
+		}
 		return false;
 	}
 
 	@Override
-	public Set<Projeto> getProjetosAtivos(String login) {         //NÃO TÔ ENTENDENDO PARA QUE SERVE O LOGIN PASSADO COMO PARAMETRO
-		projeto = new Projeto();
-		for (int i = 0; i < projeto.getInterfaces().size(); i++) {
-			if(projeto.getInterfaces().get(i).getAtivo()) {
-				projetoAtivos.add((Projeto) projeto.getInterfaces().get(i));
+	public HashMap<String, Projeto> getProjetosAtivos(String login) { //Também não entendi bem deixei assim kkkk
+		
+		for (int i = 0; i < projetoAtivos.size(); i++) {
+			if(projetoAtivos.get(login)!=null) {
+				return projetoAtivos;
 			}
 		}
-		return projetoAtivos;
+		return null;
 	}
 
 	@Override
@@ -50,19 +56,16 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 
 	@Override
 	public Set<PontoTrabalhado> getPontosInvalidos(char[] login) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void justificarPontoInvalido(PontoTrabalhado ponto, char[] justificativa, char[] login) {
-		// TODO Auto-generated method stub
+	public void justificarPontoNaoBatido(PontoTrabalhado ponto, TratadorDePontoIvalido tratador, char[] login) {
 		
 	}
 
 	@Override
-	public void justificarPontoNaoBatido(PontoTrabalhado ponto, char[] justificativa, char[] login) {
-		// TODO Auto-generated method stub
+	public void justificarPontoInvalido(PontoTrabalhado ponto, TratadorDePontoIvalido tratador, char[] login) {
 		
 	}
 
