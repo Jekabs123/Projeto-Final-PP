@@ -3,7 +3,7 @@ package model.projetos.ponto;
 public class TratadorIntervalo extends TratadorDePontoIvalido{
 
 	@Override
-	public void justificarPontoInvalido() {
+	public void justificarPontoInvalido(PontoTrabalhado ponto) {
 		// falta implementar
 	}
 

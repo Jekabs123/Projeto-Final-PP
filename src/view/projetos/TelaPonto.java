@@ -1,13 +1,23 @@
 package view.projetos;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import controller.projetos.ControllerTelaPonto;
 import model.projetos.Projeto;
 
+// CLASSE CLIENTE DO PROXY
+
 public class TelaPonto extends JFrame{
+	
+	//PROVAVELMENTE PRECISA COLOCAR UM JTEXTFIELD PARA RECEBER ESSAS INFORMAÇÕES
+	private Projeto projeto;
+	private String login;
 	
 	public TelaPonto(){
 		setTitle("Bater Ponto");
@@ -27,23 +37,41 @@ public class TelaPonto extends JFrame{
 			} catch (Exception e) {}
      	
 
-     	botaoBaterPonto(null, null, null);
+     	botaoBaterPonto(null, null);
      	botaoVerDetalhes();
      	setVisible(true);
     
     	repaint();
     }
 	
-	public void botaoBaterPonto(Projeto projeto, char[] login, char[] senha) {
+	public void botaoBaterPonto(Projeto projeto, String login) {
 		JButton btBaterPonto = new JButton("Bater Ponto");
 		btBaterPonto.setBounds(100, 50, 130, 30);
 		add(btBaterPonto);
+		
+		OuvinteBaterPonto ouvinteBaterPonto = new OuvinteBaterPonto();
+		btBaterPonto.addActionListener(ouvinteBaterPonto);
+		
 	}
 	
 	public void botaoVerDetalhes() {
 		JButton btBaterPonto = new JButton("Ver Detalhes");
 		btBaterPonto.setBounds(100, 100, 130, 30);
 		add(btBaterPonto);
+	}
+	
+	
+	public class OuvinteBaterPonto implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			ControllerTelaPonto controllerTelaPonto = new ControllerTelaPonto();
+			
+			controllerTelaPonto.conectarProxy(projeto, login);
+			
+		}
+		
 	}
 
 }

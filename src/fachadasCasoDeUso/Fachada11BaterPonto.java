@@ -17,7 +17,7 @@ public class Fachada11BaterPonto {
 		}
 	}
 	
-	public boolean baterPonto(Projeto projeto, char[] login){
+	public boolean baterPonto(Projeto projeto, String login){
 		return registrarPonto.registrarPonto(projeto, login);
 	}
 }

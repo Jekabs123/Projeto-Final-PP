@@ -9,7 +9,7 @@ import model.projetos.Projeto;
 
 public interface InterfaceAcessoRemotoPonto extends Remote {
 	
-	public boolean registrarPonto(Projeto projeto, char[] login) throws RemoteException;
+	public boolean registrarPonto(Projeto projeto, String login) throws RemoteException;
 	
 	public HashMap<String, Projeto> getProjetosAtivos(String login);
 	

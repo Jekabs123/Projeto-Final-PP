@@ -2,9 +2,11 @@ package model.projetos.ponto;
 
 public abstract class TratadorDePontoIvalido {
 
+	protected PontoTrabalhado ponto;
+	
 	private TratadorDePontoIvalido tratador;
 	
-	public abstract void justificarPontoInvalido();
+	public abstract void justificarPontoInvalido(PontoTrabalhado ponto);
 	
 	
 	public TratadorDePontoIvalido getProximaEtapa(){

@@ -22,7 +22,7 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public boolean registrarPonto(Projeto projeto, char[] login) {
+	public boolean registrarPonto(Projeto projeto, String login) {
 		for(Membro m: projeto.getMembros()){
 			if(m.getLogin().equals(login)){
 				return registrador.registrarPonto(this);
