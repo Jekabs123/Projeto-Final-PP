@@ -97,8 +97,10 @@ public class Grupo extends CompositorProjeto{
 	public ArrayList<Grupo> getGrupos() {
 		return grupos;
 	}
-	public void setGrupos(ArrayList<Grupo> grupos) {
-		this.grupos = grupos;
+	public void setGrupos(Grupo grupo) {
+		for (int i = 0; i < grupos.size(); i++) {
+			this.grupos.set(i, grupo);
+		}
 	}
 	
 }

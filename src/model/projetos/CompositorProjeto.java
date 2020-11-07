@@ -124,7 +124,7 @@ public abstract class CompositorProjeto {
 	/*
 	 * TODO
 	 * 1. todos suportam ter filhos?
-	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...  
+	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...   FEITO
 	 */
 //	public ArrayList<CompositorProjeto> getInterfaces() {
 //		return interfaces;
@@ -134,7 +134,7 @@ public abstract class CompositorProjeto {
 	 * TODO
 	 * 1. todos suportam ter filhos?
 	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...
-	 * 3. deveria adicionar um por um.
+	 * 3. deveria adicionar um por um.  FEITO
 	 */
 //	public void setInterfaces(ArrayList<CompositorProjeto> interfaces) {
 //		this.interfaces = interfaces;

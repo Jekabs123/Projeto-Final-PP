@@ -109,8 +109,10 @@ public class Projeto extends CompositorProjeto{
 	public ArrayList<Projeto> getProjetos() {
 		return projetos;
 	}
-	public void setProjetos(ArrayList<Projeto> projetos) {
-		this.projetos = projetos;
+	public void setProjetos(Projeto projeto) {
+		for (int i = 0; i < projetos.size(); i++) {
+			this.projetos.set(i, projeto);
+		}
 	}
 	/**
 	 * Esse método pesquisa um membro a partir do login e a senha da conta do membro

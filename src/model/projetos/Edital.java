@@ -74,8 +74,10 @@ public class Edital extends CompositorProjeto {
 		return editais;
 	}
 
-	public void setEditais(ArrayList<Edital> editais) {
-		this.editais = editais;
+	public void setEditais(Edital edital) {
+		for (int i = 0; i < editais.size(); i++) {
+			this.editais.set(i, edital);
+		}
 	}
 
 }

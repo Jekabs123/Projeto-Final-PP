@@ -29,7 +29,7 @@ public class Fachada3Grupo {
 	 */
 	public boolean removerGrupo(long id) {
 		Grupo grupo = pesquisarGrupo(id);
-		if(grupo.getInterfaces().size() > 0) {
+		if(grupo.getGrupos().size() > 0) {
 			return false;
 		}
 		grupoXML.remover(id);
