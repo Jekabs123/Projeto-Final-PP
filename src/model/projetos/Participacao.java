@@ -3,7 +3,7 @@ package model.projetos;
  * @author PAULO E INATHAN - TATAKAE!
  * Essa classe � a participa��o do projeto
  */
-public class Participacao extends InterfaceComum{
+public class Participacao extends CompositorProjeto{
 	/**
 	 * {@link #aporteCusteioMensalReais} Esse atributo informa o custeio mensal
 	 * {@link #qtdMesesCusteados} Esse atributo informa a quantidade de m�ses custeados
@@ -32,15 +32,15 @@ public class Participacao extends InterfaceComum{
 	public float getCusteioReaisNaoGastoTotal() {
 		return (aporteCusteioMensalReais*qtdMesesCusteados)-(aporteCusteioMensalReais*qtdMesesPagos);
 	}
-	@Override
+
 	/*
 	 * TODO 
 	 * 1. como esta classe n suporta, melhor colocar implementacao default vazia
-	 * ou com excecao no supertipo e aqui vc nem implementa.
+	 * ou com excecao no supertipo e aqui vc nem implementa.  FEITO
 	 */
-	public float getCapitalReaisNaoGastoTotal() {
-		return 0;
-	}
+//	public float getCapitalReaisNaoGastoTotal() {
+//		return 0;
+//	}
 	public float getAporteCusteioMensalReais() {
 		return aporteCusteioMensalReais;
 	}

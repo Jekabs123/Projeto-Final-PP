@@ -1,7 +1,5 @@
 package model.projetos;
 
-import java.util.ArrayList;
-
 import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 /**
@@ -10,12 +8,12 @@ import model.autenticacao.Membro;
  */
 /*
  * TODO
- * 1. outro nome que remeta a componentes de projetos.
+ * 1. outro nome que remeta a componentes de projetos. FEITO
  * 2. metodos de add() e remove() deveriam ser apenas com o supertipo e devem ter implementacoes
  * default. Os subtipos de component que suportarem eles devem sobrescrever e fazer testes para saber 
- * se vao adicionar em si ou nao.
+ * se vao adicionar em si ou nao. FEITO
  */
-public abstract class InterfaceComum {
+public abstract class CompositorProjeto {
 	/**
 	 * {@link #nome} Esse atributo � o nome da interface comum
 	 * {@link #ativo} Esse atributo informa de est� ativo ou n�o
@@ -28,11 +26,13 @@ public abstract class InterfaceComum {
 	private long dataInicio;
 	private long dataTermino;
 	
+	
+	
 	/*
 	 * TODO
-	 * 1. porque aqui se quem deve possuir sao os tipos compostos?
+	 * 1. porque aqui se quem deve possuir sao os tipos compostos? FEITO
 	 */
-	private ArrayList<InterfaceComum> interfaces = new ArrayList<>();
+//	private ArrayList<CompositorProjeto> interfaces = new ArrayList<>();
 	
 	/**
 	 * Esse m�todo seta o ativo como true
@@ -56,7 +56,9 @@ public abstract class InterfaceComum {
 	 * Esse m�todo calcula o capital total n�o gasto
 	 * @return: retorna  o capital n�o gasto em float
 	 */
-	public abstract float getCapitalReaisNaoGastoTotal();
+	public float getCapitalReaisNaoGastoTotal() {
+		return 0;
+	}
 	/**
 	 * Esse m�todo adiciona um membro na interface comum
 	 * @param membro: � o membro que vai ser adicionado
@@ -76,14 +78,14 @@ public abstract class InterfaceComum {
 	 * Esse m�todo adiciona a interface comum
 	 * @param composite: � a interface comum a ser adicionada
 	 */
-	public void adicionar(InterfaceComum composite){
+	public void adicionar(CompositorProjeto compositorProjeto){
 		
 	}
 	/**
 	 * Esse m�todo remove a interface comum
 	 * @param composite: � a interface comum a ser removida
 	 */
-	public void remover(InterfaceComum composite){
+	public void remover(CompositorProjeto compositorProjeto){
 		
 	}
 
@@ -122,11 +124,11 @@ public abstract class InterfaceComum {
 	/*
 	 * TODO
 	 * 1. todos suportam ter filhos?
-	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...
+	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...  
 	 */
-	public ArrayList<InterfaceComum> getInterfaces() {
-		return interfaces;
-	}
+//	public ArrayList<CompositorProjeto> getInterfaces() {
+//		return interfaces;
+//	}
 	
 	/*
 	 * TODO
@@ -134,8 +136,8 @@ public abstract class InterfaceComum {
 	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...
 	 * 3. deveria adicionar um por um.
 	 */
-	public void setInterfaces(ArrayList<InterfaceComum> interfaces) {
-		this.interfaces = interfaces;
-	}
+//	public void setInterfaces(ArrayList<CompositorProjeto> interfaces) {
+//		this.interfaces = interfaces;
+//	}
 	
 }

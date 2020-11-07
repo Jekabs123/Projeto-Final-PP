@@ -5,10 +5,10 @@ import model.autenticacao.Membro;
 
 public class FachadaCompositeEditalGrupo {
 	
-	private InterfaceComum edital = new Edital();
-	private InterfaceComum grupo = new Grupo();
+	private CompositorProjeto edital = new Edital();
+	private CompositorProjeto grupo = new Grupo();
 	private Projeto projeto = new Projeto();
-	private InterfaceComum participacao = new Participacao();
+	private CompositorProjeto participacao = new Participacao();
 	
 	//Métodos de Edital
 	public void ativarEdital() {

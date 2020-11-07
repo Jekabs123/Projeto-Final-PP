@@ -8,7 +8,7 @@ import model.autenticacao.Membro;
  * @author PAULO E INATHAN - TATAKAE!
  * Esse Classe é o projeto do sistema
  */
-public class Projeto extends InterfaceComum{
+public class Projeto extends CompositorProjeto{
 	/**
 	 * {@link #aporteCusteioReais} Esse atributo é o aporte destinado para o custeio
 	 * {@link #aporteCapitalReais} Esse atributo é o aporte destinado para o capital
@@ -21,6 +21,7 @@ public class Projeto extends InterfaceComum{
 	private float gastoExecutadoCusteioReais;
 	private float gastoExecutadoCapitalReais;
 	private ArrayList<Membro> membros = new ArrayList<>();
+	private ArrayList<Projeto> projetos = new ArrayList<>();
 	
 	@Override
 	public void ativar() {
@@ -66,12 +67,12 @@ public class Projeto extends InterfaceComum{
 		
 	}
 	@Override
-	public void adicionar(InterfaceComum composite) {
-		getInterfaces().add(composite);
+	public void adicionar(CompositorProjeto compositorProjeto) {
+		projetos.add((Projeto) compositorProjeto);
 	}
 	@Override
-	public void remover(InterfaceComum composite) {
-		getInterfaces().add(composite);
+	public void remover(CompositorProjeto compositorProjeto) {
+		projetos.remove(compositorProjeto);
 	}
 	public float getAporteCusteioReais() {
 		return aporteCusteioReais;
@@ -103,6 +104,13 @@ public class Projeto extends InterfaceComum{
 	}
 	public void setMembros(ArrayList<Membro> membros) {
 		this.membros = membros;
+	}
+	
+	public ArrayList<Projeto> getProjetos() {
+		return projetos;
+	}
+	public void setProjetos(ArrayList<Projeto> projetos) {
+		this.projetos = projetos;
 	}
 	/**
 	 * Esse método pesquisa um membro a partir do login e a senha da conta do membro

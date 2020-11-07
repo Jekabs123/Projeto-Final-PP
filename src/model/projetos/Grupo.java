@@ -9,7 +9,7 @@ import model.autenticacao.Membro;
  * @author PAULO E INATHAN - TATAKAE!
  * Essa classe Grupo do projeto
  */
-public class Grupo extends InterfaceComum{
+public class Grupo extends CompositorProjeto{
 	/**
 	 * {@link #dataCriacao} Esse atributo armazena a data de criação do grupo
 	 * {@link #linkCNPq} Esse atributo armazena o link do CNPq do grupo
@@ -18,6 +18,7 @@ public class Grupo extends InterfaceComum{
 	private long dataCriacao;
 	private char[] linkCNPq;
 	private ArrayList<Membro> membros = new ArrayList<>();
+	private ArrayList<Grupo> grupos = new ArrayList<>();
 	
 	@Override
 	public void ativar() {
@@ -32,7 +33,7 @@ public class Grupo extends InterfaceComum{
 	@Override
 	public float getCustoTotal() {
 		float custoTotal = 0;
-		for(InterfaceComum c:getInterfaces()){
+		for(CompositorProjeto c : grupos){
 			custoTotal += c.getCustoTotal();
 		}
 		return custoTotal;
@@ -40,7 +41,7 @@ public class Grupo extends InterfaceComum{
 	@Override
 	public float getCusteioReaisNaoGastoTotal() {
 		float custeioNaoGasto = 0;
-		for(InterfaceComum c:getInterfaces()){
+		for(CompositorProjeto c : grupos){
 			custeioNaoGasto+=c.getCusteioReaisNaoGastoTotal();
 		}
 		return custeioNaoGasto;
@@ -48,18 +49,18 @@ public class Grupo extends InterfaceComum{
 	@Override
 	public float getCapitalReaisNaoGastoTotal() {
 		float capitalNaoGasto = 0;
-		for(InterfaceComum c:getInterfaces()){
+		for(CompositorProjeto c : grupos){
 			capitalNaoGasto+=c.getCapitalReaisNaoGastoTotal();
 		}
 		return capitalNaoGasto;
 	}
 	@Override
-	public void adicionar(InterfaceComum composite) {
-		getInterfaces().add(composite);
+	public void adicionar(CompositorProjeto compositorProjeto) {
+		grupos.add((Grupo) compositorProjeto);
 	}
 	@Override
-	public void remover(InterfaceComum composite) {
-		getInterfaces().remove(composite);
+	public void remover(CompositorProjeto compositorProjeto) {
+		grupos.remove(compositorProjeto);
 	}
 
 	@Override
@@ -93,4 +94,11 @@ public class Grupo extends InterfaceComum{
 	public void setMembros(ArrayList<Membro> membros) {
 		this.membros = membros;
 	}
+	public ArrayList<Grupo> getGrupos() {
+		return grupos;
+	}
+	public void setGrupos(ArrayList<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+	
 }

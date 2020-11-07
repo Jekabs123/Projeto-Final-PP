@@ -1,6 +1,5 @@
 package model.autenticacao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import fachadas.Fachada1Membro;

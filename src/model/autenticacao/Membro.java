@@ -7,7 +7,7 @@ public class Membro {
 	private long matricula;
 	private String nome;
 	private boolean ativo;
-	private char[] email;
+	private String email;
 	private boolean administrador;
 	private ContaEmail contaEmail;
 	private Participacao participacao;
@@ -57,11 +57,11 @@ public class Membro {
 		this.ativo = ativo;
 	}
 
-	public char[] getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(char[] email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 

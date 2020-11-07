@@ -1,6 +1,5 @@
 package fachadas;
 
-import java.util.HashMap;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -12,7 +11,6 @@ import javax.mail.internet.MimeMessage;
 import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
-import persistencia.xml.DAOXMLMembroConta;
 /**
  * @author INATHAN e PAULO - TATAKAE!
  * Fachada para a classe membro

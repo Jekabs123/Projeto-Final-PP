@@ -1,7 +1,6 @@
 package fachadas;
 
 import model.autenticacao.Membro;
-import persistencia.xml.DAOXMLMembroConta;
 /**
  * @author PAULO E INATHAN - TATAKAE!
  * Essa classe é uma fachada da membro administrador

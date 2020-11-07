@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.Set;
 
 import model.autenticacao.Membro;
-import model.projetos.InterfaceComum;
+import model.projetos.CompositorProjeto;
 import model.projetos.Projeto;
 
 public class RegistradorPontoCentral extends UnicastRemoteObject implements InterfaceAcessoRemotoPonto {
 	
-	private InterfaceComum projeto;
+	private CompositorProjeto projeto;
 	private HashMap<String,Projeto> projetoAtivos = new HashMap<String, Projeto>();
 	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
 	

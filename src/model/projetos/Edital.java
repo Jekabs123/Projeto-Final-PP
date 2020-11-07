@@ -1,20 +1,23 @@
 package model.projetos;
 
 import java.util.ArrayList;
+
 /**
  * @author PAULO E INATHAN - TATAKAE!
  * Essa � a classe Edital do projeto
  */
-public class Edital extends InterfaceComum {
+public class Edital extends CompositorProjeto {
+	
+	private ArrayList<Edital> editais = new ArrayList<>();
 
 	@Override
-	public void adicionar(InterfaceComum composite) {
-		getInterfaces().add(composite);
+	public void adicionar(CompositorProjeto compositorProjeto) {
+		editais.add((Edital) compositorProjeto);
 	}
 
 	@Override
-	public void remover(InterfaceComum composite) {
-		getInterfaces().remove(composite);
+	public void remover(CompositorProjeto compositorProjeto) {
+		editais.remove(compositorProjeto);
 	}
 	/**
 	 * Esse m�todo seta o atributo ativo como true
@@ -37,7 +40,7 @@ public class Edital extends InterfaceComum {
 	 */
 	public float getCustoTotal() {
 		float custoTotal = 0;
-		for(InterfaceComum p: getInterfaces()){
+		for(CompositorProjeto p: editais){
 			custoTotal+= p.getCustoTotal();
 		}
 		return custoTotal;
@@ -49,7 +52,7 @@ public class Edital extends InterfaceComum {
 	 */
 	public float getCusteioReaisNaoGastoTotal() {
 		float custeio = 0;
-		for(InterfaceComum c: getInterfaces()){
+		for(CompositorProjeto c: editais){
 			custeio+= c.getCusteioReaisNaoGastoTotal();
 		}
 		return custeio;
@@ -61,9 +64,18 @@ public class Edital extends InterfaceComum {
 	 */
 	public float getCapitalReaisNaoGastoTotal() {
 		float capital = 0;
-		for(InterfaceComum c: getInterfaces()){
+		for(CompositorProjeto c: editais){
 			capital+=c.getCapitalReaisNaoGastoTotal();
 		}
 		return capital;
 	}
+
+	public ArrayList<Edital> getEditais() {
+		return editais;
+	}
+
+	public void setEditais(ArrayList<Edital> editais) {
+		this.editais = editais;
+	}
+
 }
