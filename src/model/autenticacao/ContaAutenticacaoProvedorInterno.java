@@ -8,7 +8,7 @@ import fachadas.Fachada6MembroEmail;
 public class ContaAutenticacaoProvedorInterno extends Conta{
 
 	@Override
-	public Membro autenticar(char[] login, char[] senha) { 
+	public Membro autenticar(String login, String senha) { 
 		HashMap<Long, Membro> membros = Fachada1Membro.getMembro();
 		for(int i = 0;i<=membros.size();i++){
 			if(membros.get(i).getLogin().equals(login)&&

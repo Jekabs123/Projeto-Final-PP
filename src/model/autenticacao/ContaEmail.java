@@ -8,49 +8,24 @@ public class ContaEmail {
 		this.setConta(conta);
 	}
 	
-	public Membro autenticar(char[] login, char[] senha) {  
+	public Membro autenticar(String login, String senha) {  
 		return conta.autenticar(login, senha);
 	}
 	
-	public boolean validarlogin(char[] login) { 
-		if(login.length<6){
+	public boolean validarlogin(String login) { 
+		if(login.length()<6){
 			return false;
 		}
 		return true;
 	}
-
-	/*
-	 * TODO
-	 * 1. recomendo retirar pois nao eh util para clientes saberem qual
-	 * bridge a abstracao esta usando, depois de setada.
-	 */
-	public Conta getConta() {
-		return conta;
-	}
-
+	
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
-   public char[] getLogin(){
+   public String getLogin(){
 	   return conta.getLogin();
    }
-   public char[] getSenha(){
+   public String getSenha(){
 	   return conta.getSenha();
-   }
-   
-   /*
-    * TODO
-    * 1. Desnecessario esse metodo.
-    */
-   public void setTipoAutenticacao(TipoProvedorAutenticacao tipo){
-	   conta.setTipo(tipo);
-   }
-   
-   /*
-    * TODO
-    * 1. Desnecessario esse metodo.
-    */
-   public TipoProvedorAutenticacao getTipoAutenticacao(){
-	   return conta.getTipo();
    }
 }

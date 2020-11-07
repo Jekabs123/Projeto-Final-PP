@@ -22,14 +22,15 @@ public class Fachada8Relatorio {
 	public Fachada8Relatorio() {
 		Fachada4Edital fachada = new Fachada4Edital();
 		Fachada3Grupo fachadaGrupo = new Fachada3Grupo();
-		this.editais = fachada.getEdital();
-		this.grupos = fachadaGrupo.getGrupo();
+		this.editais = fachada.getEditais();
+		this.grupos = fachadaGrupo.getGrupos();
 	}
 	/**
 	 * Esse método gera o relatório de todos os editais
 	 */
 	public void gerarRelatorioEdital(){
 		for(int i = 0;i<=editais.size();i++){
+			System.out.println("[Edital]");
 			System.out.println("[NOME] - "+editais.get(i).getNome());
 			System.out.println("[DATA INICIO] - "+editais.get(i).getDataInicio());
 			System.out.println("[DATA TERMINO] - "+editais.get(i).getDataTermino());

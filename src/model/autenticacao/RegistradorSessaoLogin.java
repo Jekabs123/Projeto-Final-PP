@@ -25,7 +25,7 @@ public class RegistradorSessaoLogin {
 		membro.ativar();
 		System.out.println("Registrado Sessão online, o Membro fez login");
 	}
-	public void RegistradorOffline(char[] login){
+	public void RegistradorOffline(String login){
 		for(int i = 0; i<= membros.size();i++){
 			if(membros.get(i).getLogin().equals(login)){
 				membros.get(i).desativar();
@@ -34,7 +34,7 @@ public class RegistradorSessaoLogin {
 			}
 		}
 	}
-	public boolean isOnline(char[] login){
+	public boolean isOnline(String login){
 		for(int i = 0; i<= membros.size();i++){
 			if(membros.get(i).getLogin().equals(login)){
 				return membros.get(i).isAtivo();

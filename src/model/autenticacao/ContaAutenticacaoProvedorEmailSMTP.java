@@ -16,15 +16,15 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 	private char[] provedorPorta;
 
 	@Override
-	public Membro autenticar(char[] login, char[] senha) { 
+	public Membro autenticar(String login, String senha) { 
 		
 		SimpleEmail email = new SimpleEmail();
 		String host = new String(provedorHost);
 		String porta = new String(provedorPorta);
 		email.setHostName(host);
 		email.setSslSmtpPort(porta);
-		String loginEmail = new String(login);
-		String senhaEmail = new String(senha);
+		String loginEmail = login;
+		String senhaEmail = senha;
 		email.setAuthenticator( new DefaultAuthenticator(loginEmail, senhaEmail) );
 		try {
 			email.setFrom(loginEmail);

@@ -16,15 +16,15 @@ public class ContaEmailLivre extends ContaEmail{
 		super(conta);
 	}
 	
-	public char[] criptografarSenha(char[] senha) { 
+	public String criptografarSenha(String senha) { 
 		try {
 			KeyGenerator keyGenerator = KeyGenerator.getInstance("DES");
 			SecretKey keyDes = keyGenerator.generateKey();
 			Cipher cifraDes = Cipher.getInstance("DES/ECB/PKCS5Padding");
 			cifraDes.init(Cipher.ENCRYPT_MODE, keyDes);
-			byte[] senhaCriptografada = cifraDes.doFinal(new String(senha).getBytes());
+			byte[] senhaCriptografada = cifraDes.doFinal(senha.getBytes());
 			
-			return new String(senhaCriptografada).toCharArray();
+			return new String(senhaCriptografada);
 			
 			
 		} catch (NoSuchAlgorithmException e) {

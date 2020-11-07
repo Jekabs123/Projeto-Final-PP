@@ -80,10 +80,10 @@ public class Membro {
 	public void setParticipacao(Participacao participacao) {
 		this.participacao = participacao;
 	}
-	public char[] getLogin(){
+	public String getLogin(){
 		return contaEmail.getLogin();
 	}
-	public char[] getSenha(){
+	public String getSenha(){
 		return contaEmail.getSenha();
 	}
 

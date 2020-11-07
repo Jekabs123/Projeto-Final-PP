@@ -5,43 +5,28 @@ public abstract class Conta {
 	private TipoProvedorAutenticacao tipo;
 	/*
 	 * TODO
-	 * 1. Implemente como String aqui e onde mais houver arrays de char[] no projeto.
 	 * 2. esses atributos devem dicar no supertipo abstracao
+	 * Giuseppe ta doido, já ta no supertipo abstrato kkkkkk
 	 */
-	private char[] login;
-	private char[] senha;
+	private String login;
+	private String senha;
 
-	public abstract Membro autenticar(char[] login, char[] senha);
+	public abstract Membro autenticar(String login, String senha);
 
-	/*
-	 * TODO
-	 * 1. Desnecessario esse metodo.
-	 */
-	public TipoProvedorAutenticacao getTipo() {
-		return tipo;
-	}
 
-	/*
-	 * TODO
-	 * 1. Desnecessario esse metodo.
-	 */
-	public void setTipo(TipoProvedorAutenticacao tipo) {
-		this.tipo = tipo;
-	}
-
-	public char[] getLogin() {
+	public String getLogin() {
 		return login;
 	}
 
-	public void setLogin(char[] login) {
+	public void setLogin(String login) {
 		this.login = login;
 	}
 
-	public char[] getSenha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(char[] senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 

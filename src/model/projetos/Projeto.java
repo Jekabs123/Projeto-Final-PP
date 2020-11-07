@@ -110,9 +110,9 @@ public class Projeto extends InterfaceComum{
 	 * @param senha: é a senha da conta do membro
 	 * @return: retorna o membro se tiver o mesmo login e senha passado e null se não for igual
 	 */
-	public Membro pesquisarMembroPorLoginESenha(char[] login, char[] senha){
+	public Membro pesquisarMembroPorLoginESenha(String login, String senha){
 		for(Membro membro: membros){
-			if(membro.getLogin().equals(login)&&membro.getSenha()==senha){
+			if(membro.getLogin().equals(login)&&membro.getSenha().equals(senha)){
 				return membro;
 			}
 		}

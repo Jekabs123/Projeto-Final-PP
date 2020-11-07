@@ -16,16 +16,16 @@ public class Fachada3Grupo {
 	private DAOXMLGrupo grupoXML = new DAOXMLGrupo();
 	
 	/**
-	 * Mï¿½todo que adiciona o grupo na persistï¿½ncia.
-	 * @param grupo: ï¿½ o grupo que vai ser adicionado na persistï¿½ncia. 
+	 * Metodo que adiciona o grupo na persistencia.
+	 * @param grupo: e o grupo que vai ser adicionado na persistencia. 
 	 */
 	public void adicionarGrupo(Grupo grupo) {
 		grupoXML.criar(grupo);
 	}
 	/**
-	 * Mï¿½todo que remove o grupo da persistï¿½ncia.
-	 * @param id: ï¿½ o id do grupo para que possa remover da persistï¿½ncia.
-	 * @return: retorna true se remover o grupo da persistï¿½ncia e false se nï¿½o.
+	 * Metodo que remove o grupo da persistencia.
+	 * @param id: e o id do grupo para que possa remover da persistencia.
+	 * @return: retorna true se remover o grupo da persistencia e false se nao.
 	 */
 	public boolean removerGrupo(long id) {
 		Grupo grupo = pesquisarGrupo(id);
@@ -74,7 +74,7 @@ public class Fachada3Grupo {
 			grupo.remover(membro);
 			return grupoXML.atualizar(idDoGrupo, grupo);
 		}catch(Exception e){
-			System.out.println("Nï¿½o foi possivel remover o membro");
+			System.out.println("Não foi possivel remover o membro");
 		}
 		return false;
 	}
@@ -90,8 +90,7 @@ public class Fachada3Grupo {
 	 * Esse mï¿½todo retorna uma lista de grupo
 	 * @return: retorna uma lista de grupo de existir se nï¿½o ele retorna uma lista vazia
 	 */
-	//TODO grupo ou grupos?
-	public HashMap<Long, Grupo> getGrupo(){
+	public HashMap<Long, Grupo> getGrupos(){
 		return grupoXML.getGrupo();
 	}
 }

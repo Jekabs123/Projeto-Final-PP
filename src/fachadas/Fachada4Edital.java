@@ -55,8 +55,7 @@ private DAOXMLEdital editalXML = new DAOXMLEdital();
 	 * Esse m�todo retorna a lista de editais
 	 * @return: retorna uma lista de editais se existir ou uma lista vazia se n�o
 	 */
-	//TODO edital ou editais? 
-	public HashMap<Long,Edital> getEdital(){
+	public HashMap<Long,Edital> getEditais(){
 		return editalXML.getEdital();
 	}
 }

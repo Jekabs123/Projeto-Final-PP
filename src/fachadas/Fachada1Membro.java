@@ -13,15 +13,13 @@ public class Fachada1Membro {
 	
 	/*
 	 * TODO
-	 * 1. Essa parametrizacao com TipoProvedorAutenticacao eh desnecessaria.
 	 * 2. pegue o email do membro e decida no TODO interno!
 	 */
-	public boolean adicionarMembroNoSistema(Membro membro,ContaEmail contaEmail,TipoProvedorAutenticacao tipoautenticacao){
+	public boolean adicionarMembroNoSistema(Membro membro,ContaEmail contaEmail){
 		/*
 		 * TODO
 		 * 1. implementar pelo e-mail qual a abstracao de conta.
 		 */
-		contaEmail.setTipoAutenticacao(tipoautenticacao);
 		membro.setContaEmail(contaEmail);
 		if(membroXML.getMembro().size()==0){
 			membro.setAdministrador(true);

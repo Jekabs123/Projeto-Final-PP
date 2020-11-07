@@ -19,7 +19,7 @@ public class HorarioPrevisto {
 		return participacao;
 	}
 
-	public void setParticipacao(Participacao participacao) {
+	public void addParticipacao(Participacao participacao) {
 		this.participacao = participacao;
 	}
 
