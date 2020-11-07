@@ -1,4 +1,4 @@
-package fachadasCasoDeUso;
+package fachadas;
 
 import model.autenticacao.Membro;
 import persistencia.xml.DAOXMLMembroConta;

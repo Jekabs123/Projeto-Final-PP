@@ -19,6 +19,11 @@ public class ContaEmail {
 		return true;
 	}
 
+	/*
+	 * TODO
+	 * 1. recomendo retirar pois nao eh util para clientes saberem qual
+	 * bridge a abstracao esta usando, depois de setada.
+	 */
 	public Conta getConta() {
 		return conta;
 	}
@@ -32,9 +37,19 @@ public class ContaEmail {
    public char[] getSenha(){
 	   return conta.getSenha();
    }
+   
+   /*
+    * TODO
+    * 1. Desnecessario esse metodo.
+    */
    public void setTipoAutenticacao(TipoProvedorAutenticacao tipo){
 	   conta.setTipo(tipo);
    }
+   
+   /*
+    * TODO
+    * 1. Desnecessario esse metodo.
+    */
    public TipoProvedorAutenticacao getTipoAutenticacao(){
 	   return conta.getTipo();
    }

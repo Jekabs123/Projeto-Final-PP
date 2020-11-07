@@ -6,70 +6,82 @@ import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 /**
  * @author PAULO E INATHAN - TATAKAE!
- * Essa classe é a interface comum do para o pacote projetos
+ * Essa classe ï¿½ a interface comum do para o pacote projetos
+ */
+/*
+ * TODO
+ * 1. outro nome que remeta a componentes de projetos.
+ * 2. metodos de add() e remove() deveriam ser apenas com o supertipo e devem ter implementacoes
+ * default. Os subtipos de component que suportarem eles devem sobrescrever e fazer testes para saber 
+ * se vao adicionar em si ou nao.
  */
 public abstract class InterfaceComum {
 	/**
-	 * {@link #nome} Esse atributo é o nome da interface comum
-	 * {@link #ativo} Esse atributo informa de está ativo ou não
+	 * {@link #nome} Esse atributo ï¿½ o nome da interface comum
+	 * {@link #ativo} Esse atributo informa de estï¿½ ativo ou nï¿½o
 	 * {@link #dataInicio} Esse atributo infroma a data que foi iniciada
 	 * {@link #dataTermino} Esse atributo informa a data que vai ser terminada
-	 * {@link #interfaces} É a lista que vai guardar os conteineres
+	 * {@link #interfaces} ï¿½ a lista que vai guardar os conteineres
 	 */
 	private String nome;
 	private boolean ativo;
 	private long dataInicio;
 	private long dataTermino;
+	
+	/*
+	 * TODO
+	 * 1. porque aqui se quem deve possuir sao os tipos compostos?
+	 */
 	private ArrayList<InterfaceComum> interfaces = new ArrayList<>();
 	
 	/**
-	 * Esse método seta o ativo como true
+	 * Esse mï¿½todo seta o ativo como true
 	 */
 	public abstract void ativar();
 	/**
-	 * Esse método seta o ativo como false
+	 * Esse mï¿½todo seta o ativo como false
 	 */
 	public abstract void desativar();
 	/**
-	 * Esse método  cacula o custo total
+	 * Esse mï¿½todo  cacula o custo total
 	 * @return: retorna o custo total em float
 	 */
 	public abstract float getCustoTotal();
 	/**
-	 * Esse método calcula o custeio total não gasto
-	 * @return: retorna o custeio não gasto em float
+	 * Esse mï¿½todo calcula o custeio total nï¿½o gasto
+	 * @return: retorna o custeio nï¿½o gasto em float
 	 */
 	public abstract float getCusteioReaisNaoGastoTotal();
 	/**
-	 * Esse método calcula o capital total não gasto
-	 * @return: retorna  o capital não gasto em float
+	 * Esse mï¿½todo calcula o capital total nï¿½o gasto
+	 * @return: retorna  o capital nï¿½o gasto em float
 	 */
 	public abstract float getCapitalReaisNaoGastoTotal();
 	/**
-	 * Esse método adiciona um membro na interface comum
-	 * @param membro: é o membro que vai ser adicionado
-	 * @throws ExceptionMembroDuplicado: esse exceção é lançada quando esse membro já existir
+	 * Esse mï¿½todo adiciona um membro na interface comum
+	 * @param membro: ï¿½ o membro que vai ser adicionado
+	 * @throws ExceptionMembroDuplicado: esse exceï¿½ï¿½o ï¿½ lanï¿½ada quando esse membro jï¿½ existir
 	 */
 	public void adicionar(Membro membro)throws ExceptionMembroDuplicado{
 		
 	}
 	/**
-	 * Esse método remove o membro da interface comum
-	 * @param membro: é o membro que vai ser removido
+	 * Esse mï¿½todo remove o membro da interface comum
+	 * @param membro: ï¿½ o membro que vai ser removido
 	 */
 	public void remover(Membro membro){
 		
 	}
 	/**
-	 * Esse método adiciona a interface comum
-	 * @param composite: é a interface comum a ser adicionada
+	 * Esse mï¿½todo adiciona a interface comum
+	 * @param composite: ï¿½ a interface comum a ser adicionada
 	 */
 	public void adicionar(InterfaceComum composite){
 		
 	}
 	/**
-	 * Esse método remove a interface comum
-	 * @param composite: é a interface comum a ser removida
+	 * Esse mï¿½todo remove a interface comum
+	 * @param composite: ï¿½ a interface comum a ser removida
 	 */
 	public void remover(InterfaceComum composite){
 		
@@ -106,9 +118,22 @@ public abstract class InterfaceComum {
 	public void setDataTermino(long dataTermino) {
 		this.dataTermino = dataTermino;
 	}
+	
+	/*
+	 * TODO
+	 * 1. todos suportam ter filhos?
+	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...
+	 */
 	public ArrayList<InterfaceComum> getInterfaces() {
 		return interfaces;
 	}
+	
+	/*
+	 * TODO
+	 * 1. todos suportam ter filhos?
+	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...
+	 * 3. deveria adicionar um por um.
+	 */
 	public void setInterfaces(ArrayList<InterfaceComum> interfaces) {
 		this.interfaces = interfaces;
 	}

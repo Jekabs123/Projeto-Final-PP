@@ -1,4 +1,4 @@
-package fachadasCasoDeUso;
+package fachadas;
 
 import model.autenticacao.Conta;
 import model.autenticacao.ContaAutenticacaoProvedorEmailSMTP;
@@ -8,6 +8,11 @@ import model.autenticacao.ContaEmailIFPB;
 import model.autenticacao.ContaEmailLivre;
 import model.autenticacao.Membro;
 
+/*
+ * TODO
+ * 1. Melhorar a sobrecarga de metodos expondo apenas a autenticacao com validacao encapsulada.
+ * 2. Usar o enum TipoProvedorAutenticacao para parametrizar o provedor (escolha pela implementacao da bdrige de ConteEmail) no autenticar().
+ */
 public class Fachada2Autenticacao {
 	
 	private Conta contaSMTP = new ContaAutenticacaoProvedorEmailSMTP();

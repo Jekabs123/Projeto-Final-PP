@@ -3,7 +3,7 @@ package model.autenticacao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import fachadasCasoDeUso.Fachada1Membro;
+import fachadas.Fachada1Membro;
 
 public class RegistradorSessaoLogin {
 	

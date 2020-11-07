@@ -1,33 +1,38 @@
 package model.projetos;
+
+import java.util.ArrayList;
 /**
  * @author PAULO E INATHAN - TATAKAE!
- * Essa é a classe Edital do projeto
+ * Essa ï¿½ a classe Edital do projeto
  */
-public class Edital extends InterfaceComum{
+public class Edital extends InterfaceComum {
 
-
+	@Override
 	public void adicionar(InterfaceComum composite) {
 		getInterfaces().add(composite);
 	}
 
+	@Override
 	public void remover(InterfaceComum composite) {
 		getInterfaces().remove(composite);
 	}
 	/**
-	 * Esse método seta o atributo ativo como true
+	 * Esse mï¿½todo seta o atributo ativo como true
 	 */
+	@Override
 	public void ativar() {
 		setAtivo(true);
 		
 	}
 	/**
-	 * Esse método seta o atributo ativo como false
+	 * Esse mï¿½todo seta o atributo ativo como false
 	 */
+	@Override
 	public void desativar() {
 		setAtivo(false);
 	}
 	/**
-	 * Esse método calcula o valor total do custo
+	 * Esse mï¿½todo calcula o valor total do custo
 	 *@return: retorna o valor total em float do custo 
 	 */
 	public float getCustoTotal() {
@@ -39,8 +44,8 @@ public class Edital extends InterfaceComum{
 	}
 
 	/**
-	 * Esse método cacula o custeio total não gasto
-	 * @return: retorna o custeio não gasto total em float
+	 * Esse mï¿½todo cacula o custeio total nï¿½o gasto
+	 * @return: retorna o custeio nï¿½o gasto total em float
 	 */
 	public float getCusteioReaisNaoGastoTotal() {
 		float custeio = 0;
@@ -51,8 +56,8 @@ public class Edital extends InterfaceComum{
 	}
 
 	/**
-	 * Esse método calcula o capital total não gasto
-	 * @return: retorna o capital total não gasto em float
+	 * Esse mï¿½todo calcula o capital total nï¿½o gasto
+	 * @return: retorna o capital total nï¿½o gasto em float
 	 */
 	public float getCapitalReaisNaoGastoTotal() {
 		float capital = 0;

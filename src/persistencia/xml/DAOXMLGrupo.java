@@ -23,7 +23,7 @@ public class DAOXMLGrupo {
 	public boolean criar(Grupo grupo) { 
 		for (int i = 0; i <= persistidos.size(); i++) {            //PERCORRO A LISTA
 			if(persistidos.size() == i) {                          //SE O TAMANHO DA LISTA FOR IGUAL AO I
-				persistidos.put((long) (i+1), grupo);                      //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
+				persistidos.put((long) (i+1), grupo);                      //ADICIONO O PROJETO NA POSIï¿½ï¿½O(CHAVE) I+1
 				salvarXML();                                       //SALVO O ARQUIVO   
 				return true;                                       //RETORNO TRUE SE DEU CERTO
 			}
@@ -38,7 +38,7 @@ public class DAOXMLGrupo {
 	
 	public boolean atualizar(long id, Grupo grupo) {  
 		for (int i = 0; i < persistidos.size(); i++) {           //PERCORRO A LISTA
-			if(id <= persistidos.size()) {                       //SE O ID FOR MENOR QUE O TAMANHO DA LISTA, SIGNIFICA QUE O OBJETO ESTÁ NELA
+			if(id <= persistidos.size()) {                       //SE O ID FOR MENOR QUE O TAMANHO DA LISTA, SIGNIFICA QUE O OBJETO ESTï¿½ NELA
 				persistidos.put(id, grupo);                      //ATUALIZO O OBJETO PARA O ID DESEJADO
 				salvarXML();                                     //SALVO O ARQUIVO
 				return true;                                     //RETORNO TRUE SE DEU CERTO
@@ -53,6 +53,13 @@ public class DAOXMLGrupo {
 	public HashMap<Long, Grupo> getGrupo(){
 		return carregarXML();
 	}
+	
+	/*
+	 * TODO
+	 * 1. Devem verificar o nome do atributo de cada posicao do array e verificar o valor cooresponente
+	 * bate.
+	 * 2. Corrigir demais DAOs
+	 */
 	public HashSet<Grupo> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Grupo> grupoAnd = new HashSet<Grupo>();
 
@@ -85,6 +92,12 @@ public class DAOXMLGrupo {
 		return grupoAnd;
 	}
 	
+	/*
+	 * TODO
+	 * 1. Devem verificar o nome do atributo de cada posicao do arraye verificar o valor cooresponente
+	 * bate.
+	 * 2. Corrigir demais DAOs
+	 */
 	public HashSet<Grupo> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Grupo> grupoOr = new HashSet<Grupo>();
 
@@ -131,7 +144,7 @@ public class DAOXMLGrupo {
 		}
 	}
 	
-	private HashMap<Long, Grupo> carregarXML() {                        //NO UML O MÉTODO TÁ VOID, MAS O COMUM É RETORNAR UMA COLECAO
+	private HashMap<Long, Grupo> carregarXML() {                        //NO UML O Mï¿½TODO Tï¿½ VOID, MAS O COMUM ï¿½ RETORNAR UMA COLECAO
 		arquivoColecao = new File("Grupo.xml");
 		try {
 			if(arquivoColecao.exists()) {

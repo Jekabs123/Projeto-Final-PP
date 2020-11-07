@@ -1,4 +1,4 @@
-package fachadasCasoDeUso;
+package fachadas;
 
 import model.projetos.Participacao;
 import model.projetos.ponto.DiaSemana;

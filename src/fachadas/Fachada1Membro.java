@@ -1,4 +1,4 @@
-package fachadasCasoDeUso;
+package fachadas;
 
 import java.util.HashMap;
 
@@ -11,7 +11,16 @@ public class Fachada1Membro {
 
 	private static DAOXMLMembroConta membroXML = new DAOXMLMembroConta();
 	
+	/*
+	 * TODO
+	 * 1. Essa parametrizacao com TipoProvedorAutenticacao eh desnecessaria.
+	 * 2. pegue o email do membro e decida no TODO interno!
+	 */
 	public boolean adicionarMembroNoSistema(Membro membro,ContaEmail contaEmail,TipoProvedorAutenticacao tipoautenticacao){
+		/*
+		 * TODO
+		 * 1. implementar pelo e-mail qual a abstracao de conta.
+		 */
 		contaEmail.setTipoAutenticacao(tipoautenticacao);
 		membro.setContaEmail(contaEmail);
 		if(membroXML.getMembro().size()==0){

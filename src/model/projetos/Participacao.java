@@ -1,21 +1,15 @@
 package model.projetos;
 /**
  * @author PAULO E INATHAN - TATAKAE!
- * Essa classe é a participação do projeto
+ * Essa classe ï¿½ a participaï¿½ï¿½o do projeto
  */
-
-import model.projetos.ponto.HorarioPrevisto;
-
-public class Participacao extends InterfaceComum {
+public class Participacao extends InterfaceComum{
 	/**
 	 * {@link #aporteCusteioMensalReais} Esse atributo informa o custeio mensal
-	 * {@link #qtdMesesCusteados} Esse atributo informa a quantidade de mêses custeados
-	 * {@link #qtdMesesPagos} Esse atributo informa os mêses pagos
-	 * {@link #coordenador} Esse atributo informa se tem ou não coordenador
+	 * {@link #qtdMesesCusteados} Esse atributo informa a quantidade de mï¿½ses custeados
+	 * {@link #qtdMesesPagos} Esse atributo informa os mï¿½ses pagos
+	 * {@link #coordenador} Esse atributo informa se tem ou nï¿½o coordenador
 	 */
-	
-	private HorarioPrevisto horarioPrevisto;
-	
 	private float aporteCusteioMensalReais;
 	private short qtdMesesCusteados;
 	private short qtdMesesPagos;
@@ -39,6 +33,11 @@ public class Participacao extends InterfaceComum {
 		return (aporteCusteioMensalReais*qtdMesesCusteados)-(aporteCusteioMensalReais*qtdMesesPagos);
 	}
 	@Override
+	/*
+	 * TODO 
+	 * 1. como esta classe n suporta, melhor colocar implementacao default vazia
+	 * ou com excecao no supertipo e aqui vc nem implementa.
+	 */
 	public float getCapitalReaisNaoGastoTotal() {
 		return 0;
 	}
@@ -65,11 +64,5 @@ public class Participacao extends InterfaceComum {
 	}
 	public void setCoordenador(boolean coordenador) {
 		this.coordenador = coordenador;
-	}
-	public HorarioPrevisto getHorarioPrevisto() {
-		return horarioPrevisto;
-	}
-	public void setHorarioPrevisto(HorarioPrevisto horarioPrevisto) {
-		this.horarioPrevisto = horarioPrevisto;
 	}
 }

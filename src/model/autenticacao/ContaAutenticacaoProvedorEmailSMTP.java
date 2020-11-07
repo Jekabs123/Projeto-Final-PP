@@ -6,8 +6,8 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
-import fachadasCasoDeUso.Fachada1Membro;
-import fachadasCasoDeUso.Fachada6MembroEmail;
+import fachadas.Fachada1Membro;
+import fachadas.Fachada6MembroEmail;
 import persistencia.xml.DAOXMLMembroConta;
 
 public class ContaAutenticacaoProvedorEmailSMTP extends Conta{

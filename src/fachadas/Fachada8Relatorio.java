@@ -1,4 +1,4 @@
-package fachadasCasoDeUso;
+package fachadas;
 
 import java.util.HashMap;
 

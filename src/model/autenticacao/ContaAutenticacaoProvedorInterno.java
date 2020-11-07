@@ -2,8 +2,8 @@ package model.autenticacao;
 
 import java.util.HashMap;
 
-import fachadasCasoDeUso.Fachada1Membro;
-import fachadasCasoDeUso.Fachada6MembroEmail;
+import fachadas.Fachada1Membro;
+import fachadas.Fachada6MembroEmail;
 
 public class ContaAutenticacaoProvedorInterno extends Conta{
 
