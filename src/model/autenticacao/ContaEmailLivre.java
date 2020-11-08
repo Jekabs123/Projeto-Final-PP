@@ -16,6 +16,7 @@ public class ContaEmailLivre extends ContaEmail{
 		super(conta);
 	}
 	
+	
 	public String criptografarSenha(String senha) { 
 		try {
 			KeyGenerator keyGenerator = KeyGenerator.getInstance("DES");

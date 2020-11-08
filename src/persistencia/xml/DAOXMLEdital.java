@@ -12,6 +12,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import model.projetos.Edital;
+import model.projetos.Grupo;
 
 public class DAOXMLEdital {
 	
@@ -51,46 +52,61 @@ public class DAOXMLEdital {
 	public HashMap<Long,Edital> getEdital(){
 		return carregarXML();
 	}
-	public HashSet<Edital> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {
+	public HashSet<Edital> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Edital> editaisAnd = new HashSet<Edital>();
 
 		for (int i = 0; i < persistidos.size(); i++) {
-			for (int x = 0; x < atributos.length; x++) {
-				//consulta os atributos
-				if(atributos[x].equals(persistidos.get(i).getNome()) && 
-						atributos[x].equals(persistidos.get(i).getCapitalReaisNaoGastoTotal()) &&
-						atributos[x].equals(persistidos.get(i).getCusteioReaisNaoGastoTotal()) &&
-						atributos[x].equals(persistidos.get(i).getCustoTotal()) &&
-						atributos[x].equals(persistidos.get(i).getDataInicio()) &&
-						atributos[x].equals(persistidos.get(i).getDataTermino())) {
-					
-					//compara o valor dos atributos respectivamente
-					if(respectivosValoresAtributos[x].equals(persistidos.get(i).getNome()) &&
-							(float) respectivosValoresAtributos[x] == persistidos.get(i).getCapitalReaisNaoGastoTotal() &&
-							(float) respectivosValoresAtributos[x] == persistidos.get(i).getCusteioReaisNaoGastoTotal() &&
-							(float) respectivosValoresAtributos[x] == persistidos.get(i).getCustoTotal() &&
-							(long) respectivosValoresAtributos[x] == persistidos.get(i).getDataInicio() &&
-							(long) respectivosValoresAtributos[x] == persistidos.get(i).getDataTermino()) {
-						editaisAnd.add(persistidos.get(i));
+			for (int x = 0; x<atributos.length;x++) {
+				if(atributos[x].equalsIgnoreCase("Nome")) {
+					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())){
+						return null;
 					}
+			}
+			else if(atributos[x].equalsIgnoreCase("CapitalReaisNaoGastoTotal")){
+				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCapitalReaisNaoGastoTotal()){
+					return null;
 				}
 			}
-		 }
+			else if(atributos[x].equalsIgnoreCase("CusteioReaisNaoGastoTotal")){
+				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCusteioReaisNaoGastoTotal()){
+					return null;
+				}
+			}
+			else if(atributos[x].equalsIgnoreCase("CustoTotal")){
+				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCustoTotal()){
+					return null;
+				}
+			}
+			else if(atributos[x].equalsIgnoreCase("DataInicio")){
+				if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataInicio()){
+					return null;
+				}
+			}
+			else if(atributos[x].equalsIgnoreCase("DataTermino")){
+				if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataTermino()){
+					return null;
+				}
+			}else{
+				return null;
+			}
+		  }
+			editaisAnd.add(persistidos.get(i));
+		}
 		return editaisAnd;
 	}
 	
-	public HashSet<Edital> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {
+	public HashSet<Edital> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Edital> editais = new HashSet<Edital>();
 
 		for (int i = 0; i < persistidos.size(); i++) {
 			for (int j = 0; j < atributos.length; j++) {
 				//consulta os atributos
-				if(atributos[j].equals(persistidos.get(i).getNome()) || 
-						atributos[j].equals(persistidos.get(i).getCapitalReaisNaoGastoTotal()) ||
-						atributos[j].equals(persistidos.get(i).getCusteioReaisNaoGastoTotal()) ||
-						atributos[j].equals(persistidos.get(i).getCustoTotal()) ||
-						atributos[j].equals(persistidos.get(i).getDataInicio()) ||
-						atributos[j].equals(persistidos.get(i).getDataTermino())) {
+				if(atributos[j].equalsIgnoreCase("Nome") || 
+						atributos[j].equalsIgnoreCase("CapitalReaisNaoGastoTotal") ||
+						atributos[j].equalsIgnoreCase("CusteioReaisNaoGastoTotal") ||
+						atributos[j].equalsIgnoreCase("CustoTotal") ||
+						atributos[j].equalsIgnoreCase("DataInicio") ||
+						atributos[j].equalsIgnoreCase("DataTermino")) {
 					
 					//compara o valor dos atributos respectivamente
 					if(respectivosValoresAtributos[j].equals(persistidos.get(i).getNome()) ||

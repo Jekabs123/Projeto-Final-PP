@@ -6,13 +6,7 @@ import model.autenticacao.Membro;
  * @author PAULO E INATHAN - TATAKAE!
  * Essa classe � a interface comum do para o pacote projetos
  */
-/*
- * TODO
- * 1. outro nome que remeta a componentes de projetos. FEITO
- * 2. metodos de add() e remove() deveriam ser apenas com o supertipo e devem ter implementacoes
- * default. Os subtipos de component que suportarem eles devem sobrescrever e fazer testes para saber 
- * se vao adicionar em si ou nao. FEITO
- */
+
 public abstract class CompositorProjeto {
 	/**
 	 * {@link #nome} Esse atributo � o nome da interface comum
@@ -25,14 +19,6 @@ public abstract class CompositorProjeto {
 	private boolean ativo;
 	private long dataInicio;
 	private long dataTermino;
-	
-	
-	
-	/*
-	 * TODO
-	 * 1. porque aqui se quem deve possuir sao os tipos compostos? FEITO
-	 */
-//	private ArrayList<CompositorProjeto> interfaces = new ArrayList<>();
 	
 	/**
 	 * Esse m�todo seta o ativo como true
@@ -120,24 +106,5 @@ public abstract class CompositorProjeto {
 	public void setDataTermino(long dataTermino) {
 		this.dataTermino = dataTermino;
 	}
-	
-	/*
-	 * TODO
-	 * 1. todos suportam ter filhos?
-	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...   FEITO
-	 */
-//	public ArrayList<CompositorProjeto> getInterfaces() {
-//		return interfaces;
-//	}
-	
-	/*
-	 * TODO
-	 * 1. todos suportam ter filhos?
-	 * 2. nome deve remeter ao novo nome da classe ou getSubcomponentes(), algo assim...
-	 * 3. deveria adicionar um por um.  FEITO
-	 */
-//	public void setInterfaces(ArrayList<CompositorProjeto> interfaces) {
-//		this.interfaces = interfaces;
-//	}
 	
 }

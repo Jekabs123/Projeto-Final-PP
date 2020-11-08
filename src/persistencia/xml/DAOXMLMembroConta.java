@@ -57,29 +57,43 @@ public class DAOXMLMembroConta {
 	public HashMap<Long, Membro> getMembro(){
 		return carregarXML();
 	}
-	public HashSet<Membro> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {
+	public HashSet<Membro> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Membro> membroAnd = new HashSet<Membro>();
 
 		for (int i = 0; i < persistidos.size(); i++) {
 			for (int x = 0; x < atributos.length; x++) {
 				//consulta os atributos
-				if(atributos[x].equals(persistidos.get(i).getMatricula()) &&
-						atributos[x].equals(persistidos.get(i).getNome()) &&
-						atributos[x].equals(persistidos.get(i).isAtivo()) &&
-						atributos[x].equals(persistidos.get(i).getEmail()) &&
-						atributos[x].equals(persistidos.get(i).getAdministrador())) {
-					
-					//compara o valor dos atributos respectivamente
-					if((long) atributos[x] == persistidos.get(i).getMatricula() &&
-							respectivosValoresAtributos[x].equals(persistidos.get(i).getNome()) &&
-							(boolean) atributos[x] == persistidos.get(i).isAtivo()&&
-							atributos[x].equals(persistidos.get(i).getEmail()) &&
-							(boolean) atributos[x] == persistidos.get(i).getAdministrador()) {
-						membroAnd.add(persistidos.get(i));
+				if(atributos[x].equalsIgnoreCase("Matricula")){
+					if((long)respectivosValoresAtributos[x] != persistidos.get(i).getMatricula()){
+						return null;
 					}
 				}
+				else if(atributos[x].equalsIgnoreCase("Nome")){
+					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())){
+						return null;
+					}
+				}
+				else if(atributos[x].equalsIgnoreCase("Ativo")){
+					if((boolean) respectivosValoresAtributos[x] != persistidos.get(i).isAtivo()){
+						return null;
+					}
+				}
+				else if(atributos[x].equals(persistidos.get(i).getEmail())){
+					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getEmail())){
+						return null;
+					}
+				}
+				else if(atributos[x].equals(persistidos.get(i).getAdministrador())){
+					if((boolean)respectivosValoresAtributos[x] != persistidos.get(i).getAdministrador()){
+						return null;
+					}
+				}else{
+					return null;
+				}
+				
+			  }
+				membroAnd.add(persistidos.get(i));
 			}
-		 }
 		return membroAnd;
 	}
 	

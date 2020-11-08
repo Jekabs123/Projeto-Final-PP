@@ -34,13 +34,11 @@ public class Participacao extends CompositorProjeto{
 	}
 
 	/*
-	 * TODO 
+	 * TODO FEITO
 	 * 1. como esta classe n suporta, melhor colocar implementacao default vazia
-	 * ou com excecao no supertipo e aqui vc nem implementa.  FEITO
+	 * ou com excecao no supertipo e aqui vc nem implementa. 
 	 */
-//	public float getCapitalReaisNaoGastoTotal() {
-//		return 0;
-//	}
+
 	public float getAporteCusteioMensalReais() {
 		return aporteCusteioMensalReais;
 	}
