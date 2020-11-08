@@ -3,7 +3,7 @@ package fachadas;
 import java.util.HashMap;
 
 import model.projetos.Edital;
-import persistencia.xml.DAOXMLEdital;
+import persistenciaXML.DAOXMLEdital;
 /**
  * 
  * @author PAULO E INATHAN - TATAKAE!

@@ -2,7 +2,7 @@ package fachadas;
 
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
-import persistencia.xml.DAOXMLProjetoParticipacao;
+import persistenciaXML.DAOXMLProjetoParticipacao;
 
 /**
  * @author PAULO e INATHAN - TATAKAE!

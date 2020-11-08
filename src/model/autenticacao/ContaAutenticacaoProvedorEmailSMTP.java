@@ -8,7 +8,7 @@ import org.apache.commons.mail.SimpleEmail;
 
 import fachadas.Fachada1Membro;
 import fachadas.Fachada6MembroEmail;
-import persistencia.xml.DAOXMLMembroConta;
+import persistenciaXML.DAOXMLMembroConta;
 
 public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 	

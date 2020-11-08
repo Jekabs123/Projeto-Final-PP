@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import model.autenticacao.Membro;
 import model.projetos.Grupo;
-import persistencia.xml.DAOXMLGrupo;
+import persistenciaXML.DAOXMLGrupo;
 /**
  * @author PAULO e INATHAN - TATAKAE!
  *Fachada para a classe Grupo

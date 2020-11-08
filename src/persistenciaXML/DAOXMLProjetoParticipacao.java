@@ -1,4 +1,4 @@
-package persistencia.xml;
+package persistenciaXML;
 
 import java.io.File;
 import java.io.FileInputStream;

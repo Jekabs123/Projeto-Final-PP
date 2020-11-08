@@ -1,4 +1,4 @@
-package view.projetos;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import controller.projetos.ControllerTelaPonto;
 import model.projetos.Projeto;
+import model.projetos.controller.ControllerTelaPonto;
 
 // CLASSE CLIENTE DO PROXY
 

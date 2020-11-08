@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import model.autenticacao.ContaEmail;
 import model.autenticacao.Membro;
-import persistencia.xml.DAOXMLMembroConta;
+import persistenciaXML.DAOXMLMembroConta;
 
 public class Fachada1Membro {
 

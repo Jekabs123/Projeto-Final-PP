@@ -1,4 +1,4 @@
-package controller.projetos;
+package model.projetos.controller;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;

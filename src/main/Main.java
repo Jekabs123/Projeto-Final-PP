@@ -1,6 +1,6 @@
 package main;
 
-import view.projetos.TelaPonto;
+import view.TelaPonto;
 
 public class Main {
 	
