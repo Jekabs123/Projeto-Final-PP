@@ -65,30 +65,30 @@ public class DAOXMLMembroConta {
 				//consulta os atributos
 				if(atributos[x].equalsIgnoreCase("Matricula")){
 					if((long)respectivosValoresAtributos[x] != persistidos.get(i).getMatricula()){
-						return null;
+						return membroAnd;
 					}
 				}
 				else if(atributos[x].equalsIgnoreCase("Nome")){
 					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())){
-						return null;
+						return membroAnd;
 					}
 				}
 				else if(atributos[x].equalsIgnoreCase("Ativo")){
 					if((boolean) respectivosValoresAtributos[x] != persistidos.get(i).isAtivo()){
-						return null;
+						return membroAnd;
 					}
 				}
 				else if(atributos[x].equals(persistidos.get(i).getEmail())){
 					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getEmail())){
-						return null;
+						return membroAnd;
 					}
 				}
 				else if(atributos[x].equals(persistidos.get(i).getAdministrador())){
 					if((boolean)respectivosValoresAtributos[x] != persistidos.get(i).getAdministrador()){
-						return null;
+						return membroAnd;
 					}
 				}else{
-					return null;
+					return membroAnd;
 				}
 				
 			  }

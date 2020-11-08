@@ -59,35 +59,35 @@ public class DAOXMLEdital {
 			for (int x = 0; x<atributos.length;x++) {
 				if(atributos[x].equalsIgnoreCase("Nome")) {
 					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())){
-						return null;
+						return editaisAnd;
 					}
 			}
 			else if(atributos[x].equalsIgnoreCase("CapitalReaisNaoGastoTotal")){
 				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCapitalReaisNaoGastoTotal()){
-					return null;
+					return editaisAnd;
 				}
 			}
 			else if(atributos[x].equalsIgnoreCase("CusteioReaisNaoGastoTotal")){
 				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCusteioReaisNaoGastoTotal()){
-					return null;
+					return editaisAnd;
 				}
 			}
 			else if(atributos[x].equalsIgnoreCase("CustoTotal")){
 				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCustoTotal()){
-					return null;
+					return editaisAnd;
 				}
 			}
 			else if(atributos[x].equalsIgnoreCase("DataInicio")){
 				if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataInicio()){
-					return null;
+					return editaisAnd;
 				}
 			}
 			else if(atributos[x].equalsIgnoreCase("DataTermino")){
 				if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataTermino()){
-					return null;
+					return editaisAnd;
 				}
 			}else{
-				return null;
+				return editaisAnd;
 			}
 		  }
 			editaisAnd.add(persistidos.get(i));
