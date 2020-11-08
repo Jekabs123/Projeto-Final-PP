@@ -3,6 +3,7 @@ package fachadas;
 import java.util.HashMap;
 
 import model.autenticacao.ContaEmail;
+import model.autenticacao.ContaEmailLivre;
 import model.autenticacao.Membro;
 import persistenciaXML.DAOXMLMembroConta;
 
@@ -10,16 +11,14 @@ public class Fachada1Membro {
 
 	private static DAOXMLMembroConta membroXML = new DAOXMLMembroConta();
 	
-	/*
-	 * TODO
-	 * 2. pegue o email do membro e decida no TODO interno!
-	 */
 	public boolean adicionarMembroNoSistema(Membro membro,ContaEmail contaEmail){
-		/*
-		 * TODO
-		 * 1. implementar pelo e-mail qual a abstracao de conta.
-		 */
+			
+		if (contaEmail instanceof ContaEmailLivre) {
+			((ContaEmailLivre) contaEmail).criptografarSenha(contaEmail.getSenha());
+		}
+		
 		membro.setContaEmail(contaEmail);
+		
 		if(membroXML.getMembro().size()==0){
 			membro.setAdministrador(true);
 		}

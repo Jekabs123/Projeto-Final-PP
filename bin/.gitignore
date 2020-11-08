@@ -1,8 +1,6 @@
-/controller/
-/fachadas/
-/model/
-/persistencia/
-/view/
 /exception/
+/fachadas/
 /main/
+/model/
 /persistenciaXML/
+/view/
