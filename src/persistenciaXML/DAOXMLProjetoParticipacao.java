@@ -137,5 +137,10 @@ public class DAOXMLProjetoParticipacao {
 		}
 		return new HashMap<Long, Projeto>();
 	}
+
+
+	public HashMap<Long, Projeto> getPersistidos() {
+		return persistidos;
+	}
 	
 }

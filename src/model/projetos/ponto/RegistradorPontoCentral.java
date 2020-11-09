@@ -3,11 +3,9 @@ package model.projetos.ponto;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Set;
 
 import model.autenticacao.Membro;
-import model.projetos.CompositorProjeto;
 import model.projetos.Projeto;
 
 public class RegistradorPontoCentral extends UnicastRemoteObject implements InterfaceAcessoRemotoPonto {
@@ -79,5 +77,11 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 			tratador.justificarPontoInvalido();
 		}
 		//Coloquei um array de Tratadores no parametro para que o cliente possa escolher a ordem
+	}
+
+	@Override
+	public void justificarPontoNaoBatido(PontoTrabalhado pronto, String justificativa, String login) {
+		// TODO Auto-generated method stub
+		
 	}
 }

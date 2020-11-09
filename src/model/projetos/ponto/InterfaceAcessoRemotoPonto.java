@@ -3,24 +3,25 @@ package model.projetos.ponto;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Set;
 
 import model.projetos.Projeto;
 
 public interface InterfaceAcessoRemotoPonto extends Remote {
 	
-	public boolean registrarPonto(Projeto projeto, String login) throws RemoteException;
+	public abstract boolean registrarPonto(Projeto projeto, String login) throws RemoteException;
 	
-	public ArrayList<Projeto> getProjetosAtivos();
+	public abstract ArrayList<Projeto> getProjetosAtivos();
 	
-	public int horasTrabalhadasValidas(long dataInicio, long dataTermino, String login);
+	public abstract int horasTrabalhadasValidas(long dataInicio, long dataTermino, String login);
 	
-	public float deficitHoras(long dataInicio, long dataTermino, String login);
+	public abstract float deficitHoras(long dataInicio, long dataTermino, String login);
 	
-	public Set<PontoTrabalhado> getPontosInvalidos(String login);
+	public abstract Set<PontoTrabalhado> getPontosInvalidos(String login);
 
-	void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores);
+	public abstract void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores);
 	//TODO Paulo - fiz algumas alterações nos métodos
 
+	public abstract void justificarPontoNaoBatido(PontoTrabalhado pronto, String  justificativa, String login);
+	
 }

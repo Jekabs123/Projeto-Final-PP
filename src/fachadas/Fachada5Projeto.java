@@ -1,5 +1,7 @@
 package fachadas;
 
+import java.util.ArrayList;
+
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
 import persistenciaXML.DAOXMLProjetoParticipacao;
@@ -85,5 +87,10 @@ public class Fachada5Projeto {
 	 */
 	public Projeto pesquisarProjeto(long idProjeto){
 		return projetoParticipacao.pesquisarProjeto(idProjeto);
+	}
+	
+	public ArrayList<Projeto> getProjetosPersistidos() {
+		ArrayList<Projeto> projetosPersistidos = new ArrayList<Projeto>(projetoParticipacao.getPersistidos().values());
+		return projetosPersistidos;
 	}
 }
