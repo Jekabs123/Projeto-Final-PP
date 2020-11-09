@@ -14,7 +14,7 @@ import model.projetos.Projeto;
 public class RegistradorPontoCentral extends UnicastRemoteObject implements InterfaceAcessoRemotoPonto {
 	
 	private ArrayList<Projeto> projetoAtivos = new ArrayList<>();
-	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
+//	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
 	
 	public RegistradorPontoCentral() throws RemoteException {
 		super();
@@ -29,7 +29,7 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	public boolean registrarPonto(Projeto projeto, String login) {
 		for(Membro m: projeto.getMembros()){
 			if(m.getLogin().equals(login) && projeto.getAtivo()){
-				return registrador.registrarPonto(this);
+				return true;
 			}
 			
 		}
