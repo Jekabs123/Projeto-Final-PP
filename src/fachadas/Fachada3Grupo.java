@@ -54,7 +54,7 @@ public class Fachada3Grupo {
 		try{
 			// adiciona o membro para o grupo
 			Grupo grupo = pesquisarGrupo(idDoGrupo);
-			grupo.adicionar(membro);
+			grupo.adicionarMembro(membro);
 			return grupoXML.atualizar(idDoGrupo, grupo);
 		}catch(Exception e){
 			System.out.println("Nï¿½o existe Grupo com este ID");
@@ -71,7 +71,7 @@ public class Fachada3Grupo {
 		try{
 			//remove o membro do grupo
 			Grupo grupo = pesquisarGrupo(idDoGrupo);
-			grupo.remover(membro);
+			grupo.removerMembro(membro);
 			return grupoXML.atualizar(idDoGrupo, grupo);
 		}catch(Exception e){
 			System.out.println("Não foi possivel remover o membro");

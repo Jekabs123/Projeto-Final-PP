@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Set;
 
+import fachadas.Fachada5Projeto;
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
 
@@ -15,12 +16,17 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	
 	public RegistradorPontoCentral() throws RemoteException {
 		super();
+		for(Projeto pro: Fachada5Projeto.getProjetosPersistidos()){
+			if(pro.getAtivo() == true){
+				projetoAtivos.add(pro);
+			}
+		}
 	}
 
 	@Override
 	public boolean registrarPonto(Projeto projeto, String login) {
 		for(Membro m: projeto.getMembros()){
-			if(m.getLogin().equals(login)){
+			if(m.getLogin().equals(login) && projeto.getAtivo()){
 				return registrador.registrarPonto(this);
 			}
 			
@@ -30,7 +36,6 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 
 	@Override
 	public ArrayList<Projeto> getProjetosAtivos() { //Eu deixei assim faz mais sentido
-		//TODO Paulo - fiz assim essa parte
 		return projetoAtivos;
 	}
 
@@ -54,7 +59,7 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 		for (Projeto projeto : projetoAtivos) {                                  //Só tô achando meio estranho esse ArrayList de
 			for (Membro membro : projeto.getMembros()) {                         //projetosAtivos pois ele tá vazio, acho que tem
 				if(membro.getLogin().equals(login)) {                            // que fazer uma lógica pra povoar ele.
-					if((dataTermino - dataInicio) < 8) {
+					if((dataTermino - dataInicio) < 8) {   						 //TODO Paulo - realmente, eu peguei os projetos ativos da fachada para repovoar
 						return (8 - (dataTermino - dataInicio));
 					}
 				}

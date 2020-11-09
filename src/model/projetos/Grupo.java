@@ -18,7 +18,6 @@ public class Grupo extends CompositorProjeto{
 	private long dataCriacao;
 	private char[] linkCNPq;
 	private ArrayList<Membro> membros = new ArrayList<>();
-	private ArrayList<Grupo> grupos = new ArrayList<>();
 	
 	@Override
 	public void ativar() {
@@ -33,7 +32,7 @@ public class Grupo extends CompositorProjeto{
 	@Override
 	public float getCustoTotal() {
 		float custoTotal = 0;
-		for(CompositorProjeto c : grupos){
+		for(CompositorProjeto c : getCompositorProjeto()){
 			custoTotal += c.getCustoTotal();
 		}
 		return custoTotal;
@@ -41,7 +40,7 @@ public class Grupo extends CompositorProjeto{
 	@Override
 	public float getCusteioReaisNaoGastoTotal() {
 		float custeioNaoGasto = 0;
-		for(CompositorProjeto c : grupos){
+		for(CompositorProjeto c : getCompositorProjeto()){
 			custeioNaoGasto+=c.getCusteioReaisNaoGastoTotal();
 		}
 		return custeioNaoGasto;
@@ -49,22 +48,23 @@ public class Grupo extends CompositorProjeto{
 	@Override
 	public float getCapitalReaisNaoGastoTotal() {
 		float capitalNaoGasto = 0;
-		for(CompositorProjeto c : grupos){
+		for(CompositorProjeto c : getCompositorProjeto()){
 			capitalNaoGasto+=c.getCapitalReaisNaoGastoTotal();
 		}
 		return capitalNaoGasto;
 	}
 	@Override
 	public void adicionar(CompositorProjeto compositorProjeto) {
-		grupos.add((Grupo) compositorProjeto);
+		if(compositorProjeto instanceof Grupo){
+			getCompositorProjeto().add(compositorProjeto);
+		}
 	}
 	@Override
 	public void remover(CompositorProjeto compositorProjeto) {
-		grupos.remove(compositorProjeto);
+		getCompositorProjeto().remove(compositorProjeto);
 	}
 
-	@Override
-	public void adicionar(Membro membro) throws ExceptionMembroDuplicado {
+	public void adicionarMembro(Membro membro) throws ExceptionMembroDuplicado {
 		for(Membro m: membros){
 			if(m.getMatricula()==membro.getMatricula()){
 				 throw new ExceptionMembroDuplicado("Alguem membro possui essa matricula");
@@ -72,9 +72,8 @@ public class Grupo extends CompositorProjeto{
 		}
 		membros.add(membro);
 	}
-	@Override
-	public void remover(Membro membro) {
-		membros.add(membro);
+	public void removerMembro(Membro membro) {
+		membros.remove(membro);
 	}
 	public long getDataCriacao() {
 		return dataCriacao;
@@ -94,13 +93,19 @@ public class Grupo extends CompositorProjeto{
 	public void setMembros(ArrayList<Membro> membros) {
 		this.membros = membros;
 	}
-	public ArrayList<Grupo> getGrupos() {
-		return grupos;
-	}
-	public void setGrupos(Grupo grupo) {
-		for (int i = 0; i < grupos.size(); i++) {
-			this.grupos.set(i, grupo);
+	public ArrayList<Grupo> getGrupos(){
+		ArrayList<Grupo> grupos = new ArrayList<>();
+		for(CompositorProjeto com: getCompositorProjeto()){
+			grupos.add((Grupo)com);
 		}
+		return grupos; 
 	}
-	
+	public Membro pesquisarMembroPorLoginESenha(String login, String senha){
+		for(Membro membro: membros){
+			if(membro.getLogin().equals(login)&&membro.getSenha().equals(senha)){
+				return membro;
+			}
+		}
+		return null;
+	}
 }
