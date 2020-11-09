@@ -21,7 +21,6 @@ public class Projeto extends CompositorProjeto{
 	private float gastoExecutadoCusteioReais;
 	private float gastoExecutadoCapitalReais;
 	private ArrayList<Membro> membros = new ArrayList<>();
-	private ArrayList<Projeto> projetos = new ArrayList<>();
 	
 	@Override
 	public void ativar() {
@@ -45,8 +44,7 @@ public class Projeto extends CompositorProjeto{
 	public float getCapitalReaisNaoGastoTotal() {
 		return aporteCapitalReais-gastoExecutadoCapitalReais;
 	}
-	@Override
-	public void adicionar(Membro membro) throws ExceptionMembroDuplicado{
+	public void adicionarMembro(Membro membro) throws ExceptionMembroDuplicado{
 		for(Membro m: membros){
 			if(m.getMatricula()==membro.getMatricula()){
 				 throw new ExceptionMembroDuplicado("Algum membro possui essa matricula");
@@ -54,9 +52,8 @@ public class Projeto extends CompositorProjeto{
 		}
 		membros.add(membro);
 	}
-	@Override
-	public void remover(Membro membro) {
-		membros.add(membro);
+	public void removerMembro(Membro membro) {
+		membros.remove(membro);
 	}
 	/**
 	 * Esse método move os membros do projeto para outro grupo
@@ -68,11 +65,13 @@ public class Projeto extends CompositorProjeto{
 	}
 	@Override
 	public void adicionar(CompositorProjeto compositorProjeto) {
-		projetos.add((Projeto) compositorProjeto);
+		if(compositorProjeto instanceof Projeto){
+			getCompositorProjeto().add(compositorProjeto);
+		}
 	}
 	@Override
 	public void remover(CompositorProjeto compositorProjeto) {
-		projetos.remove(compositorProjeto);
+		getCompositorProjeto().remove(compositorProjeto);
 	}
 	public float getAporteCusteioReais() {
 		return aporteCusteioReais;
@@ -107,13 +106,13 @@ public class Projeto extends CompositorProjeto{
 	}
 	
 	public ArrayList<Projeto> getProjetos() {
+		ArrayList<Projeto> projetos = new ArrayList<>();
+		for(CompositorProjeto com: getCompositorProjeto()){
+			projetos.add((Projeto) com);
+		}
 		return projetos;
 	}
-	public void setProjetos(Projeto projeto) {
-		for (int i = 0; i < projetos.size(); i++) {
-			this.projetos.set(i, projeto);
-		}
-	}
+
 	/**
 	 * Esse método pesquisa um membro a partir do login e a senha da conta do membro
 	 * @param login: é o login da conta do membro

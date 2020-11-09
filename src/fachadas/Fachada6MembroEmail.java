@@ -40,7 +40,7 @@ public class Fachada6MembroEmail {
 		if(membroCoordenador.getParticipacao().isCoordenador() == true) {   //Verifico se quem chamou a fachada é realmente um coordenador
 			if (membro.getContaEmail() != null) {
 				try {
-					projeto.adicionar(membro);
+					projeto.adicionarMembro(membro);
 					enviarEmailInfo(projeto.getNome(), adicionado, membroCoordenador.getNome());
 				} catch (ExceptionMembroDuplicado e) {
 					System.out.println("Membro duplicado");

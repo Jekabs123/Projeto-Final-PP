@@ -6,7 +6,7 @@ import model.autenticacao.Membro;
 public class FachadaCompositeEditalGrupo {
 	
 	private CompositorProjeto edital = new Edital();
-	private CompositorProjeto grupo = new Grupo();
+	private Grupo grupo = new Grupo();
 	private Projeto projeto = new Projeto();
 	private CompositorProjeto participacao = new Participacao();
 	
@@ -60,14 +60,14 @@ public class FachadaCompositeEditalGrupo {
 	
 	public void adicionarMembroParaGrupo(Membro membro) {
 		try {
-			grupo.adicionar(membro);
+			grupo.adicionarMembro(membro);
 		} catch (ExceptionMembroDuplicado e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void removerMembroDeGrupo(Membro membro) {
-		grupo.remover(membro);
+		grupo.removerMembro(membro);
 	}
 	
 	public void mostrarBalancamentoFinanceiroGrupo() {
@@ -88,14 +88,14 @@ public class FachadaCompositeEditalGrupo {
 	
 	public void adicionarMembroParaProjeto(Membro membro) {
 		try {
-			projeto.adicionar(membro);
+			projeto.adicionarMembro(membro);
 		} catch (ExceptionMembroDuplicado e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void removerMembroParaProjeto(Membro membro) {
-		projeto.remover(membro);
+		projeto.removerMembro(membro);
 	}
 	
 	public void moverGrupoDeProjeto(Grupo grupo) {

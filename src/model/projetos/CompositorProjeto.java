@@ -1,7 +1,7 @@
 package model.projetos;
 
-import exception.ExceptionMembroDuplicado;
-import model.autenticacao.Membro;
+import java.util.ArrayList;
+
 /**
  * @author PAULO E INATHAN - TATAKAE!
  * Essa classe � a interface comum do para o pacote projetos
@@ -19,6 +19,7 @@ public abstract class CompositorProjeto {
 	private boolean ativo;
 	private long dataInicio;
 	private long dataTermino;
+	private ArrayList<CompositorProjeto> compositorProjeto = new ArrayList<>();
 	
 	/**
 	 * Esse m�todo seta o ativo como true
@@ -45,21 +46,7 @@ public abstract class CompositorProjeto {
 	public float getCapitalReaisNaoGastoTotal() {
 		return 0;
 	}
-	/**
-	 * Esse m�todo adiciona um membro na interface comum
-	 * @param membro: � o membro que vai ser adicionado
-	 * @throws ExceptionMembroDuplicado: esse exce��o � lan�ada quando esse membro j� existir
-	 */
-	public void adicionar(Membro membro)throws ExceptionMembroDuplicado{
-		
-	}
-	/**
-	 * Esse m�todo remove o membro da interface comum
-	 * @param membro: � o membro que vai ser removido
-	 */
-	public void remover(Membro membro){
-		
-	}
+
 	/**
 	 * Esse m�todo adiciona a interface comum
 	 * @param composite: � a interface comum a ser adicionada
@@ -105,6 +92,9 @@ public abstract class CompositorProjeto {
 
 	public void setDataTermino(long dataTermino) {
 		this.dataTermino = dataTermino;
+	}
+	public ArrayList<CompositorProjeto> getCompositorProjeto() {
+		return compositorProjeto;
 	}
 	
 }

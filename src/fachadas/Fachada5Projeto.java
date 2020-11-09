@@ -15,7 +15,7 @@ public class Fachada5Projeto {
 	/**
 	 * {@link #projetoParticipacao} Atributo que faz a persistência
 	 */
-	private DAOXMLProjetoParticipacao projetoParticipacao = new DAOXMLProjetoParticipacao();
+	private static DAOXMLProjetoParticipacao projetoParticipacao = new DAOXMLProjetoParticipacao();
 	
 	/**
 	 * Método que cria o projeto e adiciona na persistência
@@ -56,7 +56,7 @@ public class Fachada5Projeto {
 		try{
 			// adiciona o membro para o projeto
 			Projeto projeto = pesquisarProjeto(idDoProjeto);
-			projeto.adicionar(membro);
+			projeto.adicionarMembro(membro);
 			return projetoParticipacao.atualizar(idDoProjeto, projeto);
 		}catch(Exception e){
 			System.out.println("Não existe Projeto com este ID");
@@ -73,7 +73,7 @@ public class Fachada5Projeto {
 		try{
 			// remove o membro do projeto
 			Projeto projeto = pesquisarProjeto(idDoProjeto);
-			projeto.remover(membro);
+			projeto.removerMembro(membro);
 			return projetoParticipacao.atualizar(idDoProjeto, projeto);
 		}catch(Exception e){
 			System.out.println("Não foi possivel remover o membro");
@@ -89,7 +89,7 @@ public class Fachada5Projeto {
 		return projetoParticipacao.pesquisarProjeto(idProjeto);
 	}
 	
-	public ArrayList<Projeto> getProjetosPersistidos() {
+	public static ArrayList<Projeto> getProjetosPersistidos() {
 		ArrayList<Projeto> projetosPersistidos = new ArrayList<Projeto>(projetoParticipacao.getPersistidos().values());
 		return projetosPersistidos;
 	}
