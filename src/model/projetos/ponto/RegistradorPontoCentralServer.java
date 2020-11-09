@@ -5,16 +5,22 @@ import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 
 public class RegistradorPontoCentralServer {
-	public boolean registrarPonto(RegistradorPontoCentral registrador){
+	
+	public RegistradorPontoCentralServer() {
 		try {
-			System.setProperty("java.rmi.server.hostname", "91911991");
+			System.setProperty("java.rmi.server.hostname", "168.232.112.127");
 			LocateRegistry.createRegistry(1099); //Colocar a porta
-			InterfaceAcessoRemotoPonto registrarPontoCentral = registrador;
+			InterfaceAcessoRemotoPonto registrarPontoCentral = new RegistradorPontoCentral();
 			Naming.bind("PontoService", (Remote) registrarPontoCentral);
-			return true;
+			
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return false;
 		
 	}
+	
+	public static void main(String[] args) {
+		new RegistradorPontoCentralServer();
+	}
+	
 }

@@ -2,6 +2,10 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,14 +19,18 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import fachadas.Fachada5Projeto;
 import model.projetos.Projeto;
-import model.projetos.controller.ControllerTelaPonto;
+import model.projetos.ponto.InterfaceAcessoRemotoPonto;
 
 // CLASSE CLIENTE DO PROXY
 
 public class TelaPonto extends JFrame {
 	
 	private Fachada5Projeto fachadaProjeto = new Fachada5Projeto();
-	OuvinteBaterPonto ouvinteBaterPonto = new OuvinteBaterPonto();
+	
+	private OuvinteBaterPonto ouvinteBaterPonto = new OuvinteBaterPonto();
+	private JComboBox<Projeto> listComboBox;
+	
+	private JTextField textLogin;
 	
 	public TelaPonto() {
 		setTitle("Bater Ponto");
@@ -68,7 +76,7 @@ public class TelaPonto extends JFrame {
 	}
 	
 	public void textFields() {
-		JTextField textLogin = new JTextField();
+		textLogin = new JTextField();
 		textLogin.setBounds(110, 30, 200, 30);
 		add(textLogin);
 		
@@ -85,7 +93,7 @@ public class TelaPonto extends JFrame {
 	
 	public void comboBox() {
 		Projeto[] projetosComboBox = fachadaProjeto.getProjetosPersistidos().toArray(new Projeto[0]);
-		JComboBox<Projeto> listComboBox = new JComboBox<Projeto>(projetosComboBox);
+		listComboBox = new JComboBox<Projeto>(projetosComboBox);
 		listComboBox.setBounds(190, 200, 100, 30);
 		add(listComboBox);
 	}
@@ -128,6 +136,17 @@ public class TelaPonto extends JFrame {
 				JOptionPane.showMessageDialog(null, "Horas Trabalhadas: "
 						+ "\nDéficit Horas: "
 						+ "\nPontos Inválidos: ");
+				
+				break;
+			
+			case "Bater Ponto":
+				
+				try {
+					InterfaceAcessoRemotoPonto ponto = (InterfaceAcessoRemotoPonto) Naming.lookup("rmi://168.232.112.127:1099/PontoService");
+					ponto.registrarPonto((Projeto) listComboBox.getSelectedItem(), textLogin.getText());
+				} catch (MalformedURLException | RemoteException | NotBoundException error) {
+					error.printStackTrace();
+				}
 				
 				break;
 			}

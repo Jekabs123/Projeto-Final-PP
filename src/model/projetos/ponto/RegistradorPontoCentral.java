@@ -5,6 +5,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import fachadas.Fachada5Projeto;
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
@@ -62,6 +64,8 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 					if((dataTermino - dataInicio) < 8) {   						 //TODO Paulo - realmente, eu peguei os projetos ativos da fachada para repovoar
 						return (8 - (dataTermino - dataInicio));
 					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Login não reconhecido");
 				}
 			}
 		}
@@ -85,7 +89,7 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	}
 
 	@Override
-	public void justificarPontoNaoBatido(PontoTrabalhado pronto, String justificativa, String login) {
+	public void justificarPontoNaoBatido(PontoTrabalhado ponto, String justificativa, String login) {
 		// TODO Auto-generated method stub
 		
 	}
