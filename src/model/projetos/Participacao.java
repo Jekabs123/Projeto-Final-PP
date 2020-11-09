@@ -1,4 +1,8 @@
 package model.projetos;
+
+import model.projetos.ponto.HorarioPrevisto;
+import model.projetos.ponto.PontoTrabalhado;
+
 /**
  * @author PAULO E INATHAN - TATAKAE!
  * Essa classe � a participa��o do projeto
@@ -14,7 +18,9 @@ public class Participacao extends CompositorProjeto{
 	private short qtdMesesCusteados;
 	private short qtdMesesPagos;
 	private boolean coordenador;
-	
+	private HorarioPrevisto horario;
+	private PontoTrabalhado ponto;
+	//TODO Paulo - adicionei esses dois ultimmos atributos para que fosse possivel usar o chain
 	@Override
 	public void ativar() {
 		setAtivo(true);
@@ -32,13 +38,6 @@ public class Participacao extends CompositorProjeto{
 	public float getCusteioReaisNaoGastoTotal() {
 		return (aporteCusteioMensalReais*qtdMesesCusteados)-(aporteCusteioMensalReais*qtdMesesPagos);
 	}
-
-	/*
-	 * TODO FEITO
-	 * 1. como esta classe n suporta, melhor colocar implementacao default vazia
-	 * ou com excecao no supertipo e aqui vc nem implementa. 
-	 */
-
 	public float getAporteCusteioMensalReais() {
 		return aporteCusteioMensalReais;
 	}
@@ -63,4 +62,19 @@ public class Participacao extends CompositorProjeto{
 	public void setCoordenador(boolean coordenador) {
 		this.coordenador = coordenador;
 	}
+	public void adicionarPontoTrabalhado(PontoTrabalhado ponto){
+		this.ponto = ponto;
+		this.ponto.setParticipacao(this);
+	}
+	public void adicionarHorarioPrevisto(HorarioPrevisto horario){
+		this.horario = horario;
+		this.horario.setParticipacao(this);
+	}
+	public PontoTrabalhado getPontoTrabalhado(){
+		return ponto;
+	}
+	public HorarioPrevisto getHorarioPrevisto(){
+		return horario;
+	}
 }
+

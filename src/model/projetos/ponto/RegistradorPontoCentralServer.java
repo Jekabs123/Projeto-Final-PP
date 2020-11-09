@@ -15,5 +15,6 @@ public class RegistradorPontoCentralServer {
 		} catch (Exception e) {
 		}
 		return false;
+		
 	}
 }

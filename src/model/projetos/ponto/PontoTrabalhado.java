@@ -4,23 +4,15 @@ import model.projetos.Participacao;
 
 public class PontoTrabalhado {
 	
-	private Participacao participacao;
-	
 	private long dataHoraEntrada;
 	private long dataHoraSaida;
-	private char[] justificativa;
+	private String justificativa;
 	private boolean justificativaAceita;
+	private Participacao participacao;
 	
 	public int getHorasTrabalhadas() {
-		return 0;
-	}
-
-	public Participacao getParticipacao() {
-		return participacao;
-	}
-
-	public void setParticipacao(Participacao participacao) {
-		this.participacao = participacao;
+		//TODO Paulo - implementei o método getHorasTrabalhadas
+		return (int)(dataHoraSaida-dataHoraEntrada);
 	}
 
 	public long getDataHoraEntrada() {
@@ -39,11 +31,11 @@ public class PontoTrabalhado {
 		this.dataHoraSaida = dataHoraSaida;
 	}
 
-	public char[] getJustificativa() {
+	public String getJustificativa() {
 		return justificativa;
 	}
 
-	public void setJustificativa(char[] justificativa) {
+	public void setJustificativa(String justificativa) {
 		this.justificativa = justificativa;
 	}
 
@@ -53,6 +45,14 @@ public class PontoTrabalhado {
 
 	public void setJustificativaAceita(boolean justificativaAceita) {
 		this.justificativaAceita = justificativaAceita;
+	}
+
+	public Participacao getParticipacao() {
+		return participacao;
+	}
+
+	public void setParticipacao(Participacao participacao) {
+		this.participacao = participacao;
 	}
 
 	

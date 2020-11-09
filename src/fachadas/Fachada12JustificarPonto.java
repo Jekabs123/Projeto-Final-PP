@@ -1,7 +1,9 @@
 package fachadas;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
+import model.projetos.ponto.HorarioPrevisto;
 import model.projetos.ponto.PontoTrabalhado;
 import model.projetos.ponto.RegistradorPontoCentral;
 import model.projetos.ponto.TratadorDePontoIvalido;
@@ -17,10 +19,7 @@ public class Fachada12JustificarPonto {
 			e.printStackTrace();
 		}
 	}
-	public void justificarPontoInvalido(PontoTrabalhado ponto, TratadorDePontoIvalido tratador, char[] login){
-		registrarPonto.justificarPontoInvalido(ponto, tratador, login);
-	}
-	public void justificarPontoNaoBatido(PontoTrabalhado ponto, TratadorDePontoIvalido tratador, char[] login){
-		registrarPonto.justificarPontoNaoBatido(ponto, tratador, login);
+	public void justificarPontoInvalido(PontoTrabalhado ponto,HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores){
+		registrarPonto.justificarPontoInvalido(ponto, horario, tratadores);
 	}
 }

@@ -4,23 +4,14 @@ import model.projetos.Participacao;
 
 public class HorarioPrevisto {
 	
-	private Participacao participacao;
-	
 	private DiaSemana diaSemana;
 	private short horaInicio;
 	private short horaTermino;
 	private short toleranciaMinutos;
+	private Participacao participacao;
 	
 	public int getExpectativaHorastrabalhadas() {
-		return 0;
-	}
-
-	public Participacao getParticipacao() {
-		return participacao;
-	}
-
-	public void addParticipacao(Participacao participacao) {
-		this.participacao = participacao;
+		return horaTermino-horaInicio;
 	}
 
 	public DiaSemana getDiaSemana() {
@@ -53,6 +44,14 @@ public class HorarioPrevisto {
 
 	public void setToleranciaMinutos(short toleranciaMinutos) {
 		this.toleranciaMinutos = toleranciaMinutos;
+	}
+
+	public Participacao getParticipacao() {
+		return participacao;
+	}
+
+	public void setParticipacao(Participacao participacao) {
+		this.participacao = participacao;
 	}
 
 }

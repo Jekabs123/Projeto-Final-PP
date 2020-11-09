@@ -2,6 +2,7 @@ package model.projetos.ponto;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -11,8 +12,7 @@ import model.projetos.Projeto;
 
 public class RegistradorPontoCentral extends UnicastRemoteObject implements InterfaceAcessoRemotoPonto {
 	
-	private CompositorProjeto projeto;
-	private HashMap<String,Projeto> projetoAtivos = new HashMap<String, Projeto>();
+	private ArrayList<Projeto> projetoAtivos = new ArrayList<>();
 	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
 	
 	public RegistradorPontoCentral() throws RemoteException {
@@ -27,30 +27,34 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 			if(m.getLogin().equals(login)){
 				return registrador.registrarPonto(this);
 			}
+			
 		}
 		return false;
 	}
 
 	@Override
-	public HashMap<String, Projeto> getProjetosAtivos(String login) { //Também não entendi bem deixei assim kkkk
-		
-		for (int i = 0; i < projetoAtivos.size(); i++) {
-			if(projetoAtivos.get(login)!=null) {
-				return projetoAtivos;
-			}
-		}
-		return null;
+	public ArrayList<Projeto> getProjetosAtivos() { //Eu deixei assim faz mais sentido
+		//TODO Paulo - fiz assim essa parte
+		return projetoAtivos;
 	}
 
 	@Override
-	public float horasTrabalhadasValidas(long dataInicio, long dataTermino, char[] login) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int horasTrabalhadasValidas(long dataInicio, long dataTermino, String login) {
+		//TODO Paulo - terminei de implementar
+		for(Projeto pro: projetoAtivos){
+			for(Membro m: pro.getMembros()){
+				if(m.getLogin().equals(login)){
+					m.getParticipacao().getPontoTrabalhado().setDataHoraEntrada(dataInicio);
+					m.getParticipacao().getPontoTrabalhado().setDataHoraSaida(dataTermino);
+					return m.getParticipacao().getPontoTrabalhado().getHorasTrabalhadas();
+				}
+			}
+		}
+		return -1;
 	}
 
 	@Override
 	public float deficitHoras(long dataInicio, long dataTermino, char[] login) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -60,13 +64,13 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	}
 
 	@Override
-	public void justificarPontoNaoBatido(PontoTrabalhado ponto, TratadorDePontoIvalido tratador, char[] login) {
-		
+	public void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario,ArrayList<TratadorDePontoIvalido> tratadores) {
+		//TODO Paulo - Terminei esse método, ele está usando o chain
+		for(TratadorDePontoIvalido tratador: tratadores){
+			tratador.setPonto(ponto);
+			tratador.setHorario(horario);
+			tratador.justificarPontoInvalido();
+		}
+		//Coloquei um array de Tratadores no parametro para que o cliente possa escolher a ordem
 	}
-
-	@Override
-	public void justificarPontoInvalido(PontoTrabalhado ponto, TratadorDePontoIvalido tratador, char[] login) {
-		
-	}
-
 }

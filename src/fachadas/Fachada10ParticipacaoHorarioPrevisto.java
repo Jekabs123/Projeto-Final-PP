@@ -9,7 +9,7 @@ public class Fachada10ParticipacaoHorarioPrevisto {
 	private HorarioPrevisto horario = new HorarioPrevisto();
 	
 	public Fachada10ParticipacaoHorarioPrevisto(Participacao participacao) {
-		horario.addParticipacao(participacao);
+		horario.setParticipacao(participacao);
 	}
 	public void informarHorarioPrevisto(DiaSemana diaSemana,short inicio,short termino,short tolerancia){
 		horario.setDiaSemana(diaSemana);
