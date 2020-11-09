@@ -116,7 +116,7 @@ public class TelaPonto extends JFrame {
 			
 			String evento = e.getActionCommand();
 			
-			ControllerTelaPonto controllerTelaPonto = new ControllerTelaPonto();
+//			ControllerTelaPonto controllerTelaPonto = new ControllerTelaPonto();
 			
 //			controllerTelaPonto.conectarProxy(projeto, login);
 			
