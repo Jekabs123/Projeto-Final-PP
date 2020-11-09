@@ -16,9 +16,9 @@ public interface InterfaceAcessoRemotoPonto extends Remote {
 	
 	public int horasTrabalhadasValidas(long dataInicio, long dataTermino, String login);
 	
-	public float deficitHoras(long dataInicio, long dataTermino, char[] login);
+	public float deficitHoras(long dataInicio, long dataTermino, String login);
 	
-	public Set<PontoTrabalhado> getPontosInvalidos(char[] login);
+	public Set<PontoTrabalhado> getPontosInvalidos(String login);
 
 	void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores);
 	//TODO Paulo - fiz algumas alterações nos métodos

@@ -19,8 +19,6 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 		super();
 	}
 
-	private static final long serialVersionUID = 1L;
-
 	@Override
 	public boolean registrarPonto(Projeto projeto, String login) {
 		for(Membro m: projeto.getMembros()){
@@ -54,12 +52,21 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	}
 
 	@Override
-	public float deficitHoras(long dataInicio, long dataTermino, char[] login) {
+	public float deficitHoras(long dataInicio, long dataTermino, String login) { //Inathan - acho que é mais ou menos assim kkkk
+		for (Projeto projeto : projetoAtivos) {                                  //Só tô achando meio estranho esse ArrayList de
+			for (Membro membro : projeto.getMembros()) {                         //projetosAtivos pois ele tá vazio, acho que tem
+				if(membro.getLogin().equals(login)) {                            // que fazer uma lógica pra povoar ele.
+					if((dataTermino - dataInicio) < 8) {
+						return (8 - (dataTermino - dataInicio));
+					}
+				}
+			}
+		}
 		return 0;
 	}
 
 	@Override
-	public Set<PontoTrabalhado> getPontosInvalidos(char[] login) {
+	public Set<PontoTrabalhado> getPontosInvalidos(String login) {
 		return null;
 	}
 
