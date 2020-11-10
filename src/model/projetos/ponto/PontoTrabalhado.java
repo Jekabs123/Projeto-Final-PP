@@ -11,7 +11,6 @@ public class PontoTrabalhado {
 	private Participacao participacao;
 	
 	public int getHorasTrabalhadas() {
-		//TODO Paulo - implementei o método getHorasTrabalhadas
 		return (int)(dataHoraSaida-dataHoraEntrada);
 	}
 

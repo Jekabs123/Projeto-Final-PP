@@ -137,7 +137,7 @@ public class DAOXMLEdital {
 		}
 	}
 	
-	private HashMap<Long, Edital> carregarXML() {                        //NO UML O MÉTODO TÁ VOID, MAS O COMUM É RETORNAR UMA COLECAO
+	private HashMap<Long, Edital> carregarXML() {                       
 		arquivoColecao = new File("Edital.xml");
 		try {
 			if(arquivoColecao.exists()) {

@@ -97,24 +97,24 @@ public class DAOXMLMembroConta {
 		return membroAnd;
 	}
 	
-	public HashSet<Membro> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {
+	public HashSet<Membro> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Membro> membroOr = new HashSet<Membro>();
 
 		for (int i = 0; i < persistidos.size(); i++) {
 			for (int j = 0; j < atributos.length; j++) {
 				//consulta os atributos
-				if(atributos[j].equals(persistidos.get(i).getMatricula()) ||
-						atributos[j].equals(persistidos.get(i).getNome()) ||
-						atributos[j].equals(persistidos.get(i).isAtivo()) ||
-						atributos[j].equals(persistidos.get(i).getEmail()) ||
-						atributos[j].equals(persistidos.get(i).getAdministrador())) {
+				if(atributos[j].equalsIgnoreCase("Matricula") ||
+						atributos[j].equalsIgnoreCase("Nome") ||
+						atributos[j].equalsIgnoreCase("Ativo") ||
+						atributos[j].equalsIgnoreCase("Email") ||
+						atributos[j].equalsIgnoreCase("Administrador")) {
 					
 					//compara o valor dos atributos respectivamente
-					if((long) atributos[j] == persistidos.get(i).getMatricula() ||
+					if((long) respectivosValoresAtributos[j] == persistidos.get(i).getMatricula() ||
 							respectivosValoresAtributos[j].equals(persistidos.get(i).getNome()) ||
-							(boolean) atributos[j] == persistidos.get(i).isAtivo()||
-							atributos[j].equals(persistidos.get(i).getEmail()) ||
-							(boolean) atributos[j] == persistidos.get(i).getAdministrador()) {
+							(boolean) respectivosValoresAtributos[j] == persistidos.get(i).isAtivo()||
+							respectivosValoresAtributos[j].equals(persistidos.get(i).getEmail()) ||
+							(boolean) respectivosValoresAtributos[j] == persistidos.get(i).getAdministrador()) {
 						membroOr.add(persistidos.get(i));
 					}
 				}
@@ -137,7 +137,7 @@ public class DAOXMLMembroConta {
 		}
 	}
 	
-	private HashMap<Long, Membro> carregarXML() {                        //NO UML O MÉTODO TÁ VOID, MAS O COMUM É RETORNAR UMA COLECAO
+	private HashMap<Long, Membro> carregarXML() {                        
 		arquivoColecao = new File("MembroConta.xml");
 		try {
 			if(arquivoColecao.exists()) {

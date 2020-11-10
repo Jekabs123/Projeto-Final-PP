@@ -20,7 +20,6 @@ public class Participacao extends CompositorProjeto{
 	private boolean coordenador;
 	private HorarioPrevisto horario;
 	private PontoTrabalhado ponto;
-	//TODO Paulo - adicionei esses dois ultimmos atributos para que fosse possivel usar o chain
 	@Override
 	public void ativar() {
 		setAtivo(true);

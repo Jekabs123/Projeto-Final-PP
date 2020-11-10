@@ -6,7 +6,6 @@ public abstract class TratadorDePontoIvalido {
 	protected PontoTrabalhado ponto;
 	protected HorarioPrevisto horario;
 	private TratadorDePontoIvalido tratador;
-	//TODO Paulo - fiz algumas alterações nessa classe
 	public abstract void justificarPontoInvalido();
 	
 	

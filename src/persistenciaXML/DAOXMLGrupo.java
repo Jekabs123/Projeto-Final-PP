@@ -54,12 +54,7 @@ public class DAOXMLGrupo {
 		return carregarXML();
 	}
 	
-	/*
-	 * TODO FEITO
-	 * 1. Devem verificar o nome do atributo de cada posicao do array e verificar o valor cooresponente
-	 * bate. 
-	 * 2. Corrigir demais DAOs
-	 */
+
 	public HashSet<Grupo> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Grupo> grupoAnd = new HashSet<Grupo>();
 		for (int i = 0; i < persistidos.size(); i++) {
@@ -112,12 +107,7 @@ public class DAOXMLGrupo {
 		return grupoAnd;
 	  }
 	
-	/*
-	 * TODO Feito
-	 * 1. Devem verificar o nome do atributo de cada posicao do arraye verificar o valor cooresponente
-	 * bate.
-	 * 2. Corrigir demais DAOs
-	 */
+
 	public HashSet<Grupo> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Grupo> grupoOr = new HashSet<Grupo>();
 
@@ -162,7 +152,7 @@ public class DAOXMLGrupo {
 		}
 	}
 	
-	private HashMap<Long, Grupo> carregarXML() {                        //NO UML O M�TODO T� VOID, MAS O COMUM � RETORNAR UMA COLECAO
+	private HashMap<Long, Grupo> carregarXML() {                        
 		arquivoColecao = new File("Grupo.xml");
 		try {
 			if(arquivoColecao.exists()) {

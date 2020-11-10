@@ -19,7 +19,8 @@ public class Fachada12JustificarPonto {
 			e.printStackTrace();
 		}
 	}
-	public void justificarPontoInvalido(PontoTrabalhado ponto,HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores){
+	public void justificarPontoInvalido(String justificativa,PontoTrabalhado ponto,HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores){
+		ponto.setJustificativa(justificativa);
 		registrarPonto.justificarPontoInvalido(ponto, horario, tratadores);
 	}
 }

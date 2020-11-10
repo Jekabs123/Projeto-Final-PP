@@ -43,7 +43,6 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 
 	@Override
 	public int horasTrabalhadasValidas(long dataInicio, long dataTermino, String login) {
-		//TODO Paulo - terminei de implementar
 		for(Projeto pro: projetoAtivos){
 			for(Membro m: pro.getMembros()){
 				if(m.getLogin().equals(login)){
@@ -57,11 +56,11 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	}
 
 	@Override
-	public float deficitHoras(long dataInicio, long dataTermino, String login) { //Inathan - acho que é mais ou menos assim kkkk
-		for (Projeto projeto : projetoAtivos) {                                  //Só tô achando meio estranho esse ArrayList de
-			for (Membro membro : projeto.getMembros()) {                         //projetosAtivos pois ele tá vazio, acho que tem
-				if(membro.getLogin().equals(login)) {                            // que fazer uma lógica pra povoar ele.
-					if((dataTermino - dataInicio) < 8) {   						 //TODO Paulo - realmente, eu peguei os projetos ativos da fachada para repovoar
+	public float deficitHoras(long dataInicio, long dataTermino, String login) { 
+		for (Projeto projeto : projetoAtivos) {                                 
+			for (Membro membro : projeto.getMembros()) {                         
+				if(membro.getLogin().equals(login)) {                            
+					if((dataTermino - dataInicio) < 8) {   						 
 						return (8 - (dataTermino - dataInicio));
 					}
 				} else {
@@ -79,18 +78,11 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 
 	@Override
 	public void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario,ArrayList<TratadorDePontoIvalido> tratadores) {
-		//TODO Paulo - Terminei esse método, ele está usando o chain
 		for(TratadorDePontoIvalido tratador: tratadores){
 			tratador.setPonto(ponto);
 			tratador.setHorario(horario);
 			tratador.justificarPontoInvalido();
 		}
 		//Coloquei um array de Tratadores no parametro para que o cliente possa escolher a ordem
-	}
-
-	@Override
-	public void justificarPontoNaoBatido(PontoTrabalhado ponto, String justificativa, String login) {
-		// TODO Auto-generated method stub
-		
 	}
 }

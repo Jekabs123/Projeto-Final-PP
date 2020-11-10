@@ -20,8 +20,5 @@ public interface InterfaceAcessoRemotoPonto extends Remote {
 	public abstract Set<PontoTrabalhado> getPontosInvalidos(String login);
 
 	public abstract void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores);
-	//TODO Paulo - fiz algumas alterações nos métodos
-
-	public abstract void justificarPontoNaoBatido(PontoTrabalhado pronto, String  justificativa, String login);
 	
 }

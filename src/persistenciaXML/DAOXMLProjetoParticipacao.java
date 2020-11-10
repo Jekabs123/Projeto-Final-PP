@@ -51,58 +51,69 @@ public class DAOXMLProjetoParticipacao {
 	public Projeto pesquisarProjeto(long idDoProjeto){
 		return persistidos.get(idDoProjeto);
 	}
-	public HashSet<Projeto> consultarAnd(Object[] atributos, Object[] respectivosValoresAtributos) {
+	public HashSet<Projeto> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Projeto> projetoAnd = new HashSet<Projeto>();
 
 		for (int i = 0; i < persistidos.size(); i++) {
 			for (int x = 0; x < atributos.length; x++) {
-				//consulta os atributos
-				if(atributos[x].equals(persistidos.get(i).getNome())&&
-				   atributos[x].equals(persistidos.get(i).getAporteCapitalReais())&&
-				   atributos[x].equals(persistidos.get(i).getAporteCusteioReais())&&
-				   atributos[x].equals(persistidos.get(i).getGastoExecutadoCapitalReais())&&
-				   atributos[x].equals(persistidos.get(i).getGastoExecutadoCusteioReais())&&
-				   atributos[x].equals(persistidos.get(i).getDataInicio())&&
-				   atributos[x].equals(persistidos.get(i).getDataTermino())) {
-					
-					//compara o valor dos atributos respectivamente
-					if(atributos[x].equals(persistidos.get(i).getNome())&&
-							   (float) atributos[x] == persistidos.get(i).getAporteCapitalReais()&&
-							   (float) atributos[x] == persistidos.get(i).getAporteCusteioReais()&&
-							   (float) atributos[x] == persistidos.get(i).getGastoExecutadoCapitalReais()&&
-							   (float) atributos[x] == persistidos.get(i).getGastoExecutadoCusteioReais()&&
-							   (long) atributos[x] == persistidos.get(i).getDataInicio()&&
-							   (long) atributos[x] == persistidos.get(i).getDataTermino()) {
-						projetoAnd.add(persistidos.get(i));
+				if(atributos[x].equalsIgnoreCase("Nome")){
+					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())){
+						return projetoAnd;
 					}
+				}else if(atributos[x].equalsIgnoreCase("AporteCapitalReais")){
+					if((float) respectivosValoresAtributos[x] != persistidos.get(i).getAporteCapitalReais()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("AporteCusteioReais")){
+					if((float) respectivosValoresAtributos[x] != persistidos.get(i).getAporteCusteioReais()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("GastoExecutadoCapitalReais")){
+					if((float) respectivosValoresAtributos[x] != persistidos.get(i).getGastoExecutadoCapitalReais()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("GastoExecutadoCusteioReais")){
+					if((float) respectivosValoresAtributos[x] != persistidos.get(i).getGastoExecutadoCusteioReais()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("DataInicio")){
+					if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataInicio()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("DataTermino")) {
+					if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataTermino()){
+						return projetoAnd;
+					}
+				}else{
+					return projetoAnd;
 				}
 			}
+			projetoAnd.add(persistidos.get(i));
 		 }
 		return projetoAnd;
 	}
 	
-	public HashSet<Projeto> consultarOr(Object[] atributos, Object[] respectivosValoresAtributos) {
+	public HashSet<Projeto> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Projeto> projetoOr = new HashSet<Projeto>();
 
 		for (int i = 0; i < persistidos.size(); i++) {
-			for (int j = 0; j < atributos.length; j++) {
-				//consulta os atributos
-				if(atributos[j].equals(persistidos.get(i).getNome())||
-				   atributos[j].equals(persistidos.get(i).getAporteCapitalReais())||
-				   atributos[j].equals(persistidos.get(i).getAporteCusteioReais())||
-				   atributos[j].equals(persistidos.get(i).getGastoExecutadoCapitalReais())||
-				   atributos[j].equals(persistidos.get(i).getGastoExecutadoCusteioReais())||
-				   atributos[j].equals(persistidos.get(i).getDataInicio())||
-				   atributos[j].equals(persistidos.get(i).getDataTermino())) {
+			for (int x = 0; x < atributos.length; x++) {
+				if(atributos[x].equalsIgnoreCase("Nome")||
+				   atributos[x].equalsIgnoreCase("AporteCapitalReais")||
+				   atributos[x].equalsIgnoreCase("AporteCusteioReais")||
+				   atributos[x].equalsIgnoreCase("GastoExecutadoCapitalReais")||
+				   atributos[x].equalsIgnoreCase("GastoExecutadoCusteioReais")||
+				   atributos[x].equalsIgnoreCase("DataInicio")||
+				   atributos[x].equalsIgnoreCase("DataTermino")) {
 					
 					//compara o valor dos atributos respectivamente
-					if(atributos[j].equals(persistidos.get(i).getNome())||
-							   (float) atributos[j] == persistidos.get(i).getAporteCapitalReais()||
-							   (float) atributos[j] == persistidos.get(i).getAporteCusteioReais()||
-							   (float) atributos[j] == persistidos.get(i).getGastoExecutadoCapitalReais()||
-							   (float) atributos[j] == persistidos.get(i).getGastoExecutadoCusteioReais()||
-							   (long) atributos[j] == persistidos.get(i).getDataInicio()||
-							   (long) atributos[j] == persistidos.get(i).getDataTermino()) {
+					if(respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())||
+							   (float) respectivosValoresAtributos[x] == persistidos.get(i).getAporteCapitalReais()||
+							   (float) respectivosValoresAtributos[x] == persistidos.get(i).getAporteCusteioReais()||
+							   (float) respectivosValoresAtributos[x] == persistidos.get(i).getGastoExecutadoCapitalReais()||
+							   (float) respectivosValoresAtributos[x] == persistidos.get(i).getGastoExecutadoCusteioReais()||
+							   (long) respectivosValoresAtributos[x] == persistidos.get(i).getDataInicio()||
+							   (long) respectivosValoresAtributos[x] == persistidos.get(i).getDataTermino()) {
 						projetoOr.add(persistidos.get(i));
 					}
 				}

@@ -9,7 +9,6 @@ public class RegistradorPontoCentralServer {
 	
 	public RegistradorPontoCentralServer() {
 		try {
-			//TODO Usei a classe InetAddress para pegar o IP da rede local
 			System.setProperty("java.rmi.server.hostname", InetAddress.getLocalHost().getHostAddress());
 			LocateRegistry.createRegistry(1099); //Colocar a porta
 			InterfaceAcessoRemotoPonto registrarPontoCentral = new RegistradorPontoCentral();
