@@ -13,9 +13,6 @@ import model.projetos.Projeto;
 
 public class RegistradorPontoCentral extends UnicastRemoteObject implements InterfaceAcessoRemotoPonto {
 	
-	private ArrayList<Projeto> projetoAtivos = new ArrayList<>();
-//	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
-	
 	public RegistradorPontoCentral() throws RemoteException {
 		super();
 		for(Projeto pro: Fachada5Projeto.getProjetosPersistidos()){
@@ -24,6 +21,15 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 			}
 		}
 	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ArrayList<Projeto> projetoAtivos = new ArrayList<>();
+//	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
+	
+
 
 	@Override
 	public boolean registrarPonto(Projeto projeto, String login) {
@@ -64,7 +70,7 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 						return (8 - (dataTermino - dataInicio));
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Login não reconhecido");
+//					JOptionPane.showMessageDialog(null, "Login não reconhecido");
 				}
 			}
 		}

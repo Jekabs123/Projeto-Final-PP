@@ -3,6 +3,7 @@ package fachadas;
 import java.rmi.RemoteException;
 
 import model.projetos.Participacao;
+import model.projetos.Projeto;
 import model.projetos.ponto.PontoTrabalhado;
 import model.projetos.ponto.RegistradorPontoCentral;
 
@@ -17,11 +18,13 @@ public class Fachada11BaterPonto {
 			e.printStackTrace();
 		}
 	}
-	public void baterPonto(Participacao participacao,long dataHoraEntrada, long dataHoraSaida, String login){
+	public void baterPonto(Participacao participacao,long dataHoraEntrada, long dataHoraSaida){
 		PontoTrabalhado ponto = new PontoTrabalhado();
 		ponto.setDataHoraEntrada(dataHoraEntrada);
 		ponto.setDataHoraSaida(dataHoraSaida);
 		participacao.adicionarPontoTrabalhado(ponto);
 	}
-
+	public boolean registrarPonto(Projeto projeto, String login){
+		return registrarPonto.registrarPonto(projeto, login);
+	}
 }

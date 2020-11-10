@@ -90,6 +90,8 @@ public class TelaPonto extends JFrame {
 		JButton btBaterPonto = new JButton("Logar");
 		btBaterPonto.setBounds(150, 120, 100, 30);
 		add(btBaterPonto);
+		
+		btBaterPonto.addActionListener(ouvinteBaterPonto);
 	}
 	
 	public void comboBox() {
