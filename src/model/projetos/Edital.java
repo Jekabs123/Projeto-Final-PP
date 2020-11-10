@@ -8,16 +8,17 @@ import java.util.ArrayList;
  */
 public class Edital extends CompositorProjeto {
 	
-	private ArrayList<Edital> editais = new ArrayList<>();
 
 	@Override
 	public void adicionar(CompositorProjeto compositorProjeto) {
-		editais.add((Edital) compositorProjeto);
+		if(compositorProjeto instanceof Edital){
+			getCompositorProjeto().add(compositorProjeto);
+		}
 	}
 
 	@Override
 	public void remover(CompositorProjeto compositorProjeto) {
-		editais.remove(compositorProjeto);
+		getCompositorProjeto().remove(compositorProjeto);
 	}
 	/**
 	 * Esse m�todo seta o atributo ativo como true
@@ -40,7 +41,7 @@ public class Edital extends CompositorProjeto {
 	 */
 	public float getCustoTotal() {
 		float custoTotal = 0;
-		for(CompositorProjeto p: editais){
+		for(CompositorProjeto p: getCompositorProjeto()){
 			custoTotal+= p.getCustoTotal();
 		}
 		return custoTotal;
@@ -52,7 +53,7 @@ public class Edital extends CompositorProjeto {
 	 */
 	public float getCusteioReaisNaoGastoTotal() {
 		float custeio = 0;
-		for(CompositorProjeto c: editais){
+		for(CompositorProjeto c: getCompositorProjeto()){
 			custeio+= c.getCusteioReaisNaoGastoTotal();
 		}
 		return custeio;
@@ -64,20 +65,18 @@ public class Edital extends CompositorProjeto {
 	 */
 	public float getCapitalReaisNaoGastoTotal() {
 		float capital = 0;
-		for(CompositorProjeto c: editais){
+		for(CompositorProjeto c: getCompositorProjeto()){
 			capital+=c.getCapitalReaisNaoGastoTotal();
 		}
 		return capital;
 	}
 
 	public ArrayList<Edital> getEditais() {
-		return editais;
-	}
-
-	public void setEditais(Edital edital) {
-		for (int i = 0; i < editais.size(); i++) {
-			this.editais.set(i, edital);
+		ArrayList<Edital> editais = new ArrayList<>();
+		for(CompositorProjeto com: getCompositorProjeto()){
+			editais.add((Edital) com);
 		}
+		return editais;
 	}
 
 }

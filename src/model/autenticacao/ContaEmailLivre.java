@@ -41,4 +41,21 @@ public class ContaEmailLivre extends ContaEmail{
 		}
 		return null;
 	}
+	//TODO sobrescrevi esses dois métodos como ele pediu no UML
+	@Override
+	public Membro autenticar(String login, String senha) {
+		String senhaCriptografadas = criptografarSenha(senha);
+		if(validarlogin(login)== true){
+			return super.autenticar(login, senhaCriptografadas);
+		}
+		return null;
+	}
+	@Override
+	public boolean validarlogin(String login) {
+		String regex = "[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
+		if(login.matches(regex)==true){
+			return super.validarlogin(login);
+		}
+		return false;
+	}
 }
