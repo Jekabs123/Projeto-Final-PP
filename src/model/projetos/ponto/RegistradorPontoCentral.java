@@ -84,11 +84,11 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	}
 
 	@Override
-	public void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario,ArrayList<TratadorDePontoIvalido> tratadores) {
-		for(TratadorDePontoIvalido tratador: tratadores){
+	public void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario,ArrayList<ValidarPontoIvalido> tratadores) {
+		for(ValidarPontoIvalido tratador: tratadores){
 			tratador.setPonto(ponto);
 			tratador.setHorario(horario);
-			tratador.justificarPontoInvalido();
+			tratador.validarPontoInvalido();
 		}
 	}
 }

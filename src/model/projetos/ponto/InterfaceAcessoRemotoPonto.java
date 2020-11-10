@@ -18,6 +18,6 @@ public interface InterfaceAcessoRemotoPonto extends Remote {
 	
 	public abstract ArrayList<PontoTrabalhado> getPontosInvalidos(String login);
 
-	public abstract void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores);
+	public abstract void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario, ArrayList<ValidarPontoIvalido> tratadores);
 	
 }

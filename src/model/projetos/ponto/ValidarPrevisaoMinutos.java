@@ -1,9 +1,9 @@
 package model.projetos.ponto;
 
-public class TratadorPrevisaoMinutos extends TratadorDePontoIvalido{
+public class ValidarPrevisaoMinutos extends ValidarPontoIvalido{
 
 	@Override
-	public void justificarPontoInvalido() {
+	public void validarPontoInvalido() {
 		if((ponto.getHorasTrabalhadas() - horario.getToleranciaMinutos()) == horario.getExpectativaHorastrabalhadas()){
 			ponto.setJustificativaAceita(true);
 		}else{

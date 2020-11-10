@@ -29,7 +29,7 @@ private DAOXMLEdital editalXML = new DAOXMLEdital();
 	 */
 	public boolean removerEdital(long id) {
 		Edital edital = pesquisarEdital(id);
-		if(edital.getEditais().size() > 0) {
+		if(edital.getProjetos().size() > 0) {
 			return false;
 		}
 		editalXML.remover(id);

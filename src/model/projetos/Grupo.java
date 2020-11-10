@@ -55,7 +55,7 @@ public class Grupo extends CompositorProjeto{
 	}
 	@Override
 	public void adicionar(CompositorProjeto compositorProjeto) {
-		if(compositorProjeto instanceof Grupo){
+		if(compositorProjeto instanceof Projeto){
 			getCompositorProjeto().add(compositorProjeto);
 		}
 	}
@@ -73,6 +73,7 @@ public class Grupo extends CompositorProjeto{
 		membros.add(membro);
 	}
 	public void removerMembro(Membro membro) {
+		membro.getParticipacao().desativar();
 		membros.remove(membro);
 	}
 	public long getDataCriacao() {
@@ -93,12 +94,12 @@ public class Grupo extends CompositorProjeto{
 	public void setMembros(ArrayList<Membro> membros) {
 		this.membros = membros;
 	}
-	public ArrayList<Grupo> getGrupos(){
-		ArrayList<Grupo> grupos = new ArrayList<>();
+	public ArrayList<Projeto> getGrupos(){
+		ArrayList<Projeto> projetos = new ArrayList<>();
 		for(CompositorProjeto com: getCompositorProjeto()){
-			grupos.add((Grupo)com);
+			projetos.add((Projeto)com);
 		}
-		return grupos; 
+		return projetos; 
 	}
 	public Membro pesquisarMembroPorLoginESenha(String login, String senha){
 		for(Membro membro: membros){

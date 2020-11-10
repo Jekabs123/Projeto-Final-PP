@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import model.projetos.ponto.HorarioPrevisto;
 import model.projetos.ponto.PontoTrabalhado;
 import model.projetos.ponto.RegistradorPontoCentral;
-import model.projetos.ponto.TratadorDePontoIvalido;
+import model.projetos.ponto.ValidarPontoIvalido;
 
 public class Fachada12JustificarPonto {
 
@@ -19,7 +19,7 @@ public class Fachada12JustificarPonto {
 			e.printStackTrace();
 		}
 	}
-	public void justificarPontoInvalido(String justificativa,PontoTrabalhado ponto,HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores){
+	public void justificarPontoInvalido(String justificativa,PontoTrabalhado ponto,HorarioPrevisto horario, ArrayList<ValidarPontoIvalido> tratadores){
 		ponto.setJustificativa(justificativa);
 		registrarPonto.justificarPontoInvalido(ponto, horario, tratadores);
 	}

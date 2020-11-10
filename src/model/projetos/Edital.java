@@ -11,7 +11,7 @@ public class Edital extends CompositorProjeto {
 
 	@Override
 	public void adicionar(CompositorProjeto compositorProjeto) {
-		if(compositorProjeto instanceof Edital){
+		if(compositorProjeto instanceof Projeto || compositorProjeto instanceof Grupo){
 			getCompositorProjeto().add(compositorProjeto);
 		}
 	}
@@ -71,12 +71,22 @@ public class Edital extends CompositorProjeto {
 		return capital;
 	}
 
-	public ArrayList<Edital> getEditais() {
-		ArrayList<Edital> editais = new ArrayList<>();
+	public ArrayList<Projeto> getProjetos() {
+		ArrayList<Projeto> projetos = new ArrayList<>();
 		for(CompositorProjeto com: getCompositorProjeto()){
-			editais.add((Edital) com);
+			if(com instanceof Projeto){
+				projetos.add((Projeto) com);
+			}
 		}
-		return editais;
+		return projetos;
 	}
-
+	public ArrayList<Grupo> getGrupos(){
+		ArrayList<Grupo> grupos = new ArrayList<>();
+		for(CompositorProjeto com: getCompositorProjeto()){
+			if(com instanceof Grupo){
+				grupos.add((Grupo) com);
+			}
+		}
+		return grupos;
+	}
 }

@@ -65,9 +65,7 @@ public class Projeto extends CompositorProjeto{
 	}
 	@Override
 	public void adicionar(CompositorProjeto compositorProjeto) {
-		if(compositorProjeto instanceof Projeto){
 			getCompositorProjeto().add(compositorProjeto);
-		}
 	}
 	@Override
 	public void remover(CompositorProjeto compositorProjeto) {
@@ -103,14 +101,6 @@ public class Projeto extends CompositorProjeto{
 	}
 	public void setMembros(ArrayList<Membro> membros) {
 		this.membros = membros;
-	}
-	
-	public ArrayList<Projeto> getProjetos() {
-		ArrayList<Projeto> projetos = new ArrayList<>();
-		for(CompositorProjeto com: getCompositorProjeto()){
-			projetos.add((Projeto) com);
-		}
-		return projetos;
 	}
 
 	/**
