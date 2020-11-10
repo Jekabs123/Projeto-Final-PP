@@ -11,11 +11,12 @@ import model.projetos.ponto.InterfaceAcessoRemotoPonto;
 public class ControllerTelaPonto {
 	
 	public void conectarProxy (Projeto projeto, String login) {
+		//TODO tá dando erro nessa parte do RMI do IP, será que é 
+		//melhor deixar automático igual ao RegistradorPontoCentral/Server?
 		try {
-			InterfaceAcessoRemotoPonto ponto = (InterfaceAcessoRemotoPonto) Naming.lookup("rmi://999999/PontoService"); //Aqui preciso botar a porta
+			InterfaceAcessoRemotoPonto ponto = (InterfaceAcessoRemotoPonto) Naming.lookup("rmi://168.232.112.127:1099/PontoService");
 			ponto.registrarPonto(projeto, login);
 		} catch (MalformedURLException | RemoteException | NotBoundException error) {
-			// TODO Auto-generated catch block
 			error.printStackTrace();
 		}
 	}

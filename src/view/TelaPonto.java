@@ -2,10 +2,6 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,18 +14,23 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import fachadas.Fachada5Projeto;
+import model.autenticacao.RegistradorSessaoLogin;
 import model.projetos.Projeto;
-import model.projetos.ponto.InterfaceAcessoRemotoPonto;
+import model.projetos.controller.ControllerTelaPonto;
 
 // CLASSE CLIENTE DO PROXY
 
 public class TelaPonto extends JFrame {
 	
-	private Fachada5Projeto fachadaProjeto = new Fachada5Projeto();
+//	private Fachada5Projeto fachadaProjeto = new Fachada5Projeto();
+	
+	private RegistradorSessaoLogin registradorSessaoLogin = RegistradorSessaoLogin.getInstance();
 	
 	private OuvinteBaterPonto ouvinteBaterPonto = new OuvinteBaterPonto();
-	private JComboBox<Projeto> listComboBox;
 	
+	private boolean liberar = false;
+	
+	private JComboBox<Projeto> listComboBox;
 	private JTextField textLogin;
 	
 	public TelaPonto() {
@@ -92,7 +93,7 @@ public class TelaPonto extends JFrame {
 	}
 	
 	public void comboBox() {
-		Projeto[] projetosComboBox = fachadaProjeto.getProjetosPersistidos().toArray(new Projeto[0]);
+		Projeto[] projetosComboBox = Fachada5Projeto.getProjetosPersistidos().toArray(new Projeto[0]);
 		listComboBox = new JComboBox<Projeto>(projetosComboBox);
 		listComboBox.setBounds(190, 200, 100, 30);
 		add(listComboBox);
@@ -124,11 +125,10 @@ public class TelaPonto extends JFrame {
 			
 			String evento = e.getActionCommand();
 			
-//			ControllerTelaPonto controllerTelaPonto = new ControllerTelaPonto();
+			ControllerTelaPonto controllerTelaPonto = new ControllerTelaPonto();
 			
-//			controllerTelaPonto.conectarProxy(projeto, login);
+			Projeto projetoSelecionado = (Projeto)listComboBox.getSelectedItem();
 			
-			//botaoVerDetalhes
 			switch (evento) {
 			
 			case "Ver Detalhes":
@@ -141,12 +141,25 @@ public class TelaPonto extends JFrame {
 			
 			case "Bater Ponto":
 				
-				try {
-					InterfaceAcessoRemotoPonto ponto = (InterfaceAcessoRemotoPonto) Naming.lookup("rmi://168.232.112.127:1099/PontoService");
-					ponto.registrarPonto((Projeto) listComboBox.getSelectedItem(), textLogin.getText());
-				} catch (MalformedURLException | RemoteException | NotBoundException error) {
-					error.printStackTrace();
+				controllerTelaPonto.conectarProxy(projetoSelecionado, textLogin.getText());
+				
+				break;
+				
+			case "Logar":
+				
+			//TODO Confere essa lógica kkkkk, ficou bem locão - Inathan
+				for (int j = 0; j < Fachada5Projeto.getProjetosPersistidos().size(); j++) {
+					if(Fachada5Projeto.getProjetosPersistidos().get(j).equals(projetoSelecionado)) {
+						for (int i = 0; i < Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().size(); i++) {
+							if(Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i).getLogin().equals(textLogin.getText())) {
+								registradorSessaoLogin.RegistradorOnline(Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i));
+								liberar = true;
+							}
+						}
+						
+					}
 				}
+				
 				
 				break;
 			}
