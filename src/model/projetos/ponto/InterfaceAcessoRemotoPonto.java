@@ -3,7 +3,6 @@ package model.projetos.ponto;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Set;
 
 import model.projetos.Projeto;
 
@@ -17,7 +16,7 @@ public interface InterfaceAcessoRemotoPonto extends Remote {
 	
 	public abstract float deficitHoras(long dataInicio, long dataTermino, String login);
 	
-	public abstract Set<PontoTrabalhado> getPontosInvalidos(String login);
+	public abstract ArrayList<PontoTrabalhado> getPontosInvalidos(String login);
 
 	public abstract void justificarPontoInvalido(PontoTrabalhado ponto, HorarioPrevisto horario, ArrayList<TratadorDePontoIvalido> tratadores);
 	

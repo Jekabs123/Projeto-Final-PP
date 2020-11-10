@@ -3,15 +3,16 @@ package model.projetos.ponto;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.Set;
-
-import javax.swing.JOptionPane;
 
 import fachadas.Fachada5Projeto;
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
 
 public class RegistradorPontoCentral extends UnicastRemoteObject implements InterfaceAcessoRemotoPonto {
+	
+	private static final long serialVersionUID = 1L;
+	private ArrayList<Projeto> projetoAtivos = new ArrayList<>();
+//	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
 	
 	public RegistradorPontoCentral() throws RemoteException {
 		super();
@@ -21,14 +22,6 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 			}
 		}
 	}
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private ArrayList<Projeto> projetoAtivos = new ArrayList<>();
-//	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
-	
 
 
 	@Override
@@ -78,8 +71,16 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	}
 
 	@Override
-	public Set<PontoTrabalhado> getPontosInvalidos(String login) {
-		return null;
+	public ArrayList<PontoTrabalhado> getPontosInvalidos(String login) {
+		ArrayList<PontoTrabalhado> pontosInvalidos = new ArrayList<>();
+		for(Projeto p: projetoAtivos){
+			for(Membro m: p.getMembros()){
+				if(m.getParticipacao().getPontoTrabalhado().isJustificativaAceita() == false){
+					pontosInvalidos.add(m.getParticipacao().getPontoTrabalhado());
+				}
+			}
+		}
+		return pontosInvalidos;
 	}
 
 	@Override
@@ -89,6 +90,5 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 			tratador.setHorario(horario);
 			tratador.justificarPontoInvalido();
 		}
-		//Coloquei um array de Tratadores no parametro para que o cliente possa escolher a ordem
 	}
 }
