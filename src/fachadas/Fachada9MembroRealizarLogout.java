@@ -17,7 +17,7 @@ public class Fachada9MembroRealizarLogout {
 		fachadaMembro.atualizarMembro(id, membro);
 	}
 	
-	public boolean isOnline(String login){
+	public static boolean isOnline(String login){
 		return registradorSessao.isOnline(login);
 	}
 }

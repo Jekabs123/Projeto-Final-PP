@@ -4,11 +4,11 @@ import java.rmi.RemoteException;
 
 import model.projetos.ponto.RegistradorPontoCentral;
 
-public class Fachada13 {
+public class Fachada13Horario {
 
 	RegistradorPontoCentral registrador;
 	
-	public Fachada13() {
+	public Fachada13Horario() {
 		try {
 			registrador = new RegistradorPontoCentral();
 		} catch (RemoteException e) {

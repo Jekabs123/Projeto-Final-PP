@@ -1,4 +1,4 @@
-package view;
+package model.projetos.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,8 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import fachadas.Fachada13Horario;
 import fachadas.Fachada5Projeto;
-import model.autenticacao.RegistradorSessaoLogin;
+import fachadas.Fachada9MembroRealizarLogout;
 import model.projetos.Projeto;
 import model.projetos.controller.ControllerTelaPonto;
 
@@ -22,13 +23,12 @@ import model.projetos.controller.ControllerTelaPonto;
 
 public class TelaPonto extends JFrame {
 	
-//	private Fachada5Projeto fachadaProjeto = new Fachada5Projeto();
-	
-	private RegistradorSessaoLogin registradorSessaoLogin = RegistradorSessaoLogin.getInstance();
+	private Fachada13Horario fachadaHorario = new Fachada13Horario();
 	
 	private OuvinteBaterPonto ouvinteBaterPonto = new OuvinteBaterPonto();
 	
-	private boolean liberar = false;
+	private boolean liberarBaterPonto = false;
+	private boolean liberarDetalhes = false;
 	
 	private JComboBox<Projeto> listComboBox;
 	private JTextField textLogin;
@@ -132,36 +132,56 @@ public class TelaPonto extends JFrame {
 			Projeto projetoSelecionado = (Projeto)listComboBox.getSelectedItem();
 			
 			switch (evento) {
-			
-			case "Ver Detalhes":
-				
-				JOptionPane.showMessageDialog(null, "Horas Trabalhadas: "
-						+ "\nDéficit Horas: "
-						+ "\nPontos Inválidos: ");
-				
-				break;
-			
-			case "Bater Ponto":
-				
-				controllerTelaPonto.conectarProxy(projetoSelecionado, textLogin.getText());
-				
-				break;
 				
 			case "Logar":
 				
 			//TODO Confere essa lógica kkkkk, ficou bem locão - Inathan
-				for (int j = 0; j < Fachada5Projeto.getProjetosPersistidos().size(); j++) {
-					if(Fachada5Projeto.getProjetosPersistidos().get(j).equals(projetoSelecionado)) {
-						for (int i = 0; i < Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().size(); i++) {
-							if(Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i).getLogin().equals(textLogin.getText())) {
-								registradorSessaoLogin.RegistradorOnline(Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i));
-								liberar = true;
+				if( Fachada5Projeto.getProjetosPersistidos().size()>0) {
+					for (int j = 0; j < Fachada5Projeto.getProjetosPersistidos().size(); j++) {
+						if(Fachada5Projeto.getProjetosPersistidos().get(j).equals(projetoSelecionado)) {
+							for (int i = 0; i < Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().size(); i++) {
+								if(Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i).getLogin().equals(textLogin.getText())) {
+									Fachada9MembroRealizarLogout.realizarLogin(i, Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i));
+									Fachada9MembroRealizarLogout.isOnline(textLogin.getText());
+									JOptionPane.showMessageDialog(null, "Logado");
+									liberarBaterPonto = true;
+								}
 							}
-						}
 						
+						} else {
+							JOptionPane.showMessageDialog(null, "Login não cadastrado");
+						}
 					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Não há ninguém cadastrado");
+				}
+					
+				break;
+			
+			case "Bater Ponto":
+				
+				if(liberarBaterPonto==true) {
+					controllerTelaPonto.conectarProxy(projetoSelecionado, textLogin.getText());
+					liberarDetalhes = true;
+				} else {
+					JOptionPane.showMessageDialog(null, "Você precisar estar Logado");
 				}
 				
+				
+				break;
+				
+			case "Ver Detalhes":
+				
+				if(liberarDetalhes==true) {
+					JOptionPane.showMessageDialog(null, "Horas Trabalhadas: " + 
+							fachadaHorario.horasTrabalhadas(projetoSelecionado.getDataInicio(), projetoSelecionado.getDataTermino(), textLogin.getText())
+									+ "\nDéficit Horas: " + 
+							controllerTelaPonto.deficitHoras(projetoSelecionado.getDataInicio(), projetoSelecionado.getDataTermino(), textLogin.getText())
+									+ "\nPontos Inválidos: " +
+							controllerTelaPonto.pontosInvalidos(textLogin.getText()));
+				} else {
+					JOptionPane.showMessageDialog(null, "Você precisar bater o ponto");
+				}
 				
 				break;
 			}
