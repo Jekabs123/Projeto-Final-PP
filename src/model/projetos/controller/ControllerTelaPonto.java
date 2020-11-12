@@ -19,7 +19,7 @@ public class ControllerTelaPonto {
 	
 	public void conectarProxy (Projeto projeto, String login) {
 		try {
-			ponto = (InterfaceAcessoRemotoPonto) Naming.lookup("rmi://"+InetAddress.getLocalHost().getHostAddress()+":1090/PontoService");
+			ponto = (InterfaceAcessoRemotoPonto) Naming.lookup("rmi://"+InetAddress.getLocalHost().getHostAddress()+":1099/PontoService");
 			ponto.registrarPonto(projeto, login);
 		} catch (MalformedURLException | RemoteException | NotBoundException error) {
 			error.printStackTrace();

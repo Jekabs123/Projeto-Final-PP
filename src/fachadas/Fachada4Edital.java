@@ -1,5 +1,6 @@
 package fachadas;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.projetos.Edital;
@@ -27,7 +28,7 @@ private DAOXMLEdital editalXML = new DAOXMLEdital();
 	 * @param id: � o id onde se encontra o edital
 	 * @return: retorna true se for excluido o edital e false se n�o
 	 */
-	public boolean removerEdital(long id) {
+	public boolean removerEdital(int id) {
 		Edital edital = pesquisarEdital(id);
 		if(edital.getProjetos().size() > 0) {
 			return false;
@@ -40,22 +41,22 @@ private DAOXMLEdital editalXML = new DAOXMLEdital();
 	 * @param edital: � o edital atualizado que vai ser salvo na persist�ncia
 	 * @param id: � o id onde o edital atualizado vai ficar
 	 */
-	public void atualizarEdital(Edital edital, long id) {
-		editalXML.atualizar(id, edital);
+	public void atualizarEdital() {
+		editalXML.atualizar();
 	}
 	/**
 	 * Esse m�todo pesquisa o edital de acordo com o id passado
 	 * @param idEdital: � o id do edital que voc� quer pesquisar
 	 * @return: retorna o Edital se achar e null se n�o achar
 	 */
-	public Edital pesquisarEdital(long idEdital){
+	public Edital pesquisarEdital(int idEdital){
 		return editalXML.pesquisarEdital(idEdital);
 	}
 	/**
 	 * Esse m�todo retorna a lista de editais
 	 * @return: retorna uma lista de editais se existir ou uma lista vazia se n�o
 	 */
-	public HashMap<Long,Edital> getEditais(){
+	public ArrayList<Edital> getEditais(){
 		return editalXML.getEdital();
 	}
 }

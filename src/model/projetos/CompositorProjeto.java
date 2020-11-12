@@ -15,6 +15,8 @@ public abstract class CompositorProjeto {
 	 * {@link #dataTermino} Esse atributo informa a data que vai ser terminada
 	 * {@link #interfaces} � a lista que vai guardar os conteineres
 	 */
+	
+	private int id;
 	private String nome;
 	private boolean ativo;
 	private long dataInicio;
@@ -95,6 +97,12 @@ public abstract class CompositorProjeto {
 	}
 	public ArrayList<CompositorProjeto> getCompositorProjeto() {
 		return compositorProjeto;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

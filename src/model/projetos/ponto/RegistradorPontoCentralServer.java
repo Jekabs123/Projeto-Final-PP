@@ -11,9 +11,10 @@ public class RegistradorPontoCentralServer {
 		try {
 
 			System.setProperty("java.rmi.server.hostname", InetAddress.getLocalHost().getHostName());
-			LocateRegistry.createRegistry(1090); //Colocar a porta
+			LocateRegistry.createRegistry(1099); //Colocar a porta
 			InterfaceAcessoRemotoPonto registrarPontoCentral = new RegistradorPontoCentral();
 			Naming.bind("PontoService", (Remote) registrarPontoCentral);
+			System.out.println("Servidor rodando...");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,5 +1,6 @@
 package fachadas;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.projetos.Edital;
@@ -13,7 +14,7 @@ public class Fachada8Relatorio {
 	 * {@link #editais} Esse atributo guarda a lista de editais
 	 * {@link #grupos} Esse atributo guarda a lista de grupos
 	 */
-	private HashMap<Long, Edital> editais;
+	private ArrayList<Edital> editais;
 	private HashMap<Long, Grupo> grupos; 
 	
 	/**

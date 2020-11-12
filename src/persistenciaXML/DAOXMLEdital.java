@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -12,44 +13,44 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import model.projetos.Edital;
-import model.projetos.Grupo;
 
 public class DAOXMLEdital {
 	
-	private HashMap<Long, Edital> persistidos = carregarXML();
+//	private HashMap<Long, Edital> persistidos = carregarXML();
+	private ArrayList<Edital> persistidos = carregarXML();
 	private File arquivoColecao;
 	private XStream xstream = new XStream(new DomDriver("ISO-8859-1"));
 	
-	public boolean criar(Edital edital) {   
-		for (int i = 0; i <= persistidos.size(); i++) {            //PERCORRO A LISTA
-			if(persistidos.size() == i) {                          //SE O TAMANHO DA LISTA FOR IGUAL AO I
-				persistidos.put((long) (i+1), edital);                     //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
-				salvarXML();                                       //SALVO O ARQUIVO   
-				return true;                                       //RETORNO TRUE SE DEU CERTO
-			}
-		}
-		return false;      
+	public void criar(Edital edital) {   										                        
+				persistidos.add(edital);                   
+				salvarXML();                                                                 
 	}
 	
-	public void remover(long id) { 
-		persistidos.remove(id);                                   //REMOVE PELA CHAVE
-		salvarXML();                                              //SALVA
-	}
-	
-	public boolean atualizar(long id, Edital edital) {   
-		for (int i = 0; i < persistidos.size(); i++) {           //PERCORRO A LISTA
-			if(id <= persistidos.size()) {                       //SE O ID FOR MENOR QUE O TAMANHO DA LISTA, SIGNIFICA QUE O OBJETO ESTÁ NELA
-				persistidos.put(id, edital);                     //ATUALIZO O OBJETO PARA O ID DESEJADO
-				salvarXML();                                     //SALVO O ARQUIVO
-				return true;                                     //RETORNO TRUE SE DEU CERTO
+	public void remover(int id) { 
+		for (Edital edital : persistidos) {
+			if(edital.getId()==id) {
+				persistidos.remove(edital.getId());
+				break;
 			}
 		}
-		return false;                                            //RETORNO FALSE SE DEU ERRADO
+                                
+		salvarXML();                                         
 	}
-	public Edital pesquisarEdital(long idEdital){
-		return persistidos.get(idEdital);
+	
+	public void atualizar() {           
+		salvarXML();                                     			                                          
 	}
-	public HashMap<Long,Edital> getEdital(){
+	
+	public Edital pesquisarEdital(int id){
+		for (Edital edital : persistidos) {
+			if(edital.getId()==id) {
+				return edital;
+			}
+		}
+		return null;
+		
+	}
+	public ArrayList<Edital> getEdital(){
 		return carregarXML();
 	}
 	public HashSet<Edital> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
@@ -137,17 +138,17 @@ public class DAOXMLEdital {
 		}
 	}
 	
-	private HashMap<Long, Edital> carregarXML() {                       
+	private ArrayList<Edital> carregarXML() {                       
 		arquivoColecao = new File("Edital.xml");
 		try {
 			if(arquivoColecao.exists()) {
 				FileInputStream fis = new FileInputStream(arquivoColecao);
-				return (HashMap<Long, Edital>) xstream.fromXML(fis);
+				return (ArrayList<Edital>) xstream.fromXML(fis);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return new HashMap<Long, Edital>();
+		return new ArrayList<Edital>();
 	}
 
 }
