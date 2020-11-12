@@ -36,7 +36,7 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	}
 
 	@Override
-	public ArrayList<Projeto> getProjetosAtivos() { //Eu deixei assim faz mais sentido
+	public ArrayList<Projeto> getProjetosAtivos() { 
 		return projetoAtivos;
 	}
 

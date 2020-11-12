@@ -16,7 +16,6 @@ import model.projetos.Edital;
 
 public class DAOXMLEdital {
 	
-//	private HashMap<Long, Edital> persistidos = carregarXML();
 	private ArrayList<Edital> persistidos = carregarXML();
 	private File arquivoColecao;
 	private XStream xstream = new XStream(new DomDriver("ISO-8859-1"));
@@ -29,7 +28,7 @@ public class DAOXMLEdital {
 	public void remover(int id) { 
 		for (Edital edital : persistidos) {
 			if(edital.getId()==id) {
-				persistidos.remove(edital.getId());
+				persistidos.remove(edital);
 				break;
 			}
 		}
@@ -53,53 +52,53 @@ public class DAOXMLEdital {
 	public ArrayList<Edital> getEdital(){
 		return carregarXML();
 	}
-	public HashSet<Edital> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
-		HashSet<Edital> editaisAnd = new HashSet<Edital>();
+	public ArrayList<Edital> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
+		ArrayList<Edital> editaisAnd = new ArrayList<Edital>();
 
-		for (int i = 0; i < persistidos.size(); i++) {
+		for (Edital i : persistidos) {
 			for (int x = 0; x<atributos.length;x++) {
 				if(atributos[x].equalsIgnoreCase("Nome")) {
-					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())){
+					if(!respectivosValoresAtributos[x].equals(i.getNome())){
 						return editaisAnd;
 					}
 			}
 			else if(atributos[x].equalsIgnoreCase("CapitalReaisNaoGastoTotal")){
-				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCapitalReaisNaoGastoTotal()){
+				if((float) respectivosValoresAtributos[x] != i.getCapitalReaisNaoGastoTotal()){
 					return editaisAnd;
 				}
 			}
 			else if(atributos[x].equalsIgnoreCase("CusteioReaisNaoGastoTotal")){
-				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCusteioReaisNaoGastoTotal()){
+				if((float) respectivosValoresAtributos[x] != i.getCusteioReaisNaoGastoTotal()){
 					return editaisAnd;
 				}
 			}
 			else if(atributos[x].equalsIgnoreCase("CustoTotal")){
-				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCustoTotal()){
+				if((float) respectivosValoresAtributos[x] != i.getCustoTotal()){
 					return editaisAnd;
 				}
 			}
 			else if(atributos[x].equalsIgnoreCase("DataInicio")){
-				if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataInicio()){
+				if((long) respectivosValoresAtributos[x] != i.getDataInicio()){
 					return editaisAnd;
 				}
 			}
 			else if(atributos[x].equalsIgnoreCase("DataTermino")){
-				if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataTermino()){
+				if((long) respectivosValoresAtributos[x] != i.getDataTermino()){
 					return editaisAnd;
 				}
 			}else{
 				return editaisAnd;
 			}
 		  }
-			editaisAnd.add(persistidos.get(i));
+			editaisAnd.add(i);
 		}
 		return editaisAnd;
 	}
 	
-	public HashSet<Edital> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
-		HashSet<Edital> editais = new HashSet<Edital>();
+	public ArrayList<Edital> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
+		ArrayList<Edital> editais = new ArrayList<Edital>();
 
-		for (int i = 0; i < persistidos.size(); i++) {
+		for (Edital i : persistidos) {
 			for (int j = 0; j < atributos.length; j++) {
 				//consulta os atributos
 				if(atributos[j].equalsIgnoreCase("Nome") || 
@@ -110,13 +109,13 @@ public class DAOXMLEdital {
 						atributos[j].equalsIgnoreCase("DataTermino")) {
 					
 					//compara o valor dos atributos respectivamente
-					if(respectivosValoresAtributos[j].equals(persistidos.get(i).getNome()) ||
-							(float) respectivosValoresAtributos[j] == persistidos.get(i).getCapitalReaisNaoGastoTotal() ||
-							(float) respectivosValoresAtributos[j] == persistidos.get(i).getCusteioReaisNaoGastoTotal() ||
-							(float) respectivosValoresAtributos[j] == persistidos.get(i).getCustoTotal() ||
-							(long) respectivosValoresAtributos[j] == persistidos.get(i).getDataInicio() ||
-							(long) respectivosValoresAtributos[j] == persistidos.get(i).getDataTermino()) {
-						editais.add(persistidos.get(i));
+					if(respectivosValoresAtributos[j].equals(i.getNome()) ||
+							(float) respectivosValoresAtributos[j] == i.getCapitalReaisNaoGastoTotal() ||
+							(float) respectivosValoresAtributos[j] == i.getCusteioReaisNaoGastoTotal() ||
+							(float) respectivosValoresAtributos[j] == i.getCustoTotal() ||
+							(long) respectivosValoresAtributos[j] == i.getDataInicio() ||
+							(long) respectivosValoresAtributos[j] == i.getDataTermino()) {
+						editais.add(i);
 					}
 				}
 			}
