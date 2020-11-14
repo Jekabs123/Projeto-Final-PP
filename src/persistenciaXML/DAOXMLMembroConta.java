@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -17,74 +18,70 @@ import model.projetos.Projeto;
 
 public class DAOXMLMembroConta {
 	
-	private HashMap<Long, Membro> persistidos = carregarXML();
+	private DAOMembro persistidos;
 	private File arquivoColecao;
 	private XStream xstream = new XStream(new DomDriver("ISO-8859-1"));
 	
-	
-	public boolean criar(Membro membro) {   
-		for (int i = 0; i <= persistidos.size(); i++) {            //PERCORRO A LISTA
-			if(persistidos.size() == i) {                          //SE O TAMANHO DA LISTA FOR IGUAL AO I
-				persistidos.put((long) (i+1), membro);                     //ADICIONO O PROJETO NA POSIÇÃO(CHAVE) I+1
-				salvarXML();                                       //SALVO O ARQUIVO   
-				return true;                                       //RETORNO TRUE SE DEU CERTO
-			}
-		}
-		return false;  
+	public DAOXMLMembroConta() {
+		persistidos = carregarXML();
 	}
-	
-	public void remover(long id) {
-		persistidos.remove(id);                                   //REMOVE PELA CHAVE
-		salvarXML();                                              //SALVA
-	}
-	public void remover(Membro membro){
-		persistidos.remove(membro);
+	public void criar(Membro membro) {   
+		persistidos.add(membro);
 		salvarXML();
 	}
-	public boolean atualizar(long id, Membro membro) { 
-		for (int i = 0; i < persistidos.size(); i++) {           //PERCORRO A LISTA
-			if(id <= persistidos.size()) {                       //SE O ID FOR MENOR QUE O TAMANHO DA LISTA, SIGNIFICA QUE O OBJETO ESTÁ NELA
-				persistidos.put(id, membro);                     //ATUALIZO O OBJETO PARA O ID DESEJADO
-				salvarXML();                                     //SALVO O ARQUIVO
-				return true;                                     //RETORNO TRUE SE DEU CERTO
+	
+	public void remover(long matricula) {
+		for(Membro m : persistidos.getMembros()){
+			if(m.getMatricula()== matricula){
+				persistidos.remove(m);
+				break;
 			}
 		}
-		return false;                                            //RETORNO FALSE SE DEU ERRADO
+		salvarXML();                                              
 	}
-	public Membro pesquisarMembro(long idMembro){
-		return persistidos.get(idMembro);
+
+	public void atualizar() { 
+		salvarXML();                                     
 	}
-	public HashMap<Long, Membro> getMembro(){
-		return carregarXML();
+	public Membro pesquisarMembro(long matricula){
+		for(Membro m: persistidos.getMembros()){
+			if(m.getMatricula() == matricula){
+				return m;
+			}
+		}
+		return null;
+	}
+	public ArrayList<Membro> getMembro(){
+		return carregarXML().getMembros();
 	}
 	public HashSet<Membro> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Membro> membroAnd = new HashSet<Membro>();
 
-		for (int i = 0; i < persistidos.size(); i++) {
+		for (Membro m: persistidos.getMembros()) {
 			for (int x = 0; x < atributos.length; x++) {
 				//consulta os atributos
 				if(atributos[x].equalsIgnoreCase("Matricula")){
-					if((long)respectivosValoresAtributos[x] != persistidos.get(i).getMatricula()){
+					if((long)respectivosValoresAtributos[x] != m.getMatricula()){
 						return membroAnd;
 					}
 				}
 				else if(atributos[x].equalsIgnoreCase("Nome")){
-					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())){
+					if(!respectivosValoresAtributos[x].equals(m.getNome())){
 						return membroAnd;
 					}
 				}
 				else if(atributos[x].equalsIgnoreCase("Ativo")){
-					if((boolean) respectivosValoresAtributos[x] != persistidos.get(i).isAtivo()){
+					if((boolean) respectivosValoresAtributos[x] != m.isAtivo()){
 						return membroAnd;
 					}
 				}
-				else if(atributos[x].equals(persistidos.get(i).getEmail())){
-					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getEmail())){
+				else if(atributos[x].equals(m.getEmail())){
+					if(!respectivosValoresAtributos[x].equals(m.getEmail())){
 						return membroAnd;
 					}
 				}
-				else if(atributos[x].equals(persistidos.get(i).getAdministrador())){
-					if((boolean)respectivosValoresAtributos[x] != persistidos.get(i).getAdministrador()){
+				else if(atributos[x].equals(m.getAdministrador())){
+					if((boolean)respectivosValoresAtributos[x] != m.getAdministrador()){
 						return membroAnd;
 					}
 				}else{
@@ -92,7 +89,7 @@ public class DAOXMLMembroConta {
 				}
 				
 			  }
-				membroAnd.add(persistidos.get(i));
+				membroAnd.add(m);
 			}
 		return membroAnd;
 	}
@@ -100,7 +97,7 @@ public class DAOXMLMembroConta {
 	public HashSet<Membro> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Membro> membroOr = new HashSet<Membro>();
 
-		for (int i = 0; i < persistidos.size(); i++) {
+		for (Membro m: persistidos.getMembros()) {
 			for (int j = 0; j < atributos.length; j++) {
 				//consulta os atributos
 				if(atributos[j].equalsIgnoreCase("Matricula") ||
@@ -110,12 +107,12 @@ public class DAOXMLMembroConta {
 						atributos[j].equalsIgnoreCase("Administrador")) {
 					
 					//compara o valor dos atributos respectivamente
-					if((long) respectivosValoresAtributos[j] == persistidos.get(i).getMatricula() ||
-							respectivosValoresAtributos[j].equals(persistidos.get(i).getNome()) ||
-							(boolean) respectivosValoresAtributos[j] == persistidos.get(i).isAtivo()||
-							respectivosValoresAtributos[j].equals(persistidos.get(i).getEmail()) ||
-							(boolean) respectivosValoresAtributos[j] == persistidos.get(i).getAdministrador()) {
-						membroOr.add(persistidos.get(i));
+					if((long) respectivosValoresAtributos[j] == m.getMatricula() ||
+							respectivosValoresAtributos[j].equals(m.getNome()) ||
+							(boolean) respectivosValoresAtributos[j] == m.isAtivo()||
+							respectivosValoresAtributos[j].equals(m.getEmail()) ||
+							(boolean) respectivosValoresAtributos[j] == m.getAdministrador()) {
+						membroOr.add(m);
 					}
 				}
 			}
@@ -137,17 +134,17 @@ public class DAOXMLMembroConta {
 		}
 	}
 	
-	private HashMap<Long, Membro> carregarXML() {                        
+	private DAOMembro carregarXML() {                        
 		arquivoColecao = new File("MembroConta.xml");
 		try {
 			if(arquivoColecao.exists()) {
 				FileInputStream fis = new FileInputStream(arquivoColecao);
-				return (HashMap<Long, Membro>) xstream.fromXML(fis);
+				 return (DAOMembro) xstream.fromXML(fis);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return new HashMap<Long, Membro>();
+		return new DAOMembro();
 	}
 
 }

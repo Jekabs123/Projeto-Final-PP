@@ -7,14 +7,14 @@ public class Fachada9MembroRealizarLogout {
 	private static RegistradorSessaoLogin registradorSessao = RegistradorSessaoLogin.getInstance();
 	private static Fachada1Membro fachadaMembro = new Fachada1Membro();
 	
-	public static void realizarLogin(long id, Membro membro){
+	public static void realizarLogin(Membro membro){
 		registradorSessao.RegistradorOnline(membro);
-		fachadaMembro.atualizarMembro(id, membro);
+		fachadaMembro.atualizarMembro();
 	}
 	
-	public static void realizarLogout(String login,long id, Membro membro){
+	public static void realizarLogout(String login, Membro membro){
 		registradorSessao.RegistradorOffline(login);
-		fachadaMembro.atualizarMembro(id, membro);
+		fachadaMembro.atualizarMembro();
 	}
 	
 	public static boolean isOnline(String login){

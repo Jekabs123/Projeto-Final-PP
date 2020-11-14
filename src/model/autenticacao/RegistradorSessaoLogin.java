@@ -1,13 +1,13 @@
 package model.autenticacao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import fachadas.Fachada1Membro;
 
 public class RegistradorSessaoLogin {
 	
 	private static RegistradorSessaoLogin registrador;
-	private HashMap<Long, Membro> membros = Fachada1Membro.getMembro();
+	private ArrayList<Membro> membros = Fachada1Membro.getMembro();
 	
 	private RegistradorSessaoLogin() {
 		

@@ -1,19 +1,18 @@
 package model.autenticacao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import fachadas.Fachada1Membro;
-import fachadas.Fachada6MembroEmail;
 
 public class ContaAutenticacaoProvedorInterno extends Conta{
 
 	@Override
 	public Membro autenticar(String login, String senha) { 
-		HashMap<Long, Membro> membros = Fachada1Membro.getMembro();
-		for(int i = 0;i<=membros.size();i++){
-			if(membros.get(i).getLogin().equals(login)&&
-			   membros.get(i).getSenha().equals(senha)){
-				return membros.get(i);
+		ArrayList<Membro> membros = Fachada1Membro.getMembro();
+		for(Membro m : membros){
+			if(m.getLogin().equals(login)&&
+			   m.getSenha().equals(senha)){
+				return m;
 			}
 		}
 		return null;

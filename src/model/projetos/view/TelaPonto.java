@@ -141,7 +141,7 @@ public class TelaPonto extends JFrame {
 						if(Fachada5Projeto.getProjetosPersistidos().get(j).equals(projetoSelecionado)) {
 							for (int i = 0; i < Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().size(); i++) {
 								if(Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i).getLogin().equals(textLogin.getText())) {
-									Fachada9MembroRealizarLogout.realizarLogin(i, Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i));
+									Fachada9MembroRealizarLogout.realizarLogin(Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i));
 									Fachada9MembroRealizarLogout.isOnline(textLogin.getText());
 									JOptionPane.showMessageDialog(null, "Logado");
 									liberarBaterPonto = true;

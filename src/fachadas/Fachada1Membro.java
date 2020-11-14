@@ -1,6 +1,6 @@
 package fachadas;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import model.autenticacao.ContaEmail;
 import model.autenticacao.ContaEmailLivre;
@@ -11,7 +11,7 @@ public class Fachada1Membro {
 
 	private static DAOXMLMembroConta membroXML = new DAOXMLMembroConta();
 	
-	public boolean adicionarMembroNoSistema(Membro membro,ContaEmail contaEmail){
+	public void adicionarMembroNoSistema(Membro membro,ContaEmail contaEmail){
 			
 		if (contaEmail instanceof ContaEmailLivre) {
 			((ContaEmailLivre) contaEmail).criptografarSenha(contaEmail.getSenha());
@@ -22,18 +22,18 @@ public class Fachada1Membro {
 		if(membroXML.getMembro().size()==0){
 			membro.setAdministrador(true);
 		}
-		return membroXML.criar(membro);
+		membroXML.criar(membro);
 	}
-	public boolean atualizarMembro(long idMembro,Membro membro){
-		return membroXML.atualizar(idMembro, membro);
+	public void atualizarMembro(){
+		membroXML.atualizar();
 	}
-	public Membro pesquisarMembro(long idMembro){
-		return membroXML.pesquisarMembro(idMembro);
+	public Membro pesquisarMembro(long matricula){
+		return membroXML.pesquisarMembro(matricula);
 	}
-	public static HashMap<Long, Membro> getMembro(){
+	public static ArrayList<Membro> getMembro(){
 		return membroXML.getMembro();
 	}
-	public void removerMembroDoSistema(long idMembro){
-		membroXML.remover(idMembro);
+	public void removerMembroDoSistema(long matricula){
+		membroXML.remover(matricula);
 	}
 }
