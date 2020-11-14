@@ -3,12 +3,15 @@ package model.projetos.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout.Group;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -32,6 +35,8 @@ public class TelaPonto extends JFrame {
 	
 	private JComboBox<Projeto> listComboBox;
 	private JTextField textLogin;
+	private JRadioButton provedorInterno;
+	private JRadioButton provedorSMTP;
 	
 	public TelaPonto() {
 		setTitle("Bater Ponto");
@@ -55,6 +60,7 @@ public class TelaPonto extends JFrame {
      	textFields();
      	buttonLogar();
      	comboBox();
+     	radioButton();
      	botaoBaterPonto(null, null);
      	botaoVerDetalhes();
      	setVisible(true);
@@ -64,7 +70,7 @@ public class TelaPonto extends JFrame {
 	
 	public void labels() {
 		JLabel labelProjeto = new JLabel("Projetos");
-		labelProjeto.setBounds(120, 200, 60, 30);
+		labelProjeto.setBounds(30, 170, 60, 30);
 		add(labelProjeto);
 		
 		JLabel labelLogin = new JLabel("Login");
@@ -97,14 +103,30 @@ public class TelaPonto extends JFrame {
 	public void comboBox() {
 		Projeto[] projetosComboBox = Fachada5Projeto.getProjetosPersistidos().toArray(new Projeto[0]);
 		listComboBox = new JComboBox<Projeto>(projetosComboBox);
-		listComboBox.setBounds(190, 200, 100, 30);
+		listComboBox.setBounds(110, 170, 200, 30);
 		add(listComboBox);
+	}
+	
+	public void radioButton() {
+		provedorInterno = new JRadioButton("Provedor Interno");
+		provedorInterno.setBounds(30, 220, 150, 30);
+		provedorInterno.setSelected(true);
+		
+		provedorSMTP = new JRadioButton("Provedor SMTP");
+		provedorSMTP.setBounds(200, 220, 150, 30);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(provedorInterno);
+		group.add(provedorSMTP);
+		
+		add(provedorInterno);
+		add(provedorSMTP);
 	}
 	
 	
 	public void botaoBaterPonto(Projeto projeto, String login) {
 		JButton btBaterPonto = new JButton("Bater Ponto");
-		btBaterPonto.setBounds(150, 250, 100, 30);
+		btBaterPonto.setBounds(150, 290, 100, 30);
 		add(btBaterPonto);
 		
 		btBaterPonto.addActionListener(ouvinteBaterPonto);
@@ -113,7 +135,7 @@ public class TelaPonto extends JFrame {
 	
 	public void botaoVerDetalhes() {
 		JButton btBaterPonto = new JButton("Ver Detalhes");
-		btBaterPonto.setBounds(150, 300, 100, 30);
+		btBaterPonto.setBounds(150, 340, 100, 30);
 		add(btBaterPonto);
 		
 		btBaterPonto.addActionListener(ouvinteBaterPonto);
