@@ -17,8 +17,10 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import fachadas.Fachada13Horario;
+import fachadas.Fachada2Autenticacao;
 import fachadas.Fachada5Projeto;
 import fachadas.Fachada9MembroRealizarLogout;
+import model.autenticacao.TipoProvedorAutenticacao;
 import model.projetos.Projeto;
 import model.projetos.controller.ControllerTelaPonto;
 
@@ -27,6 +29,7 @@ import model.projetos.controller.ControllerTelaPonto;
 public class TelaPonto extends JFrame {
 	
 	private Fachada13Horario fachadaHorario = new Fachada13Horario();
+	private Fachada2Autenticacao fachadaAutenticacao = new Fachada2Autenticacao();
 	
 	private OuvinteBaterPonto ouvinteBaterPonto = new OuvinteBaterPonto();
 	
@@ -35,6 +38,7 @@ public class TelaPonto extends JFrame {
 	
 	private JComboBox<Projeto> listComboBox;
 	private JTextField textLogin;
+	private JTextField textSenha;
 	private JRadioButton provedorInterno;
 	private JRadioButton provedorSMTP;
 	
@@ -70,7 +74,7 @@ public class TelaPonto extends JFrame {
 	
 	public void labels() {
 		JLabel labelProjeto = new JLabel("Projetos");
-		labelProjeto.setBounds(30, 170, 60, 30);
+		labelProjeto.setBounds(30, 220, 60, 30);
 		add(labelProjeto);
 		
 		JLabel labelLogin = new JLabel("Login");
@@ -87,14 +91,14 @@ public class TelaPonto extends JFrame {
 		textLogin.setBounds(110, 30, 200, 30);
 		add(textLogin);
 		
-		JTextField textSenha = new JPasswordField();
+		textSenha = new JPasswordField();
 		textSenha.setBounds(110, 70, 200, 30);
 		add(textSenha);
 	}
 	
 	public void buttonLogar() {
 		JButton btBaterPonto = new JButton("Logar");
-		btBaterPonto.setBounds(150, 120, 100, 30);
+		btBaterPonto.setBounds(150, 170, 100, 30);
 		add(btBaterPonto);
 		
 		btBaterPonto.addActionListener(ouvinteBaterPonto);
@@ -103,17 +107,17 @@ public class TelaPonto extends JFrame {
 	public void comboBox() {
 		Projeto[] projetosComboBox = Fachada5Projeto.getProjetosPersistidos().toArray(new Projeto[0]);
 		listComboBox = new JComboBox<Projeto>(projetosComboBox);
-		listComboBox.setBounds(110, 170, 200, 30);
+		listComboBox.setBounds(110, 220, 200, 30);
 		add(listComboBox);
 	}
 	
 	public void radioButton() {
 		provedorInterno = new JRadioButton("Provedor Interno");
-		provedorInterno.setBounds(30, 220, 150, 30);
+		provedorInterno.setBounds(30, 120, 150, 30);
 		provedorInterno.setSelected(true);
 		
 		provedorSMTP = new JRadioButton("Provedor SMTP");
-		provedorSMTP.setBounds(200, 220, 150, 30);
+		provedorSMTP.setBounds(200, 120, 150, 30);
 		
 		ButtonGroup group = new ButtonGroup();
 		group.add(provedorInterno);
@@ -157,6 +161,14 @@ public class TelaPonto extends JFrame {
 				
 			case "Logar":
 				
+				TipoProvedorAutenticacao provedor;
+				
+				if (provedorInterno.isSelected()) {
+					provedor = TipoProvedorAutenticacao.INTERNO;
+				}else {
+					provedor = TipoProvedorAutenticacao.EMAIL_SMTP;
+				}
+				
 			//TODO Confere essa lógica kkkkk, ficou bem locão - Inathan
 				if( Fachada5Projeto.getProjetosPersistidos().size()>0) {
 					for (int j = 0; j < Fachada5Projeto.getProjetosPersistidos().size(); j++) {
@@ -165,6 +177,7 @@ public class TelaPonto extends JFrame {
 								if(Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i).getLogin().equals(textLogin.getText())) {
 									Fachada9MembroRealizarLogout.realizarLogin(Fachada5Projeto.getProjetosPersistidos().get(j).getMembros().get(i));
 									Fachada9MembroRealizarLogout.isOnline(textLogin.getText());
+									fachadaAutenticacao.autenticarContaEmailProvedor(textLogin.getText(), textSenha.getText(), provedor);
 									JOptionPane.showMessageDialog(null, "Logado");
 									liberarBaterPonto = true;
 								}
@@ -181,6 +194,8 @@ public class TelaPonto extends JFrame {
 				break;
 			
 			case "Bater Ponto":
+				
+				//TODO acho que tem que usar a fachada, né isso? 
 				
 				if(liberarBaterPonto==true) {
 					controllerTelaPonto.conectarProxy(projetoSelecionado, textLogin.getText());
