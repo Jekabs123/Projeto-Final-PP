@@ -1,7 +1,6 @@
 package fachadas;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import model.projetos.Edital;
 import persistenciaXML.DAOXMLEdital;

@@ -20,6 +20,5 @@ public class DAOMembro {
 	public void setMembros(ArrayList<Membro> membros) {
 		this.membros = membros;
 	}
-	
-	
+
 }

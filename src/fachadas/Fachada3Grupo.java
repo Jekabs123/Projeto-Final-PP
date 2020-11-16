@@ -1,6 +1,6 @@
 package fachadas;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import model.autenticacao.Membro;
 import model.projetos.Grupo;
@@ -27,7 +27,7 @@ public class Fachada3Grupo {
 	 * @param id: e o id do grupo para que possa remover da persistencia.
 	 * @return: retorna true se remover o grupo da persistencia e false se nao.
 	 */
-	public boolean removerGrupo(long id) {
+	public boolean removerGrupo(int id) {
 		Grupo grupo = pesquisarGrupo(id);
 		if(grupo.getGrupos().size() > 0) {
 			return false;
@@ -41,8 +41,8 @@ public class Fachada3Grupo {
 	 * @param id: ï¿½ o id onde grupo vai ficar no HashMap da persistï¿½ncia.
 	 * @return: retorna true se o grupo atualizar e false se nï¿½o.
 	 */
-	public boolean atualizarGrupo(Grupo grupo, long id) {
-		return grupoXML.atualizar(id, grupo);
+	public void atualizarGrupo() {
+		grupoXML.atualizar();
 	}
 	/**
 	 * Esse mï¿½todo adiciona um membro no grupo selecionado
@@ -50,16 +50,15 @@ public class Fachada3Grupo {
 	 * @param idDoGrupo: ï¿½ o id do grupo que vai ser adicionado
 	 * @return: retorna true se adicionar o membro no grupo e false se nï¿½o
 	 */
-	public boolean adicionarMembroNoGrupo(Membro membro,long idDoGrupo){
+	public void adicionarMembroNoGrupo(Membro membro, int idDoGrupo){
 		try{
 			// adiciona o membro para o grupo
 			Grupo grupo = pesquisarGrupo(idDoGrupo);
 			grupo.adicionarMembro(membro);
-			return grupoXML.atualizar(idDoGrupo, grupo);
+			grupoXML.atualizar();
 		}catch(Exception e){
 			System.out.println("Nï¿½o existe Grupo com este ID");
 		}
-		return false;
 	}
 	/**
 	 * Esse mï¿½todo remove um Membro do Grupo selecionado
@@ -67,30 +66,29 @@ public class Fachada3Grupo {
 	 * @param idDoGrupo: ï¿½ o id do Grupo que vai ser removido o membro
 	 * @return: retorna true se for removido e false se nï¿½o
 	 */
-	public boolean removerMembroDoGrupo(Membro membro,long idDoGrupo){
+	public void removerMembroDoGrupo(Membro membro, int idDoGrupo){
 		try{
 			//remove o membro do grupo
 			Grupo grupo = pesquisarGrupo(idDoGrupo);
 			grupo.removerMembro(membro);
-			return grupoXML.atualizar(idDoGrupo, grupo);
+			grupoXML.atualizar();
 		}catch(Exception e){
 			System.out.println("Não foi possivel remover o membro");
 		}
-		return false;
 	}
 	/**
 	 * Esse mï¿½todo pesquisa um grupo na persistï¿½ncia grupoXML
 	 * @param id: ï¿½ o id do grupo que vocï¿½ quer pesquisar na persistï¿½ncia grupoXML
 	 * @return: retorna o Grupo se achar e null se nï¿½o achar o grupo
 	 */
-	public Grupo pesquisarGrupo(long id){
+	public Grupo pesquisarGrupo(int id){
 		return grupoXML.pesquisarGrupo(id);
 	}
 	/**
 	 * Esse mï¿½todo retorna uma lista de grupo
 	 * @return: retorna uma lista de grupo de existir se nï¿½o ele retorna uma lista vazia
 	 */
-	public HashMap<Long, Grupo> getGrupos(){
+	public ArrayList<Grupo> getGrupos(){
 		return grupoXML.getGrupo();
 	}
 }

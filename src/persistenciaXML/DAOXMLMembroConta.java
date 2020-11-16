@@ -6,30 +6,28 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import model.autenticacao.Membro;
-import model.projetos.Grupo;
-import model.projetos.Projeto;
 
 public class DAOXMLMembroConta {
-	
+
 	private DAOMembro persistidos;
 	private File arquivoColecao;
 	private XStream xstream = new XStream(new DomDriver("ISO-8859-1"));
-	
+
 	public DAOXMLMembroConta() {
 		persistidos = carregarXML();
 	}
+
 	public void criar(Membro membro) {   
 		persistidos.add(membro);
 		salvarXML();
 	}
-	
+
 	public void remover(long matricula) {
 		for(Membro m : persistidos.getMembros()){
 			if(m.getMatricula()== matricula){
@@ -87,13 +85,13 @@ public class DAOXMLMembroConta {
 				}else{
 					return membroAnd;
 				}
-				
-			  }
-				membroAnd.add(m);
+
 			}
+			membroAnd.add(m);
+		}
 		return membroAnd;
 	}
-	
+
 	public HashSet<Membro> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Membro> membroOr = new HashSet<Membro>();
 
@@ -105,7 +103,7 @@ public class DAOXMLMembroConta {
 						atributos[j].equalsIgnoreCase("Ativo") ||
 						atributos[j].equalsIgnoreCase("Email") ||
 						atributos[j].equalsIgnoreCase("Administrador")) {
-					
+
 					//compara o valor dos atributos respectivamente
 					if((long) respectivosValoresAtributos[j] == m.getMatricula() ||
 							respectivosValoresAtributos[j].equals(m.getNome()) ||
@@ -116,10 +114,10 @@ public class DAOXMLMembroConta {
 					}
 				}
 			}
-		 }
+		}
 		return membroOr;
 	}
-	
+
 	private void salvarXML() {
 		arquivoColecao = new File("MembroConta.xml");
 		String xml = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?>\n";
@@ -133,13 +131,13 @@ public class DAOXMLMembroConta {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private DAOMembro carregarXML() {                        
 		arquivoColecao = new File("MembroConta.xml");
 		try {
 			if(arquivoColecao.exists()) {
 				FileInputStream fis = new FileInputStream(arquivoColecao);
-				 return (DAOMembro) xstream.fromXML(fis);
+				return (DAOMembro) xstream.fromXML(fis);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
