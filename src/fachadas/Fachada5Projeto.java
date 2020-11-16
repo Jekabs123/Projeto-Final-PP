@@ -2,6 +2,7 @@ package fachadas;
 
 import java.util.ArrayList;
 
+import exception.ExceptionMembroDuplicado;
 import model.autenticacao.Membro;
 import model.projetos.Projeto;
 import persistenciaXML.DAOXMLProjetoParticipacao;
@@ -52,15 +53,19 @@ public class Fachada5Projeto {
 	 * @param idDoProjeto: é o id do projeto que vai ser adicionado o membro.
 	 * @return: retorna true se o membro for adicionado e false se não.
 	 */
-	public void adicionarMembroNoProjeto(Membro membro, int idDoProjeto){
-		try{
+	public void adicionarMembroNoProjeto(Membro membro, int idDoProjeto) {
+		
 			// adiciona o membro para o projeto
 			Projeto projeto = pesquisarProjeto(idDoProjeto);
-			projeto.adicionarMembro(membro);
+			try {
+				projeto.adicionarMembro(membro);
+			} catch (ExceptionMembroDuplicado e) {
+				System.out.println(e.getMessage());
+			}
 			projetoParticipacao.atualizar();
-		}catch(Exception e){
-			System.out.println("Não existe Projeto com este ID");
-		}
+		
+	
+		
 	}
 	/**
 	 * Método que remove o membro do projeto.

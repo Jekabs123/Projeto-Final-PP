@@ -44,9 +44,11 @@ public class Projeto extends CompositorProjeto{
 	public float getCapitalReaisNaoGastoTotal() {
 		return aporteCapitalReais-gastoExecutadoCapitalReais;
 	}
-	public void adicionarMembro(Membro membro) throws ExceptionMembroDuplicado{
+	public void adicionarMembro(Membro membro) throws ExceptionMembroDuplicado {
 		for(Membro m: membros){
-			if(m.getMatricula()==membro.getMatricula()){
+			if(m==null) {
+				break;
+			} else if (m.getMatricula()==membro.getMatricula()) {
 				 throw new ExceptionMembroDuplicado("Algum membro possui essa matricula");
 			}
 		}
@@ -98,9 +100,6 @@ public class Projeto extends CompositorProjeto{
 
 	public ArrayList<Membro> getMembros() {
 		return membros;
-	}
-	public void setMembros(ArrayList<Membro> membros) {
-		this.membros = membros;
 	}
 
 	/**

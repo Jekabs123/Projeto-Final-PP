@@ -1,7 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-
 import fachadas.Fachada1Membro;
 import fachadas.Fachada3Grupo;
 import fachadas.Fachada4Edital;
@@ -48,7 +46,7 @@ public class iniciarXML {
 		membro1.setAdministrador(true);
 		membro1.setAtivo(true);
 		membro1.setEmail("paulo@gmail.com");
-		membro1.setMatricula(1029938);
+		membro1.setMatricula(99999999);
 		membro1.setNome("Paulo Henrique Pereira de Sousa");
 		p.setNome(membro1.getNome());
 		membro1.setParticipacao(p);
@@ -80,17 +78,13 @@ public class iniciarXML {
 		membro2.setAdministrador(true);
 		membro2.setAtivo(true);
 		membro2.setEmail("inathan@gmail.com");
-		membro2.setMatricula(10203040);
+		membro2.setMatricula(77777777);
 		membro2.setNome("Inathan Moreira da Silva");
 		p2.setNome(membro2.getNome());
 		membro2.setParticipacao(p);
 		membro2.setContaEmail(contaEmail2);
 		fachadaMembro.adicionarMembroNoSistema(membro2, contaEmail2);
 		contaEmail.autenticar(contaEmail2.getLogin(), contaEmail2.getSenha());
-		
-		ArrayList<Membro> membros = new ArrayList();
-		membros.add(membro1);
-		membros.add(membro2);
 		
 		
 		//Grupo
@@ -133,12 +127,9 @@ public class iniciarXML {
 		projeto.setGastoExecutadoCusteioReais(600);
 		projeto.setId(1);
 		projeto.setNome("Projeto PP");
-		projeto.setMembros(membros);
+		fachadaProjeto.adicionarProjeto(projeto);
 		fachadaProjeto.adicionarMembroNoProjeto(membro1, 1);
 		fachadaProjeto.adicionarMembroNoProjeto(membro2, 1);
-		fachadaProjeto.adicionarProjeto(projeto);
-		
-		
 		
 	}
 }

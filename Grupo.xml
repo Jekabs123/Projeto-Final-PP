@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<map>
-  <entry>
-    <long>1</long>
+<persistenciaXML.DAOGrupo>
+  <grupos>
     <model.projetos.Grupo>
       <id>1</id>
       <nome>TATAKAE!</nome>
@@ -12,5 +11,15 @@
       <dataCriacao>0</dataCriacao>
       <membros/>
     </model.projetos.Grupo>
-  </entry>
-</map>
+    <model.projetos.Grupo>
+      <id>1</id>
+      <nome>TATAKAE!</nome>
+      <ativo>true</ativo>
+      <dataInicio>2020</dataInicio>
+      <dataTermino>2020</dataTermino>
+      <compositorProjeto/>
+      <dataCriacao>0</dataCriacao>
+      <membros/>
+    </model.projetos.Grupo>
+  </grupos>
+</persistenciaXML.DAOGrupo>

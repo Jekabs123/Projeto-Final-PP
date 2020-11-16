@@ -41,5 +41,45 @@
       </contaEmail>
       <participacao reference="../../model.autenticacao.Membro/participacao"/>
     </model.autenticacao.Membro>
+    <model.autenticacao.Membro>
+      <matricula>99999999</matricula>
+      <nome>Paulo Henrique Pereira de Sousa</nome>
+      <ativo>true</ativo>
+      <email>paulo@gmail.com</email>
+      <administrador>true</administrador>
+      <contaEmail class="model.autenticacao.ContaEmailIFPB">
+        <conta class="model.autenticacao.ContaAutenticacaoProvedorEmailSMTP">
+          <provedorHost>smtp.gmail.com</provedorHost>
+          <provedorPorta>465</provedorPorta>
+        </conta>
+        <login>paulohenrique8190@gmail.com</login>
+        <senha>wuyang50</senha>
+      </contaEmail>
+      <participacao>
+        <id>1</id>
+        <nome>Paulo Henrique Pereira de Sousa</nome>
+        <ativo>true</ativo>
+        <dataInicio>20</dataInicio>
+        <dataTermino>30</dataTermino>
+        <compositorProjeto/>
+        <aporteCusteioMensalReais>200.0</aporteCusteioMensalReais>
+        <qtdMesesCusteados>10</qtdMesesCusteados>
+        <qtdMesesPagos>5</qtdMesesPagos>
+        <coordenador>true</coordenador>
+      </participacao>
+    </model.autenticacao.Membro>
+    <model.autenticacao.Membro>
+      <matricula>77777777</matricula>
+      <nome>Inathan Moreira da Silva</nome>
+      <ativo>true</ativo>
+      <email>inathan@gmail.com</email>
+      <administrador>true</administrador>
+      <contaEmail class="model.autenticacao.ContaEmailIFPB">
+        <conta class="model.autenticacao.ContaAutenticacaoProvedorEmailSMTP"/>
+        <login>inathanmoreira@gmail.com</login>
+        <senha>sasagayo</senha>
+      </contaEmail>
+      <participacao reference="../../model.autenticacao.Membro[3]/participacao"/>
+    </model.autenticacao.Membro>
   </membros>
 </persistenciaXML.DAOMembro>
