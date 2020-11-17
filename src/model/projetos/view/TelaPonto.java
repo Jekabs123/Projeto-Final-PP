@@ -21,6 +21,7 @@ import fachadas.Fachada1Membro;
 import fachadas.Fachada2Autenticacao;
 import fachadas.Fachada5Projeto;
 import fachadas.Fachada9MembroRealizarLogout;
+import model.autenticacao.Membro;
 import model.autenticacao.TipoProvedorAutenticacao;
 import model.projetos.Projeto;
 import model.projetos.controller.ControllerTelaPonto;
@@ -117,14 +118,14 @@ public class TelaPonto extends JFrame {
 
 	public void comboBox() {
 		Projeto[] projetosComboBox = new Projeto[Fachada5Projeto.getProjetosPersistidos().size()];
-		for (int i = 0; i < Fachada5Projeto.getProjetosPersistidos().size(); i++) {
-			for (int j = 0; j < Fachada1Membro.getMembros().size(); j++) {
-				if (Fachada5Projeto.getProjetosPersistidos().get(i).getMembros().size() > 0) {
-					if(Fachada9MembroRealizarLogout.isOnline(Fachada5Projeto.getProjetosPersistidos().get(i).getMembros().get(j).getLogin())) {
-						projetosComboBox[i] =  Fachada5Projeto.getProjetosPersistidos().get(i);
+		int i = 0;
+		for (Projeto projeto : Fachada5Projeto.getProjetosPersistidos()) {
+			for (Membro membro : projeto.getMembros()) {
+					if(Fachada9MembroRealizarLogout.isOnline(membro.getLogin())) {
+						projetosComboBox[i] =  projeto;
 					}
-				}
 			}
+			i+=1;
 		}
 		
 		listComboBox = new JComboBox<Projeto>(projetosComboBox);
@@ -191,16 +192,14 @@ public class TelaPonto extends JFrame {
 				}
 
 				if(Fachada1Membro.getMembros().size() > 0) {
-					for (int i = 0; i < Fachada1Membro.getMembros().size();i++) {
-						if(Fachada1Membro.getMembros().get(i).getLogin().equals(textLogin.getText()) && 
-								Fachada1Membro.getMembros().get(i).getSenha().equals(textSenha.getText())) {
-
-							Fachada9MembroRealizarLogout.realizarLogin(Fachada1Membro.getMembros().get(i));
+					for (Membro membro: Fachada1Membro.getMembros()) {
+						if(membro.getLogin().equals(textLogin.getText()) && membro.getSenha().equals(textSenha.getText())) {
+							Fachada9MembroRealizarLogout.realizarLogin(membro);
 							fachadaAutenticacao.autenticarContaEmailProvedor(textLogin.getText(), textSenha.getText(), provedor);
 							JOptionPane.showMessageDialog(null, "Logado");
 							liberarBaterPonto = true;
 							break;
-						} else if(i==Fachada1Membro.getMembros().size()-1) {
+						} else{
 							JOptionPane.showMessageDialog(null, "Login não cadastrado");
 							
 						}
@@ -217,6 +216,7 @@ public class TelaPonto extends JFrame {
 
 				if(liberarBaterPonto==true) {
 					controllerTelaPonto.conectarProxy(projetoSelecionado, textLogin.getText());
+					
 					liberarDetalhes = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "Você precisa estar Logado");

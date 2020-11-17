@@ -34,9 +34,9 @@ public class RegistradorSessaoLogin {
 		}
 	}
 	public boolean isOnline(String login){
-		for(int i = 0; i<= membros.size();i++){
-			if(membros.get(i).getLogin().equals(login)){
-				return membros.get(i).isAtivo();
+		for(Membro membro : membros){
+			if(membro.getLogin().equals(login)){
+				return membro.isAtivo();
 			}
 		}
 		return false;
