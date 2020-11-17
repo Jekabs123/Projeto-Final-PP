@@ -7,7 +7,7 @@ import model.projetos.ponto.PontoTrabalhado;
  * @author PAULO E INATHAN - TATAKAE!
  * Essa classe � a participa��o do projeto
  */
-public class Participacao extends CompositorProjeto{
+public class Participacao extends CompositorProjeto {
 	/**
 	 * {@link #aporteCusteioMensalReais} Esse atributo informa o custeio mensal
 	 * {@link #qtdMesesCusteados} Esse atributo informa a quantidade de m�ses custeados
@@ -20,6 +20,7 @@ public class Participacao extends CompositorProjeto{
 	private boolean coordenador;
 	private HorarioPrevisto horario;
 	private PontoTrabalhado ponto;
+	
 	@Override
 	public void ativar() {
 		setAtivo(true);

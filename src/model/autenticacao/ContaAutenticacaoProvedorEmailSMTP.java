@@ -22,7 +22,7 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 		email.setAuthenticator( new DefaultAuthenticator(login, senha) );
 		try {
 			email.setFrom(login);
-			ArrayList<Membro> membrosList = Fachada1Membro.getMembro();
+			ArrayList<Membro> membrosList = Fachada1Membro.getMembros();
 				for(Membro m: membrosList){
 					if(m.getLogin().equals(login)&&
 							m.getSenha().equals(senha)){

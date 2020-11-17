@@ -7,7 +7,7 @@ import fachadas.Fachada1Membro;
 public class RegistradorSessaoLogin {
 	
 	private static RegistradorSessaoLogin registrador;
-	private ArrayList<Membro> membros = Fachada1Membro.getMembro();
+	private ArrayList<Membro> membros = Fachada1Membro.getMembros();
 	
 	private RegistradorSessaoLogin() {
 		

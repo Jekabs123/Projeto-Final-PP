@@ -30,7 +30,7 @@ public class Fachada1Membro {
 	public Membro pesquisarMembro(long matricula){
 		return membroXML.pesquisarMembro(matricula);
 	}
-	public static ArrayList<Membro> getMembro(){
+	public static ArrayList<Membro> getMembros(){
 		return membroXML.getMembro();
 	}
 	public void removerMembroDoSistema(long matricula){

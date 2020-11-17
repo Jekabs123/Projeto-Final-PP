@@ -8,7 +8,7 @@ import model.autenticacao.Membro;
  * @author PAULO E INATHAN - TATAKAE!
  * Esse Classe é o projeto do sistema
  */
-public class Projeto extends CompositorProjeto{
+public class Projeto extends CompositorProjeto {
 	/**
 	 * {@link #aporteCusteioReais} Esse atributo é o aporte destinado para o custeio
 	 * {@link #aporteCapitalReais} Esse atributo é o aporte destinado para o capital
