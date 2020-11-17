@@ -12,7 +12,7 @@ public class Fachada9MembroRealizarLogout {
 		fachadaMembro.atualizarMembro();
 	}
 	
-	public static void realizarLogout(String login, Membro membro){
+	public static void realizarLogout(String login){
 		registradorSessao.RegistradorOffline(login);
 		fachadaMembro.atualizarMembro();
 	}

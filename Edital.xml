@@ -9,13 +9,5 @@
       <dataTermino>2020</dataTermino>
       <compositorProjeto/>
     </model.projetos.Edital>
-    <model.projetos.Edital>
-      <id>1</id>
-      <nome>Edital Porjeto PP</nome>
-      <ativo>true</ativo>
-      <dataInicio>2020</dataInicio>
-      <dataTermino>2020</dataTermino>
-      <compositorProjeto/>
-    </model.projetos.Edital>
   </editais>
 </persistenciaXML.DAOEdital>

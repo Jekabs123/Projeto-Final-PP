@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import fachadas.Fachada11BaterPonto;
 import fachadas.Fachada13Horario;
 import fachadas.Fachada1Membro;
 import fachadas.Fachada2Autenticacao;
@@ -30,13 +31,14 @@ public class TelaPonto extends JFrame {
 
 	private Fachada13Horario fachadaHorario = new Fachada13Horario();
 	private Fachada2Autenticacao fachadaAutenticacao = new Fachada2Autenticacao();
+	private Fachada11BaterPonto fachadaBaterPonto = new Fachada11BaterPonto();
 
 	private OuvinteBaterPonto ouvinteBaterPonto = new OuvinteBaterPonto();
 
 	private boolean liberarBaterPonto = false;
 	private boolean liberarDetalhes = false;
 
-	private JComboBox<String> listComboBox;
+	private JComboBox<Projeto> listComboBox;
 	private JTextField textLogin;
 	private JTextField textSenha;
 	private JRadioButton provedorInterno;
@@ -63,9 +65,10 @@ public class TelaPonto extends JFrame {
 		labels();
 		textFields();
 		buttonLogar();
+		buttonLogout();
 		comboBox();
 		radioButton();
-		botaoBaterPonto(null, null);
+		botaoBaterPonto();
 		botaoVerDetalhes();
 		setVisible(true);
 
@@ -103,14 +106,28 @@ public class TelaPonto extends JFrame {
 
 		btBaterPonto.addActionListener(ouvinteBaterPonto);
 	}
+	
+	public void buttonLogout() {
+		JButton btBaterPonto = new JButton("Logout");
+		btBaterPonto.setBounds(270, 340, 100, 30);
+		add(btBaterPonto);
+
+		btBaterPonto.addActionListener(ouvinteBaterPonto);
+	}
 
 	public void comboBox() {
-		String[] projetosComboBox = new String[Fachada5Projeto.getProjetosPersistidos().size()];
+		Projeto[] projetosComboBox = new Projeto[Fachada5Projeto.getProjetosPersistidos().size()];
 		for (int i = 0; i < Fachada5Projeto.getProjetosPersistidos().size(); i++) {
-			projetosComboBox[i] =  Fachada5Projeto.getProjetosPersistidos().get(i).getNome();
+			for (int j = 0; j < Fachada1Membro.getMembros().size(); j++) {
+				if (Fachada5Projeto.getProjetosPersistidos().get(i).getMembros().size() > 0) {
+					if(Fachada9MembroRealizarLogout.isOnline(Fachada5Projeto.getProjetosPersistidos().get(i).getMembros().get(j).getLogin())) {
+						projetosComboBox[i] =  Fachada5Projeto.getProjetosPersistidos().get(i);
+					}
+				}
+			}
 		}
 		
-		listComboBox = new JComboBox<String>(projetosComboBox);
+		listComboBox = new JComboBox<Projeto>(projetosComboBox);
 		listComboBox.setBounds(110, 220, 200, 30);
 		add(listComboBox);
 	}
@@ -132,7 +149,7 @@ public class TelaPonto extends JFrame {
 	}
 
 
-	public void botaoBaterPonto(Projeto projeto, String login) {
+	public void botaoBaterPonto() {
 		JButton btBaterPonto = new JButton("Bater Ponto");
 		btBaterPonto.setBounds(150, 290, 100, 30);
 		add(btBaterPonto);
@@ -174,19 +191,18 @@ public class TelaPonto extends JFrame {
 				}
 
 				if(Fachada1Membro.getMembros().size() > 0) {
-					for (int i = 0; i < Fachada1Membro.getMembros().size();  ) {
+					for (int i = 0; i < Fachada1Membro.getMembros().size();i++) {
 						if(Fachada1Membro.getMembros().get(i).getLogin().equals(textLogin.getText()) && 
 								Fachada1Membro.getMembros().get(i).getSenha().equals(textSenha.getText())) {
 
 							Fachada9MembroRealizarLogout.realizarLogin(Fachada1Membro.getMembros().get(i));
-							Fachada9MembroRealizarLogout.isOnline(textLogin.getText());
 							fachadaAutenticacao.autenticarContaEmailProvedor(textLogin.getText(), textSenha.getText(), provedor);
 							JOptionPane.showMessageDialog(null, "Logado");
 							liberarBaterPonto = true;
 							break;
-						} else {
+						} else if(i==Fachada1Membro.getMembros().size()-1) {
 							JOptionPane.showMessageDialog(null, "Login não cadastrado");
-							break;
+							
 						}
 					}
 				} else {
@@ -203,7 +219,7 @@ public class TelaPonto extends JFrame {
 					controllerTelaPonto.conectarProxy(projetoSelecionado, textLogin.getText());
 					liberarDetalhes = true;
 				} else {
-					JOptionPane.showMessageDialog(null, "Você precisar estar Logado");
+					JOptionPane.showMessageDialog(null, "Você precisa estar Logado");
 				}
 
 
@@ -219,9 +235,17 @@ public class TelaPonto extends JFrame {
 					+ "\nPontos Inválidos: " +
 					controllerTelaPonto.pontosInvalidos(textLogin.getText()));
 				} else {
-					JOptionPane.showMessageDialog(null, "Você precisar bater o ponto");
+					JOptionPane.showMessageDialog(null, "Você precisa bater o ponto");
 				}
 
+				break;
+				
+			case "Logout":
+				for (int i = 0; i < Fachada1Membro.getMembros().size(); i++) {
+					Fachada9MembroRealizarLogout.realizarLogout(Fachada1Membro.getMembros().get(i).getLogin());
+				}
+				dispose();
+				
 				break;
 			}
 

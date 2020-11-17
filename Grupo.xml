@@ -11,15 +11,5 @@
       <dataCriacao>0</dataCriacao>
       <membros/>
     </model.projetos.Grupo>
-    <model.projetos.Grupo>
-      <id>1</id>
-      <nome>TATAKAE!</nome>
-      <ativo>true</ativo>
-      <dataInicio>2020</dataInicio>
-      <dataTermino>2020</dataTermino>
-      <compositorProjeto/>
-      <dataCriacao>0</dataCriacao>
-      <membros/>
-    </model.projetos.Grupo>
   </grupos>
 </persistenciaXML.DAOGrupo>
