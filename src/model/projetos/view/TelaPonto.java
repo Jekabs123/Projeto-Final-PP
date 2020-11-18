@@ -2,6 +2,7 @@ package model.projetos.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -212,11 +213,17 @@ public class TelaPonto extends JFrame {
 
 			case "Bater Ponto":
 
-				//TODO acho que tem que usar a fachada, né isso? 
 
 				if(liberarBaterPonto==true) {
-					controllerTelaPonto.conectarProxy(projetoSelecionado, textLogin.getText());
-					
+					Membro membro = null;
+					for(Membro x : Fachada1Membro.getMembros()){
+						if(x.getLogin().equals(textLogin.getText())){
+							membro = x;
+							break;
+						}
+					}
+					LocalDateTime localTime = LocalDateTime.now();
+					fachadaBaterPonto.baterPonto(membro.getParticipacao(),localTime.getHour(),localTime.getHour()+8);
 					liberarDetalhes = true;
 				} else {
 					JOptionPane.showMessageDialog(null, "Você precisa estar Logado");

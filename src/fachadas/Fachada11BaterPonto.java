@@ -23,6 +23,7 @@ public class Fachada11BaterPonto {
 		ponto.setDataHoraEntrada(dataHoraEntrada);
 		ponto.setDataHoraSaida(dataHoraSaida);
 		participacao.adicionarPontoTrabalhado(ponto);
+		System.out.println("Bateu Ponto");
 	}
 	public boolean registrarPonto(Projeto projeto, String login){
 		return registrarPonto.registrarPonto(projeto, login);
