@@ -1,4 +1,4 @@
-package model.projetos.view;
+package view.projetos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import controller.ControllerTelaPonto;
 import fachadas.Fachada11BaterPonto;
 import fachadas.Fachada13Horario;
 import fachadas.Fachada1Membro;
@@ -25,7 +26,6 @@ import fachadas.Fachada9MembroRealizarLogout;
 import model.autenticacao.Membro;
 import model.autenticacao.TipoProvedorAutenticacao;
 import model.projetos.Projeto;
-import model.projetos.controller.ControllerTelaPonto;
 
 // CLASSE CLIENTE DO PROXY
 

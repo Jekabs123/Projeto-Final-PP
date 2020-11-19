@@ -1,4 +1,4 @@
-package model.projetos.controller;
+package controller;
 
 import java.net.InetAddress;
 import java.net.MalformedURLException;
