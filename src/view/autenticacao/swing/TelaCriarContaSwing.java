@@ -1,5 +1,6 @@
 package view.autenticacao.swing;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;
@@ -7,10 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 import view.autenticacao.TelaCriarConta;
 
@@ -25,7 +25,7 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		setLocationRelativeTo(null);
 
 		
-		addLookAndFeel();
+		SetLookAndFeel.addLookAndFeel();
 		addLabels();
 		addTextFields();
 		addRadioButtons();
@@ -33,17 +33,6 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 
 		setVisible(true);
 		repaint();
-	}
-	
-	public void addLookAndFeel() {
-		try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (Exception e) {}
 	}
 
 	public void addLabels() {
@@ -61,6 +50,11 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		JLabel labelSenha = new JLabel("Senha");
 		labelSenha.setBounds(50, 130, 50, 30);
 		add(labelSenha);
+		
+		JLabel labelPreferenciaAutenticacao = new JLabel("Preferência:");
+		labelPreferenciaAutenticacao.setFont(new Font("", Font.BOLD, 12));
+		labelPreferenciaAutenticacao.setBounds(50, 180, 70, 30);
+		add(labelPreferenciaAutenticacao);
 		
 		//Membro
 		
@@ -89,7 +83,7 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		txtLogin.setBounds(120, 80, 230, 30);
 		add(txtLogin);
 		
-		JTextField txtSenha = new JTextField();
+		JTextField txtSenha = new JPasswordField();
 		txtSenha.setBounds(120, 130, 230, 30);
 		add(txtSenha);
 		
@@ -110,12 +104,12 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 	
 	public void addRadioButtons() {
 		JRadioButton radioBttProvedorInterno = new JRadioButton("Interno");
-		radioBttProvedorInterno.setBounds(80, 180, 100, 30);
+		radioBttProvedorInterno.setBounds(150, 180, 60, 30);
 		add(radioBttProvedorInterno);
 		radioBttProvedorInterno.setSelected(true);
 		
 		JRadioButton radioBttProvedorSMTP = new JRadioButton("SMTP");
-		radioBttProvedorSMTP.setBounds(250 , 180, 100, 30);
+		radioBttProvedorSMTP.setBounds(290 , 180, 60, 30);
 		add(radioBttProvedorSMTP);
 		
 		ButtonGroup group = new ButtonGroup();
@@ -125,11 +119,11 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 	
 	public void addButtons() {
 		JButton buttonCadastrar = new JButton("Cadastrar", new ImageIcon(getClass().getResource("/addMembro.png")));
+		buttonCadastrar.setBackground(Color.gray);
 		buttonCadastrar.setBounds(150, 470, 120, 50);
 		add(buttonCadastrar);
 	}
-
-
+	
 	public static void main(String[] args) {
 		new TelaCriarContaSwing();
 	}
