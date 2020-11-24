@@ -124,8 +124,8 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 	}
 	
 	public void addButtons() {
-		JButton buttonCadastrar = new JButton("Cadastrar");// , new ImageIcon(getClass().getResource("/addMembro.png")));
-		buttonCadastrar.setBounds(150, 470, 100, 50);
+		JButton buttonCadastrar = new JButton("Cadastrar", new ImageIcon(getClass().getResource("/addMembro.png")));
+		buttonCadastrar.setBounds(150, 470, 120, 50);
 		add(buttonCadastrar);
 	}
 
