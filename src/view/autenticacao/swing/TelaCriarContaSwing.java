@@ -51,7 +51,6 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		labelSenha.setBounds(50, 100, 50, 30);
 		add(labelSenha);
 	}
-
 	public void addTextFields() {
 		JTextField txtLogin = new JTextField();
 		txtLogin.setBounds(120, 50, 230, 30);
