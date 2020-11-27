@@ -2,8 +2,11 @@ package view.projetos;
 
 import javax.swing.JPanel;
 
-public class RelatorioProjetoSwing extends JPanel implements MontadorRelatorioProjeto {
+import fachadas.Fachada8Relatorio;
 
+public class RelatorioProjetoSwing extends JPanel implements MontadorRelatorioProjeto {
+	
+	
 	@Override
 	public void reiniciar() {
 		

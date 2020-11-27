@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.projetos.Edital;
 import model.projetos.Grupo;
+import model.projetos.Projeto;
 /**
  * @author PAULO E INATHAN - TATAKAE!
  * Essa fachada é utilizada para gerar relatório
@@ -14,7 +15,8 @@ public class Fachada8Relatorio {
 	 * {@link #grupos} Esse atributo guarda a lista de grupos
 	 */
 	private ArrayList<Edital> editais;
-	private ArrayList<Grupo> grupos; 
+	private ArrayList<Grupo> grupos;
+	private ArrayList<Projeto> projetos;
 	
 	/**
 	 * Esse é construtor que inicializa os atributos
@@ -24,6 +26,7 @@ public class Fachada8Relatorio {
 		Fachada3Grupo fachadaGrupo = new Fachada3Grupo();
 		this.editais = fachada.getEditais();
 		this.grupos = fachadaGrupo.getGrupos();
+		this.projetos = Fachada5Projeto.getProjetosPersistidos();
 	}
 	/**
 	 * Esse método gera o relatório de todos os editais
@@ -49,6 +52,19 @@ public class Fachada8Relatorio {
 			System.out.println("[LINK CNPq] - "+new String(grupos.get(i).getLinkCNPq()));
 			System.out.println("[DATA CRIAÇÂO] - "+grupos.get(i).getDataCriacao());
 			System.out.println("[GRUPO ATIVO] - "+grupos.get(i).getAtivo());
+		}
+	}
+	public void gerarRelatorioProjeto(){
+		System.out.println("[Projeto]");
+		for(Projeto p: projetos){
+			System.out.println("Nome do projeto: "+p.getNome());
+			System.out.println("Gastos executados capital: "+p.getGastoExecutadoCapitalReais());
+			System.out.println("Gastos executados custeio: "+p.getGastoExecutadoCusteioReais());
+			System.out.println("Aporte capital: "+p.getAporteCapitalReais());
+			System.out.println("Aporte custeio: "+p.getAporteCusteioReais());
+			System.out.println("Data inicio: "+p.getDataInicio());
+			System.out.println("Data termino: "+p.getDataTermino());
+			System.out.println("Custo Total: "+p.getCustoTotal());
 		}
 	}
 }

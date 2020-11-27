@@ -4,4 +4,5 @@ import view.autenticacao.TelaAutenticacao;
 
 public class TelaAutenticacaoSWT implements TelaAutenticacao {
 
+	
 }

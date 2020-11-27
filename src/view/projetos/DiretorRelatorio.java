@@ -5,9 +5,10 @@ import model.projetos.Grupo;
 import model.projetos.Projeto;
 
 public class DiretorRelatorio {
+	private MontadorRelatorioProjeto montador;
 	
 	public DiretorRelatorio(MontadorRelatorioProjeto montadorRelatorioProjeto) {
-		
+		this.montador = montadorRelatorioProjeto;
 	}
 	
 	public void gerar(Edital edital) {

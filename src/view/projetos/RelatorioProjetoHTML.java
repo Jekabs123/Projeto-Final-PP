@@ -1,6 +1,8 @@
 package view.projetos;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class RelatorioProjetoHTML extends File implements MontadorRelatorioProjeto {
 
@@ -12,7 +14,14 @@ public class RelatorioProjetoHTML extends File implements MontadorRelatorioProje
 
 	@Override
 	public void reiniciar() {
-		
+		try {
+			FileWriter fw = new FileWriter(this);
+			fw.write("Relatorio HTML.html");
+			fw.flush();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public SwingJPanel getProduto() {
