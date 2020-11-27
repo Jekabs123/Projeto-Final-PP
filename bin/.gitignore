@@ -1,5 +1,3 @@
-/addMembro.png
-/tornarAdmin.png
 /controller/
 /exception/
 /fachadas/
@@ -7,7 +5,3 @@
 /model/
 /persistenciaXML/
 /view/
-/addGrupo.png
-/removerGrupo.png
-/atualizar.png
-/grupos.png

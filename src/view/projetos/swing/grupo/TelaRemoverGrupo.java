@@ -13,7 +13,7 @@ import view.autenticacao.swing.SetLookAndFeel;
 public class TelaRemoverGrupo extends JFrame {
 	
 	public TelaRemoverGrupo() {
-		setTitle("Adicionar Grupo");
+		setTitle("Remover Grupo");
 		setLayout(null);
 		setResizable(false);
 		setSize(500, 300);
