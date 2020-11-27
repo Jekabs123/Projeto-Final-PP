@@ -16,7 +16,7 @@ public class TelaCadastroGruposSwing extends JFrame {
 		setTitle("Gerenciamento de Grupos");
 		setLayout(null);
 		setResizable(false);
-		setSize(505, 300);
+		setSize(500, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -29,28 +29,33 @@ public class TelaCadastroGruposSwing extends JFrame {
 		repaint();
 	}
 
-	private void addLabels() {
+	public void addLabels() {
 		JLabel labelTitulo = new JLabel("Gerenciar Grupos");
 		labelTitulo.setFont(new Font("Monospaced", Font.BOLD, 30));
 		labelTitulo.setBounds(100, 20, 400, 50);
 		add(labelTitulo);
 	}
 
-	private void addButtons() {
+	public void addButtons() {
 		JButton buttonAdicionar = new JButton("Adicionar",  new ImageIcon(getClass().getResource("/addGrupo.png")));
-		buttonAdicionar.setBounds(50, 100, 110, 70);
+		buttonAdicionar.setBounds(120, 80, 110, 70);
 		buttonAdicionar.setBackground(Color.gray);
 		add(buttonAdicionar);
 		
 		JButton buttonRemover = new JButton("Remover",  new ImageIcon(getClass().getResource("/removerGrupo.png")));
-		buttonRemover.setBounds(200, 100, 110, 70);
+		buttonRemover.setBounds(270, 80, 110, 70);
 		buttonRemover.setBackground(Color.gray);
 		add(buttonRemover);
 		
 		JButton buttonAtualizar = new JButton("Atualizar",  new ImageIcon(getClass().getResource("/atualizar.png")));
-		buttonAtualizar.setBounds(350, 100, 110, 70);
+		buttonAtualizar.setBounds(120, 180, 110, 70);
 		buttonAtualizar.setBackground(Color.gray);
 		add(buttonAtualizar);
+		
+		JButton buttonMostrarGrupos = new JButton("Grupos",  new ImageIcon(getClass().getResource("/grupos.png")));
+		buttonMostrarGrupos.setBounds(270, 180, 110, 70);
+		buttonMostrarGrupos.setBackground(Color.gray);
+		add(buttonMostrarGrupos);
 	}
 	
 	public static void main(String[] args) {
