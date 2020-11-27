@@ -58,8 +58,4 @@ public class TelaConfiguracaoAdminSwing extends JFrame implements TelaConfigurac
 		
 	}
 	
-	public static void main(String[] args) {
-		new TelaConfiguracaoAdminSwing();
-	}
-	
 }

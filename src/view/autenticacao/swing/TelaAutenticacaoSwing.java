@@ -27,7 +27,7 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 	}
 	public void botoes(){
 		JButton autenticar = new JButton("Autenticar");
-		autenticar.setBounds(80, 100, 80, 30);
+		autenticar.setBounds(80, 100, 90, 30);
 		add(autenticar);
 	}
 	public void textField(){
