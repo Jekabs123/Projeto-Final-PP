@@ -57,9 +57,5 @@ public class TelaPrincipalSwing extends JFrame {
 		buttonPontos.setBackground(Color.gray);
 		add(buttonPontos);
 	}
-	
-	public static void main(String[] args) {
-		new TelaPrincipalSwing();
-	}
 
 }
