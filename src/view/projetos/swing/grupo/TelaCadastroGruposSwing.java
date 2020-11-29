@@ -57,9 +57,5 @@ public class TelaCadastroGruposSwing extends JFrame {
 		buttonMostrarGrupos.setBackground(Color.gray);
 		add(buttonMostrarGrupos);
 	}
-	
-	public static void main(String[] args) {
-		new TelaCadastroGruposSwing();
-	}
 
 }
