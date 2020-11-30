@@ -2,6 +2,8 @@ package view.projetos.swing.grupo;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import view.autenticacao.swing.SetLookAndFeel;
+import view.projetos.TelaPonto;
+import view.projetos.swing.TelaPrincipalSwing;
 
 public class TelaCadastroGruposSwing extends JFrame {
 	
@@ -56,6 +60,56 @@ public class TelaCadastroGruposSwing extends JFrame {
 		buttonMostrarGrupos.setBounds(270, 180, 110, 70);
 		buttonMostrarGrupos.setBackground(Color.gray);
 		add(buttonMostrarGrupos);
+		
+		JButton buttonVoltar = new JButton(new ImageIcon(getClass().getResource("/voltar.png")));
+		buttonVoltar.setBackground(Color.gray);
+		buttonVoltar.setBounds(15, 15, 20, 20);
+		add(buttonVoltar);
+		
+		OuvinteTelaCadastroGrupos ouvinteTelaCadastroGrupos = new OuvinteTelaCadastroGrupos();
+		
+		buttonAdicionar.addActionListener(ouvinteTelaCadastroGrupos);
+		buttonRemover.addActionListener(ouvinteTelaCadastroGrupos);
+		buttonAtualizar.addActionListener(ouvinteTelaCadastroGrupos);
+		buttonMostrarGrupos.addActionListener(ouvinteTelaCadastroGrupos);
+		buttonVoltar.addActionListener(ouvinteTelaCadastroGrupos);
+	}
+	
+	public class OuvinteTelaCadastroGrupos implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String evento = e.getActionCommand();
+			
+			switch (evento) {
+			case "Adicionar":
+				dispose();
+				new TelaAdicionarGrupo();
+				break;
+
+			case "Remover":
+				dispose();
+				new TelaRemoverGrupo();
+				break;
+				
+			case "Atualizar":
+				dispose();
+				new TelaAtualizarGrupo();
+				break;
+			
+			case "Grupos":
+				dispose();
+				new TelaMostrarGrupos();
+				break;
+				
+			case "":
+				dispose();
+				new TelaPrincipalSwing();
+				break;
+			}
+			
+		}
+		
 	}
 
 }

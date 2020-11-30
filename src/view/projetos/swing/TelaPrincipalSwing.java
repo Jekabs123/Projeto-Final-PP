@@ -2,6 +2,8 @@ package view.projetos.swing;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import view.autenticacao.swing.SetLookAndFeel;
+import view.projetos.TelaPonto;
+import view.projetos.swing.grupo.TelaCadastroGruposSwing;
 
 public class TelaPrincipalSwing extends JFrame {
 	
@@ -56,6 +60,45 @@ public class TelaPrincipalSwing extends JFrame {
 		buttonPontos.setBounds(270, 180, 110, 70);
 		buttonPontos.setBackground(Color.gray);
 		add(buttonPontos);
+		
+		OuvinteTelaPrincipal ouvinteTelaPrincipal = new OuvinteTelaPrincipal();
+		
+		buttonEditais.addActionListener(ouvinteTelaPrincipal);
+		buttonGrupos.addActionListener(ouvinteTelaPrincipal);
+		buttonPontos.addActionListener(ouvinteTelaPrincipal);
+		buttonProjetos.addActionListener(ouvinteTelaPrincipal);
+	}
+	
+	public class OuvinteTelaPrincipal implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String evento = e.getActionCommand();
+			
+			switch (evento) {
+			case "Projetos":
+				dispose();
+				//Falta botar menu Porojetos
+				break;
+
+			case "Grupos":
+				dispose();
+				new TelaCadastroGruposSwing();
+				break;
+				
+			case "Editais":
+				dispose();
+				//Falta botar menu Editais
+				break;
+			
+			case "Pontos":
+				dispose();
+				new TelaPonto();
+				break;
+			}
+			
+		}
+		
 	}
 
 }

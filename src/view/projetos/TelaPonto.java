@@ -26,6 +26,7 @@ import fachadas.Fachada9MembroRealizarLogout;
 import model.autenticacao.Membro;
 import model.autenticacao.TipoProvedorAutenticacao;
 import model.projetos.Projeto;
+import view.projetos.swing.TelaPrincipalSwing;
 
 // CLASSE CLIENTE DO PROXY
 
@@ -66,12 +67,10 @@ public class TelaPonto extends JFrame {
 
 		labels();
 		textFields();
-		buttonLogar();
-		buttonLogout();
 		comboBox();
 		radioButton();
-		botaoBaterPonto();
-		botaoVerDetalhes();
+		addButtons();
+	
 		setVisible(true);
 
 		repaint();
@@ -99,22 +98,6 @@ public class TelaPonto extends JFrame {
 		textSenha = new JPasswordField();
 		textSenha.setBounds(110, 70, 200, 30);
 		add(textSenha);
-	}
-
-	public void buttonLogar() {
-		JButton btBaterPonto = new JButton("Logar");
-		btBaterPonto.setBounds(150, 170, 100, 30);
-		add(btBaterPonto);
-
-		btBaterPonto.addActionListener(ouvinteBaterPonto);
-	}
-	
-	public void buttonLogout() {
-		JButton btBaterPonto = new JButton("Logout");
-		btBaterPonto.setBounds(270, 340, 100, 30);
-		add(btBaterPonto);
-
-		btBaterPonto.addActionListener(ouvinteBaterPonto);
 	}
 
 	public void comboBox() {
@@ -151,22 +134,39 @@ public class TelaPonto extends JFrame {
 	}
 
 
-	public void botaoBaterPonto() {
+	public void addButtons() {
 		JButton btBaterPonto = new JButton("Bater Ponto");
 		btBaterPonto.setBounds(150, 290, 100, 30);
 		add(btBaterPonto);
 
 		btBaterPonto.addActionListener(ouvinteBaterPonto);
+		
+		JButton btDetalhes = new JButton("Ver Detalhes");
+		btDetalhes.setBounds(150, 340, 100, 30);
+		add(btDetalhes);
+
+		btDetalhes.addActionListener(ouvinteBaterPonto);
+		
+		JButton btVoltar = new JButton("Voltar");
+		btVoltar.setBounds(20, 340, 100, 30);
+		add(btVoltar);
+
+		btVoltar.addActionListener(ouvinteBaterPonto);
+		
+		JButton btLogout = new JButton("Logout");
+		btLogout.setBounds(270, 340, 100, 30);
+		add(btLogout);
+
+		btLogout.addActionListener(ouvinteBaterPonto);
+		
+		JButton btLogar = new JButton("Logar");
+		btLogar.setBounds(150, 170, 100, 30);
+		add(btLogar);
+
+		btLogar.addActionListener(ouvinteBaterPonto);
 
 	}
 
-	public void botaoVerDetalhes() {
-		JButton btBaterPonto = new JButton("Ver Detalhes");
-		btBaterPonto.setBounds(150, 340, 100, 30);
-		add(btBaterPonto);
-
-		btBaterPonto.addActionListener(ouvinteBaterPonto);
-	}
 
 
 	public class OuvinteBaterPonto implements ActionListener {
@@ -253,6 +253,11 @@ public class TelaPonto extends JFrame {
 				}
 				dispose();
 				
+				break;
+				
+			case "Voltar":
+				dispose();
+				new TelaPrincipalSwing();
 				break;
 			}
 

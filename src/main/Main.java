@@ -1,10 +1,10 @@
 package main;
 
-import view.projetos.TelaPonto;
+import view.projetos.swing.TelaPrincipalSwing;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		new TelaPonto();
+		new TelaPrincipalSwing();
 	}
 }

@@ -2,6 +2,8 @@ package view.projetos.swing.grupo;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -10,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import view.autenticacao.swing.SetLookAndFeel;
+import view.projetos.swing.TelaPrincipalSwing;
 
 public class TelaAdicionarGrupo extends JFrame {
 	
@@ -79,6 +82,38 @@ public class TelaAdicionarGrupo extends JFrame {
 		buttonFinalizar.setBackground(Color.gray);
 		buttonFinalizar.setBounds(200, 270, 100, 30);
 		add(buttonFinalizar);
+		
+		OuvinteTelaAdicionarGrupo ouvinteTelaAdicionarGrupo = new OuvinteTelaAdicionarGrupo();
+		
+		buttonAddMembro.addActionListener(ouvinteTelaAdicionarGrupo);
+		buttonNovoGrupo.addActionListener(ouvinteTelaAdicionarGrupo);
+		buttonFinalizar.addActionListener(ouvinteTelaAdicionarGrupo);
+	}
+	
+	public class OuvinteTelaAdicionarGrupo implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String evento = e.getActionCommand();
+			
+			switch (evento) {
+			case "Adicionar":
+				//Ainda falta
+				break;
+
+			case "Novo Grupo":
+				dispose();
+				new TelaAdicionarGrupo();
+				break;
+				
+			case "Finalizar":
+				dispose();
+				new TelaCadastroGruposSwing();
+				break;
+			}
+			
+		}
+		
 	}
 
 
