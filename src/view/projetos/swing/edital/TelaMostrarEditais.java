@@ -1,4 +1,4 @@
-package view.projetos.swing.grupo;
+package view.projetos.swing.edital;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,10 +10,10 @@ import javax.swing.JLabel;
 
 import view.autenticacao.swing.SetLookAndFeel;
 
-public class TelaMostrarGrupos extends JFrame {
-	
-	public TelaMostrarGrupos() {
-		setTitle("Mostrar Grupo");
+public class TelaMostrarEditais extends JFrame{
+
+	public TelaMostrarEditais() {
+		setTitle("Mostrar Editais");
 		setLayout(null);
 		setResizable(false);
 		setSize(500, 300);
@@ -32,22 +32,22 @@ public class TelaMostrarGrupos extends JFrame {
 	}
 
 	public void addLabels() {
-		JLabel labelTitulo = new JLabel("Seus Grupos");
+		JLabel labelTitulo = new JLabel("Seus Editais");
 		labelTitulo.setFont(new Font("Monospaced", Font.BOLD, 30));
-		labelTitulo.setBounds(150, 20, 200, 50);
+		labelTitulo.setBounds(150, 20, 250, 50);
 		add(labelTitulo);
 		
-		JLabel labelGrupos = new JLabel("Grupos");
-		labelGrupos.setFont(new Font("", Font.BOLD, 12));
-		labelGrupos.setBounds(225, 80, 50, 30);
-		add(labelGrupos);
+		JLabel labelEditais = new JLabel("Editais");
+		labelEditais.setFont(new Font("", Font.BOLD, 12));
+		labelEditais.setBounds(225, 80, 50, 30);
+		add(labelEditais);
 	}
 
 	public void addJComboBox() {
-		JComboBox<String> listGrupos = new JComboBox<String>();
-		listGrupos.setBackground(Color.gray);
-		listGrupos.setBounds(190, 110, 120, 30);
-		add(listGrupos);
+		JComboBox<String> listEditais = new JComboBox<String>();
+		listEditais.setBackground(Color.gray);
+		listEditais.setBounds(190, 110, 120, 30);
+		add(listEditais);
 	}
 
 	public void addButtons() {
@@ -55,10 +55,6 @@ public class TelaMostrarGrupos extends JFrame {
 		buttonOk.setBackground(Color.gray);
 		buttonOk.setBounds(200, 190, 100, 30);
 		add(buttonOk);
-	}
-	
-	public static void main(String[] args) {
-		new TelaMostrarGrupos();
 	}
 
 }
