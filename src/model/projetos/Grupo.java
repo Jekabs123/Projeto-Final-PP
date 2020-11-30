@@ -16,7 +16,7 @@ public class Grupo extends CompositorProjeto{
 	 * {@link #membros} Esse atributo armazena a lista de membros do grupo
 	 */
 	private long dataCriacao;
-	private char[] linkCNPq;
+	private String linkCNPq;
 	private ArrayList<Membro> membros = new ArrayList<>();
 	
 	@Override
@@ -82,10 +82,10 @@ public class Grupo extends CompositorProjeto{
 	public void setDataCriacao(long dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	public char[] getLinkCNPq() {
+	public String getLinkCNPq() {
 		return linkCNPq;
 	}
-	public void setLinkCNPq(char[] linkCNPq) {
+	public void setLinkCNPq(String linkCNPq) {
 		this.linkCNPq = linkCNPq;
 	}
 	public ArrayList<Membro> getMembros() {

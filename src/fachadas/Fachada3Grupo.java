@@ -57,7 +57,7 @@ public class Fachada3Grupo {
 			grupo.adicionarMembro(membro);
 			grupoXML.atualizar();
 		}catch(Exception e){
-			System.out.println("Nï¿½o existe Grupo com este ID");
+			System.out.println("Nao existe Grupo com este ID");
 		}
 	}
 	/**
@@ -73,7 +73,7 @@ public class Fachada3Grupo {
 			grupo.removerMembro(membro);
 			grupoXML.atualizar();
 		}catch(Exception e){
-			System.out.println("Não foi possivel remover o membro");
+			System.out.println("Nao foi possivel remover o membro");
 		}
 	}
 	/**

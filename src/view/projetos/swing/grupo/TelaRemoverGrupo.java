@@ -2,15 +2,23 @@ package view.projetos.swing.grupo;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
+import controller.ControllerGrupo;
 import view.autenticacao.swing.SetLookAndFeel;
 
 public class TelaRemoverGrupo extends JFrame {
+	
+	private ControllerGrupo controllerGrupo = new ControllerGrupo();
+	
+	private JComboBox<String> listGrupos;
 	
 	public TelaRemoverGrupo() {
 		setTitle("Remover Grupo");
@@ -43,7 +51,11 @@ public class TelaRemoverGrupo extends JFrame {
 	}
 
 	private void addJComboBox() {
-		JComboBox<String> listGrupos = new JComboBox<String>();
+		for (int i=0; i<controllerGrupo.getGrupos().size(); i++) {
+			listGrupos.addItem(controllerGrupo.getGrupos().get(i).getNome());
+		}
+		
+		listGrupos = new JComboBox<String>();
 		listGrupos.setBackground(Color.gray);
 		listGrupos.setBounds(120, 110, 120, 30);
 		add(listGrupos);
@@ -59,6 +71,41 @@ public class TelaRemoverGrupo extends JFrame {
 		buttonFinalizar.setBackground(Color.gray);
 		buttonFinalizar.setBounds(200, 190, 100, 30);
 		add(buttonFinalizar);
+		
+		OuvinteRemoverGrupos ouvinteRemoverGrupos = new OuvinteRemoverGrupos();
+		buttonFinalizar.addActionListener(ouvinteRemoverGrupos);
+		buttonRemoverGrupo.addActionListener(ouvinteRemoverGrupos);
+	}
+	
+	public class OuvinteRemoverGrupos implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			String evento = e.getActionCommand();
+			
+			switch (evento) {
+			
+			case "Remover":
+				int index = listGrupos.getSelectedIndex();
+				
+				for (int i = 0; i < controllerGrupo.getGrupos().size(); i++) {
+					if(controllerGrupo.getGrupos().get(i).equals(controllerGrupo.getGrupos().get(index))) {
+						controllerGrupo.removerGrupo(index);
+						JOptionPane.showMessageDialog(null, "Grupo Removido");
+					}
+				}
+				
+				break;
+
+			case "Finalizar":
+				dispose();
+				new TelaCadastroGruposSwing();
+				break;
+			}
+			
+		}
+		
 	}
 
 }
