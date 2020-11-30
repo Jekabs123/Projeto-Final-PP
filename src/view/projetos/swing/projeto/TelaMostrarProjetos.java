@@ -1,4 +1,4 @@
-package view.projetos.swing.grupo;
+package view.projetos.swing.projeto;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,10 +10,10 @@ import javax.swing.JLabel;
 
 import view.autenticacao.swing.SetLookAndFeel;
 
-public class TelaMostrarGrupos extends JFrame {
-	
-	public TelaMostrarGrupos() {
-		setTitle("Mostrar Grupo");
+public class TelaMostrarProjetos extends JFrame{
+
+	public TelaMostrarProjetos() {
+		setTitle("Mostrar Projeto");
 		setLayout(null);
 		setResizable(false);
 		setSize(500, 300);
@@ -32,12 +32,12 @@ public class TelaMostrarGrupos extends JFrame {
 	}
 
 	public void addLabels() {
-		JLabel labelTitulo = new JLabel("Seus Grupos");
+		JLabel labelTitulo = new JLabel("Seus Projetos");
 		labelTitulo.setFont(new Font("Monospaced", Font.BOLD, 30));
-		labelTitulo.setBounds(150, 20, 200, 50);
+		labelTitulo.setBounds(150, 20, 250, 50);
 		add(labelTitulo);
 		
-		JLabel labelGrupos = new JLabel("Grupos");
+		JLabel labelGrupos = new JLabel("Projetos");
 		labelGrupos.setFont(new Font("", Font.BOLD, 12));
 		labelGrupos.setBounds(225, 80, 50, 30);
 		add(labelGrupos);
@@ -55,10 +55,6 @@ public class TelaMostrarGrupos extends JFrame {
 		buttonOk.setBackground(Color.gray);
 		buttonOk.setBounds(200, 190, 100, 30);
 		add(buttonOk);
-	}
-	
-	public static void main(String[] args) {
-		new TelaMostrarGrupos();
 	}
 
 }
