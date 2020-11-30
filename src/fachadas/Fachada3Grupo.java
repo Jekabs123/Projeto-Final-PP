@@ -28,7 +28,13 @@ public class Fachada3Grupo {
 	 * @return: retorna true se remover o grupo da persistencia e false se nao.
 	 */
 	public boolean removerGrupo(int id) {
-		Grupo grupo = pesquisarGrupo(id);
+		Grupo grupo = null;
+		try {
+			grupo = pesquisarGrupo(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if(grupo.getGrupos().size() > 0) {
 			return false;
 		}
@@ -80,8 +86,9 @@ public class Fachada3Grupo {
 	 * Esse m�todo pesquisa um grupo na persist�ncia grupoXML
 	 * @param id: � o id do grupo que voc� quer pesquisar na persist�ncia grupoXML
 	 * @return: retorna o Grupo se achar e null se n�o achar o grupo
+	 * @throws Exception 
 	 */
-	public Grupo pesquisarGrupo(int id){
+	public Grupo pesquisarGrupo(int id) throws Exception{
 		return grupoXML.pesquisarGrupo(id);
 	}
 	/**
@@ -89,6 +96,6 @@ public class Fachada3Grupo {
 	 * @return: retorna uma lista de grupo de existir se n�o ele retorna uma lista vazia
 	 */
 	public ArrayList<Grupo> getGrupos(){
-		return grupoXML.getGrupo();
+		return grupoXML.getPersistidos();
 	}
 }

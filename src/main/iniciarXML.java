@@ -98,6 +98,7 @@ public class iniciarXML {
 		grupo.setId(1);
 		grupo.setNome("TATAKAE!");
 		fachadaGrupo.adicionarGrupo(grupo);
+		fachadaGrupo.adicionarMembroNoGrupo(membro1,1);
 		
 		
 		//Edital

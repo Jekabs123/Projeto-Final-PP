@@ -75,9 +75,5 @@ public class TelaAtualizarGrupo extends JFrame {
 		buttonFinalizar.setBounds(300, 190, 100, 30);
 		add(buttonFinalizar);
 	}
-	
-	public static void main(String[] args) {
-		new TelaAtualizarGrupo();
-	}
 
 }

@@ -40,16 +40,16 @@ public class DAOXMLGrupo {
 	public void atualizar() {  
 		salvarXML();       
 	}
-	public Grupo pesquisarGrupo(int id){
+	public Grupo pesquisarGrupo(int id) throws Exception{
 		for(Grupo g: persistidos.getGrupos()){
 			if(g.getId() == id){
 				return g;
 			}
 		}
-		return null;
+		throw new Exception("id invalido");
 	}
-	public ArrayList<Grupo> getGrupo(){
-		return carregarXML().getGrupos();
+	public ArrayList<Grupo> getPersistidos(){
+		return persistidos.getGrupos();
 	}
 	
 

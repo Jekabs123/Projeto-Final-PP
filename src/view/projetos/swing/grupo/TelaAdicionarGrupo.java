@@ -23,6 +23,8 @@ public class TelaAdicionarGrupo extends JFrame {
 	private JComboBox<String> listMembros;
 
 	private ControllerMembro controllerMembro = new ControllerMembro();
+	
+	ControllerGrupo controllerGrupo = new ControllerGrupo();
 
 	private OuvinteTelaAdicionarGrupo ouvinteTelaAdicionarGrupo = new OuvinteTelaAdicionarGrupo();
 
@@ -119,11 +121,13 @@ public class TelaAdicionarGrupo extends JFrame {
 			labelMembros.setBounds(70, 10, 60, 20);
 			add(labelMembros);
 
+			String[] membrosComboBox = new String[controllerGrupo.getGrupos().size()];
+			
 			for (int i=0; i<controllerMembro.getMembros().size(); i++) {
-				listMembros.addItem(controllerMembro.getMembros().get(i).getNome());
+				membrosComboBox[i] = controllerMembro.getMembros().get(i).getNome();
 			}
 
-			listMembros = new JComboBox<String>();
+			listMembros = new JComboBox<String>(membrosComboBox);
 			listMembros.setBackground(Color.gray);
 			listMembros.setBounds(50, 30, 100, 30);
 			add(listMembros);
@@ -153,8 +157,6 @@ public class TelaAdicionarGrupo extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String evento = e.getActionCommand();
-
-			ControllerGrupo controllerGrupo = new ControllerGrupo();
 
 			switch (evento) {
 			case "Adicionar":

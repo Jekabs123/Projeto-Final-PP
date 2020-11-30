@@ -51,11 +51,12 @@ public class TelaRemoverGrupo extends JFrame {
 	}
 
 	private void addJComboBox() {
+		String[] gruposComboBox = new String[controllerGrupo.getGrupos().size()];
 		for (int i=0; i<controllerGrupo.getGrupos().size(); i++) {
-			listGrupos.addItem(controllerGrupo.getGrupos().get(i).getNome());
+			gruposComboBox[i] = (controllerGrupo.getGrupos().get(i).getNome());
 		}
 		
-		listGrupos = new JComboBox<String>();
+		listGrupos = new JComboBox<String>(gruposComboBox);
 		listGrupos.setBackground(Color.gray);
 		listGrupos.setBounds(120, 110, 120, 30);
 		add(listGrupos);
@@ -93,6 +94,7 @@ public class TelaRemoverGrupo extends JFrame {
 					if(controllerGrupo.getGrupos().get(i).equals(controllerGrupo.getGrupos().get(index))) {
 						controllerGrupo.removerGrupo(index);
 						JOptionPane.showMessageDialog(null, "Grupo Removido");
+						listGrupos.repaint();
 					}
 				}
 				
