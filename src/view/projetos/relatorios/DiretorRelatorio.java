@@ -12,17 +12,10 @@ public class DiretorRelatorio {
 		this.montador = montadorRelatorioProjeto;
 	}
 	
-	public void gerar(Edital edital) {
-		montador.reiniciar(); //1.TODO o reiniciar tem que ter algum parametro para
-							  //ler os atributos do edital e gerar o relatorio
+	public void gerar() {
+		montador.gerarRelatorioHtml();
+		montador.gerarRelatorioNativoSwing();
 	}
-	
-	public void gerar(Grupo grupo) {
-		montador.reiniciar();	//Idem 1.TODO
-	}
-	
-	public void gerar(Projeto projeto) {
-		montador.reiniciar();	//idem 1.TODO
-	}
+		
 
 }

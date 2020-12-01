@@ -31,40 +31,53 @@ public class Fachada8Relatorio {
 	/**
 	 * Esse método gera o relatório de todos os editais
 	 */
-	public void gerarRelatorioEdital(){
-		for(int i = 0;i<=editais.size();i++){
-			System.out.println("[Edital]");
-			System.out.println("[NOME] - "+editais.get(i).getNome());
-			System.out.println("[DATA INICIO] - "+editais.get(i).getDataInicio());
-			System.out.println("[DATA TERMINO] - "+editais.get(i).getDataTermino());
-			System.out.println("[CUSTO TOTAL] - "+editais.get(i).getCustoTotal());
-			System.out.println("[CAPITAL NÃO GASTO] - "+editais.get(i).getCapitalReaisNaoGastoTotal());
-			System.out.println("[CUSTEIO NÃO GASTO] - "+editais.get(i).getCusteioReaisNaoGastoTotal());
-			System.out.println("[EDITAL ATIVO] - "+editais.get(i).getAtivo());
+	public String gerarRelatorioEdital(){
+		String relatorio = "";
+		for(Edital edital : editais){
+			relatorio += "[Edital]<br>";
+			relatorio += "[NOME] - "+edital.getNome()+"<br>";
+			relatorio += "[DATA INICIO] - "+edital.getDataInicio()+"<br>";
+			relatorio += "[DATA TERMINO] - "+edital.getDataTermino()+"<br>";
+			relatorio += "[CUSTO TOTAL] - "+edital.getCustoTotal()+"<br>";
+			relatorio += "[CAPITAL NÃO GASTO] - "+edital.getCapitalReaisNaoGastoTotal()+"<br>";
+			relatorio += "[CUSTEIO NÃO GASTO] - "+edital.getCusteioReaisNaoGastoTotal()+"<br>";
+			relatorio +="[EDITAL ATIVO] - "+edital.getAtivo()+"<br>";
 		}
+		return relatorio;
 	}
 	/**
 	 * Esse método gera o relatório do todos os grupos
 	 */
-	public void gerarRelatorioGrupo(){
-		System.out.println("[GRUPO]");
-		for(int i = 0;i<=grupos.size();i++){
-			System.out.println("[LINK CNPq] - "+new String(grupos.get(i).getLinkCNPq()));
-			System.out.println("[DATA CRIAÇÂO] - "+grupos.get(i).getDataCriacao());
-			System.out.println("[GRUPO ATIVO] - "+grupos.get(i).getAtivo());
+	public String gerarRelatorioGrupo(){
+		String relatorio = "";
+		for(Grupo grupo : grupos){
+			relatorio += "[GRUPO]<br>";
+			relatorio += "[LINK CNPq] - "+grupo.getLinkCNPq()+"<br>";
+			relatorio += "[DATA CRIAÇÂO] - "+grupo.getDataCriacao()+"<br>";
+			relatorio += "[GRUPO ATIVO] - "+grupo.getAtivo()+"<br>";
 		}
+		return relatorio;
 	}
-	public void gerarRelatorioProjeto(){
-		System.out.println("[Projeto]");
+	public String gerarRelatorioProjeto(){
+		String relatorio = "";
 		for(Projeto p: projetos){
-			System.out.println("Nome do projeto: "+p.getNome());
-			System.out.println("Gastos executados capital: "+p.getGastoExecutadoCapitalReais());
-			System.out.println("Gastos executados custeio: "+p.getGastoExecutadoCusteioReais());
-			System.out.println("Aporte capital: "+p.getAporteCapitalReais());
-			System.out.println("Aporte custeio: "+p.getAporteCusteioReais());
-			System.out.println("Data inicio: "+p.getDataInicio());
-			System.out.println("Data termino: "+p.getDataTermino());
-			System.out.println("Custo Total: "+p.getCustoTotal());
+			relatorio += "[Projeto]<br>";
+			relatorio += "Nome do projeto: "+p.getNome()+"<br>";
+			relatorio += "Gastos executados capital: "+p.getGastoExecutadoCapitalReais()+"<br>";
+			relatorio += "Gastos executados custeio: "+p.getGastoExecutadoCusteioReais()+"<br>";
+			relatorio += "Aporte capital: "+p.getAporteCapitalReais()+"<br>";
+			relatorio += "Aporte custeio: "+p.getAporteCusteioReais()+"<br>";
+			relatorio += "Data inicio: "+p.getDataInicio()+"<br>";
+			relatorio += "Data termino: "+p.getDataTermino()+"<br>";
+			relatorio += "Custo Total: "+p.getCustoTotal()+"<br>";
 		}
+		return relatorio;
+	}
+	public String gerarRelatorioGeral(){
+		String relatorio = "";
+		relatorio += gerarRelatorioEdital()+"<br>";
+		relatorio += gerarRelatorioGrupo()+"<br>";
+		relatorio += gerarRelatorioProjeto()+"<br>";
+		return relatorio;
 	}
 }
