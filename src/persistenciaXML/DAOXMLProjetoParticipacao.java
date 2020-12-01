@@ -50,76 +50,76 @@ public class DAOXMLProjetoParticipacao {
 		return null;
 	}
 	
-//	public HashSet<Projeto> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
-//		HashSet<Projeto> projetoAnd = new HashSet<Projeto>();
-//
-//		for (int i = 0; i < persistidos.size(); i++) {
-//			for (int x = 0; x < atributos.length; x++) {
-//				if(atributos[x].equalsIgnoreCase("Nome")){
-//					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())){
-//						return projetoAnd;
-//					}
-//				}else if(atributos[x].equalsIgnoreCase("AporteCapitalReais")){
-//					if((float) respectivosValoresAtributos[x] != persistidos.get(i).getAporteCapitalReais()){
-//						return projetoAnd;
-//					}
-//				}else if(atributos[x].equalsIgnoreCase("AporteCusteioReais")){
-//					if((float) respectivosValoresAtributos[x] != persistidos.get(i).getAporteCusteioReais()){
-//						return projetoAnd;
-//					}
-//				}else if(atributos[x].equalsIgnoreCase("GastoExecutadoCapitalReais")){
-//					if((float) respectivosValoresAtributos[x] != persistidos.get(i).getGastoExecutadoCapitalReais()){
-//						return projetoAnd;
-//					}
-//				}else if(atributos[x].equalsIgnoreCase("GastoExecutadoCusteioReais")){
-//					if((float) respectivosValoresAtributos[x] != persistidos.get(i).getGastoExecutadoCusteioReais()){
-//						return projetoAnd;
-//					}
-//				}else if(atributos[x].equalsIgnoreCase("DataInicio")){
-//					if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataInicio()){
-//						return projetoAnd;
-//					}
-//				}else if(atributos[x].equalsIgnoreCase("DataTermino")) {
-//					if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataTermino()){
-//						return projetoAnd;
-//					}
-//				}else{
-//					return projetoAnd;
-//				}
-//			}
-//			projetoAnd.add(persistidos.get(i));
-//		}
-//		return projetoAnd;
-//	}
-//
-//	public HashSet<Projeto> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
-//		HashSet<Projeto> projetoOr = new HashSet<Projeto>();
-//
-//		for (int i = 0; i < persistidos.size(); i++) {
-//			for (int x = 0; x < atributos.length; x++) {
-//				if(atributos[x].equalsIgnoreCase("Nome")||
-//						atributos[x].equalsIgnoreCase("AporteCapitalReais")||
-//						atributos[x].equalsIgnoreCase("AporteCusteioReais")||
-//						atributos[x].equalsIgnoreCase("GastoExecutadoCapitalReais")||
-//						atributos[x].equalsIgnoreCase("GastoExecutadoCusteioReais")||
-//						atributos[x].equalsIgnoreCase("DataInicio")||
-//						atributos[x].equalsIgnoreCase("DataTermino")) {
-//
-//					//compara o valor dos atributos respectivamente
-//					if(respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())||
-//							(float) respectivosValoresAtributos[x] == persistidos.get(i).getAporteCapitalReais()||
-//							(float) respectivosValoresAtributos[x] == persistidos.get(i).getAporteCusteioReais()||
-//							(float) respectivosValoresAtributos[x] == persistidos.get(i).getGastoExecutadoCapitalReais()||
-//							(float) respectivosValoresAtributos[x] == persistidos.get(i).getGastoExecutadoCusteioReais()||
-//							(long) respectivosValoresAtributos[x] == persistidos.get(i).getDataInicio()||
-//							(long) respectivosValoresAtributos[x] == persistidos.get(i).getDataTermino()) {
-//						projetoOr.add(persistidos.get(i));
-//					}
-//				}
-//			}
-//		}
-//		return projetoOr;
-//	}
+	public ArrayList<Projeto> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
+		ArrayList<Projeto> projetoAnd = new ArrayList<Projeto>();
+
+		for (Projeto i : persistidos.getProjetos()) {
+			for (int x = 0; x < atributos.length; x++) {
+				if(atributos[x].equalsIgnoreCase("Nome")){
+					if(!respectivosValoresAtributos[x].equals(i.getNome())){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("AporteCapitalReais")){
+					if((float) respectivosValoresAtributos[x] != i.getAporteCapitalReais()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("AporteCusteioReais")){
+					if((float) respectivosValoresAtributos[x] != i.getAporteCusteioReais()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("GastoExecutadoCapitalReais")){
+					if((float) respectivosValoresAtributos[x] != i.getGastoExecutadoCapitalReais()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("GastoExecutadoCusteioReais")){
+					if((float) respectivosValoresAtributos[x] != i.getGastoExecutadoCusteioReais()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("DataInicio")){
+					if((long) respectivosValoresAtributos[x] != i.getDataInicio()){
+						return projetoAnd;
+					}
+				}else if(atributos[x].equalsIgnoreCase("DataTermino")) {
+					if((long) respectivosValoresAtributos[x] != i.getDataTermino()){
+						return projetoAnd;
+					}
+				}else{
+					return projetoAnd;
+				}
+			}
+			projetoAnd.add(i);
+		}
+		return projetoAnd;
+	}
+
+	public ArrayList<Projeto> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
+		ArrayList<Projeto> projetoOr = new ArrayList<Projeto>();
+
+		for (Projeto i : persistidos.getProjetos()) {
+			for (int x = 0; x < atributos.length; x++) {
+				if(atributos[x].equalsIgnoreCase("Nome")||
+						atributos[x].equalsIgnoreCase("AporteCapitalReais")||
+						atributos[x].equalsIgnoreCase("AporteCusteioReais")||
+						atributos[x].equalsIgnoreCase("GastoExecutadoCapitalReais")||
+						atributos[x].equalsIgnoreCase("GastoExecutadoCusteioReais")||
+						atributos[x].equalsIgnoreCase("DataInicio")||
+						atributos[x].equalsIgnoreCase("DataTermino")) {
+
+					//compara o valor dos atributos respectivamente
+					if(respectivosValoresAtributos[x].equals(i.getNome())||
+							(float) respectivosValoresAtributos[x] == i.getAporteCapitalReais()||
+							(float) respectivosValoresAtributos[x] == i.getAporteCusteioReais()||
+							(float) respectivosValoresAtributos[x] == i.getGastoExecutadoCapitalReais()||
+							(float) respectivosValoresAtributos[x] == i.getGastoExecutadoCusteioReais()||
+							(long) respectivosValoresAtributos[x] == i.getDataInicio()||
+							(long) respectivosValoresAtributos[x] == i.getDataTermino()) {
+						projetoOr.add(i);
+					}
+				}
+			}
+		}
+		return projetoOr;
+	}
 
 	private void salvarXML() {
 		arquivoColecao = new File("ProjetoParticipacao.xml");

@@ -53,88 +53,88 @@ public class DAOXMLGrupo {
 	}
 	
 
-//	public HashSet<Grupo> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
-//		HashSet<Grupo> grupoAnd = new HashSet<Grupo>();
-//		for (int i = 0; i < persistidos.getGrupos().size(); i++) {
-//			for (int x = 0; x<atributos.length;x++) {
-//				if(atributos[x].equalsIgnoreCase("Nome")) {
-//					if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getNome())){
-//						return grupoAnd;
-//					}
-//			}
-//			else if(atributos[x].equalsIgnoreCase("CapitalReaisNaoGastoTotal")){
-//				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCapitalReaisNaoGastoTotal()){
-//					return grupoAnd;
-//				}
-//			}
-//			else if(atributos[x].equalsIgnoreCase("CusteioReaisNaoGastoTotal")){
-//				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCusteioReaisNaoGastoTotal()){
-//					return grupoAnd;
-//				}
-//			}
-//			else if(atributos[x].equalsIgnoreCase("CustoTotal")){
-//				if((float) respectivosValoresAtributos[x] != persistidos.get(i).getCustoTotal()){
-//					return grupoAnd;
-//				}
-//			}
-//			else if(atributos[x].equalsIgnoreCase("DataInicio")){
-//				if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataInicio()){
-//					return grupoAnd;
-//				}
-//			}
-//			else if(atributos[x].equalsIgnoreCase("DataTermino")){
-//				if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataTermino()){
-//					return grupoAnd;
-//				}
-//			}
-//			else if(atributos[x].equalsIgnoreCase("DataCriacao")){
-//				if((long) respectivosValoresAtributos[x] != persistidos.get(i).getDataCriacao()){
-//					return grupoAnd;
-//				}
-//			}
-//			else if(atributos[x].equalsIgnoreCase("LinkCNPq")){
-//				if(!respectivosValoresAtributos[x].equals(persistidos.get(i).getLinkCNPq())){
-//					return grupoAnd;
-//				}
-//			}else{
-//				return grupoAnd;
-//			}
-//		  }
-//			grupoAnd.add(persistidos.get(i));
-//		}
-//		return grupoAnd;
-//	  }
-//	
-//
-//	public HashSet<Grupo> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
-//		HashSet<Grupo> grupoOr = new HashSet<Grupo>();
-//
-//		for (int i = 0; i < persistidos.size(); i++) {
-//			for (int j = 0; j < atributos.length; j++) {
-//				if(atributos[j].equalsIgnoreCase("Nome") || 
-//						atributos[j].equalsIgnoreCase("CapitalReaisNaoGastoTotal") ||
-//						atributos[j].equalsIgnoreCase("CusteioReaisNaoGastoTotal") ||
-//						atributos[j].equalsIgnoreCase("CustoTotal") ||
-//						atributos[j].equalsIgnoreCase("DataInicio") ||
-//						atributos[j].equalsIgnoreCase("DataTermino")||
-//						atributos[j].equalsIgnoreCase("DataCriacao")||
-//						atributos[j].equalsIgnoreCase("LinkCNPq")) {
-//					
-//					if(respectivosValoresAtributos[j].equals(persistidos.get(i).getNome()) ||
-//							(float) respectivosValoresAtributos[j] == persistidos.get(i).getCapitalReaisNaoGastoTotal() ||
-//							(float) respectivosValoresAtributos[j] == persistidos.get(i).getCusteioReaisNaoGastoTotal() ||
-//							(float) respectivosValoresAtributos[j] == persistidos.get(i).getCustoTotal() ||
-//							(long) respectivosValoresAtributos[j] == persistidos.get(i).getDataInicio() ||
-//							(long) respectivosValoresAtributos[j] == persistidos.get(i).getDataTermino()||
-//							(long) respectivosValoresAtributos[j] == persistidos.get(i).getDataCriacao()||
-//							respectivosValoresAtributos[j].equals(persistidos.get(i).getLinkCNPq())) {
-//						grupoOr.add(persistidos.get(i));
-//					}
-//				}
-//			}
-//		 }
-//		return grupoOr;
-//	}
+	public ArrayList<Grupo> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
+		ArrayList<Grupo> grupoAnd = new ArrayList<Grupo>();
+		for (Grupo i : persistidos.getGrupos()) {
+			for (int x = 0; x<atributos.length;x++) {
+				if(atributos[x].equalsIgnoreCase("Nome")) {
+					if(!respectivosValoresAtributos[x].equals(i.getNome())){
+						return grupoAnd;
+					}
+			}
+			else if(atributos[x].equalsIgnoreCase("CapitalReaisNaoGastoTotal")){
+				if((float) respectivosValoresAtributos[x] != i.getCapitalReaisNaoGastoTotal()){
+					return grupoAnd;
+				}
+			}
+			else if(atributos[x].equalsIgnoreCase("CusteioReaisNaoGastoTotal")){
+				if((float) respectivosValoresAtributos[x] != i.getCusteioReaisNaoGastoTotal()){
+					return grupoAnd;
+				}
+			}
+			else if(atributos[x].equalsIgnoreCase("CustoTotal")){
+				if((float) respectivosValoresAtributos[x] != i.getCustoTotal()){
+					return grupoAnd;
+				}
+			}
+			else if(atributos[x].equalsIgnoreCase("DataInicio")){
+				if((long) respectivosValoresAtributos[x] != i.getDataInicio()){
+					return grupoAnd;
+				}
+			}
+			else if(atributos[x].equalsIgnoreCase("DataTermino")){
+				if((long) respectivosValoresAtributos[x] != i.getDataTermino()){
+					return grupoAnd;
+				}
+			}
+			else if(atributos[x].equalsIgnoreCase("DataCriacao")){
+				if((long) respectivosValoresAtributos[x] != i.getDataCriacao()){
+					return grupoAnd;
+				}
+			}
+			else if(atributos[x].equalsIgnoreCase("LinkCNPq")){
+				if(!respectivosValoresAtributos[x].equals(i.getLinkCNPq())){
+					return grupoAnd;
+				}
+			}else{
+				return grupoAnd;
+			}
+		  }
+			grupoAnd.add(i);
+		}
+		return grupoAnd;
+	  }
+	
+
+	public ArrayList<Grupo> consultarOr(String[] atributos, Object[] respectivosValoresAtributos) {
+		ArrayList<Grupo> grupoOr = new ArrayList<Grupo>();
+
+		for (Grupo i : persistidos.getGrupos()) {
+			for (int j = 0; j < atributos.length; j++) {
+				if(atributos[j].equalsIgnoreCase("Nome") || 
+						atributos[j].equalsIgnoreCase("CapitalReaisNaoGastoTotal") ||
+						atributos[j].equalsIgnoreCase("CusteioReaisNaoGastoTotal") ||
+						atributos[j].equalsIgnoreCase("CustoTotal") ||
+						atributos[j].equalsIgnoreCase("DataInicio") ||
+						atributos[j].equalsIgnoreCase("DataTermino")||
+						atributos[j].equalsIgnoreCase("DataCriacao")||
+						atributos[j].equalsIgnoreCase("LinkCNPq")) {
+					
+					if(respectivosValoresAtributos[j].equals(i.getNome()) ||
+							(float) respectivosValoresAtributos[j] == i.getCapitalReaisNaoGastoTotal() ||
+							(float) respectivosValoresAtributos[j] == i.getCusteioReaisNaoGastoTotal() ||
+							(float) respectivosValoresAtributos[j] == i.getCustoTotal() ||
+							(long) respectivosValoresAtributos[j] == i.getDataInicio() ||
+							(long) respectivosValoresAtributos[j] == i.getDataTermino()||
+							(long) respectivosValoresAtributos[j] == i.getDataCriacao()||
+							respectivosValoresAtributos[j].equals(i.getLinkCNPq())) {
+						grupoOr.add(i);
+					}
+				}
+			}
+		 }
+		return grupoOr;
+	}
 	
 	private void salvarXML() {
 		arquivoColecao = new File("Grupo.xml");
