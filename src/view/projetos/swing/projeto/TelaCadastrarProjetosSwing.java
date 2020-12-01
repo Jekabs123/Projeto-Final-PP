@@ -10,14 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
-import view.projetos.swing.TelaPrincipalSwing;
-import view.projetos.swing.grupo.TelaAdicionarGrupo;
-import view.projetos.swing.grupo.TelaAtualizarGrupo;
-import view.projetos.swing.grupo.TelaMostrarGrupos;
-import view.projetos.swing.grupo.TelaRemoverGrupo;
+import view.projetos.TelaCadastroProjetos;
 
-public class TelaCadastrarProjetosSwing extends JFrame{
+public class TelaCadastrarProjetosSwing extends JFrame implements TelaCadastroProjetos{
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	
 	public TelaCadastrarProjetosSwing() {
 		setTitle("Gerenciamento de Projetos");
@@ -107,7 +107,8 @@ public class TelaCadastrarProjetosSwing extends JFrame{
 				
 			case "":
 				dispose();
-				new TelaPrincipalSwing();
+				fabricaTela.fabricarTelaPrincipal();
+		//		new TelaPrincipalSwing();
 				break;
 			}
 			

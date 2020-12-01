@@ -1,4 +1,4 @@
-package view.projetos;
+package view.projetos.relatorios;
 
 import fachadas.Fachada8Relatorio;
 import model.projetos.Edital;

@@ -12,9 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import controller.ControllerGrupo;
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
 public class TelaRemoverGrupo extends JFrame {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	
 	private ControllerGrupo controllerGrupo = new ControllerGrupo();
 	
@@ -102,7 +106,8 @@ public class TelaRemoverGrupo extends JFrame {
 
 			case "Finalizar":
 				dispose();
-				new TelaCadastroGruposSwing();
+				fabricaTela.fabricarTelaCadastroGrupos();
+	//			new TelaCadastroGruposSwing();
 				break;
 			}
 			

@@ -1,4 +1,4 @@
-package view.projetos;
+package view.projetos.relatorios;
 
 import java.io.File;
 import java.io.FileWriter;

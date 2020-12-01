@@ -98,7 +98,5 @@ public class TelaAdicionarProjeto extends JFrame{
 		buttonFinalizar.setBounds(200, 330, 100, 30);
 		add(buttonFinalizar);
 	}
-	public static void main(String[] args) {
-		new TelaAdicionarProjeto();
-	}
+	
 }

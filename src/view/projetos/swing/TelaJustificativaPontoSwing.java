@@ -9,10 +9,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import view.autenticacao.swing.SetLookAndFeel;
+import view.projetos.TelaJustificativaPonto;
 
-public class TelaJustificarPontoBatido extends JFrame {
+public class TelaJustificativaPontoSwing extends JFrame implements TelaJustificativaPonto {
 	
-	public TelaJustificarPontoBatido() {
+	public TelaJustificativaPontoSwing() {
 		setTitle("Justificar Ponto");
 		setLayout(null);
 		setResizable(false);

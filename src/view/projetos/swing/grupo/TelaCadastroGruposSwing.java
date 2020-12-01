@@ -10,11 +10,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
-import view.projetos.TelaPonto;
+import view.projetos.TelaCadastroGrupos;
 import view.projetos.swing.TelaPrincipalSwing;
 
-public class TelaCadastroGruposSwing extends JFrame {
+public class TelaCadastroGruposSwing extends JFrame implements TelaCadastroGrupos {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	
 	public TelaCadastroGruposSwing() {
 		setTitle("Gerenciamento de Grupos");
@@ -104,7 +108,8 @@ public class TelaCadastroGruposSwing extends JFrame {
 				
 			case "":
 				dispose();
-				new TelaPrincipalSwing();
+				fabricaTela.fabricarTelaPrincipal();
+		//		new TelaPrincipalSwing();
 				break;
 			}
 			

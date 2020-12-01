@@ -13,9 +13,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import controller.ControllerGrupo;
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
 public class TelaAtualizarGrupo extends JFrame {
+
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	
 	private ControllerGrupo controllerGrupo = new ControllerGrupo();
 	
@@ -118,7 +122,8 @@ public class TelaAtualizarGrupo extends JFrame {
 
 			case "Finalizar":
 				dispose();
-				new TelaCadastroGruposSwing();
+				fabricaTela.fabricarTelaCadastroGrupos();
+		//		new TelaCadastroGruposSwing();
 				break;
 			}
 		}

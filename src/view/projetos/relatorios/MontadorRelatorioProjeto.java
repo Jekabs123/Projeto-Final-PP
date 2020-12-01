@@ -1,4 +1,4 @@
-package view.projetos;
+package view.projetos.relatorios;
 
 public interface MontadorRelatorioProjeto {
 	

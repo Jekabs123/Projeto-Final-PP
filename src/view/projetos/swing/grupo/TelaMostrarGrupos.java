@@ -11,13 +11,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.ControllerGrupo;
-import controller.ControllerMembro;
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
 public class TelaMostrarGrupos extends JFrame {
 	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
+	
 	private ControllerGrupo controllerGrupo = new ControllerGrupo();
-	private ControllerMembro controllerMembro = new ControllerMembro();
 	
 	public TelaMostrarGrupos() {
 		setTitle("Mostrar Grupo");
@@ -87,7 +89,8 @@ public class TelaMostrarGrupos extends JFrame {
 			switch (evento) {
 			case "Ok":
 				dispose();
-				new TelaCadastroGruposSwing();
+				fabricaTela.fabricarTelaCadastroGrupos();
+			//	new TelaCadastroGruposSwing();
 				break;
 
 			}

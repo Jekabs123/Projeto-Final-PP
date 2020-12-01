@@ -10,11 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
-import view.projetos.TelaPonto;
-import view.projetos.swing.grupo.TelaCadastroGruposSwing;
+import view.projetos.TelaPrincipal;
 
-public class TelaPrincipalSwing extends JFrame {
+public class TelaPrincipalSwing extends JFrame implements TelaPrincipal {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	
 	public TelaPrincipalSwing() {
 		setTitle("Menu");
@@ -78,22 +81,26 @@ public class TelaPrincipalSwing extends JFrame {
 			switch (evento) {
 			case "Projetos":
 				dispose();
-				//Falta botar menu Porojetos
+				fabricaTela.fabricarTelaCadastroProjetos();
+		//		new TelaCadastrarProjetosSwing();
 				break;
 
 			case "Grupos":
 				dispose();
-				new TelaCadastroGruposSwing();
+				fabricaTela.fabricarTelaCadastroGrupos();
+		//		new TelaCadastroGruposSwing();
 				break;
 				
 			case "Editais":
 				dispose();
-				//Falta botar menu Editais
+				fabricaTela.fabricarTelaCadastrarEditais();
+		//		new TelaCadastrarEditaisSwing();
 				break;
 			
 			case "Pontos":
 				dispose();
-				new TelaPonto();
+				fabricaTela.fabricarTelaPonto();
+		//		new TelaPontoSwing();
 				break;
 			}
 			

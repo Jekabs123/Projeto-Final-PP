@@ -7,10 +7,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
+import view.projetos.TelaCadastroEditais;
 import view.projetos.swing.TelaPrincipalSwing;
 
-public class TelaCadastrarEditaisSwing extends JFrame{
+public class TelaCadastrarEditaisSwing extends JFrame implements TelaCadastroEditais {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	
 	public TelaCadastrarEditaisSwing() {
 		setTitle("Gerenciamento de Editais");
@@ -100,7 +106,8 @@ public class TelaCadastrarEditaisSwing extends JFrame{
 				
 			case "":
 				dispose();
-				new TelaPrincipalSwing();
+				fabricaTela.fabricarTelaPrincipal();
+		//		new TelaPrincipalSwing();
 				break;
 			}
 			

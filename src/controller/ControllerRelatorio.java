@@ -3,7 +3,7 @@ package controller;
 import model.projetos.Edital;
 import model.projetos.Grupo;
 import model.projetos.Projeto;
-import view.projetos.DiretorRelatorio;
+import view.projetos.relatorios.DiretorRelatorio;
 
 public class ControllerRelatorio {
 

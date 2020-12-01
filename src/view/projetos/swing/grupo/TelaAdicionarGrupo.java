@@ -15,9 +15,13 @@ import javax.swing.JTextField;
 
 import controller.ControllerGrupo;
 import controller.ControllerMembro;
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
 public class TelaAdicionarGrupo extends JFrame {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 
 	private JTextField txtNomeGrupo;
 	private JComboBox<String> listMembros;
@@ -176,7 +180,8 @@ public class TelaAdicionarGrupo extends JFrame {
 
 			case "":
 				dispose();
-				new TelaCadastroGruposSwing();
+				fabricaTela.fabricarTelaCadastroGrupos();
+	//			new TelaCadastroGruposSwing();
 				break;
 
 			case "Add":
