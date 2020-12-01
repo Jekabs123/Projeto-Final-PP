@@ -1,11 +1,2 @@
-/controller/
-/exception/
-/fachadas/
-/main/
-/model/
-/persistenciaXML/
 /view/
-/projetos.png
-/editais.png
-/pontos.png
-/voltar.png
+/controller/

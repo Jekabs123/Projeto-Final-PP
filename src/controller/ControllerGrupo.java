@@ -35,5 +35,13 @@ public class ControllerGrupo {
 	public void removerGrupo(int id) {
 		fachadaGrupo.removerGrupo(id);
 	}
+	
+	public void atualizarGrupo() {
+		fachadaGrupo.atualizarGrupo();
+	}
+	
+	public void setNomeGrupo(Grupo grupo, String nome) {
+		grupo.setNome(nome);
+	}
 
 }

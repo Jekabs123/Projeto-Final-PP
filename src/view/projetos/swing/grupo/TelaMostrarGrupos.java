@@ -2,15 +2,22 @@ package view.projetos.swing.grupo;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import controller.ControllerGrupo;
+import controller.ControllerMembro;
 import view.autenticacao.swing.SetLookAndFeel;
 
 public class TelaMostrarGrupos extends JFrame {
+	
+	private ControllerGrupo controllerGrupo = new ControllerGrupo();
+	private ControllerMembro controllerMembro = new ControllerMembro();
 	
 	public TelaMostrarGrupos() {
 		setTitle("Mostrar Grupo");
@@ -44,7 +51,16 @@ public class TelaMostrarGrupos extends JFrame {
 	}
 
 	public void addJComboBox() {
-		JComboBox<String> listGrupos = new JComboBox<String>();
+		String[] gruposComboBox = new String[controllerGrupo.getGrupos().size()];
+		for (int i=0; i<controllerGrupo.getGrupos().size(); i++) {
+			for (int j = 0; j < controllerGrupo.getGrupos().get(i).getMembros().size(); j++) {
+				if (controllerGrupo.getGrupos().get(i).getMembros().get(j).isAtivo()) {
+					gruposComboBox[i] = (controllerGrupo.getGrupos().get(i).getNome());
+				}
+			}	
+		}
+		
+		JComboBox<String> listGrupos = new JComboBox<String>(gruposComboBox);
 		listGrupos.setBackground(Color.gray);
 		listGrupos.setBounds(190, 110, 120, 30);
 		add(listGrupos);
@@ -55,10 +71,29 @@ public class TelaMostrarGrupos extends JFrame {
 		buttonOk.setBackground(Color.gray);
 		buttonOk.setBounds(200, 190, 100, 30);
 		add(buttonOk);
+		
+		OuvinteMostrarGrupos ouvinteMostrarGrupos = new OuvinteMostrarGrupos();
+		
+		buttonOk.addActionListener(ouvinteMostrarGrupos);
+		
 	}
 	
-	public static void main(String[] args) {
-		new TelaMostrarGrupos();
+	public class OuvinteMostrarGrupos implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String evento = e.getActionCommand();
+			
+			switch (evento) {
+			case "Ok":
+				dispose();
+				new TelaCadastroGruposSwing();
+				break;
+
+			}
+			
+		}
+		
 	}
 
 }
