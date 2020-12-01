@@ -16,7 +16,7 @@ public class ControllerGrupo {
 		grupo = new Grupo();
 		grupo.setAtivo(true);
 		grupo.setDataInicio(LocalDate.now().getYear());
-		grupo.setDataTermino(2020);  // FALTA COLOCAR A OPÇÃO PARA O CLIENTE ESCOLHER
+		grupo.setDataTermino(2020);  
 		grupo.setDataCriacao(LocalDate.now().getYear());
 		grupo.setLinkCNPq("");
 		grupo.setId(fachadaGrupo.getGrupos().size()+1);
