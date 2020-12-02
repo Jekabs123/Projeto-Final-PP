@@ -1,13 +1,13 @@
 package view.projetos.relatorios;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTML;
@@ -16,7 +16,7 @@ import javax.swing.text.html.HTMLEditorKit;
 
 import fachadas.Fachada8Relatorio;
 
-public class RelatorioProjetoSwing extends JPanel implements MontadorRelatorioProjeto {
+public class RelatorioProjetoSwing extends JFrame implements MontadorRelatorioProjeto {
 	
 	
 
@@ -49,20 +49,21 @@ public class RelatorioProjetoSwing extends JPanel implements MontadorRelatorioPr
 			edPane.setEditorKit(htmlEdKit);
 			edPane.setDocument(htmlDoc);
 			htmlEdKit.install(edPane);
+			Fachada8Relatorio fachada = new Fachada8Relatorio();
+			edPane.setText(fachada.gerarRelatorioGeral());
 			
-//			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//			this.getContentPane().setLayout(new GridLayout(1,1));
-//			this.getContentPane().add(new JScrollPane(edPane));
-//			this.getcont
-//			frame.setSize(800,570);
-//			frame.setLocation(0,0);
-//			frame.show();
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.getContentPane().setLayout(new GridLayout(1,1));
+			this.add(new JScrollPane(edPane));
+			this.setSize(800,570);
+			this.setLocation(0,0);
 		
 	}
 	
 	public SwingJPanel getProduto() {
-		return null;
+		SwingJPanel swing = new SwingJPanel();
+		swing.setJPanel(this);
+		return swing;
 	}
-
 
 }

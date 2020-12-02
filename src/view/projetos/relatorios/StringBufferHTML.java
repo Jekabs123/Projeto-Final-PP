@@ -20,4 +20,5 @@ public class StringBufferHTML {
 			e.printStackTrace();
 		}
 	}
+
 }
