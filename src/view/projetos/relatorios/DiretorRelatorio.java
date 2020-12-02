@@ -12,9 +12,10 @@ public class DiretorRelatorio {
 		this.montador = montadorRelatorioProjeto;
 	}
 	
-	public void gerar() {
+	public void montar() {
 		montador.gerarRelatorioHtml();
 		montador.gerarRelatorioNativoSwing();
+		
 	}
 		
 

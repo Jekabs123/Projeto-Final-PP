@@ -31,7 +31,9 @@ public class RelatorioProjetoHTML extends File implements MontadorRelatorioProje
 	}
 	
 	public StringBufferHTML getProduto() {
-		return null;
+		StringBufferHTML stringHtml = new StringBufferHTML();
+		stringHtml.setHTML(this);
+		return stringHtml;
 	}
 
 @Override
@@ -39,4 +41,8 @@ public class RelatorioProjetoHTML extends File implements MontadorRelatorioProje
 		// TODO Auto-generated method stub
 	
 	}
+	public static void main(String[] args) {
+		new RelatorioProjetoHTML(new File("RelatorioHTML.html"), "").gerarRelatorioHtml();
+	}
+
 }

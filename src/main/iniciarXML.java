@@ -95,8 +95,9 @@ public class iniciarXML {
 		grupo.setAtivo(true);
 		grupo.setDataInicio(2020);
 		grupo.setDataTermino(2020);
-		grupo.setId(1);
+		grupo.setId(fachadaGrupo.getGrupos().size()+1);
 		grupo.setNome("TATAKAE!");
+		grupo.setLinkCNPq("www.com/cnpq-paulo");
 		fachadaGrupo.adicionarGrupo(grupo);
 		fachadaGrupo.adicionarMembroNoGrupo(membro1,1);
 		
@@ -109,7 +110,7 @@ public class iniciarXML {
 		edital.setAtivo(true);
 		edital.setDataInicio(2020);
 		edital.setDataTermino(2020);
-		edital.setId(1);
+		edital.setId(fachadaEdital.getEditais().size()+1);
 		edital.setNome("Edital Porjeto PP");
 		fachadaEdital.adicionarEdital(edital);
 		
@@ -126,11 +127,13 @@ public class iniciarXML {
 		projeto.setDataTermino(2020);
 		projeto.setGastoExecutadoCapitalReais(200);
 		projeto.setGastoExecutadoCusteioReais(600);
-		projeto.setId(1);
+		projeto.setId(fachadaProjeto.getProjetosPersistidos().size()+1);
 		projeto.setNome("Projeto PP");
 		fachadaProjeto.adicionarProjeto(projeto);
 		fachadaProjeto.adicionarMembroNoProjeto(membro1, 1);
 		fachadaProjeto.adicionarMembroNoProjeto(membro2, 1);
-		
+		Projeto pro2 = new Projeto();
+		pro2.setId(fachadaProjeto.getProjetosPersistidos().size()+1);
+		fachadaProjeto.adicionarProjeto(pro2);
 	}
 }
