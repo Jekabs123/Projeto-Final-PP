@@ -4,19 +4,25 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import fachadas.Fachada8Relatorio;
+
 public class RelatorioProjetoHTML extends File implements MontadorRelatorioProjeto {
 
-	public RelatorioProjetoHTML(File arg0, String arg1) {
-		super(arg0, arg1);
-	}
 	
+	
+	public RelatorioProjetoHTML(File arquivo, String caminho) {
+		super(arquivo, caminho);
+		// TODO Auto-generated constructor stub
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void reiniciar() {
+	public void gerarRelatorioHtml() {
 		try {
+			Fachada8Relatorio fachada = new Fachada8Relatorio();
 			FileWriter fw = new FileWriter(this);
-			fw.write("Relatorio HTML.html");
+			fw.write(fachada.gerarRelatorioGeral());
 			fw.flush();
 			fw.close();
 		} catch (IOException e) {
@@ -24,8 +30,13 @@ public class RelatorioProjetoHTML extends File implements MontadorRelatorioProje
 		}
 	}
 	
-	public SwingJPanel getProduto() {
+	public StringBufferHTML getProduto() {
 		return null;
 	}
 
+@Override
+	public void gerarRelatorioNativoSwing() {
+		// TODO Auto-generated method stub
+	
+	}
 }

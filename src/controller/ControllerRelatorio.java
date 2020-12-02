@@ -13,13 +13,13 @@ public class ControllerRelatorio {
 		this.diretor = diretor;
 	}
 	
-	public void gerarRelatorioEdital(Edital edital){
-		diretor.gerar(edital);
-	}
-	public void gerarRelatorioGrupo(Grupo grupo){
-		diretor.gerar(grupo);
-	}
-	public void gerarRelatrorioProjeto(Projeto projeto){
-		diretor.gerar(projeto);
-	}
+//	public void gerarRelatorioEdital(Edital edital){
+//		diretor.gerar(edital);
+//	}
+//	public void gerarRelatorioGrupo(Grupo grupo){
+//		diretor.gerar(grupo);
+//	}
+//	public void gerarRelatrorioProjeto(Projeto projeto){
+//		diretor.gerar(projeto);
+//	}
 }
