@@ -88,22 +88,26 @@ public class TelaCadastroGruposSwing extends JFrame implements TelaCadastroGrupo
 			switch (evento) {
 			case "Adicionar":
 				dispose();
-				new TelaAdicionarGrupo();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaAdicionarGrupo();
+		//		new TelaAdicionarGrupo();
 				break;
 
 			case "Remover":
 				dispose();
-				new TelaRemoverGrupo();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaRemoverGrupo();
+		//		new TelaRemoverGrupo();
 				break;
 				
 			case "Atualizar":
 				dispose();
-				new TelaAtualizarGrupo();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaAtualizarGrupo();
+		//		new TelaAtualizarGrupo();
 				break;
 			
 			case "Grupos":
 				dispose();
-				new TelaMostrarGrupos();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaMostrarGrupos();
+		//		new TelaMostrarGrupos();
 				break;
 				
 			case "":

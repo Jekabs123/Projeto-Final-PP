@@ -87,28 +87,32 @@ public class TelaCadastrarProjetosSwing extends JFrame implements TelaCadastroPr
 			switch (evento) {
 			case "Adicionar":
 				dispose();
-				new TelaAdicionarProjeto();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaAdicionarProjeto();
+	//			new TelaAdicionarProjeto();
 				break;
 
 			case "Remover":
 				dispose();
-				new TelaRemoverProjeto();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaRemoverProjeto();
+	//			new TelaRemoverProjeto();
 				break;
 				
 			case "Atualizar":
 				dispose();
-				new TelaAtualizarProjeto();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaAtualizarProjeto();
+	//			new TelaAtualizarProjeto();
 				break;
 			
 			case "Grupos":
 				dispose();
-				new TelaMostrarProjetos();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaMostrarProjetos();
+	//			new TelaMostrarProjetos();
 				break;
 				
 			case "":
 				dispose();
 				fabricaTela.fabricarTelaPrincipal();
-		//		new TelaPrincipalSwing();
+	//			new TelaPrincipalSwing();
 				break;
 			}
 			

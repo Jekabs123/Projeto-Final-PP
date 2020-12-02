@@ -110,7 +110,7 @@ public class TelaAdicionarGrupo extends JFrame {
 		buttonVoltar.addActionListener(ouvinteTelaAdicionarGrupo);
 	}
 
-	public class AdicionarMembros extends JFrame {
+	private class AdicionarMembros extends JFrame {
 
 		public AdicionarMembros() {
 			setLayout(null);
@@ -169,7 +169,8 @@ public class TelaAdicionarGrupo extends JFrame {
 
 			case "Novo Grupo":
 				dispose();
-				new TelaAdicionarGrupo();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaAdicionarGrupo();
+	//			new TelaAdicionarGrupo();
 				break;
 
 			case "Criar":

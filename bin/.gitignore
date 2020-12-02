@@ -1,23 +1,2 @@
-/addGrupo.png
-/addMembro.png
-/atualizar.png
 /controller/
-<<<<<<< HEAD
-/editais.png
-/exception/
-/fachadas/
-/grupos.png
-/main/
-/model/
-/persistenciaXML/
-/pontos.png
-/projetos.png
-/removerGrupo.png
-/tornarAdmin.png
 /view/
-/voltar.png
-=======
-/fachadas/
-/main/
-/persistenciaXML/
->>>>>>> 8ea5e6a366564c4bb02a1656b98520dd4d893c53

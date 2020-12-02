@@ -86,22 +86,26 @@ public class TelaCadastrarEditaisSwing extends JFrame implements TelaCadastroEdi
 			switch (evento) {
 			case "Adicionar":
 				dispose();
-				new TelaAdicionarEdital();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaAdicionarEdital();
+		//		new TelaAdicionarEdital();
 				break;
 
 			case "Remover":
 				dispose();
-				new TelaRemoverEdital();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaRemoverEdital();
+		//		new TelaRemoverEdital();
 				break;
 				
 			case "Atualizar":
 				dispose();
-				new TelaAtualizarEdital();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaAtualizarEdital();
+		//		new TelaAtualizarEdital();
 				break;
 			
 			case "Grupos":
 				dispose();
-				new TelaMostrarEditais();
+				((FabricaTelaSwing) fabricaTela).fabricarTelaMostrarEditais();
+		//		new TelaMostrarEditais();
 				break;
 				
 			case "":
