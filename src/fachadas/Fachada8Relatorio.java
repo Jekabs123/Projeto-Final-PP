@@ -30,8 +30,10 @@ public class Fachada8Relatorio {
 	}
 	/**
 	 * Esse método gera o relatório de todos os editais
+	 *
 	 */
 	public String gerarRelatorioEdital(){
+		//Usa tags HTML
 		String relatorio = "";
 		for(Edital edital : editais){
 			relatorio += "[Edital]<br>";
@@ -49,6 +51,7 @@ public class Fachada8Relatorio {
 	 * Esse método gera o relatório do todos os grupos
 	 */
 	public String gerarRelatorioGrupo(){
+		//Usa tags HTML
 		String relatorio = "";
 		for(Grupo grupo : grupos){
 			relatorio += "[GRUPO]<br>";
@@ -59,6 +62,7 @@ public class Fachada8Relatorio {
 		return relatorio;
 	}
 	public String gerarRelatorioProjeto(){
+		//Usa tags HTML
 		String relatorio = "";
 		for(Projeto p: projetos){
 			relatorio += "[Projeto]<br>";
@@ -74,6 +78,7 @@ public class Fachada8Relatorio {
 		return relatorio;
 	}
 	public String gerarRelatorioGeral(){
+		//Usa tags HTML
 		String relatorio = "";
 		relatorio += gerarRelatorioEdital()+"<br>";
 		relatorio += gerarRelatorioGrupo()+"<br>";
