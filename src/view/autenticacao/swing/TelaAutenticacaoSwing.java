@@ -1,9 +1,12 @@
 package view.autenticacao.swing;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,38 +31,46 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 		setTitle("Autenticação");
 		setLayout(null);
 		setResizable(false);
-		setSize(500, 300);
+		setSize(500, 450);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
 		botoes();
 		textField();
 		label();
+		radioButton();
 		setVisible(true);
 		repaint();
 	}
 	public void botoes(){
 		OuvinteAutenticar ouvinte = new OuvinteAutenticar();
-		JButton autenticar = new JButton("Autenticar");
-		autenticar.setBounds(80, 100, 90, 30);
+		JButton autenticar = new JButton("Autenticar", new ImageIcon(getClass().getResource("/autenticar.png")));
+		autenticar.setBackground(Color.gray);
+		autenticar.setBounds(190, 270, 120, 30);
 		autenticar.addActionListener(ouvinte);
 		add(autenticar);
+		
+		JButton cadastrar = new JButton("Cadastrar", new ImageIcon(getClass().getResource("/addMembro.png")));
+		cadastrar.setBackground(Color.gray);
+		cadastrar.setBounds(190, 330, 120, 30);
+		cadastrar.addActionListener(ouvinte);
+		add(cadastrar);
 	}
 	public void textField(){
 		campoLogin = new JTextField();
-		campoLogin.setBounds(120, 150, 120, 30);
+		campoLogin.setBounds(170, 100, 180, 30);
 		add(campoLogin);
 		
 		campoSenha = new JPasswordField();
-		campoSenha.setBounds(120, 190, 120, 30);
+		campoSenha.setBounds(170, 140, 180, 30);
 		add(campoSenha);
 	}
 	public void radioButton(){
 		smtp = new JRadioButton("Provedor SMTP");
 		interno = new JRadioButton("Provedor interno");
 
-		smtp.setBounds(30, 230, 80, 30);
-		interno.setBounds(120, 230, 80, 30);
+		smtp.setBounds(125, 200, 120, 30);
+		interno.setBounds(255, 200, 120, 30);
 		
 		ButtonGroup grupo = new ButtonGroup();
 		grupo.add(smtp);
@@ -70,14 +81,23 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 		
 	}
 	public void label(){
-		JLabel autenticarLabel = new JLabel("Autenticação");
-		autenticarLabel.setBounds(100, 50, 100, 30);
+		JLabel autenticarLabel = new JLabel("Autenticar");
+		autenticarLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
+		autenticarLabel.setBounds(150, 30, 200, 50);
+		add(autenticarLabel);
 		
 		JLabel login = new JLabel("Login");
-		login.setBounds(80, 150, 50, 30);
+		login.setFont(new Font("", Font.BOLD, 12));
+		login.setBounds(115, 100, 50, 30);
 		
 		JLabel senha = new JLabel("Senha");
-		senha.setBounds(80, 190, 50, 30);
+		senha.setFont(new Font("", Font.BOLD, 12));
+		senha.setBounds(115, 140, 50, 30);
+		
+		JLabel labelCadastrar = new JLabel("Não tem uma conta? Cadastre-se!");
+		labelCadastrar.setFont(new Font("", Font.BOLD, 12));
+		labelCadastrar.setBounds(160, 370, 200, 30);
+		add(labelCadastrar);
 		
 		add(autenticarLabel);
 		add(login);
@@ -100,4 +120,9 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 		}
 		
 	}
+	
+	public static void main(String[] args) {
+		new TelaAutenticacaoSwing();
+	}
+
 }

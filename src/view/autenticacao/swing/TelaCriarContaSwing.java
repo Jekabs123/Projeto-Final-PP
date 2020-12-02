@@ -124,4 +124,8 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		add(buttonCadastrar);
 	}
 	
+	public static void main(String[] args) {
+		new TelaCriarContaSwing(); 
+	}
+	
 }
