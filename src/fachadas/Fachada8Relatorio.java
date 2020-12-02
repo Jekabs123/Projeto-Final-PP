@@ -35,8 +35,9 @@ public class Fachada8Relatorio {
 	public String gerarRelatorioEdital(){
 		//Usa tags HTML
 		String relatorio = "";
+		relatorio += "<body Style='text-align: center'>";
 		for(Edital edital : editais){
-			relatorio += "[Edital]<br>";
+			relatorio += "<h3 Style='text-align: center; font: 21px verdana;'>[Edital ID: "+edital.getId()+"]</h3>";
 			relatorio += "[NOME] - "+edital.getNome()+"<br>";
 			relatorio += "[DATA INICIO] - "+edital.getDataInicio()+"<br>";
 			relatorio += "[DATA TERMINO] - "+edital.getDataTermino()+"<br>";
@@ -44,6 +45,7 @@ public class Fachada8Relatorio {
 			relatorio += "[CAPITAL NÃO GASTO] - "+edital.getCapitalReaisNaoGastoTotal()+"<br>";
 			relatorio += "[CUSTEIO NÃO GASTO] - "+edital.getCusteioReaisNaoGastoTotal()+"<br>";
 			relatorio +="[EDITAL ATIVO] - "+edital.getAtivo()+"<br>";
+			relatorio += "</body>";
 		}
 		return relatorio;
 	}
@@ -53,19 +55,22 @@ public class Fachada8Relatorio {
 	public String gerarRelatorioGrupo(){
 		//Usa tags HTML
 		String relatorio = "";
+		relatorio += "<body Style='text-align: center'>";
 		for(Grupo grupo : grupos){
-			relatorio += "[GRUPO]<br>";
+			relatorio += "<h3 Style='text-align: center; font: 21px verdana;'>[Grupo ID: "+grupo.getId()+"]</h3>";
 			relatorio += "[LINK CNPq] - "+grupo.getLinkCNPq()+"<br>";
 			relatorio += "[DATA CRIAÇÂO] - "+grupo.getDataCriacao()+"<br>";
 			relatorio += "[GRUPO ATIVO] - "+grupo.getAtivo()+"<br>";
+			relatorio += "</body>";
 		}
 		return relatorio;
 	}
 	public String gerarRelatorioProjeto(){
 		//Usa tags HTML
 		String relatorio = "";
+		relatorio += "<body Style='text-align: center'>";
 		for(Projeto p: projetos){
-			relatorio += "[Projeto]<br>";
+			relatorio += "<h3 Style='text-align: center; font: 21px verdana;'>[Projeto ID: "+p.getId()+"]</h3>";
 			relatorio += "Nome do projeto: "+p.getNome()+"<br>";
 			relatorio += "Gastos executados capital: "+p.getGastoExecutadoCapitalReais()+"<br>";
 			relatorio += "Gastos executados custeio: "+p.getGastoExecutadoCusteioReais()+"<br>";
@@ -74,6 +79,7 @@ public class Fachada8Relatorio {
 			relatorio += "Data inicio: "+p.getDataInicio()+"<br>";
 			relatorio += "Data termino: "+p.getDataTermino()+"<br>";
 			relatorio += "Custo Total: "+p.getCustoTotal()+"<br>";
+			relatorio += "</body>";
 		}
 		return relatorio;
 	}

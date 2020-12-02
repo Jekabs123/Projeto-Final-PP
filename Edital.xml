@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<persistenciaXML.DAOEdital>
+  <editais>
+    <model.projetos.Edital>
+      <id>1</id>
+      <nome>Edital Porjeto PP</nome>
+      <ativo>true</ativo>
+      <dataInicio>2020</dataInicio>
+      <dataTermino>2020</dataTermino>
+      <compositorProjeto/>
+    </model.projetos.Edital>
+  </editais>
+</persistenciaXML.DAOEdital>
