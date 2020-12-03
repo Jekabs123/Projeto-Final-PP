@@ -1,5 +1,7 @@
 package controller;
 
+import org.apache.commons.mail.EmailException;
+
 import fachadas.Fachada2Autenticacao;
 import model.autenticacao.Membro;
 import model.autenticacao.TipoProvedorAutenticacao;
@@ -7,7 +9,7 @@ import model.autenticacao.TipoProvedorAutenticacao;
 public class ControllerTelaAutenticacao {
 	private Fachada2Autenticacao fachada = new Fachada2Autenticacao();
 	
-	public Membro autenticarContaEmail(String login, String senha,TipoProvedorAutenticacao provedor){
+	public Membro autenticarContaEmail(String login, String senha,TipoProvedorAutenticacao provedor) throws EmailException{
 		return fachada.autenticarContaEmailProvedor(login, senha, provedor);
 	}
 	

@@ -10,6 +10,8 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
+import org.apache.commons.mail.EmailException;
+
 public class ContaEmailLivre extends ContaEmail{
 
 	public ContaEmailLivre(Conta conta) {
@@ -43,7 +45,7 @@ public class ContaEmailLivre extends ContaEmail{
 	}
 	//TODO sobrescrevi esses dois métodos como ele pediu no UML
 	@Override
-	public Membro autenticar(String login, String senha) {
+	public Membro autenticar(String login, String senha) throws EmailException {
 		String senhaCriptografadas = criptografarSenha(senha);
 		if(validarlogin(login)== true){
 			return super.autenticar(login, senhaCriptografadas);

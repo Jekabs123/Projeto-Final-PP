@@ -1,5 +1,7 @@
 package model.autenticacao;
 
+import org.apache.commons.mail.EmailException;
+
 public class ContaEmailIFPB extends ContaEmail{
 
 	public ContaEmailIFPB(Conta conta) {
@@ -14,7 +16,7 @@ public class ContaEmailIFPB extends ContaEmail{
 		return false;
 	}
 	@Override
-	public Membro autenticar(String login, String senha) {
+	public Membro autenticar(String login, String senha) throws EmailException {
 		if(validarlogin(login) == true){
 			return super.autenticar(login, senha);
 		}

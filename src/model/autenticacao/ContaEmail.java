@@ -1,5 +1,7 @@
 package model.autenticacao;
 
+import org.apache.commons.mail.EmailException;
+
 public class ContaEmail {
 	
 	private Conta conta;
@@ -11,7 +13,7 @@ public class ContaEmail {
 		this.setConta(conta);
 	}
 	
-	public Membro autenticar(String login, String senha) {  
+	public Membro autenticar(String login, String senha) throws EmailException {  
 		return conta.autenticar(login, senha);
 	}
 	

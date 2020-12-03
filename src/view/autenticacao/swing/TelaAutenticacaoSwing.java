@@ -15,6 +15,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import org.apache.commons.mail.EmailException;
+
 import controller.ControllerTelaAutenticacao;
 import model.autenticacao.Membro;
 import model.autenticacao.TipoProvedorAutenticacao;
@@ -115,8 +117,17 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 			}else if(interno.isSelected()){
 				provedor = TipoProvedorAutenticacao.INTERNO;
 			}
-			Membro m = controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
-			JOptionPane.showMessageDialog(null, m.getNome());
+			Membro m = null;
+				try {
+					m = controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
+					if(m == null){
+						JOptionPane.showMessageDialog(null, "Esse login ou senha não existe");
+					}else{
+						JOptionPane.showMessageDialog(null, m.getNome());
+					}
+				} catch (EmailException e1) {
+					JOptionPane.showMessageDialog(null, "Esse login ou senha não foi encontrado\n No provedor SMTP");
+				}
 		}
 		
 	}

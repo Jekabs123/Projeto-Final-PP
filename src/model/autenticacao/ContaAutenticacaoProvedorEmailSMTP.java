@@ -14,13 +14,12 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 	private String provedorPorta;
 
 	@Override
-	public Membro autenticar(String login, String senha) { 
+	public Membro autenticar(String login, String senha) throws EmailException { 
 		
 		SimpleEmail email = new SimpleEmail();
 		email.setHostName(provedorHost);
 		email.setSslSmtpPort(provedorPorta);
 		email.setAuthenticator( new DefaultAuthenticator(login, senha) );
-		try {
 			email.setFrom(login);
 			ArrayList<Membro> membrosList = Fachada1Membro.getMembros();
 				for(Membro m: membrosList){
@@ -30,10 +29,6 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 						return m;
 					}
 				}
-		} catch (EmailException e) {
-			e.printStackTrace();
-		}
-		System.out.println("nenhum membro");
 		return null;
 	}
 
