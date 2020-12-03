@@ -2,10 +2,14 @@ package controller;
 
 import fachadas.Fachada1Membro;
 import model.autenticacao.Conta;
+import model.autenticacao.ContaAutenticacaoProvedorEmailSMTP;
+import model.autenticacao.ContaAutenticacaoProvedorInterno;
 import model.autenticacao.ContaEmail;
+import model.autenticacao.ContaEmailIFPB;
 import model.autenticacao.ContaEmailLivre;
 import model.autenticacao.Membro;
 import model.projetos.Participacao;
+import model.projetos.Projeto;
 
 public class ControllerCadastrarContaMembro {
 	
@@ -15,7 +19,7 @@ public class ControllerCadastrarContaMembro {
 	private ContaEmail contaEmail;
 	private Conta conta;
 	
-	public void addMembro(String email, long matricula, String nome, String login, String senha) {
+	public void addMembro(String email, long matricula, String nome, String login, String senha, String tipoConta) {
 		
 		membro = new Membro();
 		membro.setAtivo(true);
@@ -24,9 +28,14 @@ public class ControllerCadastrarContaMembro {
 		membro.setNome(nome);
 		membro.setParticipacao(participacao);
 		
-		
-		contaEmail = new ContaEmail(conta);
-		contaEmail.setConta(conta);
+		if(tipoConta.equals("Livre")) {
+			conta = new ContaAutenticacaoProvedorInterno();
+			contaEmail = new ContaEmailLivre(conta);
+		}else if(tipoConta.equals("IFPB")) {
+			conta = new ContaAutenticacaoProvedorEmailSMTP();
+			contaEmail = new ContaEmailIFPB(conta);
+		}
+
 		contaEmail.setLogin(login);
 		contaEmail.setSenha(senha);
 		
@@ -34,15 +43,15 @@ public class ControllerCadastrarContaMembro {
 
 	}
 	
-	public void addParticipacao(float aporteCusteioMensalReais, boolean coordenador, long dataInicio, long dataTermino, String nome, short qtdMesesCusteados, short qtdMesesPagos) {
+	public void addParticipacao(Projeto projeto, float aporteCusteioMensalReais, short qtdMesesCusteados, short qtdMesesPagos) {
 		participacao = new Participacao();
 		participacao.setAporteCusteioMensalReais(aporteCusteioMensalReais);
 		participacao.setAtivo(true);
-		participacao.setCoordenador(coordenador);
-		participacao.setDataInicio(dataInicio);
-		participacao.setDataTermino(dataTermino);
+		participacao.setCoordenador(membro.getAdministrador());
+		participacao.setDataInicio(projeto.getDataInicio());
+		participacao.setDataTermino(projeto.getDataTermino());
 		participacao.setId(Fachada1Membro.getMembros().size()+1);
-		participacao.setNome(nome);
+		participacao.setNome(membro.getNome());
 		participacao.setQtdMesesCusteados(qtdMesesCusteados);
 		participacao.setQtdMesesPagos(qtdMesesPagos);
 	}
