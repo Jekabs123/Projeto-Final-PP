@@ -8,6 +8,7 @@ import model.autenticacao.ContaEmail;
 import model.autenticacao.ContaEmailIFPB;
 import model.autenticacao.ContaEmailLivre;
 import model.autenticacao.Membro;
+import model.autenticacao.TipoProvedorAutenticacao;
 import model.projetos.Participacao;
 import model.projetos.Projeto;
 
