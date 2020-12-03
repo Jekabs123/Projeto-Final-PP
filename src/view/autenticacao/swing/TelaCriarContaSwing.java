@@ -2,6 +2,8 @@ package view.autenticacao.swing;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -122,6 +124,31 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		buttonCadastrar.setBackground(Color.gray);
 		buttonCadastrar.setBounds(150, 470, 120, 50);
 		add(buttonCadastrar);
+	}
+	
+	
+	public class OuvinteCriarConta implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String evento = e.getActionCommand();
+			
+//			switch (key) {
+//			case value:
+//				
+//				break;
+//
+//			default:
+//				break;
+//			}
+			
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		new TelaCriarContaSwing();
 	}
 	
 }

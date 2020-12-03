@@ -127,14 +127,18 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao {
 				provedor = TipoProvedorAutenticacao.INTERNO;
 				tipoProvedor = "Provedor interno achou o membro: ";
 			}
-<<<<<<< HEAD
 			
 			switch (evento) {
 			case "Autenticar":
-				controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
-				JOptionPane.showMessageDialog(null, "Bem Vindo!");
-				dispose();
-				fabricaTela.fabricarTelaPrincipal();
+				try {
+					controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
+					JOptionPane.showMessageDialog(null, "Bem Vindo!");
+					dispose();
+					fabricaTela.fabricarTelaPrincipal();
+				} catch (EmailException e2) {
+					JOptionPane.showMessageDialog(null, "Não foi possível logar!");
+				}
+				
 				break;
 
 			case "Cadastrar":
@@ -143,7 +147,6 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao {
 				break;
 			}
 			
-=======
 			Membro m = null;
 				try {
 					m = controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
@@ -155,7 +158,6 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao {
 				} catch (EmailException e1) {
 					JOptionPane.showMessageDialog(null, "Esse login ou senha não foi encontrado\n No provedor SMTP");
 				}
->>>>>>> 47819caf1325d02baed26f359499e0dfbc69a3d8
 		}
 		
 	}

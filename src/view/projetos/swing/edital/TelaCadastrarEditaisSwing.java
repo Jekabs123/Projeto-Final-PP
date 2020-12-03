@@ -12,7 +12,6 @@ import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 import view.projetos.TelaCadastroEditais;
-import view.projetos.swing.TelaPrincipalSwing;
 
 public class TelaCadastrarEditaisSwing extends JFrame implements TelaCadastroEditais {
 	
@@ -86,32 +85,27 @@ public class TelaCadastrarEditaisSwing extends JFrame implements TelaCadastroEdi
 			switch (evento) {
 			case "Adicionar":
 				dispose();
-				((FabricaTelaSwing) fabricaTela).fabricarTelaAdicionarEdital();
-		//		new TelaAdicionarEdital();
+				new TelaAdicionarEdital();
 				break;
 
 			case "Remover":
 				dispose();
-				((FabricaTelaSwing) fabricaTela).fabricarTelaRemoverEdital();
-		//		new TelaRemoverEdital();
+				new TelaRemoverEdital();
 				break;
 				
 			case "Atualizar":
 				dispose();
-				((FabricaTelaSwing) fabricaTela).fabricarTelaAtualizarEdital();
-		//		new TelaAtualizarEdital();
+				new TelaAtualizarEdital();
 				break;
 			
 			case "Editais":
 				dispose();
-				((FabricaTelaSwing) fabricaTela).fabricarTelaMostrarEditais();
-		//		new TelaMostrarEditais();
+				new TelaMostrarEditais();
 				break;
 				
 			case "":
 				dispose();
 				fabricaTela.fabricarTelaPrincipal();
-		//		new TelaPrincipalSwing();
 				break;
 			}
 			

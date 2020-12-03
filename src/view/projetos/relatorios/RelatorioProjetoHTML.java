@@ -8,8 +8,8 @@ import fachadas.Fachada8Relatorio;
 
 public class RelatorioProjetoHTML extends File implements MontadorRelatorioProjeto {
 
-	
-	
+
+
 	public RelatorioProjetoHTML(File arquivo, String caminho) {
 		super(arquivo, caminho);
 		// TODO Auto-generated constructor stub
@@ -29,17 +29,17 @@ public class RelatorioProjetoHTML extends File implements MontadorRelatorioProje
 			e.printStackTrace();
 		}
 	}
-	
+
 	public StringBufferHTML getProduto() {
 		StringBufferHTML stringHtml = new StringBufferHTML();
 		stringHtml.setHTML(this);
 		return stringHtml;
 	}
 
-@Override
+	@Override
 	public void gerarRelatorioNativoSwing() {
 		// TODO Auto-generated method stub
-	
+
 	}
 	public static void main(String[] args) {
 		new RelatorioProjetoHTML(new File("RelatorioHTML.html"), "").gerarRelatorioHtml();

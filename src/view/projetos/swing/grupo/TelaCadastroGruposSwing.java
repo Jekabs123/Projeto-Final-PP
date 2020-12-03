@@ -14,7 +14,6 @@ import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 import view.projetos.TelaCadastroGrupos;
-import view.projetos.swing.TelaPrincipalSwing;
 
 public class TelaCadastroGruposSwing extends JFrame implements TelaCadastroGrupos {
 	
@@ -88,32 +87,27 @@ public class TelaCadastroGruposSwing extends JFrame implements TelaCadastroGrupo
 			switch (evento) {
 			case "Adicionar":
 				dispose();
-				((FabricaTelaSwing) fabricaTela).fabricarTelaAdicionarGrupo();
-		//		new TelaAdicionarGrupo();
+				new TelaAdicionarGrupo();
 				break;
 
 			case "Remover":
 				dispose();
-				((FabricaTelaSwing) fabricaTela).fabricarTelaRemoverGrupo();
-		//		new TelaRemoverGrupo();
+				new TelaRemoverGrupo();
 				break;
 				
 			case "Atualizar":
 				dispose();
-				((FabricaTelaSwing) fabricaTela).fabricarTelaAtualizarGrupo();
-		//		new TelaAtualizarGrupo();
+				new TelaAtualizarGrupo();
 				break;
 			
 			case "Grupos":
 				dispose();
-				((FabricaTelaSwing) fabricaTela).fabricarTelaMostrarGrupos();
-		//		new TelaMostrarGrupos();
+				new TelaMostrarGrupos();
 				break;
 				
 			case "":
 				dispose();
 				fabricaTela.fabricarTelaPrincipal();
-		//		new TelaPrincipalSwing();
 				break;
 			}
 			

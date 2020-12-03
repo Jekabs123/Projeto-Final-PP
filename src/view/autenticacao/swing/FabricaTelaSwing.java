@@ -75,56 +75,5 @@ public class FabricaTelaSwing implements FabricaTela {
 	public TelaPrincipal fabricarTelaPrincipal() {
 		return new TelaPrincipalSwing();
 	}
-	
-	//MÉTODOS ÚNICOS DE SWING
-	
-	public TelaAdicionarEdital fabricarTelaAdicionarEdital() {
-		return new TelaAdicionarEdital();
-	}
-	
-	public TelaAtualizarEdital fabricarTelaAtualizarEdital() {
-		return new TelaAtualizarEdital();
-	}
-	
-	public TelaMostrarEditais fabricarTelaMostrarEditais() {
-		return new TelaMostrarEditais();
-	}
-	
-	public TelaRemoverEdital fabricarTelaRemoverEdital() {
-		return new TelaRemoverEdital();
-	}
-	
-	public TelaAdicionarGrupo fabricarTelaAdicionarGrupo() {
-		return new TelaAdicionarGrupo();
-	}
-	
-	public TelaAtualizarGrupo fabricarTelaAtualizarGrupo() {
-		return new TelaAtualizarGrupo();
-	}
-	
-	public TelaMostrarGrupos fabricarTelaMostrarGrupos() {
-		return new TelaMostrarGrupos();
-	}
-	
-	public TelaRemoverGrupo fabricarTelaRemoverGrupo() {
-		return new TelaRemoverGrupo();
-	}
-	
-	public TelaAdicionarProjeto fabricarTelaAdicionarProjeto() {
-		return new TelaAdicionarProjeto();
-	}
-	
-	public TelaAtualizarProjeto fabricarTelaAtualizarProjeto() {
-		return new TelaAtualizarProjeto();
-	}
-	
-	public TelaMostrarProjetos fabricarTelaMostrarProjetos() {
-		return new TelaMostrarProjetos();
-	}
-	
-	public TelaRemoverProjeto fabricarTelaRemoverProjeto() {
-		return new TelaRemoverProjeto();
-	}
-	
 
 }

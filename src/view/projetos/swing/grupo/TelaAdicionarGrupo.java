@@ -166,8 +166,7 @@ public class TelaAdicionarGrupo extends JFrame {
 			
 			case "Novo Grupo":
 				dispose();
-				((FabricaTelaSwing) fabricaTela).fabricarTelaAdicionarGrupo();
-	//			new TelaAdicionarGrupo();
+				new TelaAdicionarGrupo();
 				break;
 
 			case "Criar":
