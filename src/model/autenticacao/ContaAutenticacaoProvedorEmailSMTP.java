@@ -25,7 +25,6 @@ public class ContaAutenticacaoProvedorEmailSMTP extends Conta{
 				for(Membro m: membrosList){
 					if(m.getLogin().equals(login)&&
 							m.getSenha().equals(senha)){
-						System.out.println("membro achado");
 						return m;
 					}
 				}
