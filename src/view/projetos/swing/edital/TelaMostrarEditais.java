@@ -2,15 +2,21 @@ package view.projetos.swing.edital;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
-public class TelaMostrarEditais extends JFrame{
+public class TelaMostrarEditais extends JFrame { 
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 
 	public TelaMostrarEditais() {
 		setTitle("Mostrar Editais");
@@ -55,6 +61,22 @@ public class TelaMostrarEditais extends JFrame{
 		buttonOk.setBackground(Color.gray);
 		buttonOk.setBounds(200, 190, 100, 30);
 		add(buttonOk);
+		
+		OuvinteMostrarEditais ouvinteMostrarEditais = new OuvinteMostrarEditais();
+		buttonOk.addActionListener(ouvinteMostrarEditais);
+	}
+	
+	public class OuvinteMostrarEditais implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getActionCommand().equals("Ok")) {
+				dispose();
+				fabricaTela.fabricarTelaCadastrarEditais();
+			}
+			
+		}
+		
 	}
 
 }

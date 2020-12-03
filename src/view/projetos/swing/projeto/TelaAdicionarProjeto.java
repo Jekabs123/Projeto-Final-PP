@@ -17,9 +17,13 @@ import controller.ControllerMembro;
 import controller.ControllerProjeto;
 import fachadas.Fachada1Membro;
 import fachadas.Fachada5Projeto;
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
 public class TelaAdicionarProjeto extends JFrame {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	
 	private ControllerProjeto controllerProjeto = new ControllerProjeto();
 	private ControllerMembro controllerMembro = new ControllerMembro();
@@ -172,7 +176,8 @@ public class TelaAdicionarProjeto extends JFrame {
 				break;
 
 			case "":
-				
+				dispose();
+				fabricaTela.fabricarTelaCadastroProjetos();
 				break;
 			}
 			

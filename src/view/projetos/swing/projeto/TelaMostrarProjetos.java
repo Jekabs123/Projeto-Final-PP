@@ -2,15 +2,21 @@ package view.projetos.swing.projeto;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
-public class TelaMostrarProjetos extends JFrame{
+public class TelaMostrarProjetos extends JFrame {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 
 	public TelaMostrarProjetos() {
 		setTitle("Mostrar Projeto");
@@ -55,6 +61,26 @@ public class TelaMostrarProjetos extends JFrame{
 		buttonOk.setBackground(Color.gray);
 		buttonOk.setBounds(200, 190, 100, 30);
 		add(buttonOk);
+		
+		OuvinteMostrarProjetos ouvinteMostrarProjetos = new OuvinteMostrarProjetos();
+		buttonOk.addActionListener(ouvinteMostrarProjetos);
+		
+	}
+	
+	public class OuvinteMostrarProjetos implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String evento = e.getActionCommand();
+			
+			if(evento.equals("Ok")) {
+				dispose();
+				fabricaTela.fabricarTelaCadastroProjetos();
+			}
+				
+			
+		}
+		
 	}
 
 }

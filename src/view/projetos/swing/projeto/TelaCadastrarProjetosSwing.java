@@ -103,7 +103,7 @@ public class TelaCadastrarProjetosSwing extends JFrame implements TelaCadastroPr
 	//			new TelaAtualizarProjeto();
 				break;
 			
-			case "Grupos":
+			case "Projetos":
 				dispose();
 				((FabricaTelaSwing) fabricaTela).fabricarTelaMostrarProjetos();
 	//			new TelaMostrarProjetos();

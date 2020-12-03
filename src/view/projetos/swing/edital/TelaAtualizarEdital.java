@@ -5,15 +5,20 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
-public class TelaAtualizarEdital extends JFrame{
+public class TelaAtualizarEdital extends JFrame {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 
 	public TelaAtualizarEdital() {
 		setTitle("Atualizar Edital");
@@ -75,6 +80,16 @@ public class TelaAtualizarEdital extends JFrame{
 		buttonFinalizar.setBackground(Color.gray);
 		buttonFinalizar.setBounds(300, 190, 100, 30);
 		add(buttonFinalizar);
+		
+		JButton buttonVoltar = new JButton(new ImageIcon(getClass().getResource("/voltar.png")));
+		buttonVoltar.setBackground(Color.gray);
+		buttonVoltar.setBounds(15, 15, 20, 20);
+		add(buttonVoltar);
+		
+		OuvinteButao ouvinteButao = new OuvinteButao();
+		buttonAtualizar.addActionListener(ouvinteButao);
+		buttonFinalizar.addActionListener(ouvinteButao);
+		buttonVoltar.addActionListener(ouvinteButao);
 	}
 	
 	public class OuvinteButao implements ActionListener{
@@ -83,8 +98,11 @@ public class TelaAtualizarEdital extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals("Finalizar")){
 				//logica de finalizar
-			}else{
+			}else if (e.getActionCommand().equals("Atualizar")){
 				//logica de atualizar
+			}else {
+				dispose();
+				fabricaTela.fabricarTelaCadastrarEditais();
 			}
 			
 		}

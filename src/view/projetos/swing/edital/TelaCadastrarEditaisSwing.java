@@ -102,7 +102,7 @@ public class TelaCadastrarEditaisSwing extends JFrame implements TelaCadastroEdi
 		//		new TelaAtualizarEdital();
 				break;
 			
-			case "Grupos":
+			case "Editais":
 				dispose();
 				((FabricaTelaSwing) fabricaTela).fabricarTelaMostrarEditais();
 		//		new TelaMostrarEditais();

@@ -2,15 +2,22 @@ package view.projetos.swing.projeto;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
-public class TelaRemoverProjeto extends JFrame{
+public class TelaRemoverProjeto extends JFrame {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 
 	public TelaRemoverProjeto() {
 		setTitle("Remover Projeto");
@@ -58,5 +65,40 @@ public class TelaRemoverProjeto extends JFrame{
 		buttonFinalizar.setBackground(Color.gray);
 		buttonFinalizar.setBounds(200, 190, 100, 30);
 		add(buttonFinalizar);
+		
+		JButton buttonVoltar = new JButton(new ImageIcon(getClass().getResource("/voltar.png")));
+		buttonVoltar.setBackground(Color.gray);
+		buttonVoltar.setBounds(15, 15, 20, 20);
+		add(buttonVoltar);
+		
+		OuvinteRemoverProjeto ouvinteRemoverProjeto = new OuvinteRemoverProjeto();
+		
+		buttonFinalizar.addActionListener(ouvinteRemoverProjeto);
+		buttonRemoverProjeto.addActionListener(ouvinteRemoverProjeto);
+		buttonVoltar.addActionListener(ouvinteRemoverProjeto);
+	}
+	
+	public class OuvinteRemoverProjeto implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String evento = e.getActionCommand();
+			
+			switch (evento) {
+			case "Remover":
+				
+				break;
+
+			case "Finalizar":
+				break;
+				
+			case "":
+				dispose();
+				fabricaTela.fabricarTelaCadastroProjetos();
+				break;
+			}
+			
+		}
+		
 	}
 }
