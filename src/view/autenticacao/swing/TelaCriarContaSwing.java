@@ -8,21 +8,25 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import controller.ControllerProjeto;
 import view.autenticacao.TelaCriarConta;
 
 public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
+	
+	private ControllerProjeto controllerProjeto = new ControllerProjeto();
 
 	public TelaCriarContaSwing() {
 		setTitle("Criar Conta");
 		setLayout(null);
 		setResizable(false);
-		setSize(400, 600);
+		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -32,9 +36,23 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		addTextFields();
 		addRadioButtons();
 		addButtons();
+		addComboBox();
 
 		setVisible(true);
 		repaint();
+	}
+
+	private void addComboBox() {
+		String[] projetosComboBox = new String[controllerProjeto.getProjetos().size()];
+		for (int i=0; i<controllerProjeto.getProjetos().size(); i++) {
+			projetosComboBox[i] = (controllerProjeto.getProjetos().get(i).getNome());
+		}
+		
+		JComboBox<String> listProjetos = new JComboBox<String>(projetosComboBox);
+		listProjetos.setBackground(Color.gray);
+		listProjetos.setBounds(450, 400, 120, 30);
+		add(listProjetos);
+		
 	}
 
 	public void addLabels() {
@@ -77,6 +95,29 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		labelNome.setBounds(50, 400, 50, 30);
 		add(labelNome);
 		
+		//Participacao 
+		
+		JLabel labelpart = new JLabel("Participação");
+		labelpart.setFont(new Font("Monospaced", Font.BOLD, 30));
+		labelpart.setBounds(500, 30, 250, 50);
+		add(labelpart);
+		
+		JLabel labelCusteio = new JLabel("Custeio Mensal");
+		labelCusteio.setBounds(450, 80, 100, 30);
+		add(labelCusteio);
+		
+		JLabel labelMesesCusteados = new JLabel("Meses Custeados");
+		labelMesesCusteados.setBounds(450, 185, 120, 30);
+		add(labelMesesCusteados);
+		
+		JLabel labelMesesPagos = new JLabel("Meses Pagos");
+		labelMesesPagos.setBounds(450, 295, 120, 30);
+		add(labelMesesPagos);
+		
+		JLabel labelProjetos = new JLabel("Projetos");
+		labelProjetos.setBounds(470, 370, 60, 30);
+		add(labelProjetos);
+		
 	}
 	public void addTextFields() {
 		//Conta
@@ -102,6 +143,21 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		JTextField txtNome = new JTextField();
 		txtNome.setBounds(120, 400, 230, 30);
 		add(txtNome);
+		
+		//Participacao
+		
+		JTextField txtCusteio = new JTextField();
+		txtCusteio.setBounds(620, 80, 90, 30);
+		add(txtCusteio);
+		
+		JTextField txtMesesCusteados = new JTextField();
+		txtMesesCusteados.setBounds(620, 185, 90, 30);
+		add(txtMesesCusteados);
+
+		JTextField txtMesesPagos = new JTextField();
+		txtMesesPagos.setBounds(620, 295, 90, 30);
+		add(txtMesesPagos);
+		
 	}
 	
 	public void addRadioButtons() {
@@ -122,8 +178,13 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 	public void addButtons() {
 		JButton buttonCadastrar = new JButton("Cadastrar", new ImageIcon(getClass().getResource("/addMembro.png")));
 		buttonCadastrar.setBackground(Color.gray);
-		buttonCadastrar.setBounds(150, 470, 120, 50);
+		buttonCadastrar.setBounds(340, 470, 120, 50);
 		add(buttonCadastrar);
+		
+		JButton buttonParticipar = new JButton("Participar");
+		buttonParticipar.setBackground(Color.gray);
+		buttonParticipar.setBounds(600, 400, 110, 30);
+		add(buttonParticipar);
 	}
 	
 	
