@@ -163,10 +163,7 @@ public class TelaAdicionarGrupo extends JFrame {
 			String evento = e.getActionCommand();
 
 			switch (evento) {
-			case "Adicionar":
-
-				break;
-
+			
 			case "Novo Grupo":
 				dispose();
 				((FabricaTelaSwing) fabricaTela).fabricarTelaAdicionarGrupo();
@@ -194,8 +191,8 @@ public class TelaAdicionarGrupo extends JFrame {
 						JOptionPane.showMessageDialog(null, "Membro Adicionado ao Grupo!");
 						break;
 
-					}else {
-						JOptionPane.showMessageDialog(null, "Membro Já Adicionado!");
+			//		}else {
+			//			JOptionPane.showMessageDialog(null, "Membro Já Adicionado!");
 					}
 				}
 

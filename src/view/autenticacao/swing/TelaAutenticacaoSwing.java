@@ -18,9 +18,12 @@ import javax.swing.JTextField;
 import controller.ControllerTelaAutenticacao;
 import model.autenticacao.Membro;
 import model.autenticacao.TipoProvedorAutenticacao;
+import view.autenticacao.FabricaTela;
 import view.autenticacao.TelaAutenticacao;
 
-public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
+public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao {
+	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	
 	private JTextField campoLogin;
 	private JPasswordField campoSenha;
@@ -68,6 +71,7 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 	public void radioButton(){
 		smtp = new JRadioButton("Provedor SMTP");
 		interno = new JRadioButton("Provedor interno");
+		interno.isSelected();
 
 		smtp.setBounds(125, 200, 120, 30);
 		interno.setBounds(255, 200, 120, 30);
@@ -107,6 +111,9 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			String evento = e.getActionCommand();
+			
 			ControllerTelaAutenticacao controller = new ControllerTelaAutenticacao();
 			String senha = new String(campoSenha.getPassword());
 			TipoProvedorAutenticacao provedor = null;
@@ -115,8 +122,21 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 			}else if(interno.isSelected()){
 				provedor = TipoProvedorAutenticacao.INTERNO;
 			}
-			Membro m = controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
-			JOptionPane.showMessageDialog(null, m.getNome());
+			
+			switch (evento) {
+			case "Autenticar":
+				controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
+				JOptionPane.showMessageDialog(null, "Bem Vindo!");
+				dispose();
+				fabricaTela.fabricarTelaPrincipal();
+				break;
+
+			case "Cadastrar":
+				dispose();
+				fabricaTela.fabricarTelaCriarConta();
+				break;
+			}
+			
 		}
 		
 	}

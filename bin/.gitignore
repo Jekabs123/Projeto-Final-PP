@@ -1,9 +1,18 @@
-/controller/
-/view/
-<<<<<<< HEAD
+/addGrupo.png
+/addMembro.png
+/atualizar.png
 /autenticar.png
+/controller/
+/editais.png
+/exception/
 /fachadas/
-=======
-/fachadas/
+/grupos.png
 /main/
->>>>>>> 0c99ac15ef376aadb8e900f10ac76c7290d82d92
+/model/
+/persistenciaXML/
+/pontos.png
+/projetos.png
+/removerGrupo.png
+/tornarAdmin.png
+/view/
+/voltar.png

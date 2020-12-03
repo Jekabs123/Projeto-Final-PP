@@ -11,8 +11,10 @@ public class ControllerProjeto {
 
 	private Fachada5Projeto fachadaProjeto = new Fachada5Projeto();
 	
+	private Projeto projeto;
+	
 	public void adicionarProjeto(String nome,float aporteCapitalReais,float aporteCusteioReais,long dataTermino){
-		Projeto projeto = new Projeto();
+		projeto = new Projeto();
 		projeto.setAporteCapitalReais(aporteCapitalReais);
 		projeto.setAporteCusteioReais(aporteCusteioReais);
 		projeto.setAtivo(true);
@@ -22,8 +24,8 @@ public class ControllerProjeto {
 		projeto.setNome(nome);
 		fachadaProjeto.adicionarProjeto(projeto);
 	}
-	public void adicionarMembroNoProjeto(Membro membro, int id){
-		fachadaProjeto.adicionarMembroNoProjeto(membro, id);
+	public void adicionarMembroNoProjeto(Membro membro){
+		fachadaProjeto.adicionarMembroNoProjeto(membro, projeto.getId());
 	}
 	public ArrayList<Projeto> getProjetos(){
 		return Fachada5Projeto.getProjetosPersistidos();
