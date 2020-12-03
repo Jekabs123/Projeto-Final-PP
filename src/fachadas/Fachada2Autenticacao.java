@@ -1,5 +1,7 @@
 package fachadas;
 
+import org.apache.commons.mail.EmailException;
+
 import model.autenticacao.Conta;
 import model.autenticacao.ContaAutenticacaoProvedorEmailSMTP;
 import model.autenticacao.ContaAutenticacaoProvedorInterno;
@@ -25,7 +27,7 @@ public class Fachada2Autenticacao {
 		
 	}
 	
-	public Membro autenticarContaEmailProvedor(String login, String senha, TipoProvedorAutenticacao provedor) {
+	public Membro autenticarContaEmailProvedor(String login, String senha, TipoProvedorAutenticacao provedor) throws EmailException {
 		if(provedor == TipoProvedorAutenticacao.EMAIL_SMTP){
 			contaEmail = new ContaEmail(contaSMTP);
 		}else{

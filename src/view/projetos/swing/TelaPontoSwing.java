@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import org.apache.commons.mail.EmailException;
+
 import controller.ControllerTelaPonto;
 import fachadas.Fachada11BaterPonto;
 import fachadas.Fachada13Horario;
@@ -200,7 +202,11 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 					for (Membro membro: Fachada1Membro.getMembros()) {
 						if(membro.getLogin().equals(textLogin.getText()) && membro.getSenha().equals(textSenha.getText())) {
 							Fachada9MembroRealizarLogout.realizarLogin(membro);
-							fachadaAutenticacao.autenticarContaEmailProvedor(textLogin.getText(), textSenha.getText(), provedor);
+							try {
+								fachadaAutenticacao.autenticarContaEmailProvedor(textLogin.getText(), textSenha.getText(), provedor);
+							} catch (EmailException e1) {
+								JOptionPane.showMessageDialog(null, "Login ou senha não existe no provedor SMTP");
+							}
 							JOptionPane.showMessageDialog(null, "Logado");
 							liberarBaterPonto = true;
 							break;

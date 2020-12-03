@@ -1,5 +1,7 @@
 package main;
 
+import org.apache.commons.mail.EmailException;
+
 import fachadas.Fachada1Membro;
 import fachadas.Fachada3Grupo;
 import fachadas.Fachada4Edital;
@@ -52,7 +54,12 @@ public class iniciarXML {
 		membro1.setParticipacao(p);
 		membro1.setContaEmail(contaEmail);
 		fachadaMembro.adicionarMembroNoSistema(membro1, contaEmail);
-		contaEmail.autenticar(contaEmail.getLogin(), contaEmail.getSenha());
+		try {
+			contaEmail.autenticar(contaEmail.getLogin(), contaEmail.getSenha());
+		} catch (EmailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//Inathan
 		
@@ -84,7 +91,12 @@ public class iniciarXML {
 		membro2.setParticipacao(p);
 		membro2.setContaEmail(contaEmail2);
 		fachadaMembro.adicionarMembroNoSistema(membro2, contaEmail2);
-		contaEmail.autenticar(contaEmail2.getLogin(), contaEmail2.getSenha());
+		try {
+			contaEmail.autenticar(contaEmail2.getLogin(), contaEmail2.getSenha());
+		} catch (EmailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		//Grupo
