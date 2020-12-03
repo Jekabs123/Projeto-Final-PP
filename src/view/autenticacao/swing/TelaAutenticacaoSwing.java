@@ -112,10 +112,13 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 			ControllerTelaAutenticacao controller = new ControllerTelaAutenticacao();
 			String senha = new String(campoSenha.getPassword());
 			TipoProvedorAutenticacao provedor = null;
+			String tipoProvedor = "";
 			if(smtp.isSelected()){
 				provedor = TipoProvedorAutenticacao.EMAIL_SMTP;
+				tipoProvedor = "Provedor SMTP achou o membro: ";
 			}else if(interno.isSelected()){
 				provedor = TipoProvedorAutenticacao.INTERNO;
+				tipoProvedor = "Provedor interno achou o membro: ";
 			}
 			Membro m = null;
 				try {
@@ -123,7 +126,7 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao{
 					if(m == null){
 						JOptionPane.showMessageDialog(null, "Esse login ou senha não existe");
 					}else{
-						JOptionPane.showMessageDialog(null, m.getNome());
+						JOptionPane.showMessageDialog(null, tipoProvedor+m.getNome());
 					}
 				} catch (EmailException e1) {
 					JOptionPane.showMessageDialog(null, "Esse login ou senha não foi encontrado\n No provedor SMTP");
