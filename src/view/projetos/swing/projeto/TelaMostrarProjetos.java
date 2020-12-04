@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import controller.ControllerProjeto;
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
@@ -17,6 +18,7 @@ import view.autenticacao.swing.SetLookAndFeel;
 public class TelaMostrarProjetos extends JFrame {
 	
 	private FabricaTela fabricaTela = new FabricaTelaSwing();
+	private ControllerProjeto controllerProjeto = new ControllerProjeto();
 
 	public TelaMostrarProjetos() {
 		setTitle("Mostrar Projeto");
@@ -50,7 +52,16 @@ public class TelaMostrarProjetos extends JFrame {
 	}
 
 	public void addJComboBox() {
-		JComboBox<String> listGrupos = new JComboBox<String>();
+		String[] projetosComboBox = new String[controllerProjeto.getProjetos().size()];
+		for (int i=0; i<controllerProjeto.getProjetos().size(); i++) {
+			for (int j = 0; j < controllerProjeto.getProjetos().get(i).getMembros().size(); j++) {
+				if (controllerProjeto.getProjetos().get(i).getMembros().get(j).isAtivo()) {
+					projetosComboBox[i] = (controllerProjeto.getProjetos().get(i).getNome());
+				}
+			}	
+		}
+		
+		JComboBox<String> listGrupos = new JComboBox<String>(projetosComboBox);
 		listGrupos.setBackground(Color.gray);
 		listGrupos.setBounds(190, 110, 120, 30);
 		add(listGrupos);
