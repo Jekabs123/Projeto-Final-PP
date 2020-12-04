@@ -132,7 +132,7 @@ public class TelaAdicionarGrupo extends JFrame {
 			labelMembros.setBounds(70, 10, 60, 20);
 			add(labelMembros);
 
-			String[] membrosComboBox = new String[controllerGrupo.getGrupos().size()];
+			String[] membrosComboBox = new String[controllerMembro.getMembros().size()];
 			
 			for (int i=0; i<controllerMembro.getMembros().size(); i++) {
 				membrosComboBox[i] = controllerMembro.getMembros().get(i).getNome();

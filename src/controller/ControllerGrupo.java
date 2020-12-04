@@ -24,8 +24,14 @@ public class ControllerGrupo {
 		fachadaGrupo.adicionarGrupo(grupo);
 	}
 	
+	//Usa em criar grupo
 	public void addMembroAogrupo(Membro membro) {
 		fachadaGrupo.adicionarMembroNoGrupo(membro, grupo.getId());
+	}
+	
+	//usa em atualizar
+	public void addMembroAogrupo(Membro membro, int id) {
+		fachadaGrupo.adicionarMembroNoGrupo(membro, id);
 	}
 	
 	public ArrayList<Grupo> getGrupos() {
@@ -42,6 +48,10 @@ public class ControllerGrupo {
 	
 	public void setNomeGrupo(Grupo grupo, String nome) {
 		grupo.setNome(nome);
+	}
+	
+	public void removerMembroDoGrupo(Membro membro, int idDoGrupo) {
+		fachadaGrupo.removerMembroDoGrupo(membro, idDoGrupo);
 	}
 
 }
