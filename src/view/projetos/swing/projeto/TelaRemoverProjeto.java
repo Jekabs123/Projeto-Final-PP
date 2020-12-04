@@ -10,7 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
+import controller.ControllerProjeto;
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
@@ -18,6 +20,9 @@ import view.autenticacao.swing.SetLookAndFeel;
 public class TelaRemoverProjeto extends JFrame {
 	
 	private FabricaTela fabricaTela = new FabricaTelaSwing();
+	private ControllerProjeto controllerProjeto = new ControllerProjeto();
+	
+	private JComboBox<String> listProjetos;
 
 	public TelaRemoverProjeto() {
 		setTitle("Remover Projeto");
@@ -39,7 +44,7 @@ public class TelaRemoverProjeto extends JFrame {
 	private void addLabels() {
 		JLabel labelTitulo = new JLabel("Remover Projeto");
 		labelTitulo.setFont(new Font("Monospaced", Font.BOLD, 30));
-		labelTitulo.setBounds(125, 20, 250, 50);
+		labelTitulo.setBounds(100, 20, 300, 50);
 		add(labelTitulo);
 		
 		JLabel labelProjetos = new JLabel("Projetos");
@@ -49,7 +54,12 @@ public class TelaRemoverProjeto extends JFrame {
 	}
 
 	private void addJComboBox() {
-		JComboBox<String> listProjetos = new JComboBox<String>();
+		String[] projetosComboBox = new String[controllerProjeto.getProjetos().size()];
+		for (int i=0; i<controllerProjeto.getProjetos().size(); i++) {
+			projetosComboBox[i] = (controllerProjeto.getProjetos().get(i).getNome());
+		}
+		
+		listProjetos = new JComboBox<String>(projetosComboBox);
 		listProjetos.setBackground(Color.gray);
 		listProjetos.setBounds(120, 110, 120, 30);
 		add(listProjetos);
@@ -66,16 +76,10 @@ public class TelaRemoverProjeto extends JFrame {
 		buttonFinalizar.setBounds(200, 190, 100, 30);
 		add(buttonFinalizar);
 		
-		JButton buttonVoltar = new JButton(new ImageIcon(getClass().getResource("/voltar.png")));
-		buttonVoltar.setBackground(Color.gray);
-		buttonVoltar.setBounds(15, 15, 20, 20);
-		add(buttonVoltar);
-		
 		OuvinteRemoverProjeto ouvinteRemoverProjeto = new OuvinteRemoverProjeto();
 		
 		buttonFinalizar.addActionListener(ouvinteRemoverProjeto);
 		buttonRemoverProjeto.addActionListener(ouvinteRemoverProjeto);
-		buttonVoltar.addActionListener(ouvinteRemoverProjeto);
 	}
 	
 	public class OuvinteRemoverProjeto implements ActionListener{
@@ -86,15 +90,22 @@ public class TelaRemoverProjeto extends JFrame {
 			
 			switch (evento) {
 			case "Remover":
+				int index = listProjetos.getSelectedIndex();
+				
+				for (int i = 0; i < controllerProjeto.getProjetos().size(); i++) {
+					if(controllerProjeto.getProjetos().get(i).equals(controllerProjeto.getProjetos().get(index))) {
+						controllerProjeto.removerProjeto(index);
+						JOptionPane.showMessageDialog(null, "Projeto Removido");
+						listProjetos.repaint();
+					}
+				}
 				
 				break;
 
 			case "Finalizar":
-				break;
-				
-			case "":
 				dispose();
 				fabricaTela.fabricarTelaCadastroProjetos();
+	//			new TelaCadastroGruposSwing();
 				break;
 			}
 			
