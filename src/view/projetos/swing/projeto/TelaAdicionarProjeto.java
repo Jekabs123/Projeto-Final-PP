@@ -15,8 +15,6 @@ import javax.swing.JTextField;
 
 import controller.ControllerMembro;
 import controller.ControllerProjeto;
-import fachadas.Fachada1Membro;
-import fachadas.Fachada5Projeto;
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
@@ -32,13 +30,16 @@ public class TelaAdicionarProjeto extends JFrame {
 	private JTextField txtNomeProjeto;
 	private JTextField textCapital;
 	private JTextField textCusteio;
+	private JTextField textTermino;
+	private JTextField textGCapital;
+	private JTextField textGCusteio;
 	private JButton buttonAddMembro;
 
 	public TelaAdicionarProjeto() {
 		setTitle("Adicionar Projeto");
 		setLayout(null);
 		setResizable(false);
-		setSize(500, 600);
+		setSize(700, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -56,43 +57,72 @@ public class TelaAdicionarProjeto extends JFrame {
 	public void addLabels() {
 		JLabel labelTitulo = new JLabel("Adicionar Projeto");
 		labelTitulo.setFont(new Font("Monospaced", Font.BOLD, 30));
-		labelTitulo.setBounds(100, 20, 400, 50);
+		labelTitulo.setBounds(200, 20, 400, 50);
 		add(labelTitulo);
 		
 		JLabel labelNomeProjeto = new JLabel("Nome do Projeto");
 		labelNomeProjeto.setFont(new Font("", Font.BOLD, 12));
-		labelNomeProjeto.setBounds(120, 80, 100, 30);
+		labelNomeProjeto.setBounds(220, 80, 100, 30);
 		add(labelNomeProjeto);
 		
 		JLabel labelMembros = new JLabel("Membros");
 		labelMembros.setFont(new Font("", Font.BOLD, 12));
-		labelMembros.setBounds(120, 260, 60, 30);
+		labelMembros.setBounds(220, 260, 60, 30);
 		add(labelMembros);
 		
 		JLabel labelCapital = new JLabel("Capital");
 		labelCapital.setFont(new Font("", Font.BOLD, 12));
-		labelCapital.setBounds(170, 120, 50, 30);
+		labelCapital.setBounds(40, 140, 50, 30);
 		add(labelCapital);
 		
 		JLabel labelCusteio = new JLabel("Custeio");
 		labelCusteio.setFont(new Font("", Font.BOLD, 12));
-		labelCusteio.setBounds(170, 160, 50, 30);
+		labelCusteio.setBounds(170, 140, 50, 30);
 		add(labelCusteio);
+		
+
+		JLabel labelTermino = new JLabel("Termino");
+		labelTermino.setFont(new Font("", Font.BOLD, 12));
+		labelTermino.setBounds(300, 140, 50, 30);
+		add(labelTermino);
+		
+		JLabel labelGastoCapital = new JLabel("G.Capital");
+		labelGastoCapital.setFont(new Font("", Font.BOLD, 12));
+		labelGastoCapital.setBounds(430, 140, 50, 30);
+		add(labelGastoCapital);
+		
+		JLabel labelGastoCusteio = new JLabel("G.Custeio");
+		labelGastoCusteio.setFont(new Font("", Font.BOLD, 12));
+		labelGastoCusteio.setBounds(560, 140, 50, 30);
+		add(labelGastoCusteio);
+		
 	}
 	
 	public void addTextField() {
 		txtNomeProjeto = new JTextField();
-		txtNomeProjeto.setBounds(230, 80, 210, 30);
+		txtNomeProjeto.setBounds(330, 80, 210, 30);
 		
 		textCapital = new JTextField();
-		textCapital.setBounds(230, 120, 100, 30);
+		textCapital.setBounds(100, 140, 60, 30);
 		
 		textCusteio = new JTextField();
-		textCusteio.setBounds(230, 160, 100, 30);
+		textCusteio.setBounds(230, 140, 60, 30);
+		
+		textTermino = new JTextField();
+		textTermino.setBounds(360, 140, 60, 30);
+		
+		textGCapital = new JTextField();
+		textGCapital.setBounds(490, 140, 60, 30);
+		
+		textGCusteio = new JTextField();
+		textGCusteio.setBounds(620, 140, 60, 30);
 		
 		add(textCusteio);
 		add(textCapital);
 		add(txtNomeProjeto);
+		add(textTermino);
+		add(textGCapital);
+		add(textGCusteio);
 	}
 	
 	public void addJComboBox() {
@@ -104,7 +134,7 @@ public class TelaAdicionarProjeto extends JFrame {
 		
 		listMembros = new JComboBox<String>(membrosComboBox);
 		listMembros.setBackground(Color.gray);
-		listMembros.setBounds(100, 290, 100, 30);
+		listMembros.setBounds(200, 290, 100, 30);
 		add(listMembros);
 	}
 
@@ -112,23 +142,23 @@ public class TelaAdicionarProjeto extends JFrame {
 	public void addButtons() {
 		buttonAddMembro = new JButton("Adicionar");
 		buttonAddMembro.setBackground(Color.gray);
-		buttonAddMembro.setBounds(300, 290, 120, 30);
+		buttonAddMembro.setBounds(400, 290, 120, 30);
 		buttonAddMembro.setEnabled(false);
 		add(buttonAddMembro);
 		
 		JButton buttonNovoProjeto = new JButton("Novo Projeto");
 		buttonNovoProjeto.setBackground(Color.gray);
-		buttonNovoProjeto.setBounds(200, 340, 100, 30);
+		buttonNovoProjeto.setBounds(300, 340, 100, 30);
 		add(buttonNovoProjeto);
 		
 		JButton buttonFinalizar = new JButton("Finalizar");
 		buttonFinalizar.setBackground(Color.gray);
-		buttonFinalizar.setBounds(200, 380, 100, 30);
+		buttonFinalizar.setBounds(300, 380, 100, 30);
 		add(buttonFinalizar);
 		
 		JButton buttonCriarProjeto = new JButton("Criar Projeto");
 		buttonCriarProjeto.setBackground(Color.gray);
-		buttonCriarProjeto.setBounds(200, 200, 100, 30);
+		buttonCriarProjeto.setBounds(300, 200, 100, 30);
 		add(buttonCriarProjeto);
 		
 		JButton buttonVoltar = new JButton(new ImageIcon(getClass().getResource("/voltar.png")));
@@ -155,7 +185,11 @@ public class TelaAdicionarProjeto extends JFrame {
 			case "Criar Projeto":
 				float capital = Float.parseFloat(textCapital.getText());
 				float custeio = Float.parseFloat(textCusteio.getText());
-				controllerProjeto.adicionarProjeto(txtNomeProjeto.getText(), capital, custeio, 2020);
+				long dataTermino = Long.parseLong(textTermino.getText());
+				float gastoExecutadoCapitalReais = Float.parseFloat(textGCapital.getText());
+				float gastoExecutadoCusteioReais = Float.parseFloat(textGCusteio.getText());
+				controllerProjeto.adicionarProjeto(txtNomeProjeto.getText(), capital, custeio, dataTermino,
+						gastoExecutadoCapitalReais, gastoExecutadoCusteioReais);
 				buttonAddMembro.setEnabled(true);
 				break;
 			
@@ -163,7 +197,7 @@ public class TelaAdicionarProjeto extends JFrame {
 				int index = listMembros.getSelectedIndex();
 				
 				for (int i = 0; i < controllerMembro.getMembros().size(); i++) {
-					if(!controllerMembro.getMembros().get(i).equals(controllerMembro.getMembros().get(index))) {
+					if(controllerMembro.getMembros().get(i).equals(controllerMembro.getMembros().get(index))) {
 						controllerProjeto.adicionarMembroNoProjeto(controllerMembro.getMembros().get(index));
 						JOptionPane.showMessageDialog(null, "Membro Adicionado ao Projeto!");
 						break;
@@ -175,6 +209,16 @@ public class TelaAdicionarProjeto extends JFrame {
 				
 				break;
 
+			case "Finalizar":
+				dispose();
+				fabricaTela.fabricarTelaCadastroProjetos();
+				break;
+				
+			case "Novo Projeto":
+				dispose();
+				new TelaAdicionarProjeto();
+				break;
+			
 			case "":
 				dispose();
 				fabricaTela.fabricarTelaCadastroProjetos();

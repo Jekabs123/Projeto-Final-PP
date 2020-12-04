@@ -44,22 +44,22 @@ public class TelaCadastrarProjetosSwing extends JFrame implements TelaCadastroPr
 	}
 
 	public void addButtons() {
-		JButton buttonAdicionar = new JButton("Adicionar");
+		JButton buttonAdicionar = new JButton("Adicionar", new ImageIcon(getClass().getResource("/addProjeto.png")));
 		buttonAdicionar.setBounds(120, 80, 110, 70);
 		buttonAdicionar.setBackground(Color.gray);
 		add(buttonAdicionar);
 		
-		JButton buttonRemover = new JButton("Remover");
+		JButton buttonRemover = new JButton("Remover", new ImageIcon(getClass().getResource("/removerProjeto.png")));
 		buttonRemover.setBounds(270, 80, 110, 70);
 		buttonRemover.setBackground(Color.gray);
 		add(buttonRemover);
 		
-		JButton buttonAtualizar = new JButton("Atualizar");
+		JButton buttonAtualizar = new JButton("Atualizar", new ImageIcon(getClass().getResource("/atualizar.png")));
 		buttonAtualizar.setBounds(120, 180, 110, 70);
 		buttonAtualizar.setBackground(Color.gray);
 		add(buttonAtualizar);
 		
-		JButton buttonMostrarProjetos = new JButton("Projetos");
+		JButton buttonMostrarProjetos = new JButton("Projetos", new ImageIcon(getClass().getResource("/projetos.png")));
 		buttonMostrarProjetos.setBounds(270, 180, 110, 70);
 		buttonMostrarProjetos.setBackground(Color.gray);
 		add(buttonMostrarProjetos);
