@@ -12,11 +12,11 @@ public class ControllerGrupo {
 	private Fachada3Grupo fachadaGrupo = new Fachada3Grupo();
 	private Grupo grupo;
 	
-	public void addGrupo(String nome) {
+	public void addGrupo(String nome, long dataTermino, String linkCNPq) {
 		grupo = new Grupo();
 		grupo.setAtivo(true);
 		grupo.setDataInicio(LocalDate.now().getYear());
-		grupo.setDataTermino(2020);  
+		grupo.setDataTermino(dataTermino);  
 		grupo.setDataCriacao(LocalDate.now().getYear());
 		grupo.setLinkCNPq("");
 		grupo.setId(fachadaGrupo.getGrupos().size()+1);

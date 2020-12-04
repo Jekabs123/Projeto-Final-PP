@@ -24,7 +24,10 @@ public class TelaAdicionarGrupo extends JFrame {
 	private FabricaTela fabricaTela = new FabricaTelaSwing();
 
 	private JTextField txtNomeGrupo;
+	private JTextField txtDataTermino;
+	private JTextField txtLinkCNPq;
 	private JComboBox<String> listMembros;
+	
 
 	private ControllerMembro controllerMembro = new ControllerMembro();
 	
@@ -36,7 +39,7 @@ public class TelaAdicionarGrupo extends JFrame {
 		setTitle("Adicionar Grupo");
 		setLayout(null);
 		setResizable(false);
-		setSize(500, 300);
+		setSize(500, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -61,11 +64,16 @@ public class TelaAdicionarGrupo extends JFrame {
 		labelNomeGrupo.setFont(new Font("", Font.BOLD, 12));
 		labelNomeGrupo.setBounds(120, 80, 90, 30);
 		add(labelNomeGrupo);
+		
+		JLabel labelDataTermino = new JLabel("Data Termino");
+		labelDataTermino.setFont(new Font("", Font.BOLD, 12));
+		labelDataTermino.setBounds(120, 130, 90, 30);
+		add(labelDataTermino);
 
-		//		JLabel labelMembros = new JLabel("Membros");
-		//		labelMembros.setFont(new Font("", Font.BOLD, 12));
-		//		labelMembros.setBounds(135, 130, 60, 30);
-		//		add(labelMembros);
+		JLabel labelLinkCNPq = new JLabel("LinkCNPq");
+		labelLinkCNPq.setFont(new Font("", Font.BOLD, 12));
+		labelLinkCNPq.setBounds(120, 180, 90, 30);
+		add(labelLinkCNPq);
 
 	}
 
@@ -73,30 +81,29 @@ public class TelaAdicionarGrupo extends JFrame {
 		txtNomeGrupo = new JTextField();
 		txtNomeGrupo.setBounds(260, 80, 120, 30);
 		add(txtNomeGrupo);
+		
+		txtDataTermino = new JTextField();
+		txtDataTermino.setBounds(260, 130, 120, 30);
+		add(txtDataTermino);
+		
+		txtLinkCNPq = new JTextField();
+		txtLinkCNPq.setBounds(260, 180, 120, 30);
+		add(txtLinkCNPq);
 	}
 
-	//	public void addJComboBox() {
-	//		JComboBox<String> listMembros = new JComboBox<String>();
-	//		listMembros.setBackground(Color.gray);
-	//		listMembros.setBounds(120, 160, 100, 30);
-	//		add(listMembros);
-	//	}
+	
 
 
 	public void addButtons() {
-		//		JButton buttonAddMembro = new JButton("Adicionar");
-		//		buttonAddMembro.setBackground(Color.gray);
-		//		buttonAddMembro.setBounds(260, 160, 120, 30);
-		//		add(buttonAddMembro);
 
-		JButton buttonNovoGrupo = new JButton("Novo Grupo");
+		JButton buttonNovoGrupo = new JButton("Criar");
 		buttonNovoGrupo.setBackground(Color.gray);
-		buttonNovoGrupo.setBounds(200, 150, 100, 30);
+		buttonNovoGrupo.setBounds(200, 250, 100, 30);
 		add(buttonNovoGrupo);
 
-		JButton buttonFinalizar = new JButton("Criar");
+		JButton buttonFinalizar = new JButton("Novo Grupo");
 		buttonFinalizar.setBackground(Color.gray);
-		buttonFinalizar.setBounds(200, 190, 100, 30);
+		buttonFinalizar.setBounds(200, 300, 100, 30);
 		add(buttonFinalizar);
 
 		JButton buttonVoltar = new JButton(new ImageIcon(getClass().getResource("/voltar.png")));
@@ -170,7 +177,9 @@ public class TelaAdicionarGrupo extends JFrame {
 				break;
 
 			case "Criar":
-				controllerGrupo.addGrupo(txtNomeGrupo.getText());
+				long dataTermino = Long.parseLong(txtDataTermino.getText());
+				String linkCNPq = txtLinkCNPq.getText();
+				controllerGrupo.addGrupo(txtNomeGrupo.getText(), dataTermino, linkCNPq);
 
 				addMembros = new AdicionarMembros();
 				break;
