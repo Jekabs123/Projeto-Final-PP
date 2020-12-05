@@ -104,6 +104,7 @@ public class TelaAtualizarGrupo extends JFrame {
 	}
 
 	public void addComboBox() {
+		//Lista dos grupos
 		String[] gruposComboBox = new String[controllerGrupo.getGrupos().size()];
 		for (int i=0; i<controllerGrupo.getGrupos().size(); i++) {
 			gruposComboBox[i] = (controllerGrupo.getGrupos().get(i).getNome());
@@ -114,7 +115,7 @@ public class TelaAtualizarGrupo extends JFrame {
 		listGrupos.setBounds(100, 110, 130, 30);
 		add(listGrupos);
 		
-		
+		//Lista dos membros
 		String[] membrosComboBox = new String[controllerMembro.getMembros().size()];
 		for (int i=0; i<controllerMembro.getMembros().size(); i++) {
 			membrosComboBox[i] = controllerMembro.getMembros().get(i).getNome();
@@ -125,8 +126,10 @@ public class TelaAtualizarGrupo extends JFrame {
 		listMembros.setBounds(270, 250, 130, 30);
 		add(listMembros);
 		
+		
 		int index = listGrupos.getSelectedIndex();
 		
+		//Lista dos membros que estão no grupo selecionado
 		String[] membrosGrupoComboBox = new String[controllerMembro.getMembros().size()];
 		if(controllerGrupo.getGrupos().size() > 0) {
 			for (int i=0; i<controllerGrupo.getGrupos().get(index).getMembros().size(); i++) {
@@ -188,9 +191,13 @@ public class TelaAtualizarGrupo extends JFrame {
 			case "Atualizar":
 				int index = listGrupos.getSelectedIndex();
 				
+				String nomeGrupo = txtNovoNome.getText();
+				long dataTermino = Long.parseLong(txtDataTermino.getText());
+				String linkCNPq = txtLinkCNPq.getText();
+				
 				for (int i = 0; i < controllerGrupo.getGrupos().size(); i++) {
 					if(controllerGrupo.getGrupos().get(i).equals(controllerGrupo.getGrupos().get(index))) {
-						controllerGrupo.setNomeGrupo(controllerGrupo.getGrupos().get(index),txtNovoNome.getText());
+						controllerGrupo.setAtributosGrupo(controllerGrupo.getGrupos().get(index), nomeGrupo, dataTermino, linkCNPq);
 						controllerGrupo.atualizarGrupo();
 						JOptionPane.showMessageDialog(null, "Grupo Atualizado");
 						listGrupos.repaint();

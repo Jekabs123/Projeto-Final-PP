@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import fachadas.Fachada4Edital;
 import model.projetos.Edital;
+import model.projetos.Grupo;
 
 public class ControllerEdital {
 
@@ -22,11 +23,22 @@ public class ControllerEdital {
 	public void removerEdital(int id){
 		fachadaEdital.removerEdital(id);
 	}
+	
 	public ArrayList<Edital> getEditais(){
 		return fachadaEdital.getEditais();
 	}
+	
 	public Edital pesquisarEdital(int id){
 		return fachadaEdital.pesquisarEdital(id);
+	}
+	
+	public void atualizarEdital() {
+		fachadaEdital.atualizarEdital();
+	}
+	
+	public void setAtributosEdital(Edital edital, String nome, long dataTermino) {
+		edital.setNome(nome);
+		edital.setDataTermino(dataTermino);
 	}
 	
 }

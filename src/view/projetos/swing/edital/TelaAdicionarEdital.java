@@ -9,8 +9,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import controller.ControllerEdital;
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
@@ -18,12 +20,16 @@ import view.autenticacao.swing.SetLookAndFeel;
 public class TelaAdicionarEdital extends JFrame {
 	
 	private FabricaTela fabricaTela = new FabricaTelaSwing();
+	private ControllerEdital controllerEdital = new ControllerEdital();
+	
+	private JTextField txtNomeEdital;
+	private JTextField txtTermino;
 
 	public TelaAdicionarEdital() {
 		setTitle("Adicionar Edital");
 		setLayout(null);
 		setResizable(false);
-		setSize(500, 600);
+		setSize(500, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -48,47 +54,39 @@ public class TelaAdicionarEdital extends JFrame {
 		labelNomeProjeto.setBounds(120, 80, 100, 30);
 		add(labelNomeProjeto);
 		
-		JLabel labelCapital = new JLabel("Capital");
-		labelCapital.setFont(new Font("", Font.BOLD, 12));
-		labelCapital.setBounds(170, 120, 50, 30);
-		add(labelCapital);
+		JLabel labelTermino = new JLabel("Data Termino");
+		labelTermino.setFont(new Font("", Font.BOLD, 12));
+		labelTermino.setBounds(120, 120, 100, 30);
+		add(labelTermino);
 		
-		JLabel labelCusteio = new JLabel("Custeio");
-		labelCusteio.setFont(new Font("", Font.BOLD, 12));
-		labelCusteio.setBounds(170, 160, 50, 30);
-		add(labelCusteio);
 	}
 	
 	public void addTextField() {
-		JTextField txtNomeProjeto = new JTextField();
-		txtNomeProjeto.setBounds(230, 80, 210, 30);
+		txtNomeEdital = new JTextField();
+		txtNomeEdital.setBounds(230, 80, 210, 30);
 		
-		JTextField textCapital = new JTextField();
-		textCapital.setBounds(230, 120, 100, 30);
+		txtTermino = new JTextField();
+		txtTermino.setBounds(230, 120, 100, 30);
 		
-		JTextField textCusteio = new JTextField();
-		textCusteio.setBounds(230, 160, 100, 30);
-		
-		add(textCusteio);
-		add(textCapital);
-		add(txtNomeProjeto);
+		add(txtNomeEdital);
+		add(txtTermino);
 	}
 
 
 	public void addButtons() {
-		JButton buttonAdd = new JButton("Adicionar");
+		JButton buttonAdd = new JButton("Criar");
 		buttonAdd.setBackground(Color.gray);
-		buttonAdd.setBounds(300, 240, 120, 30);
+		buttonAdd.setBounds(200, 190, 100, 30);
 		add(buttonAdd);
 		
 		JButton buttonNovoProjeto = new JButton("Novo Edital");
 		buttonNovoProjeto.setBackground(Color.gray);
-		buttonNovoProjeto.setBounds(200, 290, 100, 30);
+		buttonNovoProjeto.setBounds(200, 240, 100, 30);
 		add(buttonNovoProjeto);
 		
 		JButton buttonFinalizar = new JButton("Finalizar");
 		buttonFinalizar.setBackground(Color.gray);
-		buttonFinalizar.setBounds(200, 330, 100, 30);
+		buttonFinalizar.setBounds(200, 290, 100, 30);
 		add(buttonFinalizar);
 		
 		JButton buttonVoltar = new JButton(new ImageIcon(getClass().getResource("/voltar.png")));
@@ -109,25 +107,33 @@ public class TelaAdicionarEdital extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String evento = e.getActionCommand();
-			
-			switch (evento) {
-			case "Adicionar":
-				
-				break;
 
-			case "Novo Edital":
+//			if(txtNomeEdital.getText().equals("") || txtTermino.getText().equals("")) {
+//				JOptionPane.showMessageDialog(null, "Há Campos Vazios!");
+//			}
+				switch (evento) {		
+				case "Criar":
+					long dataTermino = Long.parseLong(txtTermino.getText());
+					controllerEdital.adicionarEdital(txtNomeEdital.getText(), dataTermino);
+					JOptionPane.showMessageDialog(null, "Criado!");
+					break;
+
+				case "Novo Edital":
+					dispose();
+					new TelaAdicionarEdital();
+					break;
+					
+				case "Finalizar":
+					dispose();
+					fabricaTela.fabricarTelaCadastrarEditais();
+					break;
 				
-				break;
-				
-			case "Finalizar":
-				
-				break;
+				case "":
+					dispose();
+					fabricaTela.fabricarTelaCadastrarEditais();
+					break;
+				}
 			
-			case "":
-				dispose();
-				fabricaTela.fabricarTelaCadastrarEditais();
-				break;
-			}
 			
 		}
 		

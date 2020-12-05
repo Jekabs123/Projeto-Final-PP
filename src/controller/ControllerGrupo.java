@@ -53,5 +53,11 @@ public class ControllerGrupo {
 	public void removerMembroDoGrupo(Membro membro, int idDoGrupo) {
 		fachadaGrupo.removerMembroDoGrupo(membro, idDoGrupo);
 	}
+	
+	public void setAtributosGrupo(Grupo grupo, String nome, long dataTermino, String linkCNPq) {
+		grupo.setNome(nome);
+		grupo.setDataTermino(dataTermino);
+		grupo.setLinkCNPq(linkCNPq);
+	}
 
 }
