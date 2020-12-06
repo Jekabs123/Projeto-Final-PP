@@ -9,6 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
@@ -18,6 +21,8 @@ import view.projetos.TelaPrincipal;
 public class TelaPrincipalSwing extends JFrame implements TelaPrincipal {
 	
 	private FabricaTela fabricaTela = new FabricaTelaSwing();
+	
+	private OuvinteTelaPrincipal ouvinteTelaPrincipal = new OuvinteTelaPrincipal();
 	
 	public TelaPrincipalSwing() {
 		setTitle("Menu");
@@ -31,9 +36,34 @@ public class TelaPrincipalSwing extends JFrame implements TelaPrincipal {
 		SetLookAndFeel.addLookAndFeel();
 		addLabels();
 		addButtons();
+		addMenu();
 
 		setVisible(true);
 		repaint();
+	}
+
+	private void addMenu() {
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 2, 500, 30);
+		JMenu menu = new JMenu("Menu");
+		menu.setIcon(new ImageIcon(getClass().getResource("/menu.png")));
+		menu.setBackground(Color.gray);
+		
+		JMenuItem cadastrarMembroConta = new JMenuItem("Cadastrar Membro/Conta");
+		JMenuItem autenticar = new JMenuItem("Autenticar");
+		JMenuItem configuracoes = new JMenuItem("Configurações de Admin");
+		
+		cadastrarMembroConta.addActionListener(ouvinteTelaPrincipal);
+		autenticar.addActionListener(ouvinteTelaPrincipal);
+		configuracoes.addActionListener(ouvinteTelaPrincipal);
+		
+		menu.add(cadastrarMembroConta);
+		menu.add(autenticar);
+		menu.add(configuracoes);
+		menuBar.add(menu);
+		add(menuBar);
+	
+		
 	}
 
 	public void addLabels() {
@@ -63,8 +93,6 @@ public class TelaPrincipalSwing extends JFrame implements TelaPrincipal {
 		buttonPontos.setBounds(270, 180, 110, 70);
 		buttonPontos.setBackground(Color.gray);
 		add(buttonPontos);
-		
-		OuvinteTelaPrincipal ouvinteTelaPrincipal = new OuvinteTelaPrincipal();
 		
 		buttonEditais.addActionListener(ouvinteTelaPrincipal);
 		buttonGrupos.addActionListener(ouvinteTelaPrincipal);
@@ -102,7 +130,25 @@ public class TelaPrincipalSwing extends JFrame implements TelaPrincipal {
 				fabricaTela.fabricarTelaPonto();
 		//		new TelaPontoSwing();
 				break;
+				
+			case "Cadastrar Membro/Conta":
+				dispose();
+				fabricaTela.fabricarTelaCriarConta();
+				break;
+			
+			case "Autenticar":
+				dispose();
+				fabricaTela.fabricarTelaAutenticacao();
+				break;
+				
+			case "Configurações de Admin":
+				dispose();
+				fabricaTela.fabricarTelaConfiguracaoAdmin();
+				break;
+				
 			}
+			
+			
 			
 		}
 		
