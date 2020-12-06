@@ -11,16 +11,34 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import controller.ControllerCadastrarContaMembro;
 import controller.ControllerProjeto;
+import view.autenticacao.FabricaTela;
 import view.autenticacao.TelaCriarConta;
 
 public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 	
+	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	private ControllerProjeto controllerProjeto = new ControllerProjeto();
+	private ControllerCadastrarContaMembro controllerCadastrarContaMembro = new ControllerCadastrarContaMembro();
+	
+	private JTextField txtLogin;
+	private JTextField txtSenha;
+	private JTextField txtEmail;
+	private JTextField txtMatricula;
+	private JTextField txtNome;
+	private JRadioButton radioBttLivre;
+	private JRadioButton radioBttIFPB;
+	private JButton buttonCadastrar;
+	private JComboBox<String> listProjetos;
+	private JTextField txtCusteio;
+	private JTextField txtMesesCusteados;
+	private JTextField txtMesesPagos;
 
 	public TelaCriarContaSwing() {
 		setTitle("Criar Conta");
@@ -48,7 +66,7 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 			projetosComboBox[i] = (controllerProjeto.getProjetos().get(i).getNome());
 		}
 		
-		JComboBox<String> listProjetos = new JComboBox<String>(projetosComboBox);
+		listProjetos = new JComboBox<String>(projetosComboBox);
 		listProjetos.setBackground(Color.gray);
 		listProjetos.setBounds(450, 400, 120, 30);
 		add(listProjetos);
@@ -122,69 +140,76 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 	public void addTextFields() {
 		//Conta
 		
-		JTextField txtLogin = new JTextField();
+		txtLogin = new JTextField();
 		txtLogin.setBounds(120, 80, 230, 30);
 		add(txtLogin);
 		
-		JTextField txtSenha = new JPasswordField();
+		txtSenha = new JPasswordField();
 		txtSenha.setBounds(120, 130, 230, 30);
 		add(txtSenha);
 		
 		//Membro
 		
-		JTextField txtEmail = new JTextField();
+		txtEmail = new JTextField();
 		txtEmail.setBounds(120, 300, 230, 30);
 		add(txtEmail);
 		
-		JTextField txtMatricula = new JTextField();
+		txtMatricula = new JTextField();
 		txtMatricula.setBounds(120, 350, 230, 30);
 		add(txtMatricula);
 		
-		JTextField txtNome = new JTextField();
+		txtNome = new JTextField();
 		txtNome.setBounds(120, 400, 230, 30);
 		add(txtNome);
 		
 		//Participacao
 		
-		JTextField txtCusteio = new JTextField();
+		txtCusteio = new JTextField();
 		txtCusteio.setBounds(620, 80, 90, 30);
 		add(txtCusteio);
 		
-		JTextField txtMesesCusteados = new JTextField();
+		txtMesesCusteados = new JTextField();
 		txtMesesCusteados.setBounds(620, 185, 90, 30);
 		add(txtMesesCusteados);
 
-		JTextField txtMesesPagos = new JTextField();
+		txtMesesPagos = new JTextField();
 		txtMesesPagos.setBounds(620, 295, 90, 30);
 		add(txtMesesPagos);
 		
 	}
 	
 	public void addRadioButtons() {
-		JRadioButton radioBttProvedorInterno = new JRadioButton("Interno");
-		radioBttProvedorInterno.setBounds(150, 180, 60, 30);
-		add(radioBttProvedorInterno);
-		radioBttProvedorInterno.setSelected(true);
+		radioBttLivre = new JRadioButton("Livre");
+		radioBttLivre.setBounds(150, 180, 60, 30);
+		add(radioBttLivre);
+		radioBttLivre.setSelected(true);
 		
-		JRadioButton radioBttProvedorSMTP = new JRadioButton("SMTP");
-		radioBttProvedorSMTP.setBounds(290 , 180, 60, 30);
-		add(radioBttProvedorSMTP);
+		radioBttIFPB = new JRadioButton("IFPB");
+		radioBttIFPB.setBounds(290 , 180, 60, 30);
+		add(radioBttIFPB);
 		
 		ButtonGroup group = new ButtonGroup();
-		group.add(radioBttProvedorInterno);
-		group.add(radioBttProvedorSMTP);
+		group.add(radioBttLivre);
+		group.add(radioBttIFPB);
 	}
 	
 	public void addButtons() {
-		JButton buttonCadastrar = new JButton("Cadastrar", new ImageIcon(getClass().getResource("/addMembro.png")));
+		buttonCadastrar = new JButton("Cadastrar", new ImageIcon(getClass().getResource("/addMembro.png")));
 		buttonCadastrar.setBackground(Color.gray);
 		buttonCadastrar.setBounds(340, 470, 120, 50);
+		buttonCadastrar.setEnabled(false);
 		add(buttonCadastrar);
 		
 		JButton buttonParticipar = new JButton("Participar");
 		buttonParticipar.setBackground(Color.gray);
 		buttonParticipar.setBounds(600, 400, 110, 30);
 		add(buttonParticipar);
+		
+		JButton buttonProntoMembroConta = new JButton("Pronto");
+		buttonProntoMembroConta.setBackground(Color.gray);
+		buttonProntoMembroConta.setBounds(180, 430, 100, 30);
+		add(buttonProntoMembroConta);
+		
 	}
 	
 	
@@ -194,22 +219,52 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		public void actionPerformed(ActionEvent e) {
 			String evento = e.getActionCommand();
 			
-//			switch (key) {
-//			case value:
-//				
-//				break;
-//
-//			default:
-//				break;
-//			}
+			switch (evento) {
+			case "Pronto":
+				String email = txtEmail.getText();
+				long matricula = Long.parseLong(txtMatricula.getText());
+				String nome = txtNome.getText();
+				String login = txtLogin.getText();
+				String senha = txtSenha.getText();
+				String tipoConta = "";
+				
+				if (radioBttIFPB.isSelected()) {
+					tipoConta = "IFPB";
+				} else {
+					tipoConta = "Livre";
+				}
+				
+				controllerCadastrarContaMembro.addMembro(email, matricula, nome, login, senha, tipoConta);
+				buttonCadastrar.setEnabled(true);
+				
+				break;
+
+			case "Participar":
+				int index = listProjetos.getSelectedIndex();
+				
+				float aporteCusteioMensalReais = Float.parseFloat(txtCusteio.getText());
+				short qtdMesesCusteados = Short.parseShort(txtMesesCusteados.getText());
+				short qtdMesesPagos = Short.parseShort(txtMesesPagos.getText());
+				
+				for (int i = 0; i < controllerProjeto.getProjetos().size(); i++) {
+					if(controllerProjeto.getProjetos().get(i).equals(controllerProjeto.getProjetos().get(index))) {
+						controllerCadastrarContaMembro.addParticipacao(controllerProjeto.getProjetos().get(index), aporteCusteioMensalReais, qtdMesesCusteados, qtdMesesPagos);
+						JOptionPane.showMessageDialog(null, "Adiconado!");
+						listProjetos.repaint();
+					}
+				}
+				
+				break;
+				
+			case "Cadastrar":
+				JOptionPane.showMessageDialog(null, "Cadastro Concluído!");
+				dispose();
+				fabricaTela.fabricarTelaAutenticacao();
+				break;
+			}
 			
 		}
 		
-	}
-	
-	
-	public static void main(String[] args) {
-		new TelaCriarContaSwing();
 	}
 	
 }

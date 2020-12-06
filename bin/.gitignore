@@ -1,5 +1,6 @@
 /addGrupo.png
 /addMembro.png
+/addProjeto.png
 /atualizar.png
 /autenticar.png
 /controller/
@@ -13,8 +14,7 @@
 /pontos.png
 /projetos.png
 /removerGrupo.png
+/removerProjeto.png
 /tornarAdmin.png
 /view/
 /voltar.png
-/addProjeto.png
-/removerProjeto.png
