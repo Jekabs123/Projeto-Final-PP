@@ -8,7 +8,7 @@ import fachadas.Fachada8Relatorio;
 
 public class RelatorioProjetoHTML extends File implements MontadorRelatorioProjeto {
 
-
+	private String relatorio;
 
 	public RelatorioProjetoHTML(File arquivo, String caminho) {
 		super(arquivo, caminho);
@@ -17,18 +17,7 @@ public class RelatorioProjetoHTML extends File implements MontadorRelatorioProje
 
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	public void gerarRelatorioHtml() {
-		try {
-			Fachada8Relatorio fachada = new Fachada8Relatorio();
-			FileWriter fw = new FileWriter(this);
-			fw.write(fachada.gerarRelatorioGeral());
-			fw.flush();
-			fw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+
 
 	public StringBufferHTML getProduto() {
 		StringBufferHTML stringHtml = new StringBufferHTML();
@@ -36,13 +25,28 @@ public class RelatorioProjetoHTML extends File implements MontadorRelatorioProje
 		return stringHtml;
 	}
 
-	@Override
-	public void gerarRelatorioNativoSwing() {
-		// TODO Auto-generated method stub
 
+
+	@Override
+	public void gerarRelatorio() {
+			Fachada8Relatorio fachada = new Fachada8Relatorio();
+			relatorio = fachada.gerarRelatorioGeral();
 	}
-	public static void main(String[] args) {
-		new RelatorioProjetoHTML(new File("RelatorioHTML.html"), "").gerarRelatorioHtml();
+
+
+
+	@Override
+	public void contruirInterface() {
+		try {
+			FileWriter fw = new FileWriter(this);
+			fw.write(relatorio);
+			fw.flush();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
+
 
 }

@@ -8,10 +8,22 @@ public class DiretorRelatorio {
 	}
 	
 	public void montar() {
-		montador.gerarRelatorioHtml();
-		montador.gerarRelatorioNativoSwing();
+		montador.gerarRelatorio();
+		montador.contruirInterface();
 		
 	}
-		
-
+	public StringBufferHTML getProdutoHTML(){
+		RelatorioProjetoHTML relatorio = null;
+		if(montador instanceof RelatorioProjetoHTML){
+			relatorio = (RelatorioProjetoHTML) montador;
+		}
+		return relatorio.getProduto();
+	}
+	public SwingJPanel getProdutoSwing(){
+		RelatorioProjetoSwing relatorio = null;
+		if(montador instanceof RelatorioProjetoSwing){
+			relatorio = (RelatorioProjetoSwing) montador;
+		}
+		return relatorio.getProduto();
+	}
 }
