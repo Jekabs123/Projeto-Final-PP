@@ -18,6 +18,8 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import org.apache.commons.mail.EmailException;
 
+import controller.ControllerMembro;
+import controller.ControllerProjeto;
 import controller.ControllerTelaPonto;
 import fachadas.Fachada11BaterPonto;
 import fachadas.Fachada13Horario;
@@ -35,7 +37,7 @@ import view.projetos.TelaPonto;
 // CLASSE CLIENTE DO PROXY
 
 public class TelaPontoSwing extends JFrame implements TelaPonto {
-	
+
 	private FabricaTela fabricaTela = new FabricaTelaSwing();
 
 	private Fachada13Horario fachadaHorario = new Fachada13Horario();
@@ -44,14 +46,15 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 
 	private OuvinteBaterPonto ouvinteBaterPonto = new OuvinteBaterPonto();
 
-	private boolean liberarBaterPonto = false;
-	private boolean liberarDetalhes = false;
+	private ControllerProjeto controllerProjeto = new ControllerProjeto();
+	private ControllerMembro controllerMembro = new ControllerMembro();
 
-	private JComboBox<Projeto> listComboBox;
+	private JComboBox<Integer> listComboBox;
 	private JTextField textLogin;
 	private JTextField textSenha;
 	private JRadioButton provedorInterno;
 	private JRadioButton provedorSMTP;
+	private JButton btBaterPonto;
 
 	public TelaPontoSwing() {
 		setTitle("Bater Ponto");
@@ -76,7 +79,7 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 		comboBox();
 		radioButton();
 		addButtons();
-	
+
 		setVisible(true);
 
 		repaint();
@@ -107,18 +110,18 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 	}
 
 	public void comboBox() {
-		Projeto[] projetosComboBox = new Projeto[Fachada5Projeto.getProjetosPersistidos().size()];
-		int i = 0;
-		for (Projeto projeto : Fachada5Projeto.getProjetosPersistidos()) {
-			for (Membro membro : projeto.getMembros()) {
-					if(Fachada9MembroRealizarLogout.isOnline(membro.getLogin())) {
-						projetosComboBox[i] =  projeto;
-					}
+		Integer[] projetosComboBox = new Integer[Fachada5Projeto.getProjetosPersistidos().size()];
+
+		for(int i = 0; i<controllerProjeto.getProjetos().size(); i++) {
+			for (int j = 0; j < controllerProjeto.getProjetos().get(i).getMembros().size(); j++) {
+				if(Fachada9MembroRealizarLogout.isOnline(controllerProjeto.getProjetos().get(i).getMembros().get(j).getLogin())) {
+					projetosComboBox[i] =  controllerProjeto.getProjetos().get(i).getId();
+				}
 			}
-			i+=1;
+
 		}
-		
-		listComboBox = new JComboBox<Projeto>(projetosComboBox);
+
+		listComboBox = new JComboBox<Integer>(projetosComboBox);
 		listComboBox.setBounds(110, 220, 200, 30);
 		add(listComboBox);
 	}
@@ -141,30 +144,31 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 
 
 	public void addButtons() {
-		JButton btBaterPonto = new JButton("Bater Ponto");
+		btBaterPonto = new JButton("Bater Ponto");
 		btBaterPonto.setBounds(150, 290, 100, 30);
+		btBaterPonto.setEnabled(false);
 		add(btBaterPonto);
 
 		btBaterPonto.addActionListener(ouvinteBaterPonto);
-		
+
 		JButton btDetalhes = new JButton("Ver Detalhes");
 		btDetalhes.setBounds(150, 340, 100, 30);
 		add(btDetalhes);
 
 		btDetalhes.addActionListener(ouvinteBaterPonto);
-		
+
 		JButton btVoltar = new JButton("Voltar");
 		btVoltar.setBounds(20, 340, 100, 30);
 		add(btVoltar);
 
 		btVoltar.addActionListener(ouvinteBaterPonto);
-		
+
 		JButton btLogout = new JButton("Logout");
 		btLogout.setBounds(270, 340, 100, 30);
 		add(btLogout);
 
 		btLogout.addActionListener(ouvinteBaterPonto);
-		
+
 		JButton btLogar = new JButton("Logar");
 		btLogar.setBounds(150, 170, 100, 30);
 		add(btLogar);
@@ -184,8 +188,6 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 
 			ControllerTelaPonto controllerTelaPonto = new ControllerTelaPonto();
 
-			Projeto projetoSelecionado = (Projeto)listComboBox.getSelectedItem();
-
 			switch (evento) {
 
 			case "Logar":
@@ -198,21 +200,22 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 					provedor = TipoProvedorAutenticacao.EMAIL_SMTP;
 				}
 
-				if(Fachada1Membro.getMembros().size() > 0) {
-					for (Membro membro: Fachada1Membro.getMembros()) {
-						if(membro.getLogin().equals(textLogin.getText()) && membro.getSenha().equals(textSenha.getText())) {
-							Fachada9MembroRealizarLogout.realizarLogin(membro);
+				if(controllerMembro.getMembros().size() > 0) {
+					for (int i = 0; i<controllerMembro.getMembros().size(); i++) {
+						if(controllerMembro.getMembros().get(i).getLogin().equals(textLogin.getText()) && controllerMembro.getMembros().get(i).getSenha().equals(textSenha.getText())) {
+							Fachada9MembroRealizarLogout.realizarLogin(controllerMembro.getMembros().get(i));
 							try {
 								fachadaAutenticacao.autenticarContaEmailProvedor(textLogin.getText(), textSenha.getText(), provedor);
 							} catch (EmailException e1) {
 								JOptionPane.showMessageDialog(null, "Login ou senha não existe no provedor SMTP");
 							}
 							JOptionPane.showMessageDialog(null, "Logado");
-							liberarBaterPonto = true;
+							listComboBox.repaint();
+							btBaterPonto.setEnabled(true);
 							break;
 						} else{
 							JOptionPane.showMessageDialog(null, "Login não cadastrado");
-							
+
 						}
 					}
 				} else {
@@ -222,53 +225,45 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 				break;
 
 			case "Bater Ponto":
-
-
-				if(liberarBaterPonto==true) {
-					Membro membro = null;
-					for(Membro x : Fachada1Membro.getMembros()){
-						if(x.getLogin().equals(textLogin.getText())){
-							membro = x;
-							break;
-						}
+				Integer idProjeto = (Integer)listComboBox.getSelectedItem();
+				for(int i = 0; i < controllerMembro.getMembros().size(); i++){
+					if(controllerMembro.getMembros().get(i).getLogin().equals(textLogin.getText())){
+						LocalDateTime localTime = LocalDateTime.now();
+						fachadaBaterPonto.baterPonto(controllerMembro.getMembros().get(i).getParticipacao(),localTime.getHour(),localTime.getHour()+8);
+						fachadaBaterPonto.registrarPonto(controllerProjeto.pesquisarProjeto(idProjeto), textLogin.getText());
+						break;
 					}
-					LocalDateTime localTime = LocalDateTime.now();
-					fachadaBaterPonto.baterPonto(membro.getParticipacao(),localTime.getHour(),localTime.getHour()+8);
-					liberarDetalhes = true;
-				} else {
-					JOptionPane.showMessageDialog(null, "Você precisa estar Logado");
 				}
-
+				
+				
 
 				break;
 
 			case "Ver Detalhes":
+				Integer id = (Integer)listComboBox.getSelectedItem();
+				JOptionPane.showMessageDialog(null, "Horas Trabalhadas: " + 
+						fachadaHorario.horasTrabalhadas(controllerProjeto.pesquisarProjeto(id).getDataInicio(), controllerProjeto.pesquisarProjeto(id).getDataTermino(), textLogin.getText())
+				+ "\nDéficit Horas: " + 
+				controllerTelaPonto.deficitHoras(controllerProjeto.pesquisarProjeto(id).getDataInicio(), controllerProjeto.pesquisarProjeto(id).getDataTermino(), textLogin.getText())
+				+ "\nPontos Inválidos: " +
+				controllerTelaPonto.pontosInvalidos(textLogin.getText()));
 
-				if(liberarDetalhes==true) {
-					JOptionPane.showMessageDialog(null, "Horas Trabalhadas: " + 
-							fachadaHorario.horasTrabalhadas(projetoSelecionado.getDataInicio(), projetoSelecionado.getDataTermino(), textLogin.getText())
-					+ "\nDéficit Horas: " + 
-					controllerTelaPonto.deficitHoras(projetoSelecionado.getDataInicio(), projetoSelecionado.getDataTermino(), textLogin.getText())
-					+ "\nPontos Inválidos: " +
-					controllerTelaPonto.pontosInvalidos(textLogin.getText()));
-				} else {
-					JOptionPane.showMessageDialog(null, "Você precisa bater o ponto");
-				}
 
 				break;
-				
+
 			case "Logout":
 				for (int i = 0; i < Fachada1Membro.getMembros().size(); i++) {
-					Fachada9MembroRealizarLogout.realizarLogout(Fachada1Membro.getMembros().get(i).getLogin());
+					if(controllerMembro.getMembros().get(i).getLogin().equals(textLogin.getText())){
+						Fachada9MembroRealizarLogout.realizarLogout(Fachada1Membro.getMembros().get(i).getLogin());
+					}
 				}
 				dispose();
-				
+
 				break;
-				
+
 			case "Voltar":
 				dispose();
 				fabricaTela.fabricarTelaPrincipal();
-		//		new TelaPrincipalSwing();
 				break;
 			}
 

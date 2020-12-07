@@ -35,10 +35,11 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 	private JRadioButton radioBttLivre;
 	private JRadioButton radioBttIFPB;
 	private JButton buttonCadastrar;
-	private JComboBox<String> listProjetos;
+	private JComboBox<Integer> listProjetos;
 	private JTextField txtCusteio;
 	private JTextField txtMesesCusteados;
 	private JTextField txtMesesPagos;
+	private JButton buttonParticipar;
 
 	public TelaCriarContaSwing() {
 		setTitle("Criar Conta");
@@ -61,12 +62,12 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 	}
 
 	private void addComboBox() {
-		String[] projetosComboBox = new String[controllerProjeto.getProjetos().size()];
+		Integer[] projetosComboBox = new Integer[controllerProjeto.getProjetos().size()];
 		for (int i=0; i<controllerProjeto.getProjetos().size(); i++) {
-			projetosComboBox[i] = (controllerProjeto.getProjetos().get(i).getNome());
+			projetosComboBox[i] = (controllerProjeto.getProjetos().get(i).getId());
 		}
 		
-		listProjetos = new JComboBox<String>(projetosComboBox);
+		listProjetos = new JComboBox<Integer>(projetosComboBox);
 		listProjetos.setBackground(Color.gray);
 		listProjetos.setBounds(450, 400, 120, 30);
 		add(listProjetos);
@@ -200,9 +201,10 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		buttonCadastrar.setEnabled(false);
 		add(buttonCadastrar);
 		
-		JButton buttonParticipar = new JButton("Participar");
+		buttonParticipar = new JButton("Participar");
 		buttonParticipar.setBackground(Color.gray);
 		buttonParticipar.setBounds(600, 400, 110, 30);
+		buttonParticipar.setEnabled(false);
 		add(buttonParticipar);
 		
 		JButton buttonProntoMembroConta = new JButton("Pronto");
@@ -242,21 +244,21 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 				
 				controllerCadastrarContaMembro.addMembro(email, matricula, nome, login, senha, tipoConta);
 				buttonCadastrar.setEnabled(true);
+				buttonParticipar.setEnabled(true);
 				
 				break;
 
 			case "Participar":
-				int index = listProjetos.getSelectedIndex();
+				int idProjeto = (Integer) listProjetos.getSelectedItem();
 				
 				float aporteCusteioMensalReais = Float.parseFloat(txtCusteio.getText());
 				short qtdMesesCusteados = Short.parseShort(txtMesesCusteados.getText());
 				short qtdMesesPagos = Short.parseShort(txtMesesPagos.getText());
 				
 				for (int i = 0; i < controllerProjeto.getProjetos().size(); i++) {
-					if(controllerProjeto.getProjetos().get(i).equals(controllerProjeto.getProjetos().get(index))) {
-						controllerCadastrarContaMembro.addParticipacao(controllerProjeto.getProjetos().get(index), aporteCusteioMensalReais, qtdMesesCusteados, qtdMesesPagos);
+					if(controllerProjeto.getProjetos().get(i).equals(controllerProjeto.pesquisarProjeto(idProjeto))) {
+						controllerCadastrarContaMembro.addParticipacao(controllerProjeto.pesquisarProjeto(idProjeto), aporteCusteioMensalReais, qtdMesesCusteados, qtdMesesPagos);
 						JOptionPane.showMessageDialog(null, "Adiconado!");
-						listProjetos.repaint();
 					}
 				}
 				

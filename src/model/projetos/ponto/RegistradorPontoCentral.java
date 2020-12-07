@@ -12,7 +12,7 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Projeto> projetoAtivos = new ArrayList<>();
-//	private RegistradorPontoCentralServer registrador = new RegistradorPontoCentralServer();
+	private RegistradorPontoCentralServer server;
 	
 	public RegistradorPontoCentral() throws RemoteException {
 		super();
@@ -28,6 +28,7 @@ public class RegistradorPontoCentral extends UnicastRemoteObject implements Inte
 	public boolean registrarPonto(Projeto projeto, String login) {
 		for(Membro m: projeto.getMembros()){
 			if(m.getLogin().equals(login) && projeto.getAtivo()){
+				server = new RegistradorPontoCentralServer(this);
 				return true;
 			}
 			

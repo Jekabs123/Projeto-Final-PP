@@ -2,6 +2,8 @@ package fachadas;
 
 import java.rmi.RemoteException;
 
+import javax.swing.JOptionPane;
+
 import model.projetos.Participacao;
 import model.projetos.Projeto;
 import model.projetos.ponto.PontoTrabalhado;
@@ -23,7 +25,7 @@ public class Fachada11BaterPonto {
 		ponto.setDataHoraEntrada(dataHoraEntrada);
 		ponto.setDataHoraSaida(dataHoraSaida);
 		participacao.adicionarPontoTrabalhado(ponto);
-		System.out.println("Bateu Ponto");
+		JOptionPane.showMessageDialog(null, "Bateu Ponto!");
 	}
 	public boolean registrarPonto(Projeto projeto, String login){
 		return registrarPonto.registrarPonto(projeto, login);

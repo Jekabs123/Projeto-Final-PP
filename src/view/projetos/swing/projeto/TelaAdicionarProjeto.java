@@ -126,7 +126,7 @@ public class TelaAdicionarProjeto extends JFrame {
 	}
 	
 	public void addJComboBox() {
-		Long[] membrosComboBox = new Long[controllerProjeto.getProjetos().size() +1];
+		Long[] membrosComboBox = new Long[controllerMembro.getMembros().size()];
 		
 		for (int i=0; i<controllerMembro.getMembros().size(); i++) {
 			membrosComboBox[i] = controllerMembro.getMembros().get(i).getMatricula();

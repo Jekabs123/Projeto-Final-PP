@@ -54,6 +54,8 @@ public class ControllerCadastrarContaMembro {
 		participacao.setNome(membro.getNome());
 		participacao.setQtdMesesCusteados(qtdMesesCusteados);
 		participacao.setQtdMesesPagos(qtdMesesPagos);
+		membro.setParticipacao(participacao);
+		fachadaMembro.atualizarMembro();
 	}
 
 }
