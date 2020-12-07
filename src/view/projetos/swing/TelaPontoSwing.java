@@ -113,12 +113,15 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 		Integer[] projetosComboBox = new Integer[Fachada5Projeto.getProjetosPersistidos().size()];
 
 		for(int i = 0; i<controllerProjeto.getProjetos().size(); i++) {
-			for (int j = 0; j < controllerProjeto.getProjetos().get(i).getMembros().size(); j++) {
-				if(Fachada9MembroRealizarLogout.isOnline(controllerProjeto.getProjetos().get(i).getMembros().get(j).getLogin())) {
-					projetosComboBox[i] =  controllerProjeto.getProjetos().get(i).getId();
+			if(controllerProjeto.getProjetos().get(i).getMembros().size() != 0) {
+				for (int j = 0; j < controllerProjeto.getProjetos().get(i).getMembros().size(); j++) {
+					if(Fachada9MembroRealizarLogout.isOnline(controllerProjeto.getProjetos().get(i).getMembros().get(j).getLogin())) {
+						projetosComboBox[i] =  controllerProjeto.getProjetos().get(i).getId();
+					}
 				}
+			}else {
+				projetosComboBox[i] = controllerProjeto.getProjetos().get(i).getId();
 			}
-
 		}
 
 		listComboBox = new JComboBox<Integer>(projetosComboBox);
@@ -234,8 +237,8 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 						break;
 					}
 				}
-				
-				
+
+
 
 				break;
 

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<persistenciaXML.DAOProjeto>
+  <projetos>
+    <model.projetos.Projeto>
+      <id>1</id>
+      <nome>Projeto Nota 100</nome>
+      <ativo>true</ativo>
+      <dataInicio>2020</dataInicio>
+      <dataTermino>2020</dataTermino>
+      <compositorProjeto/>
+      <aporteCusteioReais>500.0</aporteCusteioReais>
+      <aporteCapitalReais>1000.0</aporteCapitalReais>
+      <gastoExecutadoCusteioReais>380.0</gastoExecutadoCusteioReais>
+      <gastoExecutadoCapitalReais>750.0</gastoExecutadoCapitalReais>
+      <membros/>
+    </model.projetos.Projeto>
+    <model.projetos.Projeto>
+      <id>2</id>
+      <nome>Projeto Abencoado</nome>
+      <ativo>true</ativo>
+      <dataInicio>2020</dataInicio>
+      <dataTermino>2022</dataTermino>
+      <compositorProjeto/>
+      <aporteCusteioReais>2500.0</aporteCusteioReais>
+      <aporteCapitalReais>8000.0</aporteCapitalReais>
+      <gastoExecutadoCusteioReais>1300.0</gastoExecutadoCusteioReais>
+      <gastoExecutadoCapitalReais>7800.0</gastoExecutadoCapitalReais>
+      <membros>
+        <model.autenticacao.Membro>
+          <matricula>793397</matricula>
+          <nome>Tatakae</nome>
+          <ativo>true</ativo>
+          <email>Tatakae@gmail.com</email>
+          <administrador>true</administrador>
+          <contaEmail class="model.autenticacao.ContaEmailLivre">
+            <conta class="model.autenticacao.ContaAutenticacaoProvedorInterno"/>
+            <login>Tatakae@gmail.com</login>
+            <senha>tatakae123</senha>
+          </contaEmail>
+          <participacao>
+            <id>2</id>
+            <nome>Tatakae</nome>
+            <ativo>true</ativo>
+            <dataInicio>2020</dataInicio>
+            <dataTermino>2020</dataTermino>
+            <compositorProjeto>
+              <model.projetos.Projeto>
+                <id>1</id>
+                <nome>Projeto Nota 100</nome>
+                <ativo>true</ativo>
+                <dataInicio>2020</dataInicio>
+                <dataTermino>2020</dataTermino>
+                <compositorProjeto/>
+                <aporteCusteioReais>500.0</aporteCusteioReais>
+                <aporteCapitalReais>1000.0</aporteCapitalReais>
+                <gastoExecutadoCusteioReais>380.0</gastoExecutadoCusteioReais>
+                <gastoExecutadoCapitalReais>750.0</gastoExecutadoCapitalReais>
+                <membros/>
+              </model.projetos.Projeto>
+            </compositorProjeto>
+            <aporteCusteioMensalReais>700.0</aporteCusteioMensalReais>
+            <qtdMesesCusteados>9</qtdMesesCusteados>
+            <qtdMesesPagos>3</qtdMesesPagos>
+            <coordenador>true</coordenador>
+          </participacao>
+        </model.autenticacao.Membro>
+      </membros>
+    </model.projetos.Projeto>
+  </projetos>
+</persistenciaXML.DAOProjeto>
