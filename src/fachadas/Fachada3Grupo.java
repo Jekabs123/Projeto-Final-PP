@@ -3,6 +3,7 @@ package fachadas;
 import java.util.ArrayList;
 
 import model.autenticacao.Membro;
+import model.projetos.CompositorProjeto;
 import model.projetos.Grupo;
 import persistenciaXML.DAOXMLGrupo;
 /**
@@ -91,6 +92,12 @@ public class Fachada3Grupo {
 	public Grupo pesquisarGrupo(int id) throws Exception{
 		return grupoXML.pesquisarGrupo(id);
 	}
+	
+	public void adicionarComponentesComposite(Grupo grupo, CompositorProjeto compositor) {
+		grupo.adicionar(compositor);
+		grupoXML.atualizar();
+	}
+	
 	/**
 	 * Esse m�todo retorna uma lista de grupo
 	 * @return: retorna uma lista de grupo de existir se n�o ele retorna uma lista vazia

@@ -63,5 +63,9 @@ public class TelaJustificativaPontoSwing extends JFrame implements TelaJustifica
 		buttonJustificar.setBounds(200, 300, 100, 30);
 		add(buttonJustificar);
 	}
+	
+	public static void main(String[] args) {
+		new TelaJustificativaPontoSwing();
+	}
 
 }

@@ -1,10 +1,12 @@
 package main;
 
-import view.projetos.swing.TelaPrincipalSwing;
+import view.autenticacao.FabricaTela;
+import view.autenticacao.swing.FabricaTelaSwing;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		new TelaPrincipalSwing();
+		FabricaTela fabricaTela = new FabricaTelaSwing();
+		fabricaTela.fabricarTelaPrincipal();
 	}
 }

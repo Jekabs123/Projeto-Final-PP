@@ -26,7 +26,7 @@ public class TelaAdicionarProjeto extends JFrame {
 	private ControllerProjeto controllerProjeto = new ControllerProjeto();
 	private ControllerMembro controllerMembro = new ControllerMembro();
 	
-	private JComboBox<String> listMembros;
+	private JComboBox<Long> listMembros;
 	private JTextField txtNomeProjeto;
 	private JTextField textCapital;
 	private JTextField textCusteio;
@@ -126,13 +126,13 @@ public class TelaAdicionarProjeto extends JFrame {
 	}
 	
 	public void addJComboBox() {
-		String[] membrosComboBox = new String[controllerProjeto.getProjetos().size()];
+		Long[] membrosComboBox = new Long[controllerProjeto.getProjetos().size() +1];
 		
 		for (int i=0; i<controllerMembro.getMembros().size(); i++) {
-			membrosComboBox[i] = controllerMembro.getMembros().get(i).getNome();
+			membrosComboBox[i] = controllerMembro.getMembros().get(i).getMatricula();
 		}
 		
-		listMembros = new JComboBox<String>(membrosComboBox);
+		listMembros = new JComboBox<Long>(membrosComboBox);
 		listMembros.setBackground(Color.gray);
 		listMembros.setBounds(200, 290, 100, 30);
 		add(listMembros);
@@ -172,6 +172,7 @@ public class TelaAdicionarProjeto extends JFrame {
 		buttonNovoProjeto.addActionListener(ouvinteTelaCadastroProjetos);
 		buttonFinalizar.addActionListener(ouvinteTelaCadastroProjetos);
 		buttonVoltar.addActionListener(ouvinteTelaCadastroProjetos);
+		buttonAddMembro.addActionListener(ouvinteTelaCadastroProjetos);
 	}
 	
 	public class OuvinteTelaCadastroProjetos implements ActionListener {
@@ -194,18 +195,21 @@ public class TelaAdicionarProjeto extends JFrame {
 				break;
 			
 			case "Adicionar":
-				int index = listMembros.getSelectedIndex();
+				long matricula = (Long) listMembros.getSelectedItem();
 				
-				for (int i = 0; i < controllerMembro.getMembros().size(); i++) {
-					if(controllerMembro.getMembros().get(i).equals(controllerMembro.getMembros().get(index))) {
-						controllerProjeto.adicionarMembroNoProjeto(controllerMembro.getMembros().get(index));
-						JOptionPane.showMessageDialog(null, "Membro Adicionado ao Projeto!");
-						break;
+				controllerProjeto.adicionarMembroNoProjeto(controllerMembro.pesquisar(matricula));
+				JOptionPane.showMessageDialog(null, "Membro Adicionado ao Projeto!");
+//				
+//				for (int i = 0; i < controllerMembro.getMembros().size(); i++) {
+//					if(controllerMembro.getMembros().get(i).equals(controllerMembro.getMembros().get(index))) {
+//						controllerProjeto.adicionarMembroNoProjeto(controllerMembro.getMembros().get(index));
+//						JOptionPane.showMessageDialog(null, "Membro Adicionado ao Projeto!");
+//						break;
 
 				//	}else {
 				//		JOptionPane.showMessageDialog(null, "Membro Já Adicionado!");
-					}
-				}
+			//		}
+			//	}
 				
 				break;
 

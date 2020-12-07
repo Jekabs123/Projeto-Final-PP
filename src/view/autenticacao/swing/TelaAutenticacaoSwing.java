@@ -131,10 +131,15 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao {
 			switch (evento) {
 			case "Autenticar":
 				try {
-					controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
-					JOptionPane.showMessageDialog(null, "Bem Vindo!");
-					dispose();
-					fabricaTela.fabricarTelaPrincipal();
+					if ((controller.autenticarContaEmail(campoLogin.getText(), senha, provedor) == null)) {
+						JOptionPane.showMessageDialog(null, "Campos Vazios!");
+					} else {
+						JOptionPane.showMessageDialog(null, "Bem Vindo!");
+						dispose();
+						fabricaTela.fabricarTelaPrincipal();
+					}
+			//		controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
+					
 				} catch (EmailException e2) {
 					JOptionPane.showMessageDialog(null, "Não foi possível logar!");
 				}

@@ -15,23 +15,25 @@ import javax.swing.JTextField;
 
 import controller.ControllerGrupo;
 import controller.ControllerMembro;
+import controller.ControllerProjeto;
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
 
 public class TelaAdicionarGrupo extends JFrame {
-	
+
 	private FabricaTela fabricaTela = new FabricaTelaSwing();
 
 	private JTextField txtNomeGrupo;
 	private JTextField txtDataTermino;
 	private JTextField txtLinkCNPq;
-	private JComboBox<String> listMembros;
-	
+	private JComboBox<Integer> listProjetos;
+
 
 	private ControllerMembro controllerMembro = new ControllerMembro();
-	
-	ControllerGrupo controllerGrupo = new ControllerGrupo();
+	private ControllerProjeto controllerProjeto = new ControllerProjeto();
+
+	private ControllerGrupo controllerGrupo = new ControllerGrupo();
 
 	private OuvinteTelaAdicionarGrupo ouvinteTelaAdicionarGrupo = new OuvinteTelaAdicionarGrupo();
 
@@ -64,7 +66,7 @@ public class TelaAdicionarGrupo extends JFrame {
 		labelNomeGrupo.setFont(new Font("", Font.BOLD, 12));
 		labelNomeGrupo.setBounds(120, 80, 90, 30);
 		add(labelNomeGrupo);
-		
+
 		JLabel labelDataTermino = new JLabel("Data Termino");
 		labelDataTermino.setFont(new Font("", Font.BOLD, 12));
 		labelDataTermino.setBounds(120, 130, 90, 30);
@@ -81,17 +83,17 @@ public class TelaAdicionarGrupo extends JFrame {
 		txtNomeGrupo = new JTextField();
 		txtNomeGrupo.setBounds(260, 80, 120, 30);
 		add(txtNomeGrupo);
-		
+
 		txtDataTermino = new JTextField();
 		txtDataTermino.setBounds(260, 130, 120, 30);
 		add(txtDataTermino);
-		
+
 		txtLinkCNPq = new JTextField();
 		txtLinkCNPq.setBounds(260, 180, 120, 30);
 		add(txtLinkCNPq);
 	}
 
-	
+
 
 
 	public void addButtons() {
@@ -132,16 +134,16 @@ public class TelaAdicionarGrupo extends JFrame {
 			labelMembros.setBounds(70, 10, 60, 20);
 			add(labelMembros);
 
-			String[] membrosComboBox = new String[controllerMembro.getMembros().size()];
-			
-			for (int i=0; i<controllerMembro.getMembros().size(); i++) {
-				membrosComboBox[i] = controllerMembro.getMembros().get(i).getNome();
+			Integer[] membrosComboBox = new Integer[controllerProjeto.getProjetos().size()];
+
+			for (int i=0; i<controllerProjeto.getProjetos().size(); i++) {
+				membrosComboBox[i] = controllerProjeto.getProjetos().get(i).getId();
 			}
 
-			listMembros = new JComboBox<String>(membrosComboBox);
-			listMembros.setBackground(Color.gray);
-			listMembros.setBounds(50, 30, 100, 30);
-			add(listMembros);
+			listProjetos = new JComboBox<Integer>(membrosComboBox);
+			listProjetos.setBackground(Color.gray);
+			listProjetos.setBounds(50, 30, 100, 30);
+			add(listProjetos);
 
 			JButton buttonAddMembro = new JButton("Add");
 			buttonAddMembro.setBackground(Color.gray);
@@ -170,7 +172,7 @@ public class TelaAdicionarGrupo extends JFrame {
 			String evento = e.getActionCommand();
 
 			switch (evento) {
-			
+
 			case "Novo Grupo":
 				dispose();
 				new TelaAdicionarGrupo();
@@ -187,22 +189,20 @@ public class TelaAdicionarGrupo extends JFrame {
 			case "":
 				dispose();
 				fabricaTela.fabricarTelaCadastroGrupos();
-	//			new TelaCadastroGruposSwing();
+				//			new TelaCadastroGruposSwing();
 				break;
 
 			case "Add":
-				int index = listMembros.getSelectedIndex();
+				int id = (Integer) listProjetos.getSelectedItem();
 
-				for (int i = 0; i < controllerMembro.getMembros().size(); i++) {
-					if(!controllerMembro.getMembros().get(i).equals(controllerMembro.getMembros().get(index))) {
-						controllerGrupo.addMembroAogrupo(controllerMembro.getMembros().get(index));
-						JOptionPane.showMessageDialog(null, "Membro Adicionado ao Grupo!");
-						break;
-
-			//		}else {
-			//			JOptionPane.showMessageDialog(null, "Membro Já Adicionado!");
+				controllerGrupo.addProjetoAoGrupo(controllerGrupo.getGrupos().get(controllerGrupo.getGrupos().size()-1), controllerProjeto.pesquisarProjeto(id));
+				for (int i = 0; i < controllerProjeto.getProjetos().size(); i++) {
+					for (int j = 0; j <controllerProjeto.getProjetos().get(i).getMembros().size(); j++) {
+						controllerGrupo.addMembroAogrupo(controllerProjeto.getProjetos().get(i).getMembros().get(j), controllerGrupo.getGrupos().size());
+						JOptionPane.showMessageDialog(null, "Membros do Projeto Adicionados ao Grupo!");
 					}
 				}
+				
 
 				break;
 

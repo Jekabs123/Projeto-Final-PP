@@ -50,7 +50,7 @@ public class DAOXMLMembroConta {
 		return null;
 	}
 	public ArrayList<Membro> getMembro(){
-		return carregarXML().getMembros();
+		return persistidos.getMembros();
 	}
 	public HashSet<Membro> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
 		HashSet<Membro> membroAnd = new HashSet<Membro>();

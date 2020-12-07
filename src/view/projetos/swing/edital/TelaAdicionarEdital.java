@@ -7,12 +7,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import controller.ControllerEdital;
+import controller.ControllerProjeto;
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
@@ -21,15 +23,18 @@ public class TelaAdicionarEdital extends JFrame {
 	
 	private FabricaTela fabricaTela = new FabricaTelaSwing();
 	private ControllerEdital controllerEdital = new ControllerEdital();
+	private ControllerProjeto controllerProjeto = new ControllerProjeto();
 	
 	private JTextField txtNomeEdital;
 	private JTextField txtTermino;
+	private JComboBox<Integer> listProjetos;
+	private JButton buttonAddProjeto;
 
 	public TelaAdicionarEdital() {
 		setTitle("Adicionar Edital");
 		setLayout(null);
 		setResizable(false);
-		setSize(500, 400);
+		setSize(500, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -38,11 +43,26 @@ public class TelaAdicionarEdital extends JFrame {
 		addLabels();
 		addTextField();
 		addButtons();
+		addComboBox();
 
 		setVisible(true);
 		repaint();
 	}
 	
+	private void addComboBox() {
+		Integer[] membrosComboBox = new Integer[controllerProjeto.getProjetos().size()];
+
+		for (int i=0; i<controllerProjeto.getProjetos().size(); i++) {
+			membrosComboBox[i] = controllerProjeto.getProjetos().get(i).getId();
+		}
+		
+		listProjetos = new JComboBox<Integer>(membrosComboBox);
+		listProjetos.setBackground(Color.gray);
+		listProjetos.setBounds(120, 250, 100, 30);
+		add(listProjetos);
+		
+	}
+
 	public void addLabels() {
 		JLabel labelTitulo = new JLabel("Adicionar Edital");
 		labelTitulo.setFont(new Font("Monospaced", Font.BOLD, 30));
@@ -81,13 +101,20 @@ public class TelaAdicionarEdital extends JFrame {
 		
 		JButton buttonNovoProjeto = new JButton("Novo Edital");
 		buttonNovoProjeto.setBackground(Color.gray);
-		buttonNovoProjeto.setBounds(200, 240, 100, 30);
+		buttonNovoProjeto.setBounds(200, 340, 100, 30);
 		add(buttonNovoProjeto);
 		
 		JButton buttonFinalizar = new JButton("Finalizar");
 		buttonFinalizar.setBackground(Color.gray);
-		buttonFinalizar.setBounds(200, 290, 100, 30);
+		buttonFinalizar.setBounds(200, 390, 100, 30);
 		add(buttonFinalizar);
+		
+
+		buttonAddProjeto = new JButton("Adicionar");
+		buttonAddProjeto.setBackground(Color.gray);
+		buttonAddProjeto.setBounds(250, 250, 100, 30);
+		buttonAddProjeto.setEnabled(false);
+		add(buttonAddProjeto);
 		
 		JButton buttonVoltar = new JButton(new ImageIcon(getClass().getResource("/voltar.png")));
 		buttonVoltar.setBackground(Color.gray);
@@ -99,6 +126,7 @@ public class TelaAdicionarEdital extends JFrame {
 		buttonFinalizar.addActionListener(ouvinteAdicionarEdital);
 		buttonNovoProjeto.addActionListener(ouvinteAdicionarEdital);
 		buttonVoltar.addActionListener(ouvinteAdicionarEdital);
+		buttonAddProjeto.addActionListener(ouvinteAdicionarEdital);
 		
 	}
 	
@@ -116,6 +144,8 @@ public class TelaAdicionarEdital extends JFrame {
 					long dataTermino = Long.parseLong(txtTermino.getText());
 					controllerEdital.adicionarEdital(txtNomeEdital.getText(), dataTermino);
 					JOptionPane.showMessageDialog(null, "Criado!");
+					buttonAddProjeto.setEnabled(true);
+					
 					break;
 
 				case "Novo Edital":
@@ -126,6 +156,15 @@ public class TelaAdicionarEdital extends JFrame {
 				case "Finalizar":
 					dispose();
 					fabricaTela.fabricarTelaCadastrarEditais();
+					break;
+					
+				case "Adicionar":
+					int id = (Integer) listProjetos.getSelectedItem();
+
+					controllerEdital.addCompisitorProjeto(controllerEdital.getEditais().get(controllerEdital.getEditais().size()-1), controllerProjeto.pesquisarProjeto(id));
+					JOptionPane.showMessageDialog(null, "Projeto Vinculado ao Edital!");
+			
+					
 					break;
 				
 				case "":

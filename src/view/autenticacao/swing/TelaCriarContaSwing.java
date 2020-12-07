@@ -210,6 +210,12 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 		buttonProntoMembroConta.setBounds(180, 430, 100, 30);
 		add(buttonProntoMembroConta);
 		
+		OuvinteCriarConta ouvinteCriarConta = new OuvinteCriarConta();
+		
+		buttonParticipar.addActionListener(ouvinteCriarConta);
+		buttonProntoMembroConta.addActionListener(ouvinteCriarConta);
+		buttonCadastrar.addActionListener(ouvinteCriarConta);
+		
 	}
 	
 	

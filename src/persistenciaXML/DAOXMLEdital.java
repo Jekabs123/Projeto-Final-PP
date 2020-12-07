@@ -51,7 +51,7 @@ public class DAOXMLEdital {
 
 	}
 	public ArrayList<Edital> getEdital(){
-		return carregarXML().getEditais();
+		return persistidos.getEditais();
 	}
 	public ArrayList<Edital> consultarAnd(String[] atributos, Object[] respectivosValoresAtributos) {
 		ArrayList<Edital> editaisAnd = new ArrayList<Edital>();

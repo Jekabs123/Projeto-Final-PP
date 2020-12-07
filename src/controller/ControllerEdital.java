@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import fachadas.Fachada4Edital;
+import model.projetos.CompositorProjeto;
 import model.projetos.Edital;
 import model.projetos.Grupo;
 
@@ -39,6 +40,10 @@ public class ControllerEdital {
 	public void setAtributosEdital(Edital edital, String nome, long dataTermino) {
 		edital.setNome(nome);
 		edital.setDataTermino(dataTermino);
+	}
+	
+	public void addCompisitorProjeto(Edital edital, CompositorProjeto compositor) {
+		fachadaEdital.adicionarCompositorProjeto(edital, compositor);
 	}
 	
 }

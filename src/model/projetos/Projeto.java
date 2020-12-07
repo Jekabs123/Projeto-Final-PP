@@ -65,10 +65,7 @@ public class Projeto extends CompositorProjeto {
 		grupo.setMembros(membros);
 		
 	}
-	@Override
-	public void adicionar(CompositorProjeto compositorProjeto) {
-			getCompositorProjeto().add(compositorProjeto);
-	}
+	
 	@Override
 	public void remover(CompositorProjeto compositorProjeto) {
 		getCompositorProjeto().remove(compositorProjeto);

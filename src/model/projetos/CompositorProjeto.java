@@ -54,7 +54,7 @@ public abstract class CompositorProjeto {
 	 * @param composite: � a interface comum a ser adicionada
 	 */
 	public void adicionar(CompositorProjeto compositorProjeto){
-		
+		this.compositorProjeto.add(compositorProjeto);
 	}
 	/**
 	 * Esse m�todo remove a interface comum
@@ -97,6 +97,9 @@ public abstract class CompositorProjeto {
 	}
 	public ArrayList<CompositorProjeto> getCompositorProjeto() {
 		return compositorProjeto;
+	}
+	public void setCompositorProjeto(ArrayList<CompositorProjeto> compositorProjetos ) {
+		this.compositorProjeto = compositorProjetos;
 	}
 	public int getId() {
 		return id;

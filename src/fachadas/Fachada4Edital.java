@@ -2,6 +2,7 @@ package fachadas;
 
 import java.util.ArrayList;
 
+import model.projetos.CompositorProjeto;
 import model.projetos.Edital;
 import persistenciaXML.DAOXMLEdital;
 /**
@@ -51,6 +52,12 @@ private DAOXMLEdital editalXML = new DAOXMLEdital();
 	public Edital pesquisarEdital(int idEdital){
 		return editalXML.pesquisarEdital(idEdital);
 	}
+	
+	public void adicionarCompositorProjeto (Edital edital, CompositorProjeto compositor) {
+		edital.adicionar(compositor);
+		editalXML.atualizar();
+	}
+	
 	/**
 	 * Esse m�todo retorna a lista de editais
 	 * @return: retorna uma lista de editais se existir ou uma lista vazia se n�o

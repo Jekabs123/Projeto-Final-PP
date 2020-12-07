@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import fachadas.Fachada3Grupo;
 import model.autenticacao.Membro;
+import model.projetos.CompositorProjeto;
 import model.projetos.Grupo;
 
 public class ControllerGrupo {
@@ -18,7 +19,7 @@ public class ControllerGrupo {
 		grupo.setDataInicio(LocalDate.now().getYear());
 		grupo.setDataTermino(dataTermino);  
 		grupo.setDataCriacao(LocalDate.now().getYear());
-		grupo.setLinkCNPq("");
+		grupo.setLinkCNPq(linkCNPq);
 		grupo.setId(fachadaGrupo.getGrupos().size()+1);
 		grupo.setNome(nome);
 		fachadaGrupo.adicionarGrupo(grupo);
@@ -58,6 +59,10 @@ public class ControllerGrupo {
 		grupo.setNome(nome);
 		grupo.setDataTermino(dataTermino);
 		grupo.setLinkCNPq(linkCNPq);
+	}
+	
+	public void addProjetoAoGrupo(Grupo grupo, CompositorProjeto compositor) {
+		fachadaGrupo.adicionarComponentesComposite(grupo, compositor);
 	}
 
 }

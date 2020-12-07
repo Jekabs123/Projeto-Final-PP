@@ -56,7 +56,7 @@ public class Grupo extends CompositorProjeto{
 	@Override
 	public void adicionar(CompositorProjeto compositorProjeto) {
 		if(compositorProjeto instanceof Projeto){
-			getCompositorProjeto().add(compositorProjeto);
+			super.adicionar(compositorProjeto);
 		}
 	}
 	@Override

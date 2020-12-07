@@ -12,7 +12,7 @@ public class Edital extends CompositorProjeto {
 	@Override
 	public void adicionar(CompositorProjeto compositorProjeto) {
 		if(compositorProjeto instanceof Projeto || compositorProjeto instanceof Grupo){
-			getCompositorProjeto().add(compositorProjeto);
+			super.adicionar(compositorProjeto);
 		}
 	}
 

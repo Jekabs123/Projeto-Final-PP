@@ -29,4 +29,5 @@ public class ControllerMembro {
 			config.tornarMembroAdim(membro);
 		}
 	}
+	
 }
