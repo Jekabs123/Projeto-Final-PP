@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import controller.ControllerMembro;
 import controller.ControllerProjeto;
+import fachadas.Fachada5Projeto;
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
@@ -25,9 +26,9 @@ public class TelaAtualizarProjeto extends JFrame{
 	private ControllerMembro controllerMembro = new ControllerMembro();
 	private ControllerProjeto controllerProjeto = new ControllerProjeto();
 
-	private JComboBox<String> listMembros;
-	private JComboBox<String> listProjetos;
-	private JComboBox<String> listMembrosProjeto;
+	private JComboBox<Long> listMembros;
+	private JComboBox<Integer> listProjetos;
+	private JComboBox<Long> listMembrosProjeto;
 	private JTextField txtNovoNome;
 	private JTextField txtCapital;
 	private JTextField txtCusteio;
@@ -95,7 +96,7 @@ public class TelaAtualizarProjeto extends JFrame{
 		labelTermino.setFont(new Font("", Font.BOLD, 12));
 		labelTermino.setBounds(120, 310, 90, 30);
 		add(labelTermino);
-		
+
 		JLabel labelMembros = new JLabel("Membros");
 		labelMembros.setFont(new Font("", Font.BOLD, 12));
 		labelMembros.setBounds(300, 350, 60, 30);
@@ -136,40 +137,40 @@ public class TelaAtualizarProjeto extends JFrame{
 
 	public void addComboBox() {
 		//Lista dos projetos
-		String[] projetosComboBox = new String[controllerProjeto.getProjetos().size()];
+		Integer[] projetosComboBox = new Integer[controllerProjeto.getProjetos().size()];
 		for (int i=0; i<controllerProjeto.getProjetos().size(); i++) {
-			projetosComboBox[i] = (controllerProjeto.getProjetos().get(i).getNome());
+			projetosComboBox[i] = (controllerProjeto.getProjetos().get(i).getId());
 		}
 
-		listProjetos = new JComboBox<String>(projetosComboBox);
+		listProjetos = new JComboBox<Integer>(projetosComboBox);
 		listProjetos.setBackground(Color.gray);
 		listProjetos.setBounds(100, 110, 130, 30);
 		add(listProjetos);
 
 		//Lista dos membros
-		String[] membrosComboBox = new String[controllerMembro.getMembros().size()];
+		Long[] membrosComboBox = new Long[controllerMembro.getMembros().size()];
 		for (int i=0; i<controllerMembro.getMembros().size(); i++) {
-			membrosComboBox[i] = controllerMembro.getMembros().get(i).getNome();
+			membrosComboBox[i] = controllerMembro.getMembros().get(i).getMatricula();
 		}
 
-		listMembros = new JComboBox<String>(membrosComboBox);
+		listMembros = new JComboBox<Long>(membrosComboBox);
 		listMembros.setBackground(Color.gray);
 		listMembros.setBounds(270, 380, 130, 30);
 		add(listMembros);
 
 
-		int index = listProjetos.getSelectedIndex();
+		int index = (Integer)listProjetos.getSelectedItem();
 
 		//Lista dos membros que estão no projeto selecionado
-		String[] membrosProjetoComboBox = new String[controllerMembro.getMembros().size()];
+		Long[] membrosProjetoComboBox = new Long[controllerMembro.getMembros().size()];
 		if(controllerProjeto.getProjetos().size() > 0) {
 			for (int i=0; i<controllerProjeto.getProjetos().get(index).getMembros().size(); i++) {
-				membrosProjetoComboBox[i] = controllerProjeto.getProjetos().get(index).getMembros().get(i).getNome();
+				membrosProjetoComboBox[i] = controllerProjeto.getProjetos().get(index).getMembros().get(i).getMatricula();
 			}
 		}
 
 
-		listMembrosProjeto = new JComboBox<String>(membrosProjetoComboBox);
+		listMembrosProjeto = new JComboBox<Long>(membrosProjetoComboBox);
 		listMembrosProjeto.setBackground(Color.gray);
 		listMembrosProjeto.setBounds(100, 380, 130, 30);
 		add(listMembrosProjeto);
@@ -207,6 +208,8 @@ public class TelaAtualizarProjeto extends JFrame{
 		buttonAtualizar.addActionListener(ouvinteBotao);
 		buttonFinalizar.addActionListener(ouvinteBotao);
 		buttonVoltar.addActionListener(ouvinteBotao);
+		buttonAdionarMembroAoGrupo.addActionListener(ouvinteBotao);
+		buttonRemoverMembroDoGrupo.addActionListener(ouvinteBotao);
 	}
 
 	public class OuvinteBotao implements ActionListener{
@@ -215,17 +218,12 @@ public class TelaAtualizarProjeto extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			String evento = e.getActionCommand();
 
-			int idProjeto = 0;
-			for (int i = 0; i < controllerProjeto.getProjetos().size(); i++) {
-				if(controllerProjeto.getProjetos().get(i).equals(controllerProjeto.getProjetos().get(listProjetos.getSelectedIndex()))) {
-					idProjeto = controllerProjeto.getProjetos().get(i).getId();
-				}
-			}
+			int idProjeto = (Integer)listProjetos.getSelectedItem();
+
 
 			switch (evento) {
 			case "Atualizar":
-				int index = listProjetos.getSelectedIndex();
-				
+
 				String nomeProjeto = txtNovoNome.getText();
 				float aporteCapitalReais = Float.parseFloat(txtCapital.getText());
 				float aporteCusteioReais = Float.parseFloat(txtCusteio.getText());
@@ -234,8 +232,8 @@ public class TelaAtualizarProjeto extends JFrame{
 				float gastoExecutadoCusteioReais = Float.parseFloat(txtGastoCusteio.getText());
 
 				for (int i = 0; i < controllerProjeto.getProjetos().size(); i++) {
-					if(controllerProjeto.getProjetos().get(i).equals(controllerProjeto.getProjetos().get(index))) {
-						controllerProjeto.setAtributosProjeto(controllerProjeto.getProjetos().get(index), nomeProjeto, aporteCapitalReais, aporteCusteioReais, dataTermino, gastoExecutadoCapitalReais, gastoExecutadoCusteioReais);
+					if(controllerProjeto.getProjetos().get(i).equals(controllerProjeto.pesquisarProjeto(idProjeto))) {
+						controllerProjeto.setAtributosProjeto(controllerProjeto.pesquisarProjeto(idProjeto), nomeProjeto, aporteCapitalReais, aporteCusteioReais, dataTermino, gastoExecutadoCapitalReais, gastoExecutadoCusteioReais);
 						controllerProjeto.atualizarProjeto();
 						JOptionPane.showMessageDialog(null, "Grupo Atualizado");
 						listProjetos.repaint();
@@ -249,23 +247,22 @@ public class TelaAtualizarProjeto extends JFrame{
 				break;
 
 			case "Remover":
-				int indexMembroProjeto = listMembrosProjeto.getSelectedIndex();
-				for (int i = 0; i < controllerMembro.getMembros().size(); i++) {
-					if(controllerMembro.getMembros().get(i).equals(controllerMembro.getMembros().get(indexMembroProjeto))) {
-						controllerProjeto.removerMembroDoProjeto(controllerMembro.getMembros().get(indexMembroProjeto), idProjeto);
-						JOptionPane.showMessageDialog(null, "Removido!");
-					}
-				}
+				long matriculaRemover = (Long)listMembrosProjeto.getSelectedItem();
+
+				Fachada5Projeto fachadaP = new Fachada5Projeto();
+				fachadaP.removerMembroNoProjeto(controllerMembro.pesquisar(matriculaRemover), idProjeto);
+				JOptionPane.showMessageDialog(null, "Removido!");
+
 
 				break;
 
 			case "Adicionar":
-				int indexMembro = listMembros.getSelectedIndex();
-				for (int i = 0; i < controllerMembro.getMembros().size(); i++) {
-					if(controllerMembro.getMembros().get(i).equals(controllerMembro.getMembros().get(indexMembro))) {
-						controllerProjeto.adicionarMembroNoProjeto(controllerMembro.getMembros().get(indexMembro), idProjeto);
-					}
-				}
+				long matricula = (Long)listMembros.getSelectedItem();
+
+				controllerProjeto.adicionarMembroNoProjeto(controllerMembro.pesquisar(matricula), idProjeto);
+				JOptionPane.showMessageDialog(null, "Adicionado!");
+
+
 
 				break;
 			}

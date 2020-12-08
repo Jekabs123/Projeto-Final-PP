@@ -73,11 +73,12 @@ public class Fachada5Projeto {
 	 * @param idDoProjeto: o id do projeto que o membro vai ser removido.
 	 * @return: retorna true se remover o membro do projeto e false se não.
 	 */
-	public void removerMembroNoProjeto(Membro membro, int idDoProjeto){
+	public void removerMembroNoProjeto(Membro membro, int idDoProjeto) {
 		try{
 			// remove o membro do projeto
 			Projeto projeto = pesquisarProjeto(idDoProjeto);
 			projeto.removerMembro(membro);
+			projeto.setMembros(projeto.getMembros());
 			projetoParticipacao.atualizar();
 		}catch(Exception e){
 			System.out.println("Não foi possivel remover o membro");

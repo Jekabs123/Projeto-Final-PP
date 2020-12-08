@@ -113,4 +113,8 @@ public class Projeto extends CompositorProjeto {
 		}
 		return null;
 	}
+	public void setMembros(ArrayList<Membro> membros) {
+		this.membros = membros;
+	}
+
 }

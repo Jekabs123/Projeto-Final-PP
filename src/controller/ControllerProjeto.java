@@ -46,7 +46,7 @@ public class ControllerProjeto {
 		fachadaProjeto.removerProjeto(id);
 	}
 	
-	public void removerMembroDoProjeto(Membro membro, int id){
+	public void removerMembroDoProjeto(Membro membro, int id) {
 		fachadaProjeto.removerMembroNoProjeto(membro, id);
 	}
 	

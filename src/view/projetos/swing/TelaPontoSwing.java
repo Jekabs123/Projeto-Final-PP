@@ -110,18 +110,18 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 	}
 
 	public void comboBox() {
-		Integer[] projetosComboBox = new Integer[Fachada5Projeto.getProjetosPersistidos().size()];
+		Integer[] projetosComboBox = new Integer[controllerProjeto.getProjetos().size()];
 
 		for(int i = 0; i<controllerProjeto.getProjetos().size(); i++) {
-			if(controllerProjeto.getProjetos().get(i).getMembros().size() != 0) {
+			if(controllerProjeto.getProjetos().get(i).getMembros().size() != 0 ) {
 				for (int j = 0; j < controllerProjeto.getProjetos().get(i).getMembros().size(); j++) {
 					if(Fachada9MembroRealizarLogout.isOnline(controllerProjeto.getProjetos().get(i).getMembros().get(j).getLogin())) {
 						projetosComboBox[i] =  controllerProjeto.getProjetos().get(i).getId();
 					}
 				}
-			}else {
-				projetosComboBox[i] = controllerProjeto.getProjetos().get(i).getId();
-			}
+			}//else {
+			//	projetosComboBox[i] = controllerProjeto.getProjetos().get(i).getId();
+			//}
 		}
 
 		listComboBox = new JComboBox<Integer>(projetosComboBox);
