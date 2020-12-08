@@ -15,6 +15,9 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
 import fachadas.Fachada8Relatorio;
+import model.projetos.Edital;
+import model.projetos.Grupo;
+import model.projetos.Projeto;
 
 public class RelatorioProjetoSwing extends JFrame implements MontadorRelatorioProjeto {
 	
@@ -68,6 +71,26 @@ public class RelatorioProjetoSwing extends JFrame implements MontadorRelatorioPr
 		this.add(new JScrollPane(edPane));
 		this.setSize(800,570);
 		this.setLocation(0,0);
+		
+	}
+	
+	//Nova versão
+
+	@Override
+	public void gerar(Edital edital) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void gerar(Grupo grupo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void gerar(Projeto projeto) {
+		// TODO Auto-generated method stub
 		
 	}
 

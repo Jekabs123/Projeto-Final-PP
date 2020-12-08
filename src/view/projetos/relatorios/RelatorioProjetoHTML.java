@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import fachadas.Fachada8Relatorio;
+import model.projetos.Edital;
+import model.projetos.Grupo;
+import model.projetos.Projeto;
 
 public class RelatorioProjetoHTML extends File implements MontadorRelatorioProjeto {
 
@@ -45,6 +48,30 @@ public class RelatorioProjetoHTML extends File implements MontadorRelatorioProje
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	}
+
+//Nova Versão
+
+	@Override
+	public void gerar(Edital edital) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void gerar(Grupo grupo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void gerar(Projeto projeto) {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -68,6 +68,11 @@ public class TelaCadastrarEditaisSwing extends JFrame implements TelaCadastroEdi
 		buttonVoltar.setBounds(15, 15, 20, 20);
 		add(buttonVoltar);
 		
+		JButton buttonRelatorio = new JButton(".",new ImageIcon(getClass().getResource("/relatorio.png")));
+		buttonRelatorio.setBackground(Color.gray);
+		buttonRelatorio.setBounds(20, 200, 30, 30);
+		add(buttonRelatorio);
+		
 		OuvinteTelaCadastroEditais ouvinteTelaCadastroEditais = new OuvinteTelaCadastroEditais();
 		
 		buttonAdicionar.addActionListener(ouvinteTelaCadastroEditais);

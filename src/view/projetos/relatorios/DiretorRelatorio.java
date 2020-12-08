@@ -1,6 +1,11 @@
 package view.projetos.relatorios;
 
+import model.projetos.Edital;
+import model.projetos.Grupo;
+import model.projetos.Projeto;
+
 public class DiretorRelatorio {
+	
 	private MontadorRelatorioProjeto montador;
 	
 	public DiretorRelatorio(MontadorRelatorioProjeto montadorRelatorioProjeto) {
@@ -25,5 +30,13 @@ public class DiretorRelatorio {
 			relatorio = (RelatorioProjetoSwing) montador;
 		}
 		return relatorio.getProduto();
+	}
+	
+	// Nova Versão
+	
+	public void gerarRelatorioCompleto(Edital edital, Grupo grupo, Projeto projeto) {
+		montador.gerar(edital);
+		montador.gerar(grupo);
+		montador.gerar(projeto);
 	}
 }
