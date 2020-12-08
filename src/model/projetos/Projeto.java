@@ -46,16 +46,18 @@ public class Projeto extends CompositorProjeto {
 	}
 	public void adicionarMembro(Membro membro) throws ExceptionMembroDuplicado {
 		for(Membro m: membros){
-			if(m==null) {
-				break;
-			} else if (m.getMatricula()==membro.getMatricula()) {
-				 throw new ExceptionMembroDuplicado("Algum membro possui essa matricula");
+			if(m.getMatricula()==membro.getMatricula()) {
+					throw new ExceptionMembroDuplicado("Algum membro possui essa matricula");
+				}
 			}
-		}
-		membros.add(membro);
+			membros.add(membro);
 	}
 	public void removerMembro(Membro membro) {
-		membros.remove(membro);
+		for(Membro m: membros){
+			if(membro.getMatricula()==m.getMatricula()){
+				membros.remove(m);
+			}
+		}
 	}
 	/**
 	 * Esse método move os membros do projeto para outro grupo
@@ -96,7 +98,7 @@ public class Projeto extends CompositorProjeto {
 	}
 
 	public ArrayList<Membro> getMembros() {
-		return membros;
+		return this.membros;
 	}
 
 	/**
