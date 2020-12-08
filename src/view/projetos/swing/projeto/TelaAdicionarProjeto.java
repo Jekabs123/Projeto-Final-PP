@@ -196,12 +196,14 @@ public class TelaAdicionarProjeto extends JFrame {
 				break;
 			
 			case "Adicionar":
-				long matricula = (Long) listMembros.getSelectedItem();
 				try {
+					long matricula = (Long) listMembros.getSelectedItem();
 					controllerProjeto.adicionarMembroNoProjeto(controllerMembro.pesquisar(matricula));
 					JOptionPane.showMessageDialog(null, "Membro Adicionado ao Projeto!");
 				} catch (ExceptionMembroDuplicado e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Não exite membro no sistema");
 				}
 	
 //				

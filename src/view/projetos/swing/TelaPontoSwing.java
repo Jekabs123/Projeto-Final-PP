@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.event.ListDataListener;
 
 import org.apache.commons.mail.EmailException;
 
@@ -93,7 +95,7 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 		JLabel labelLogin = new JLabel("Login");
 		labelLogin.setBounds(30, 30, 60, 30);
 		add(labelLogin);
-
+		
 		JLabel labelSenha = new JLabel("Senha");
 		labelSenha.setBounds(30, 70, 60, 30);
 		add(labelSenha);
@@ -116,7 +118,9 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 			if(controllerProjeto.getProjetos().get(i).getMembros().size() != 0 ) {
 				for (int j = 0; j < controllerProjeto.getProjetos().get(i).getMembros().size(); j++) {
 					if(Fachada9MembroRealizarLogout.isOnline(controllerProjeto.getProjetos().get(i).getMembros().get(j).getLogin())) {
-						projetosComboBox[i] =  controllerProjeto.getProjetos().get(i).getId();
+						if(controllerProjeto.getProjetos().get(i).getMembros().get(j).getLogin().equals(textLogin.getText())){
+							projetosComboBox[i] =  controllerProjeto.getProjetos().get(i).getId();
+						}
 					}
 				}
 			}//else {
@@ -124,7 +128,7 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 			//}
 		}
 
-		listComboBox = new JComboBox<Integer>(projetosComboBox);
+		listComboBox = new JComboBox<>(projetosComboBox);
 		listComboBox.setBounds(110, 220, 200, 30);
 		add(listComboBox);
 	}
@@ -224,7 +228,20 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 				} else {
 					mostrarMensagem("Não há ninguém cadastrado");
 				}
-
+				Integer[] projetosComboBoxAtualizado = new Integer[controllerProjeto.getProjetos().size()];
+				for(int i = 0; i<controllerProjeto.getProjetos().size(); i++) {
+					if(controllerProjeto.getProjetos().get(i).getMembros().size() != 0 ) {
+						for (int j = 0; j < controllerProjeto.getProjetos().get(i).getMembros().size(); j++) {
+							if(Fachada9MembroRealizarLogout.isOnline(controllerProjeto.getProjetos().get(i).getMembros().get(j).getLogin())) {
+								if(controllerProjeto.getProjetos().get(i).getMembros().get(j).getLogin().equals(textLogin.getText())){
+									projetosComboBoxAtualizado[i] =  controllerProjeto.getProjetos().get(i).getId();
+								}
+							}
+						}
+					}
+				}
+				JComboBox combo = new JComboBox<Integer>(projetosComboBoxAtualizado);
+				listComboBox.setModel(combo.getModel());
 				break;
 
 			case "Bater Ponto":
@@ -237,9 +254,6 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 						break;
 					}
 				}
-
-
-
 				break;
 
 			case "Ver Detalhes":
@@ -280,5 +294,4 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 	public void mostrarMensagem(String mensagem) {
 		JOptionPane.showMessageDialog(null, mensagem);
 	}
-
 }

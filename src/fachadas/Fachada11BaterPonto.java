@@ -12,7 +12,7 @@ import model.projetos.ponto.RegistradorPontoCentral;
 public class Fachada11BaterPonto {
  
 	private RegistradorPontoCentral registrarPonto;
-	
+	private PontoTrabalhado ponto;
 	public Fachada11BaterPonto() {
 		try {
 			registrarPonto = new RegistradorPontoCentral();
@@ -21,7 +21,7 @@ public class Fachada11BaterPonto {
 		}
 	}
 	public void baterPonto(Participacao participacao,long dataHoraEntrada, long dataHoraSaida){
-		PontoTrabalhado ponto = new PontoTrabalhado();
+		ponto = new PontoTrabalhado();
 		ponto.setDataHoraEntrada(dataHoraEntrada);
 		ponto.setDataHoraSaida(dataHoraSaida);
 		participacao.adicionarPontoTrabalhado(ponto);

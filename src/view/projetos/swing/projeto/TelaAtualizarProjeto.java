@@ -269,6 +269,9 @@ public class TelaAtualizarProjeto extends JFrame{
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 				break;
+			case "":
+				fabricaTela.fabricarTelaCadastroProjetos();
+				dispose();
 			}
 
 		}
