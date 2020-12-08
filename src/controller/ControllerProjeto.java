@@ -3,6 +3,7 @@ package controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import exception.ExceptionMembroDuplicado;
 import fachadas.Fachada5Projeto;
 import model.autenticacao.Membro;
 import model.projetos.Grupo;
@@ -29,12 +30,12 @@ public class ControllerProjeto {
 	}
 	
 	//ao criar
-	public void adicionarMembroNoProjeto(Membro membro){
+	public void adicionarMembroNoProjeto(Membro membro) throws ExceptionMembroDuplicado{
 		fachadaProjeto.adicionarMembroNoProjeto(membro, projeto.getId());
 	}
 	
 	//ao atualizar
-	public void adicionarMembroNoProjeto(Membro membro, int id){
+	public void adicionarMembroNoProjeto(Membro membro, int id) throws ExceptionMembroDuplicado{
 		fachadaProjeto.adicionarMembroNoProjeto(membro, id);
 	}
 	

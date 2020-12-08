@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import controller.ControllerMembro;
 import controller.ControllerProjeto;
+import exception.ExceptionMembroDuplicado;
 import fachadas.Fachada5Projeto;
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
@@ -148,8 +149,10 @@ public class TelaAtualizarProjeto extends JFrame{
 		add(listProjetos);
 
 		//Lista dos membros
+//		if()
 		Long[] membrosComboBox = new Long[controllerMembro.getMembros().size()];
 		for (int i=0; i<controllerMembro.getMembros().size(); i++) {
+			
 			membrosComboBox[i] = controllerMembro.getMembros().get(i).getMatricula();
 		}
 
@@ -159,13 +162,14 @@ public class TelaAtualizarProjeto extends JFrame{
 		add(listMembros);
 
 
-		int index = (Integer)listProjetos.getSelectedItem();
+		int id = (Integer)listProjetos.getSelectedItem();
 
 		//Lista dos membros que estão no projeto selecionado
-		Long[] membrosProjetoComboBox = new Long[controllerMembro.getMembros().size()];
+		Long[] membrosProjetoComboBox = new Long[controllerProjeto.pesquisarProjeto(id).getMembros().size()];
 		if(controllerProjeto.getProjetos().size() > 0) {
-			for (int i=0; i<controllerProjeto.getProjetos().get(index).getMembros().size(); i++) {
-				membrosProjetoComboBox[i] = controllerProjeto.getProjetos().get(index).getMembros().get(i).getMatricula();
+			for (int i=0; i<controllerProjeto.pesquisarProjeto(id).getMembros().size(); i++) {
+				System.out.println(controllerProjeto.pesquisarProjeto(id).getMembros().size());
+					membrosProjetoComboBox[i] = controllerProjeto.pesquisarProjeto(id).getMembros().get(i).getMatricula();
 			}
 		}
 
@@ -249,8 +253,7 @@ public class TelaAtualizarProjeto extends JFrame{
 			case "Remover":
 				long matriculaRemover = (Long)listMembrosProjeto.getSelectedItem();
 
-				Fachada5Projeto fachadaP = new Fachada5Projeto();
-				fachadaP.removerMembroNoProjeto(controllerMembro.pesquisar(matriculaRemover), idProjeto);
+				controllerProjeto.removerMembroDoProjeto(controllerMembro.pesquisar(matriculaRemover), idProjeto);
 				JOptionPane.showMessageDialog(null, "Removido!");
 
 
@@ -259,11 +262,12 @@ public class TelaAtualizarProjeto extends JFrame{
 			case "Adicionar":
 				long matricula = (Long)listMembros.getSelectedItem();
 
-				controllerProjeto.adicionarMembroNoProjeto(controllerMembro.pesquisar(matricula), idProjeto);
-				JOptionPane.showMessageDialog(null, "Adicionado!");
-
-
-
+				try {
+					controllerProjeto.adicionarMembroNoProjeto(controllerMembro.pesquisar(matricula), idProjeto);
+					JOptionPane.showMessageDialog(null, "Adicionado!");
+				} catch (ExceptionMembroDuplicado e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
 				break;
 			}
 

@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import controller.ControllerMembro;
 import controller.ControllerProjeto;
+import exception.ExceptionMembroDuplicado;
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
 import view.autenticacao.swing.SetLookAndFeel;
@@ -196,9 +197,13 @@ public class TelaAdicionarProjeto extends JFrame {
 			
 			case "Adicionar":
 				long matricula = (Long) listMembros.getSelectedItem();
-				
-				controllerProjeto.adicionarMembroNoProjeto(controllerMembro.pesquisar(matricula));
-				JOptionPane.showMessageDialog(null, "Membro Adicionado ao Projeto!");
+				try {
+					controllerProjeto.adicionarMembroNoProjeto(controllerMembro.pesquisar(matricula));
+					JOptionPane.showMessageDialog(null, "Membro Adicionado ao Projeto!");
+				} catch (ExceptionMembroDuplicado e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+	
 //				
 //				for (int i = 0; i < controllerMembro.getMembros().size(); i++) {
 //					if(controllerMembro.getMembros().get(i).equals(controllerMembro.getMembros().get(index))) {

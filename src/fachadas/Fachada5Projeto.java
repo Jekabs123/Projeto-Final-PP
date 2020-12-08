@@ -52,16 +52,13 @@ public class Fachada5Projeto {
 	 * @param membro: é o membro que vai ser adicionado no projeto.
 	 * @param idDoProjeto: é o id do projeto que vai ser adicionado o membro.
 	 * @return: retorna true se o membro for adicionado e false se não.
+	 * @throws ExceptionMembroDuplicado 
 	 */
-	public void adicionarMembroNoProjeto(Membro membro, int idDoProjeto) {
+	public void adicionarMembroNoProjeto(Membro membro, int idDoProjeto) throws ExceptionMembroDuplicado {
 		
 			// adiciona o membro para o projeto
 			Projeto projeto = pesquisarProjeto(idDoProjeto);
-			try {
 				projeto.adicionarMembro(membro);
-			} catch (ExceptionMembroDuplicado e) {
-				System.out.println(e.getMessage());
-			}
 			projetoParticipacao.atualizar();
 		
 	
