@@ -150,6 +150,8 @@ public class TelaPrincipalSwing extends JFrame implements TelaPrincipal {
 				fabricaTela.fabricarTelaConfiguracaoAdmin();
 				break;
 			case "Relatorio":
+				dispose();
+				new TelaEscolherTipoRelatorio();
 				break;
 				
 			}
