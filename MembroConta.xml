@@ -3,21 +3,7 @@
   <membros>
     <model.autenticacao.Membro>
       <matricula>253253</matricula>
-      <nome>paulo</nome>
-      <ativo>true</ativo>
-      <email>paulo@gmail.com</email>
-      <administrador>true</administrador>
-      <contaEmail class="model.autenticacao.ContaEmailLivre">
-        <conta class="model.autenticacao.ContaAutenticacaoProvedorInterno"/>
-        <login>paulo@gmail.com</login>
-        <senha>paulo123</senha>
-      </contaEmail>
-      <participacao>
-        <id>2</id>
-        <nome>paulo</nome>
-        <ativo>true</ativo>
-        <dataInicio>2020</dataInicio>
-        <dataTermino>2020</dataTermino>
+
         <compositorProjeto>
           <model.projetos.Projeto>
             <id>1</id>
