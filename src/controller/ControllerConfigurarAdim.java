@@ -11,13 +11,13 @@ public class ControllerConfigurarAdim {
 	
 	public ControllerConfigurarAdim(String nome,ContaEmail contaEmail,String email,long matricula,Participacao participacao){
 		Membro membro = new Membro();
-		membro.ativar();
 		membro.setAdministrador(true);
 		membro.setContaEmail(contaEmail);
 		membro.setEmail(email);
 		membro.setMatricula(matricula);
 		membro.setNome(nome);
 		membro.setParticipacao(participacao);
+		membro.ativar();
 		fachadaMembro = new Fachada7MembroAdministrador(membro);
 	}
 	public void tornarMembroAdim(Membro membro){

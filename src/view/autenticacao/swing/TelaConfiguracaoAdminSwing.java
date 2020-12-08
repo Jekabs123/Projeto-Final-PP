@@ -10,14 +10,20 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import controller.ControllerMembro;
 import model.autenticacao.Membro;
+import view.autenticacao.FabricaTela;
 import view.autenticacao.TelaConfiguracaoAdmin;
 
 public class TelaConfiguracaoAdminSwing extends JFrame implements TelaConfiguracaoAdmin {
 	
-	private JComboBox<String> listMembros;
+	ControllerMembro controllerMembro = new ControllerMembro();
+	
+	FabricaTela fabricaTela = new FabricaTelaSwing();
+	
+	private JComboBox<Long> listMembros;
 	public TelaConfiguracaoAdminSwing() {
 		setTitle("Configurações do Administrador");
 		setLayout(null);
@@ -49,8 +55,12 @@ public class TelaConfiguracaoAdminSwing extends JFrame implements TelaConfigurac
 	}
 	
 	public void addComboBox() {
-
-		listMembros = new JComboBox<String>();
+		Long[] membrosComboBox = new Long[controllerMembro.getMembros().size()];
+		for (int i = 0; i < controllerMembro.getMembros().size(); i++) {
+			membrosComboBox[i] = controllerMembro.getMembros().get(i).getMatricula();
+		}
+		
+		listMembros = new JComboBox<Long>(membrosComboBox);
 		listMembros.setBounds(150, 100, 200, 30);
 		add(listMembros);
 		
@@ -64,20 +74,30 @@ public class TelaConfiguracaoAdminSwing extends JFrame implements TelaConfigurac
 		buttonTornarAdmin.addActionListener(ovuinte);
 		add(buttonTornarAdmin);
 		
+		JButton buttonVoltar = new JButton(new ImageIcon(getClass().getResource("/voltar.png")));
+		buttonVoltar.setBackground(Color.gray);
+		buttonVoltar.setBounds(15, 15, 20, 20);
+		buttonVoltar.addActionListener(ovuinte);
+		add(buttonVoltar);
+		
 	}
 	public class OuvinteBotao implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			long matricula = Long.parseLong((String)listMembros.getSelectedItem());
-			ControllerMembro controllerMembro = new ControllerMembro();
-			Membro membro = controllerMembro.pesquisar(matricula);
-			controllerMembro.tornarMembroAdim(membro);
-			controllerMembro.atualizar();
+			
+			if(e.getActionCommand().equals("Tornar Administrador")) {
+				long matricula = (Long)listMembros.getSelectedItem();
+				controllerMembro.tornarMembroAdim(controllerMembro.pesquisar(matricula));
+				JOptionPane.showMessageDialog(null, "Membro Agora é um Administrador");
+				controllerMembro.atualizar();
+			}else {
+				dispose();
+				fabricaTela.fabricarTelaPrincipal();
+			}
+			
 		}
 		
 	}
-	public static void main(String[] args) {
-		new TelaConfiguracaoAdminSwing();
-	}
+
 }
