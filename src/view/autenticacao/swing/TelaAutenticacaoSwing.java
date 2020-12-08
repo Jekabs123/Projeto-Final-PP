@@ -132,16 +132,16 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao {
 			case "Autenticar":
 				try {
 					if ((controller.autenticarContaEmail(campoLogin.getText(), senha, provedor) == null)) {
-						JOptionPane.showMessageDialog(null, "Campos Vazios!");
+						mostrarMensagem("Campos Vazios!");
 					} else {
-						JOptionPane.showMessageDialog(null, "Bem Vindo!");
+						mostrarMensagem("Bem Vindo!");
 						dispose();
 						fabricaTela.fabricarTelaPrincipal();
 					}
 			//		controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
 					
 				} catch (EmailException e2) {
-					JOptionPane.showMessageDialog(null, "Não foi possível logar!");
+					mostrarMensagem("Não foi possível logar!");
 				}
 				
 				break;
@@ -156,19 +156,20 @@ public class TelaAutenticacaoSwing extends JFrame implements TelaAutenticacao {
 				try {
 					m = controller.autenticarContaEmail(campoLogin.getText(), senha, provedor);
 					if(m == null){
-						JOptionPane.showMessageDialog(null, "Esse login ou senha não existe");
+						mostrarMensagem("Esse login ou senha não existe");
 					}else{
-						JOptionPane.showMessageDialog(null, tipoProvedor+m.getNome());
+						mostrarMensagem(tipoProvedor+m.getNome());
 					}
 				} catch (EmailException e1) {
-					JOptionPane.showMessageDialog(null, "Esse login ou senha não foi encontrado\n No provedor SMTP");
+					mostrarMensagem("Esse login ou senha não foi encontrado\n No provedor SMTP");
 				}
 		}
 		
 	}
 	
-	public static void main(String[] args) {
-		new TelaAutenticacaoSwing();
+	@Override
+	public void mostrarMensagem(String mensagem) {
+		JOptionPane.showMessageDialog(null, mensagem);
 	}
 
 }

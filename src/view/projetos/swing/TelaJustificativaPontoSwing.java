@@ -5,6 +5,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -64,8 +65,10 @@ public class TelaJustificativaPontoSwing extends JFrame implements TelaJustifica
 		add(buttonJustificar);
 	}
 	
-	public static void main(String[] args) {
-		new TelaJustificativaPontoSwing();
+
+	@Override
+	public void mostrarMensagem(String mensagem) {
+		JOptionPane.showMessageDialog(null, mensagem);
 	}
 
 }

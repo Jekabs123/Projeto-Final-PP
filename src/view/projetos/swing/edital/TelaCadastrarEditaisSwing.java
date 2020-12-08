@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
@@ -110,6 +111,12 @@ public class TelaCadastrarEditaisSwing extends JFrame implements TelaCadastroEdi
 			}
 			
 		}
+	}
+
+	@Override
+	public void mostrarMensagem(String mensagem) {
+		JOptionPane.showMessageDialog(null, mensagem);
+		
 	}
 
 }

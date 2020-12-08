@@ -258,14 +258,14 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 				for (int i = 0; i < controllerProjeto.getProjetos().size(); i++) {
 					if(controllerProjeto.getProjetos().get(i).equals(controllerProjeto.pesquisarProjeto(idProjeto))) {
 						controllerCadastrarContaMembro.addParticipacao(controllerProjeto.pesquisarProjeto(idProjeto), aporteCusteioMensalReais, qtdMesesCusteados, qtdMesesPagos);
-						JOptionPane.showMessageDialog(null, "Adiconado!");
+						mostrarMensagem("Adiconado!");
 					}
 				}
 				
 				break;
 				
 			case "Cadastrar":
-				JOptionPane.showMessageDialog(null, "Cadastro Concluído!");
+				mostrarMensagem("Cadastro Concluído!");
 				dispose();
 				fabricaTela.fabricarTelaAutenticacao();
 				break;
@@ -273,6 +273,12 @@ public class TelaCriarContaSwing extends JFrame implements TelaCriarConta {
 			
 		}
 		
+	}
+
+
+	@Override
+	public void mostrarMensagem(String mensagem) {
+		JOptionPane.showMessageDialog(null, mensagem);
 	}
 	
 }

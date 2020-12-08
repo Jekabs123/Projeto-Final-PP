@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import view.autenticacao.FabricaTela;
 import view.autenticacao.swing.FabricaTelaSwing;
@@ -152,5 +153,10 @@ public class TelaPrincipalSwing extends JFrame implements TelaPrincipal {
 			
 		}
 		
+	}
+
+	@Override
+	public void mostrarMensagem(String mensagem) {
+		JOptionPane.showMessageDialog(null, mensagem);
 	}
 }

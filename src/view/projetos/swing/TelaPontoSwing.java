@@ -210,19 +210,19 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 							try {
 								fachadaAutenticacao.autenticarContaEmailProvedor(textLogin.getText(), textSenha.getText(), provedor);
 							} catch (EmailException e1) {
-								JOptionPane.showMessageDialog(null, "Login ou senha não existe no provedor SMTP");
+								mostrarMensagem("Login ou senha não existe no provedor SMTP");
 							}
 							JOptionPane.showMessageDialog(null, "Logado");
 							listComboBox.repaint();
 							btBaterPonto.setEnabled(true);
 							break;
 						} else{
-							JOptionPane.showMessageDialog(null, "Login não cadastrado");
+							mostrarMensagem("Login não cadastrado");
 
 						}
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Não há ninguém cadastrado");
+					mostrarMensagem("Não há ninguém cadastrado");
 				}
 
 				break;
@@ -244,7 +244,7 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 
 			case "Ver Detalhes":
 				Integer id = (Integer)listComboBox.getSelectedItem();
-				JOptionPane.showMessageDialog(null, "Horas Trabalhadas: " + 
+				mostrarMensagem("Horas Trabalhadas: " + 
 						fachadaHorario.horasTrabalhadas(controllerProjeto.pesquisarProjeto(id).getDataInicio(), controllerProjeto.pesquisarProjeto(id).getDataTermino(), textLogin.getText())
 				+ "\nDéficit Horas: " + 
 				controllerTelaPonto.deficitHoras(controllerProjeto.pesquisarProjeto(id).getDataInicio(), controllerProjeto.pesquisarProjeto(id).getDataTermino(), textLogin.getText())
@@ -272,6 +272,13 @@ public class TelaPontoSwing extends JFrame implements TelaPonto {
 
 		}
 
+	}
+
+
+
+	@Override
+	public void mostrarMensagem(String mensagem) {
+		JOptionPane.showMessageDialog(null, mensagem);
 	}
 
 }

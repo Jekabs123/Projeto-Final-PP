@@ -89,7 +89,8 @@ public class TelaConfiguracaoAdminSwing extends JFrame implements TelaConfigurac
 			if(e.getActionCommand().equals("Tornar Administrador")) {
 				long matricula = (Long)listMembros.getSelectedItem();
 				controllerMembro.tornarMembroAdim(controllerMembro.pesquisar(matricula));
-				JOptionPane.showMessageDialog(null, "Membro Agora é um Administrador");
+			//	JOptionPane.showMessageDialog(null, "Membro Agora é um Administrador");
+				mostrarMensagem("Membro Agora é um Administrador");
 				controllerMembro.atualizar();
 			}else {
 				dispose();
@@ -98,6 +99,10 @@ public class TelaConfiguracaoAdminSwing extends JFrame implements TelaConfigurac
 			
 		}
 		
+	}
+	@Override
+	public void mostrarMensagem(String mensagem) {
+		JOptionPane.showMessageDialog(null, mensagem);
 	}
 
 }
